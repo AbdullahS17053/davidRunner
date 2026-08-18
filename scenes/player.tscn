@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://du2g430hqsqag"]
+
+[ext_resource type="Script" uid="uid://ch6xq4rp00elp" path="res://scenes/player/player.gd" id="1_3vyb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+albedo_color = Color(0.50657654, 0.7709893, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih7qs"]
+radius = 0.52734375
+
+[node name="Player" type="CharacterBody3D" unique_id=22477516]
+physics_interpolation_mode = 1
+script = ExtResource("1_3vyb7")
+move_speed = 8.0
+jump_force = 9.0
+lane_width = 4.0
+switch_speed = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1035691742]
+material_override = SubResource("StandardMaterial3D_3vyb7")
+mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=29157549]
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="Collision" type="Area3D" parent="." unique_id=545970957]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=815445724]
+shape = SubResource("CapsuleShape3D_ih7qs")
+
+[connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]

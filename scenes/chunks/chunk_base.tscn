@@ -1,106 +1,23 @@
 [gd_scene format=3 uid="uid://b02png6xwrrwt"]
 
-[ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="1_dvsbp"]
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="2_mxfye"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvsbp"]
 albedo_color = Color(0.6479396, 0.960356, 0.47386217, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvsbp"]
-albedo_color = Color(1, 0.42765832, 0.42765832, 1)
-
 [node name="ChunkBase" type="Node3D" unique_id=1451399318]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1746488838]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
-use_collision = true
-collision_layer = 4
-size = Vector3(12.832031, 0.5, 20)
-material = SubResource("StandardMaterial3D_3vyb7")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1164515588 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.967272, 1.8215027, -13.061638)
-use_collision = true
-collision_layer = 2
-size = Vector3(2.361084, 3.1430054, 1.5861816)
-material = SubResource("StandardMaterial3D_dvsbp")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=431342509 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07350016, 1, -5.374301)
-visible = false
-size = Vector3(3.492, 1.5, 0.756)
-material = SubResource("StandardMaterial3D_dvsbp")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=1988831397 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.597264, 1, 3.0289474)
-use_collision = true
-collision_layer = 2
-size = Vector3(0.51716506, 1.5, 0.756)
-material = SubResource("StandardMaterial3D_dvsbp")
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="." unique_id=2022825997 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9609933, 1.869628, 3.0289474)
-use_collision = true
-collision_layer = 2
-size = Vector3(3.321674, 0.4086914, 0.756)
-material = SubResource("StandardMaterial3D_dvsbp")
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=1319958760 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.39705, 1, 3.0289474)
-use_collision = true
-collision_layer = 2
-size = Vector3(0.51716506, 1.5, 0.756)
-material = SubResource("StandardMaterial3D_dvsbp")
-
-[node name="Collectibles" type="Node3D" parent="." unique_id=1202211274]
-
-[node name="Collectible" parent="Collectibles" unique_id=434120145 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694717, -10.312497)
-
-[node name="Collectible2" parent="Collectibles" unique_id=1159863489 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694717, -8.587298)
-
-[node name="Collectible10" parent="Collectibles" unique_id=762252049 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, -3.8010314)
-
-[node name="Collectible11" parent="Collectibles" unique_id=948335886 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, -2.0758326)
-
-[node name="Collectible12" parent="Collectibles" unique_id=846226948 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, -0.49280953)
-
-[node name="Collectible13" parent="Collectibles" unique_id=218118677 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 1.2323892)
-
-[node name="Collectible14" parent="Collectibles" unique_id=847311864 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 2.8813312)
-
-[node name="Collectible15" parent="Collectibles" unique_id=726152106 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 4.60653)
-
-[node name="Collectible3" parent="Collectibles" unique_id=494315017 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0659587, -7.3580565)
-
-[node name="Collectible4" parent="Collectibles" unique_id=1300578881 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6716564, -6.3422513)
-
-[node name="Collectible5" parent="Collectibles" unique_id=835461267 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1890225, -5.357993)
-
-[node name="Collectible6" parent="Collectibles" unique_id=1764845694 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.378667e-07, 1.1694717, -0.4680729)
-
-[node name="Collectible7" parent="Collectibles" unique_id=456380112 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.704504e-08, 1.1694717, -2.1932716)
-
-[node name="Collectible8" parent="Collectibles" unique_id=1535960447 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.04187e-08, 2.0659587, -3.4225135)
-
-[node name="Collectible9" parent="Collectibles" unique_id=1884435533 instance=ExtResource("1_dvsbp")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.09223215e-07, 2.6716564, -4.4383187)
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 4.877)
 script = ExtResource("2_mxfye")
 lane_width = 4.0
 lane_length = 20.0
+
+[node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1917496024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+use_collision = true
+collision_layer = 4
+size = Vector3(12.832031, 0.5, 20)
+material = SubResource("StandardMaterial3D_dvsbp")

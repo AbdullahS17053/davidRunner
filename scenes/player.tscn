@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ch6xq4rp00elp" path="res://scenes/player/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://bsutcx3w8osx" path="res://assets/character/PolygonSyntyCharacter.fbx" id="2_g2els"]
 [ext_resource type="ArrayMesh" uid="uid://pegpfk1for0q" path="res://assets/character/PolygonSyntyCharacter.SK_DUMMY_POLYGON_01.mesh" id="3_qhqgy"]
-[ext_resource type="AnimationLibrary" uid="uid://cg8j014wt0d5f" path="res://assets/character/animations/Polygon/AC_Polygon_Masculine.library.res" id="4_dqkch"]
+[ext_resource type="AnimationLibrary" uid="uid://c5fvct842ug13" path="res://assets/character/animations/Polygon/player_animations.res" id="4_dqkch"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tuyoq"]
 animation = &"AC_Polygon_Masculine.library/Jump_Idle"
@@ -87,7 +87,6 @@ transitions = ["Sprint", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("
 graph_offset = Vector2(-103.31298, -136.8894)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dqkch"]
-graph_offset = Vector2(-469, -95)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_dqkch")
 nodes/StateMachine/position = Vector2(-221, -9)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -120,33 +119,35 @@ animation_tree = NodePath("PolygonSyntyCharacter/AnimationTree")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="GeneralSkeleton" parent="PolygonSyntyCharacter" index="0" unique_id=1024460452]
-bones/1/position = Vector3(0.025385914, 0.9148651, 0.025667671)
-bones/1/rotation = Quaternion(0.0072404426, 0.25872886, 0.0068444423, 0.96589863)
-bones/2/rotation = Quaternion(0.18495406, 0.0030291162, 0.16914709, 0.9680766)
-bones/3/rotation = Quaternion(-0.07152103, -0.37768814, -0.02588626, 0.92280364)
-bones/4/rotation = Quaternion(0.2835706, -1.2460077e-09, -0.0038919817, 0.9589435)
-bones/5/rotation = Quaternion(-0.13406053, 2.3283064e-09, 0.0018400039, 0.99097145)
-bones/6/rotation = Quaternion(-0.023971893, 0.106035985, -0.1629623, 0.9806248)
-bones/10/rotation = Quaternion(0.44052827, 0.4776075, 0.45773518, -0.6068809)
-bones/11/rotation = Quaternion(0.4631884, 0.77613187, -0.42686328, -0.029387778)
-bones/12/rotation = Quaternion(0.35828114, -0.5605478, 0.7151716, 0.21436062)
-bones/13/rotation = Quaternion(0.16675664, 0.7821497, -0.046991665, 0.59851974)
-bones/17/rotation = Quaternion(-0.17637146, 1.0430813e-07, 0.28027743, 0.94357705)
-bones/21/rotation = Quaternion(-0.3200721, 0.6311719, 0.31294045, 0.6334384)
-bones/26/rotation = Quaternion(0.67642623, -0.301871, -0.4195622, -0.52467996)
-bones/27/rotation = Quaternion(-0.22258174, 0.8917123, -0.39355367, -0.020547202)
-bones/28/rotation = Quaternion(0.61542314, 0.5099877, -0.35281482, 0.48650655)
-bones/29/rotation = Quaternion(-0.0056293984, -0.6356084, -0.057286657, 0.7698628)
-bones/33/rotation = Quaternion(0.05230564, -1.4901161e-08, -0.31335795, 0.94819355)
-bones/37/rotation = Quaternion(-0.0022128127, -0.6826922, -0.51299816, 0.5203455)
-bones/42/rotation = Quaternion(0.013143979, 0.27695474, 0.9397506, 0.19998068)
-bones/43/rotation = Quaternion(-0.06625993, 0.908306, -0.32502872, -0.25484535)
-bones/44/rotation = Quaternion(0.10407085, 0.6068144, -0.78764874, 0.02356294)
-bones/46/rotation = Quaternion(-2.4566298e-09, 1, 0, 9.37242e-10)
-bones/47/rotation = Quaternion(0.000264212, -0.08687498, 0.99597174, -0.022204379)
-bones/48/rotation = Quaternion(-0.18315104, 0.62707776, -0.7257016, -0.21583919)
-bones/49/rotation = Quaternion(-0.12935771, 0.9136443, -0.368202, -0.11378951)
-bones/51/rotation = Quaternion(0.023480866, 0.9789612, -0.19867352, 0.040155493)
+bones/1/position = Vector3(-0.011253287, 0.8765676, 0.030898245)
+bones/1/rotation = Quaternion(-0.3005861, -0.013717895, -0.052780088, 0.9521944)
+bones/2/rotation = Quaternion(0.38324258, 0.012207276, 0.07198102, 0.92075783)
+bones/3/rotation = Quaternion(-0.0030744644, -0.009409669, -0.012968441, 0.9998669)
+bones/4/rotation = Quaternion(0.30508944, 0.0017901275, 0.03056945, 0.9518313)
+bones/5/rotation = Quaternion(-0.13406056, 6.998547e-09, 0.0018400002, 0.99097145)
+bones/6/rotation = Quaternion(0.0128740445, 0.011017414, 0.00799161, 0.9998245)
+bones/10/rotation = Quaternion(0.5887003, 0.39731798, 0.4242536, -0.5617645)
+bones/11/rotation = Quaternion(0.1658881, 0.98277295, -0.081208855, -0.00661245)
+bones/12/rotation = Quaternion(-0.27052188, -0.4968841, 0.6088716, 0.5560572)
+bones/13/rotation = Quaternion(0.11295044, 0.7021322, -0.16052291, 0.68445957)
+bones/17/rotation = Quaternion(-0.26260933, 0, -0.12013838, 0.9573939)
+bones/21/rotation = Quaternion(-0.29120338, 0.5622006, -0.24746728, 0.73341054)
+bones/25/position = Vector3(-0.029800687, 0.0980028, -0.078666344)
+bones/26/rotation = Quaternion(0.58982164, -0.3884967, -0.38279325, -0.5955251)
+bones/27/rotation = Quaternion(-0.13034174, 0.9897929, 0.056668505, -0.01047951)
+bones/28/rotation = Quaternion(-0.43502754, 0.58770055, -0.34795427, 0.58675975)
+bones/29/rotation = Quaternion(0.11650966, -0.68250996, 0.16563274, 0.7022616)
+bones/33/rotation = Quaternion(-0.20306297, 0, 0.18498982, 0.96153224)
+bones/37/rotation = Quaternion(-0.32276303, -0.53366286, 0.28646758, 0.72729945)
+bones/41/position = Vector3(0.03839897, 0.08840276, -0.08327663)
+bones/42/rotation = Quaternion(0.0037717794, -0.1712039, 0.98522484, -0.0026721836)
+bones/43/rotation = Quaternion(-0.1968069, 0.8618353, -0.46740136, 0.0065596253)
+bones/44/rotation = Quaternion(0.0023015123, 0.68912685, -0.72461915, 0.0051099267)
+bones/46/rotation = Quaternion(-3.2927225e-09, 1, 0, 6.5854444e-10)
+bones/47/rotation = Quaternion(0.008275322, 0.14668246, 0.987715, -0.053243823)
+bones/48/rotation = Quaternion(0.0046309605, 0.632258, -0.7746886, 0.00927716)
+bones/49/rotation = Quaternion(-0.024766289, 0.7700321, -0.6375083, 0.0045222263)
+bones/51/rotation = Quaternion(0.026703894, 0.97897327, -0.19744599, 0.043740436)
 
 [node name="SK_DUMMY_POLYGON_01" parent="PolygonSyntyCharacter/GeneralSkeleton" index="0" unique_id=157084671]
 mesh = ExtResource("3_qhqgy")

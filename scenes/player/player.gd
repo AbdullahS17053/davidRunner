@@ -3,6 +3,10 @@ class_name Player extends CharacterBody3D
 @export var move_speed: float = 12.0
 @export var jump_force: float = 8.0
 
+@export_group("Difficulty Settings")
+@export var max_speed: float = 40.0
+@export var acceleration: float = 0.1
+
 @export_group("Lane Settings")
 @export var lane_width: float = 2.5
 @export var switch_speed: float = 15.0
@@ -35,6 +39,10 @@ func _ready() -> void:
 	normal_pos_y = col_shape.position.y
 
 func _physics_process(delta: float) -> void:
+	if move_speed < max_speed:
+		move_speed += acceleration * delta
+		move_speed = min(move_speed, max_speed)
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2.0
 		
@@ -58,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		if slide_timer <= 0:
 			stop_slide()
 
-	velocity.z = -move_speed
+	velocity.z = 0.0
 	
 	is_switching_left = Input.is_action_just_pressed("left")
 	is_switching_right = Input.is_action_just_pressed("right")
@@ -69,7 +77,8 @@ func _physics_process(delta: float) -> void:
 		current_lane = min(current_lane + 1, 1)
 
 	var target_x: float = current_lane * lane_width
-	var new_x: float = lerpf(global_position.x, target_x, switch_speed * delta)
+	var dynamic_switch = switch_speed * (move_speed / 12.0) 
+	var new_x: float = lerpf(global_position.x, target_x, dynamic_switch * delta)
 	velocity.x = (new_x - global_position.x) / delta
 	
 	move_and_slide()

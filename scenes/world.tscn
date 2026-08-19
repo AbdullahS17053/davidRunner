@@ -39,15 +39,17 @@ script = ExtResource("1_nnsk1")
 player = NodePath("../Player")
 base_chunk = ExtResource("2_4wyf3")
 chunk_scenes = Array[PackedScene]([ExtResource("3_i7141"), ExtResource("4_4mrxx"), ExtResource("5_7r4gi")])
-chunk_length = 20.0
 chunks_ahead = 10
 
 [node name="Player" parent="." unique_id=22477516 instance=ExtResource("2_rwgxs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8821583, 3.069293)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8821583, -3.4492202)
+move_speed = 10.0
+jump_force = 8.0
+switch_speed = 7.0
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 5.8821583, 4.569293)
+transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 5.8821583, -0.9492202)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
@@ -57,13 +59,13 @@ script = ExtResource("4_k0juu")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 5.8821583, 4.569293)
+transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 5.8821583, -0.9492202)
 top_level = true
 script = ExtResource("5_qfnet")
 follow_mode = 2
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_4mrxx")
-follow_offset = Vector3(0, 5, 1.5)
+follow_offset = Vector3(0, 5, 2.5)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
 align_transform_with_view = Callable()

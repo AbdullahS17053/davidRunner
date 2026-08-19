@@ -9,7 +9,7 @@ albedo_color = Color(1, 0.43240297, 0.38162273, 1)
 [node name="Chunk3" unique_id=1451399318 instance=ExtResource("1_nbv3s")]
 
 [node name="Obstacle" type="CSGBox3D" parent="." index="0" unique_id=660636726 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.060127, 2.3872454, -8.738979)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.060127, 2.3872454, -11.901014)
 use_collision = true
 collision_layer = 2
 size = Vector3(3.6779785, 4.5429688, 0.66967773)
@@ -30,17 +30,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0805264, 1.1694717, 2.64195
 [node name="Collectible18" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="4" unique_id=918994027 instance=ExtResource("2_ge66m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.0805264, 1.1694717, -3.7462292)
 
-[node name="Collectible21" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="5" unique_id=264382581 instance=ExtResource("2_ge66m")]
+[node name="Collectible17" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="5" unique_id=511357987 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, 1.0781593)
+
+[node name="Collectible19" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="6" unique_id=320665170 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, -0.5915723)
+
+[node name="Collectible26" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="7" unique_id=1511008970 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, -2.1017628)
+
+[node name="Collectible27" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="8" unique_id=715048071 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, 2.6419542)
+
+[node name="Collectible28" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="9" unique_id=1392634733 instance=ExtResource("2_ge66m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.034756, 1.1694717, -3.7462292)
+
+[node name="Collectible29" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="10" unique_id=1654113545 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, -6.6859684)
+
+[node name="Collectible30" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="11" unique_id=1742216667 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, -8.355701)
+
+[node name="Collectible31" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="12" unique_id=1323270825 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, -9.865892)
+
+[node name="Collectible32" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="13" unique_id=1904616273 instance=ExtResource("2_ge66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.034756, 1.1694717, -5.122175)
+
+[node name="Collectible33" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="14" unique_id=1052812861 instance=ExtResource("2_ge66m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.034756, 1.1694717, -11.51036)
+
+[node name="Collectible21" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="15" unique_id=264382581 instance=ExtResource("2_ge66m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.08912659, 1.1694717, -6.5145907)
 
-[node name="Collectible23" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="6" unique_id=1075912640 instance=ExtResource("2_ge66m")]
+[node name="Collectible23" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="16" unique_id=1075912640 instance=ExtResource("2_ge66m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.08912659, 1.1694717, -7.9044747)
 
-[node name="Collectible24" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="7" unique_id=1712667276 instance=ExtResource("2_ge66m")]
+[node name="Collectible24" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="17" unique_id=1712667276 instance=ExtResource("2_ge66m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.08912659, 1.1694717, -9.442613)
 
-[node name="Collectible25" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="8" unique_id=2035813345 instance=ExtResource("2_ge66m")]
+[node name="Collectible25" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="18" unique_id=2035813345 instance=ExtResource("2_ge66m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.08912659, 1.1694717, -10.962219)
 
-[node name="Collectible22" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="9" unique_id=680907881 instance=ExtResource("2_ge66m")]
+[node name="Collectible22" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="19" unique_id=680907881 instance=ExtResource("2_ge66m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9308395, 1.1694717, -5.143238)
+
+[node name="EndPoint" parent="." index="4" unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.817766)

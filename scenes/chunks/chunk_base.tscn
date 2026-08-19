@@ -8,16 +8,20 @@ albedo_color = Color(0.6479396, 0.960356, 0.47386217, 1)
 [node name="ChunkBase" type="Node3D" unique_id=1451399318]
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 4.877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.11895752)
 script = ExtResource("2_mxfye")
 lane_width = 4.0
 lane_length = 20.0
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1917496024]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.995957)
 use_collision = true
 collision_layer = 4
 size = Vector3(12.832031, 0.5, 20)
 material = SubResource("StandardMaterial3D_dvsbp")
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.87347)

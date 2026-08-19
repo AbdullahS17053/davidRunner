@@ -1,6 +1,96 @@
 [gd_scene format=3 uid="uid://du2g430hqsqag"]
 
 [ext_resource type="Script" uid="uid://ch6xq4rp00elp" path="res://scenes/player/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://bsutcx3w8osx" path="res://assets/character/PolygonSyntyCharacter.fbx" id="2_g2els"]
+[ext_resource type="ArrayMesh" uid="uid://pegpfk1for0q" path="res://assets/character/PolygonSyntyCharacter.SK_DUMMY_POLYGON_01.mesh" id="3_qhqgy"]
+[ext_resource type="AnimationLibrary" uid="uid://cg8j014wt0d5f" path="res://assets/character/animations/Polygon/AC_Polygon_Masculine.library.res" id="4_dqkch"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tuyoq"]
+animation = &"AC_Polygon_Masculine.library/Jump_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjrip"]
+animation = &"AC_Polygon_Masculine.library/Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqkch"]
+animation = &"AC_Polygon_Masculine.library/RunStart"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_smehm"]
+animation = &"AC_Polygon_Masculine.library/Sprint_ToCrouch"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qlg0r"]
+animation = &"AC_Polygon_Masculine.library/Sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smehm"]
+xfade_time = 0.2
+switch_mode = 1
+advance_mode = 2
+advance_expression = "is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ur7pv"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qlg0r"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "is_sliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y4r1p"]
+xfade_time = 0.4
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d2wvv"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3v2ag"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqkch"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "is_sliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f1ej7"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tuyoq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dqkch"]
+states/AC_Polygon_Masculine_library_Jump_Idle/node = SubResource("AnimationNodeAnimation_tuyoq")
+states/AC_Polygon_Masculine_library_Jump_Idle/position = Vector2(511, -53.733)
+states/End/position = Vector2(1217, 59)
+states/Fall/node = SubResource("AnimationNodeAnimation_fjrip")
+states/Fall/position = Vector2(1110, -53.733)
+states/RunStart/node = SubResource("AnimationNodeAnimation_dqkch")
+states/RunStart/position = Vector2(251, 171)
+states/Slide/node = SubResource("AnimationNodeAnimation_smehm")
+states/Slide/position = Vector2(1110, 100)
+states/Sprint/node = SubResource("AnimationNodeAnimation_qlg0r")
+states/Sprint/position = Vector2(511, 100)
+states/Start/position = Vector2(66, 100)
+transitions = ["Sprint", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("AnimationNodeStateMachineTransition_smehm"), "AC_Polygon_Masculine_library_Jump_Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_ur7pv"), "Sprint", "Slide", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "Slide", "Sprint", SubResource("AnimationNodeStateMachineTransition_y4r1p"), "Slide", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("AnimationNodeStateMachineTransition_d2wvv"), "Fall", "Sprint", SubResource("AnimationNodeStateMachineTransition_3v2ag"), "AC_Polygon_Masculine_library_Jump_Idle", "Slide", SubResource("AnimationNodeStateMachineTransition_dqkch"), "AC_Polygon_Masculine_library_Jump_Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_f1ej7"), "Start", "Sprint", SubResource("AnimationNodeStateMachineTransition_tuyoq")]
+graph_offset = Vector2(-103.31298, -136.8894)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dqkch"]
+graph_offset = Vector2(-469, -95)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_dqkch")
+nodes/StateMachine/position = Vector2(-221, -9)
+node_connections = [&"output", 0, &"StateMachine"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
 albedo_color = Color(0.50657654, 0.7709893, 1, 1)
@@ -8,28 +98,83 @@ albedo_color = Color(0.50657654, 0.7709893, 1, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+radius = 0.23095703
+height = 1.7651367
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih7qs"]
-radius = 0.52734375
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+radius = 0.27490234
+height = 1.8929443
 
-[node name="Player" type="CharacterBody3D" unique_id=22477516]
+[node name="Player" type="CharacterBody3D" unique_id=22477516 node_paths=PackedStringArray("col_shape", "animation_tree")]
 physics_interpolation_mode = 1
+collision_mask = 12
 script = ExtResource("1_3vyb7")
 move_speed = 8.0
 jump_force = 9.0
 lane_width = 4.0
 switch_speed = 5.0
+col_shape = NodePath("Collision/CollisionShape3D")
+animation_tree = NodePath("PolygonSyntyCharacter/AnimationTree")
+
+[node name="PolygonSyntyCharacter" parent="." unique_id=1167712067 instance=ExtResource("2_g2els")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="GeneralSkeleton" parent="PolygonSyntyCharacter" index="0" unique_id=1024460452]
+bones/1/position = Vector3(-0.0065398267, 0.87495905, -0.012388348)
+bones/1/rotation = Quaternion(0.11175321, 0.006718306, 0.022416892, 0.9934604)
+bones/2/rotation = Quaternion(0.15616415, 4.3602216e-05, -0.03317892, 0.98717374)
+bones/3/rotation = Quaternion(-0.077808745, -0.013701171, -0.037789512, 0.99615765)
+bones/4/rotation = Quaternion(0.2835706, -1.2460077e-09, -0.003891982, 0.9589435)
+bones/5/rotation = Quaternion(-0.13406053, 2.7182991e-09, 0.0018399996, 0.99097145)
+bones/6/rotation = Quaternion(0.0012778214, 0.0060371915, -0.003355047, 0.9999753)
+bones/10/rotation = Quaternion(0.64056104, 0.3271016, 0.42979395, -0.54586023)
+bones/11/rotation = Quaternion(0.52289975, 0.7993199, -0.29607898, 0.000899125)
+bones/12/rotation = Quaternion(0.54982483, -0.49330306, 0.48007905, 0.47314787)
+bones/13/rotation = Quaternion(0.02976113, 0.702322, 0.022858715, 0.71086967)
+bones/17/rotation = Quaternion(-0.17637147, 1.04308114e-07, 0.2802774, 0.94357705)
+bones/21/rotation = Quaternion(-0.32007208, 0.6311718, 0.31294048, 0.63343847)
+bones/26/rotation = Quaternion(0.6710655, -0.2865374, -0.4159302, -0.5427426)
+bones/27/rotation = Quaternion(-0.29463667, 0.86001813, -0.4165762, -0.004723504)
+bones/28/rotation = Quaternion(0.41903326, 0.6105956, -0.24221075, 0.62683177)
+bones/29/rotation = Quaternion(0.17147091, -0.6959903, 0.080154605, 0.6926546)
+bones/33/rotation = Quaternion(0.05230563, -1.4901159e-08, -0.31335792, 0.9481935)
+bones/37/rotation = Quaternion(-0.0022128127, -0.6826922, -0.51299816, 0.5203455)
+bones/42/rotation = Quaternion(0.0003774391, 0.32899052, 0.94390213, 0.028530821)
+bones/43/rotation = Quaternion(0.080222145, 0.5000314, -0.86228085, -0.002183086)
+bones/44/rotation = Quaternion(-0.0004438344, 0.70216334, -0.7120099, 0.002907244)
+bones/46/rotation = Quaternion(-3.2927225e-09, 1, 0, 6.5854444e-10)
+bones/47/rotation = Quaternion(0.00043612687, 0.17350598, 0.9843584, 0.030564882)
+bones/48/rotation = Quaternion(0.04146216, 0.87100816, -0.48945957, -0.0074287998)
+bones/49/rotation = Quaternion(-0.003962501, 0.7274686, -0.6861124, 0.004859275)
+bones/51/rotation = Quaternion(-0.002539399, 0.99977815, 0.020442817, -0.004415278)
+
+[node name="SK_DUMMY_POLYGON_01" parent="PolygonSyntyCharacter/GeneralSkeleton" index="0" unique_id=157084671]
+mesh = ExtResource("3_qhqgy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PolygonSyntyCharacter" unique_id=325811258]
+libraries/AC_Polygon_Masculine.library = ExtResource("4_dqkch")
+
+[node name="AnimationTree" type="AnimationTree" parent="PolygonSyntyCharacter" unique_id=221686185]
+tree_root = SubResource("AnimationNodeBlendTree_dqkch")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1035691742]
+visible = false
 material_override = SubResource("StandardMaterial3D_3vyb7")
 mesh = SubResource("CapsuleMesh_u8vuu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=29157549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88012695, 0)
 shape = SubResource("CapsuleShape3D_u8vuu")
 
 [node name="Collision" type="Area3D" parent="." unique_id=545970957]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=815445724]
-shape = SubResource("CapsuleShape3D_ih7qs")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9031372, 0)
+shape = SubResource("CapsuleShape3D_g2els")
 
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
+
+[editable path="PolygonSyntyCharacter"]

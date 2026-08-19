@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://b02png6xwrrwt"]
 
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="2_mxfye"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvsbp"]
-albedo_color = Color(0.6479396, 0.960356, 0.47386217, 1)
+[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="2_ukgo8"]
+[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="2_wbgbu"]
 
 [node name="ChunkBase" type="Node3D" unique_id=1451399318]
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.11895752)
+visible = false
 script = ExtResource("2_mxfye")
 lane_width = 4.0
 lane_length = 20.0
@@ -20,8 +20,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.995957)
 use_collision = true
 collision_layer = 4
-size = Vector3(12.832031, 0.5, 20)
-material = SubResource("StandardMaterial3D_dvsbp")
+size = Vector3(24.06836, 0.5, 20)
+material = ExtResource("2_ukgo8")
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.87347)
+
+[node name="SM_Env_Rock_Cliff_03" parent="." unique_id=2115676785 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(8.7422784e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 8.7422784e-08, 10.832775, 9.536743e-07, -9.874292)
+
+[node name="SM_Env_Rock_Cliff_04" parent="." unique_id=488788523 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-1.7484558e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.7484558e-07, -10.514099, 9.536743e-07, -9.874292)

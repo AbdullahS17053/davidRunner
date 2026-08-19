@@ -3,6 +3,9 @@ class_name Player extends CharacterBody3D
 @export var move_speed: float = 12.0
 @export var jump_force: float = 8.0
 
+@export_group("Touch Controls")
+@export var swipe_threshold: float = 50.0
+
 @export_group("Difficulty Settings")
 @export var max_speed: float = 40.0
 @export var acceleration: float = 0.1
@@ -18,6 +21,10 @@ class_name Player extends CharacterBody3D
 @export_group("References")
 @export var col_shape: CollisionShape3D
 @export var animation_tree: AnimationTree
+@export var dust_particles: GPUParticles3D
+
+var is_swiping: bool = false
+var touch_start_pos: Vector2 = Vector2.ZERO
 
 var current_lane: int = 0
 var is_sliding: bool = false
@@ -38,12 +45,45 @@ func _ready() -> void:
 	normal_height = col_shape.shape.height
 	normal_pos_y = col_shape.position.y
 
+func _input(event: InputEvent) -> void:
+	# 1. Detect when the finger touches the screen
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			is_swiping = true
+			touch_start_pos = event.position
+		else:
+			is_swiping = false # Finger lifted early
+			
+	# 2. Detect when the finger drags across the screen
+	elif event is InputEventScreenDrag and is_swiping:
+		var swipe_dir: Vector2 = event.position - touch_start_pos
+		
+		# 3. Check if the drag is long enough to count as a swipe
+		if swipe_dir.length() >= swipe_threshold:
+			is_swiping = false # Turn off swiping so it only triggers ONCE per drag
+			
+			# 4. Figure out the dominant direction
+			if abs(swipe_dir.x) > abs(swipe_dir.y):
+				# Horizontal Swipe
+				if swipe_dir.x > 0:
+					simulate_input("right")
+				else:
+					simulate_input("left")
+			else:
+				# Vertical Swipe
+				# Note: In 2D screen coordinates, Y goes DOWN. So positive Y is a downward swipe.
+				if swipe_dir.y > 0:
+					simulate_input("slide")
+				else:
+					simulate_input("jump")
+
 func _physics_process(delta: float) -> void:
 	if move_speed < max_speed:
 		move_speed += acceleration * delta
 		move_speed = min(move_speed, max_speed)
 	
 	if not is_on_floor():
+		dust_particles.emitting = false
 		velocity += get_gravity() * delta * 2.0
 		
 		if Input.is_action_just_pressed("slide"):
@@ -51,6 +91,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = -fast_fall_force 
 	else:
 		is_jumping = false
+		dust_particles.emitting = true
 		
 		if Input.is_action_just_pressed("jump"):
 			is_jumping = true
@@ -96,6 +137,19 @@ func stop_slide() -> void:
 	
 	col_shape.shape.height = normal_height
 	col_shape.position.y = normal_pos_y
+
+# Tricks the engine into thinking a keyboard button was pressed and released
+func simulate_input(action_name: String) -> void:
+	var press_event = InputEventAction.new()
+	press_event.action = action_name
+	press_event.pressed = true
+	Input.parse_input_event(press_event)
+	
+	# Immediately release it so it acts exactly like an "is_action_just_pressed" keyboard tap
+	var release_event = InputEventAction.new()
+	release_event.action = action_name
+	release_event.pressed = false
+	Input.parse_input_event(release_event)
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):

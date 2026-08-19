@@ -1,0 +1,44 @@
+[gd_resource type="Skin" format=3 uid="uid://cjjhuxgw06k8q"]
+
+[resource]
+resource_name = "Skin"
+bind_count = 13
+bind/0/name = &"Turtle_Rig_Base"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04709169, 0.00782899, 0.04463391)
+bind/1/name = &"Head_01"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04709169, -0.0038069142, -0.11425626)
+bind/2/name = &"Head_02"
+bind/2/bone = -1
+bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04709169, -0.061045773, -0.20931487)
+bind/3/name = &"Leg_Front_L_01"
+bind/3/bone = -1
+bind/3/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26194558, 0.0326775, -0.08231014)
+bind/4/name = &"Leg_Front_L_02"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.590376, 0.0326775, -0.017912192)
+bind/5/name = &"Leg_Front_L_03"
+bind/5/bone = -1
+bind/5/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7922899, 0.0326775, 0.08362836)
+bind/6/name = &"Leg_Front_R_01"
+bind/6/bone = -1
+bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35612896, 0.0326775, -0.08231014)
+bind/7/name = &"Leg_Front_R_02"
+bind/7/bone = -1
+bind/7/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6845594, 0.0326775, -0.017912192)
+bind/8/name = &"Leg_Front_R_03"
+bind/8/bone = -1
+bind/8/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88647324, 0.0326775, 0.08362836)
+bind/9/name = &"Leg_Back_L_01"
+bind/9/bone = -1
+bind/9/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1965856, 0.11723858, 1.0139405)
+bind/10/name = &"Leg_Back_L_02"
+bind/10/bone = -1
+bind/10/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31867808, 0.11058092, 1.1602819)
+bind/11/name = &"Leg_Back_R_01"
+bind/11/bone = -1
+bind/11/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29076898, 0.11723858, 1.0139405)
+bind/12/name = &"Leg_Back_R_02"
+bind/12/bone = -1
+bind/12/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41286144, 0.11058092, 1.1602819)

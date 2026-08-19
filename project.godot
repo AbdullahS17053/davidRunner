@@ -8,9 +8,14 @@
 
 config_version=5
 
+[DebugMenu]
+
+settings/startup_visibility=2
+
 [application]
 
 config/name="RunnerGame3D"
+config/version="1.0.0"
 config/tags=PackedStringArray("freelance")
 run/main_scene="uid://dd8yjoo5ph6h4"
 config/features=PackedStringArray("4.7")
@@ -19,10 +24,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
+DebugMenu="*uid://cggqb75a8w8r"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/unidot_importer/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/unidot_importer/plugin.cfg")
 
 [global_group]
 
@@ -60,6 +70,10 @@ slide={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 3d_physics/layer_1="Player"
@@ -69,9 +83,18 @@ slide={
 
 [physics]
 
+common/physics_ticks_per_second=45
 common/physics_interpolation=true
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+lights_and_shadows/directional_shadow/size=1024
+lights_and_shadows/directional_shadow/size.mobile=1024
+shading/overrides/force_vertex_shading=true
+textures/default_filters/anisotropic_filtering_level=0
+scaling_3d/scale=0.5
+scaling_3d/fsr_sharpness=0.5
+occlusion_culling/use_occlusion_culling=true
+lights_and_shadows/positional_shadow/atlas_size.mobile=1024

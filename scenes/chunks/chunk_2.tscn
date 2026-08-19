@@ -2,23 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/chunk_base.tscn" id="1_4b7uh"]
 [ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_sliok"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j5ut"]
-albedo_color = Color(1, 0.43240297, 0.38162273, 1)
+[ext_resource type="PackedScene" uid="uid://cmgrhhccr81u8" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Log_01.prefab.scn" id="3_sliok"]
+[ext_resource type="PackedScene" uid="uid://b0cjlm74nlpav" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_01.prefab.scn" id="4_r1rey"]
+[ext_resource type="PackedScene" uid="uid://ctmk4wgi6urnc" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_02.prefab.scn" id="5_r0oaa"]
 
 [node name="Chunk2" unique_id=1451399318 instance=ExtResource("1_4b7uh")]
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." index="0" unique_id=695160879 groups=["obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.977425, 0, -4.9481425)
-use_collision = true
-collision_layer = 2
-
-[node name="Obstacle" type="CSGBox3D" parent="CSGCombiner3D" index="0" unique_id=660636726]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9898682, 0.89023614, -5.0000005)
-use_collision = true
-collision_layer = 2
-size = Vector3(3.6779785, 1.5489502, 0.66967773)
-material = SubResource("StandardMaterial3D_4j5ut")
 
 [node name="Collectible13" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="0" unique_id=757325419 instance=ExtResource("2_sliok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039290905, 2.1738842, -3.2892137)
@@ -56,5 +44,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8747478, 1.1694717, -4.980
 [node name="Collectible24" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="11" unique_id=131410928 instance=ExtResource("2_sliok")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.8747478, 1.1694717, -11.368734)
 
-[node name="EndPoint" parent="." index="4" unique_id=1320972013]
+[node name="EndPoint" parent="." index="3" unique_id=1320972013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.846228)
+
+[node name="SM_Gen_Env_Log_01" parent="." index="6" unique_id=2006067119 groups=["obstacle"] instance=ExtResource("3_sliok")]
+transform = Transform3D(0.17771508, 0.25289154, -0.859238, -0.74711406, 0.5250213, 0, 0.49402905, 0.7030116, 0.30909026, -0.23267359, 0.5838446, -9.779137)
+
+[node name="SM_Gen_Env_Log_02" parent="." index="7" unique_id=1766240727 groups=["obstacle"] instance=ExtResource("3_sliok")]
+transform = Transform3D(-0.56874293, -6.761628e-09, -0.39506558, 0.16164422, 0.63187385, -0.23270565, 0.36048287, -0.28333867, -0.5189571, -0.03859073, 0.8598367, -10.640722)
+
+[node name="SM_Gen_Env_Tree_Dead_01" parent="." index="8" unique_id=2089333828 instance=ExtResource("4_r1rey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6837473, 0.17919153, -12.919306)
+
+[node name="SM_Gen_Env_Tree_Dead_02" parent="." index="9" unique_id=1780138525 instance=ExtResource("5_r0oaa")]
+transform = Transform3D(0.9960109, 0.089231744, 0, -0.089231744, 0.9960109, 0, 0, 0, 1, -6.922642, 0.17860949, -5.707307)

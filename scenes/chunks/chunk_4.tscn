@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dh6r830koje5o"]
+
+[ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/chunk_base.tscn" id="1_58jwp"]
+[ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_f0mgt"]
+[ext_resource type="PackedScene" uid="uid://casd24fnu4mpw" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_02.prefab.scn" id="4_ovq51"]
+[ext_resource type="PackedScene" uid="uid://w8r8pd85apfw" path="res://scenes/obstacles/wolf_obstacle.tscn" id="5_20r03"]
+[ext_resource type="PackedScene" uid="uid://ctmk4wgi6urnc" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_02.prefab.scn" id="5_58jwp"]
+
+[node name="Chunk4" unique_id=1451399318 instance=ExtResource("1_58jwp")]
+
+[node name="Collectible17" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="0" unique_id=511357987 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, 1.0781593)
+
+[node name="Collectible19" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="1" unique_id=320665170 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, -0.5915723)
+
+[node name="Collectible26" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="2" unique_id=1511008970 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, -2.1017628)
+
+[node name="Collectible27" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="3" unique_id=715048071 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, 2.6419542)
+
+[node name="Collectible28" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="4" unique_id=1392634733 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.074602604, 1.1694717, -3.7462292)
+
+[node name="Collectible29" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="5" unique_id=1654113545 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, -6.6859684)
+
+[node name="Collectible30" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="6" unique_id=1742216667 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, -8.355701)
+
+[node name="Collectible31" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="7" unique_id=1323270825 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, -9.865892)
+
+[node name="Collectible32" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="8" unique_id=1904616273 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074602604, 1.1694717, -5.122175)
+
+[node name="Collectible33" parent="Collectibles" parent_id_path=PackedInt32Array(1703818379) index="9" unique_id=1052812861 instance=ExtResource("2_f0mgt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.074602604, 1.1694717, -11.51036)
+
+[node name="EndPoint" parent="." index="3" unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.817766)
+
+[node name="SM_Env_Rock_Cliff_03" parent="." index="4" unique_id=2115676785]
+visible = false
+
+[node name="SM_Env_Rock_Cliff_02" parent="." index="6" unique_id=2113183956 instance=ExtResource("4_ovq51")]
+transform = Transform3D(-0.23598658, 0, -0.8807138, 0, 0.911782, 0, 0.8807138, 0, -0.23598658, 9.298122, 0.8410158, -5.136325)
+
+[node name="SM_Env_Rock_Cliff_05" parent="." index="7" unique_id=1899024343 instance=ExtResource("4_ovq51")]
+transform = Transform3D(0.35341096, 0, -0.61212575, 0, 0.7068219, 0, 0.61212575, 0, 0.35341096, 9.298122, 0.8410158, -9.7493)
+
+[node name="SM_Env_Rock_Cliff_06" parent="." index="8" unique_id=1264599018 instance=ExtResource("4_ovq51")]
+transform = Transform3D(0.24331151, 0, 0.38862455, 0, 0.45850798, 0, -0.38862455, 0, 0.24331151, 10.367262, 0.8410158, -13.831572)
+
+[node name="SM_Env_Rock_Cliff_08" parent="." index="9" unique_id=302356793 instance=ExtResource("4_ovq51")]
+transform = Transform3D(0.16062795, 0, 0.25655985, 0, 0.3026951, 0, -0.25655985, 0, 0.16062795, 8.741501, 0.27426004, -15.064023)
+
+[node name="SM_Env_Rock_Cliff_07" parent="." index="10" unique_id=39696980 instance=ExtResource("4_ovq51")]
+transform = Transform3D(-0.17722018, 0, 0.2558038, 0, 0.31119543, 0, -0.2558038, 0, -0.17722018, 10.0511055, 0.8410158, -17.256329)
+
+[node name="WolfObstacle" parent="." index="11" unique_id=1563185112 instance=ExtResource("5_20r03")]
+transform = Transform3D(0.752098, 0, -0.6590514, 0, 1, 0, 0.6590514, 0, 0.752098, 7.2302866, 0.25521427, -17.914864)
+
+[node name="SM_Gen_Env_Tree_Dead_02" parent="." index="12" unique_id=1780138525 instance=ExtResource("5_58jwp")]
+transform = Transform3D(0.5488118, 0, 0, 0, 0.5488118, 0, 0, 0, 0.5488118, 7.3463087, 0.3090881, -19.254229)
+
+[node name="SM_Gen_Env_Tree_Dead_03" parent="." index="13" unique_id=2060220008 instance=ExtResource("5_58jwp")]
+transform = Transform3D(0.6827453, 0.016477559, -0.35257238, -0.014640657, 0.7684063, 0.0075604944, 0.35265344, 0, 0.6829022, -6.3847666, 0.44921553, -6.104682)

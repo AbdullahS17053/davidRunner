@@ -2,6 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/chunk_base.tscn" id="1_nbv3s"]
 [ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_ge66m"]
+[ext_resource type="Script" uid="uid://dfhopuwqptpu1" path="res://scripts/moving_obstacle.gd" id="4_b5khq"]
+[ext_resource type="PackedScene" uid="uid://sa4wyettcoa6" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Bld_RopeBridge_01.prefab.scn" id="4_sy1l7"]
+[ext_resource type="PackedScene" uid="uid://w8r8pd85apfw" path="res://scenes/obstacles/wolf_obstacle.tscn" id="5_b5khq"]
+[ext_resource type="PackedScene" uid="uid://casd24fnu4mpw" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_02.prefab.scn" id="5_yl0ow"]
+[ext_resource type="PackedScene" uid="uid://ctmk4wgi6urnc" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_02.prefab.scn" id="7_liqtn"]
+[ext_resource type="PackedScene" uid="uid://dyuotod4dd6vn" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_03.prefab.scn" id="8_ovb10"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j5ut"]
 albedo_color = Color(1, 0.43240297, 0.38162273, 1)
@@ -77,3 +83,30 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.93
 
 [node name="EndPoint" parent="." index="4" unique_id=1320972013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.817766)
+
+[node name="SM_Bld_RopeBridge_01" parent="." index="7" unique_id=2085641499 instance=ExtResource("4_sy1l7")]
+transform = Transform3D(-4.5975025e-08, 0.06041108, 1.0715283, 2.6406521e-09, 1.051786, -0.061545033, -1.0535195, 0, -4.691519e-08, -0.59052944, 7.077281, -6.4224005)
+
+[node name="SM_Env_Rock_Cliff_02" parent="." index="8" unique_id=2113183956 instance=ExtResource("5_yl0ow")]
+transform = Transform3D(-0.23598658, 0, -0.8807138, 0, 0.911782, 0, 0.8807138, 0, -0.23598658, 9.298122, 0.8410158, -5.136325)
+
+[node name="SM_Env_Rock_Cliff_05" parent="." index="9" unique_id=1899024343 instance=ExtResource("5_yl0ow")]
+transform = Transform3D(0.35341096, 0, -0.61212575, 0, 0.7068219, 0, 0.61212575, 0, 0.35341096, 9.298122, 0.8410158, -9.7493)
+
+[node name="SM_Env_Rock_Cliff_06" parent="." index="10" unique_id=1264599018 instance=ExtResource("5_yl0ow")]
+transform = Transform3D(-0.45186865, 0, -0.78265935, 0, 0.90373725, 0, 0.78265935, 0, -0.45186865, 9.320772, 0.8410158, -16.745598)
+
+[node name="WolfObstacle" parent="." index="11" unique_id=1563185112 instance=ExtResource("5_b5khq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00818, 0.25521475, -17.84795)
+
+[node name="MovingObstacle" type="Node3D" parent="WolfObstacle" index="2" unique_id=1042054492 node_paths=PackedStringArray("parent")]
+script = ExtResource("4_b5khq")
+move_speed = 6.0
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://dfhopuwqptpu1"
+
+[node name="SM_Gen_Env_Tree_Dead_02" parent="." index="12" unique_id=1780138525 instance=ExtResource("7_liqtn")]
+transform = Transform3D(0.14438668, 0.33549494, 0, -0.33549494, 0.14438668, 0, 0, 0, 0.36524558, -7.3805943, 2.3572884, -12.046435)
+
+[node name="SM_Gen_Env_Tree_Dead_03" parent="." index="13" unique_id=1931926740 instance=ExtResource("8_ovb10")]
+transform = Transform3D(-0.058488384, 0.09119949, -0.508841, -0.036369357, 0.51009274, 0.09560431, 0.51566833, 0.04632019, -0.050971165, -6.62188, 0.2984683, -5.8327928)

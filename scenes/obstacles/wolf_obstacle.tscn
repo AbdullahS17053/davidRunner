@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://w8r8pd85apfw"]
+
+[ext_resource type="PackedScene" uid="uid://d07kx4wx75h0y" path="res://assets/wolf/Wolf.glb" id="1_dtjtg"]
+[ext_resource type="Script" uid="uid://cgnbk73ydd726" path="res://scenes/obstacles/wolf/wolf.gd" id="1_rkbta"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pqufm"]
+radius = 0.47729492
+height = 2.0422363
+
+[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player") groups=["obstacle"]]
+collision_layer = 2
+script = ExtResource("1_rkbta")
+animation_player = NodePath("WolfModel/AnimationPlayer")
+
+[node name="WolfModel" parent="." unique_id=250543619 instance=ExtResource("1_dtjtg")]
+transform = Transform3D(0.51109743, 0, 0, 0, 0.51109743, 0, 0, 0, 0.51109743, 0, 0, 0)
+
+[node name="Skeleton3D" parent="WolfModel/RootNode/AnimalArmature" parent_id_path=PackedInt32Array(250543619, 1827185231) index="0" unique_id=1233375238]
+bones/0/position = Vector3(0, -9.059309e-06, 0.004724389)
+bones/0/rotation = Quaternion(0.7071067, 0, 0, 0.7071068)
+bones/1/rotation = Quaternion(0.7724031, -7.980554e-07, -9.736958e-07, 0.6351327)
+bones/3/rotation = Quaternion(-0.005965903, -2.0692722e-05, 1.6409494e-07, 0.99998224)
+bones/4/rotation = Quaternion(0.10591404, 2.0923926e-05, -2.8945117e-06, 0.9943753)
+bones/5/rotation = Quaternion(0.07622056, 2.4038309e-06, -3.0062668e-07, 0.997091)
+bones/6/rotation = Quaternion(0.028796444, 3.2770913e-08, -5.815423e-09, 0.99958533)
+bones/7/rotation = Quaternion(-0.01988992, -1.1316836e-07, 6.950962e-09, 0.9998022)
+bones/8/rotation = Quaternion(-0.2896978, 1.1175873e-08, 4.614704e-07, 0.9571183)
+bones/10/rotation = Quaternion(-0.07329443, 0.48965847, 0.049420837, 0.86742157)
+bones/18/rotation = Quaternion(0.7390088, 0.6561233, -0.08288538, -0.12844549)
+bones/19/rotation = Quaternion(-5.7098123e-07, 0.9644415, -0.26429638, 2.0894174e-06)
+bones/21/rotation = Quaternion(0.7390077, -0.6561242, 0.08288698, -0.12844661)
+bones/22/rotation = Quaternion(4.90366e-07, 0.96444046, -0.26430026, -2.2053975e-06)
+bones/23/rotation = Quaternion(0.56942403, 0.5212601, 0.4213861, -0.475897)
+bones/24/rotation = Quaternion(0.71866834, 0.6462609, 0.17160201, 0.19082831)
+bones/25/rotation = Quaternion(0.70181423, -1.01281316e-07, 2.1510161e-07, 0.71236014)
+bones/26/rotation = Quaternion(-3.488372e-07, 0.772424, -0.63510734, 8.040224e-07)
+bones/27/rotation = Quaternion(0.5694232, -0.5212611, -0.42138767, -0.47589564)
+bones/28/rotation = Quaternion(0.71866816, -0.64626145, -0.17160209, 0.19082731)
+bones/29/rotation = Quaternion(0.70181483, 1.2625242e-07, -2.9136118e-07, 0.7123594)
+bones/30/rotation = Quaternion(3.4494354e-07, 0.7724234, -0.6351079, -8.0070447e-07)
+bones/33/rotation = Quaternion(-0.026616048, -8.9591756e-10, 2.3220752e-08, 0.99964577)
+bones/34/rotation = Quaternion(0.00816219, 5.020478e-06, 4.714367e-06, 0.99996674)
+bones/35/rotation = Quaternion(0.17735551, 1.1703335e-07, 2.1074834e-08, 0.98414695)
+bones/36/rotation = Quaternion(0.16469434, -1.1720327e-07, 9.510044e-09, 0.9863447)
+bones/37/rotation = Quaternion(0.064315416, 8.8075236e-10, 1.0912823e-09, 0.9979297)
+bones/38/rotation = Quaternion(0.19552076, 1.2130994e-07, -1.5150375e-08, 0.98069954)
+bones/45/rotation = Quaternion(0.90506446, 1.8926873e-07, -4.0279943e-07, -0.4252745)
+bones/49/rotation = Quaternion(0.90506446, -1.8926873e-07, 4.0279943e-07, -0.4252745)
+
+[node name="Head" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="0" unique_id=1199615759]
+transform = Transform3D(-1, -1.696435e-09, 1.651248e-06, -4.4077854e-07, -0.96343917, -0.26792675, 1.5913483e-06, -0.26792628, 0.9634389, 5.0710625e-10, -0.01882449, 0.021131132)
+
+[node name="Ear4_L" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="1" unique_id=413039372]
+transform = Transform3D(-0.62732095, 0.37823886, -0.6807368, -0.70673084, -0.6436701, 0.293632, -0.32710665, 0.6652992, 0.6711008, 0.003180842, -0.020272465, 0.025709683)
+
+[node name="Ear4_R" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="2" unique_id=760572384]
+transform = Transform3D(-0.6273211, -0.37823898, 0.680737, 0.70673066, -0.6436701, 0.29363215, 0.32710665, 0.6652998, 0.671101, -0.003180836, -0.020272462, 0.025709681)
+
+[node name="FrontLowerLeg_L" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="3" unique_id=486462958]
+transform = Transform3D(-0.9989322, -0.0067978604, -0.045700558, 0.046041887, -0.22907698, -0.9723187, -0.0038592343, -0.9733843, 0.22914532, 0.0033296917, -0.008363799, 0.011150992)
+
+[node name="FrontLowerLeg_R" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="4" unique_id=416430437]
+transform = Transform3D(-0.9989324, 0.00679483, 0.045700554, -0.046041295, -0.2290807, -0.9723178, 0.0038623821, -0.97338456, 0.22914982, -0.0033297022, -0.008363787, 0.011150998)
+
+[node name="BackLowerLeg_L" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="5" unique_id=199436246]
+transform = Transform3D(-0.99985754, -0.009525422, -0.013853744, 0.016229209, -0.33167392, -0.9432537, 0.0043900143, -0.94334495, 0.3317818, 0.0034763047, 0.0123983715, 0.0081760865)
+
+[node name="BackLowerLeg_R" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="6" unique_id=1836809858]
+transform = Transform3D(-0.9998587, 0.009524223, 0.013854703, -0.016229626, -0.33167282, -0.9432549, -0.004388379, -0.943347, 0.33178025, -0.0034763217, 0.012398399, 0.008176099)
+
+[node name="Tail8" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="7" unique_id=1471378276]
+transform = Transform3D(1, 6.029113e-06, 1.24484595e-05, 3.291327e-07, 0.8893709, -0.45718533, -1.3827718e-05, 0.45718583, 0.8893705, -3.7842415e-08, 0.024316983, 0.012533463)
+
+[node name="PoleTargetBack_L" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="8" unique_id=1911698720]
+transform = Transform3D(1, 0, 2.3841858e-07, 2.3841855e-07, 1.7834826e-07, -0.9999999, -4.252154e-14, 0.9999999, 1.7834826e-07, 0.002170285, -0.036586706, 0.008194893)
+
+[node name="PoleTarget_L" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="9" unique_id=918577850]
+transform = Transform3D(1, 0, 0, 0, 1.7834826e-07, -0.9999999, 0, 0.9999999, 1.7834826e-07, 0.0021728317, -0.03370614, 0.008214431)
+
+[node name="PoleTargetBack_R" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="10" unique_id=827124343]
+transform = Transform3D(1, 0, -2.3841858e-07, -2.3841855e-07, 1.7834826e-07, -0.9999999, 4.252154e-14, 0.9999999, 1.7834826e-07, -0.002170285, -0.036586706, 0.008194893)
+
+[node name="PoleTarget_R" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="11" unique_id=1416170612]
+transform = Transform3D(1, 0, 0, 0, 1.7834826e-07, -0.9999999, 0, 0.9999999, 1.7834826e-07, -0.0021728317, -0.03370614, 0.008214431)
+
+[node name="FF_L" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="13" unique_id=1579703206]
+transform = Transform3D(-1, -3.8297856e-08, 2.6624632e-06, -4.0976056e-07, -0.9857727, -0.16808236, 2.631021e-06, -0.1680826, 0.98577255, 0.0032669408, -0.011679692, 0.0007163072)
+
+[node name="FF_R" parent="WolfModel/RootNode/AnimalArmature/Skeleton3D" index="15" unique_id=120030425]
+transform = Transform3D(-1, 3.8297856e-08, -2.6624632e-06, 4.0976056e-07, -0.9857727, -0.16808236, -2.631021e-06, -0.1680826, 0.98577255, -0.0032669408, -0.011679692, 0.0007163072)
+
+[node name="AnimationPlayer" parent="WolfModel" index="1" unique_id=1999799188]
+autoplay = &"Gallop"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1241688591]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.68306863, 0.07141113)
+shape = SubResource("CapsuleShape3D_pqufm")
+
+[editable path="WolfModel"]

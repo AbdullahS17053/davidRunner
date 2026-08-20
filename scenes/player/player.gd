@@ -46,32 +46,25 @@ func _ready() -> void:
 	normal_pos_y = col_shape.position.y
 
 func _input(event: InputEvent) -> void:
-	# 1. Detect when the finger touches the screen
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			is_swiping = true
 			touch_start_pos = event.position
 		else:
-			is_swiping = false # Finger lifted early
+			is_swiping = false
 			
-	# 2. Detect when the finger drags across the screen
 	elif event is InputEventScreenDrag and is_swiping:
 		var swipe_dir: Vector2 = event.position - touch_start_pos
 		
-		# 3. Check if the drag is long enough to count as a swipe
 		if swipe_dir.length() >= swipe_threshold:
-			is_swiping = false # Turn off swiping so it only triggers ONCE per drag
+			is_swiping = false
 			
-			# 4. Figure out the dominant direction
 			if abs(swipe_dir.x) > abs(swipe_dir.y):
-				# Horizontal Swipe
 				if swipe_dir.x > 0:
 					simulate_input("right")
 				else:
 					simulate_input("left")
 			else:
-				# Vertical Swipe
-				# Note: In 2D screen coordinates, Y goes DOWN. So positive Y is a downward swipe.
 				if swipe_dir.y > 0:
 					simulate_input("slide")
 				else:
@@ -138,14 +131,12 @@ func stop_slide() -> void:
 	col_shape.shape.height = normal_height
 	col_shape.position.y = normal_pos_y
 
-# Tricks the engine into thinking a keyboard button was pressed and released
 func simulate_input(action_name: String) -> void:
 	var press_event = InputEventAction.new()
 	press_event.action = action_name
 	press_event.pressed = true
 	Input.parse_input_event(press_event)
 	
-	# Immediately release it so it acts exactly like an "is_action_just_pressed" keyboard tap
 	var release_event = InputEventAction.new()
 	release_event.action = action_name
 	release_event.pressed = false

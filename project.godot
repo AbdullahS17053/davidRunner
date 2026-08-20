@@ -10,7 +10,8 @@ config_version=5
 
 [DebugMenu]
 
-settings/startup_visibility=2
+settings/startup_visibility=1
+settings/font_size=14
 
 [application]
 
@@ -25,9 +26,15 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 DebugMenu="*uid://cggqb75a8w8r"
+Global="*uid://c7y7yr3ypscjk"
 
 [display]
 
+window/size/viewport_width=648
+window/size/viewport_height=1152
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
 window/vsync/vsync_mode=0
 
 [editor_plugins]
@@ -37,6 +44,7 @@ enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/ph
 [global_group]
 
 obstacle=""
+player=""
 
 [godots]
 
@@ -88,13 +96,14 @@ common/physics_interpolation=true
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-lights_and_shadows/directional_shadow/size=1024
-lights_and_shadows/directional_shadow/size.mobile=1024
+lights_and_shadows/directional_shadow/size=512
+lights_and_shadows/directional_shadow/size.mobile=512
 shading/overrides/force_vertex_shading=true
 textures/default_filters/anisotropic_filtering_level=0
-scaling_3d/scale=0.5
+scaling_3d/scale=0.6
 scaling_3d/fsr_sharpness=0.5
 occlusion_culling/use_occlusion_culling=true
-lights_and_shadows/positional_shadow/atlas_size.mobile=1024
+lights_and_shadows/positional_shadow/atlas_size=512
+lights_and_shadows/positional_shadow/atlas_size.mobile=512

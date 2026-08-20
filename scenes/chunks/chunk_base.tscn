@@ -4,30 +4,51 @@
 [ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="2_ukgo8"]
 [ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="2_wbgbu"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_ukgo8"]
+size = Vector3(25, 0.1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbgbu"]
+size = Vector3(25, 0.1, 50)
+
 [node name="ChunkBase" type="Node3D" unique_id=1451399318]
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.11895752)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 script = ExtResource("2_mxfye")
 lane_width = 4.0
-lane_length = 20.0
+lane_length = 50.0
 
 [node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 
-[node name="Ground" type="CSGBox3D" parent="." unique_id=1917496024]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.995957)
-use_collision = true
+[node name="Ground" type="StaticBody3D" parent="." unique_id=67880426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 collision_layer = 4
-size = Vector3(24.06836, 0.5, 20)
-material = ExtResource("2_ukgo8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground" unique_id=712131094]
+material_override = ExtResource("2_ukgo8")
+mesh = SubResource("BoxMesh_ukgo8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=552506369]
+shape = SubResource("BoxShape3D_wbgbu")
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.87347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.87347)
 
 [node name="SM_Env_Rock_Cliff_03" parent="." unique_id=2115676785 instance=ExtResource("2_wbgbu")]
 transform = Transform3D(8.7422784e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 8.7422784e-08, 10.832775, 9.536743e-07, -9.874292)
 
 [node name="SM_Env_Rock_Cliff_04" parent="." unique_id=488788523 instance=ExtResource("2_wbgbu")]
 transform = Transform3D(-1.7484558e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.7484558e-07, -10.514099, 9.536743e-07, -9.874292)
+
+[node name="SM_Env_Rock_Cliff_05" parent="." unique_id=383060031 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(8.7422784e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 8.7422784e-08, 10.832775, 9.536743e-07, -29.524027)
+
+[node name="SM_Env_Rock_Cliff_06" parent="." unique_id=1356489026 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-1.7484558e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.7484558e-07, -10.514099, 9.536743e-07, -29.524027)
+
+[node name="SM_Env_Rock_Cliff_10" parent="." unique_id=919868332 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(2.2728354e-07, 0, -0.86660683, 0, 0.86660683, 0, 0.86660683, 0, 2.2728354e-07, -9.976666, 9.536743e-07, -41.1094)
+
+[node name="SM_Env_Rock_Cliff_11" parent="." unique_id=1318465216 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-3.0304474e-07, 0, 0.86660695, 0, 0.86660695, 0, -0.86660695, 0, -3.0304474e-07, 10.259713, 9.536743e-07, -41.1094)

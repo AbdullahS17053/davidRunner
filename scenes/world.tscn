@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/chunk_base.tscn" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://c155obnxtiawa" path="res://scenes/chunks/chunk_1.tscn" id="3_i7141"]
-[ext_resource type="PackedScene" uid="uid://cq7busdpp1757" path="res://scenes/chunks/chunk_2.tscn" id="4_4mrxx"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_k0juu"]
-[ext_resource type="PackedScene" uid="uid://dfhynymjq8w3v" path="res://scenes/chunks/chunk_3.tscn" id="5_7r4gi"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_qfnet"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_i7141"]
-[ext_resource type="PackedScene" uid="uid://dh6r830koje5o" path="res://scenes/chunks/chunk_4.tscn" id="6_w7kh3"]
+[ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="8_4mrxx"]
+[ext_resource type="Script" uid="uid://chi1x74nnrhkh" path="res://scripts/game_ui.gd" id="9_7r4gi"]
+[ext_resource type="Texture2D" uid="uid://co1h7cb36030l" path="res://assets/ui_assets/panels/BubbleFrame04_White_Bg.png" id="10_w7kh3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,16 +22,33 @@ sky_material = SubResource("ProceduralSkyMaterial_rwgxs")
 background_mode = 2
 sky = SubResource("Sky_4wyf3")
 ambient_light_source = 2
-ambient_light_color = Color(0.5526121, 0.44353318, 0.33445427, 1)
-ambient_light_energy = 0.6
+ambient_light_color = Color(0.52630603, 0.40679, 0.29430434, 1)
 tonemap_mode = 4
 tonemap_agx_contrast = 1.3
 fog_enabled = true
 fog_mode = 1
+fog_light_color = Color(0.8288257, 0.63300407, 0.42531443, 1)
 fog_density = 1.0
+fog_depth_curve = 3.0
+fog_depth_end = 55.0
+adjustment_enabled = true
+adjustment_brightness = 1.2
+adjustment_saturation = 1.02
 
 [sub_resource type="Resource" id="Resource_4mrxx"]
 script = ExtResource("6_i7141")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
+texture = ExtResource("10_w7kh3")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mrxx"]
+font_size = 36
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node3D" unique_id=154977216]
 
@@ -40,7 +57,9 @@ environment = SubResource("Environment_k0juu")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546126896]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+light_color = Color(0.7254902, 0.59607846, 0.47843137, 1)
+shadow_opacity = 0.5
+shadow_blur = 0.5
 directional_shadow_mode = 0
 directional_shadow_max_distance = 30.0
 
@@ -48,19 +67,19 @@ directional_shadow_max_distance = 30.0
 script = ExtResource("1_nnsk1")
 player = NodePath("../Player")
 base_chunk = ExtResource("2_4wyf3")
-chunk_scenes = Array[PackedScene]([ExtResource("3_i7141"), ExtResource("4_4mrxx"), ExtResource("5_7r4gi"), ExtResource("6_w7kh3")])
-chunks_ahead = 5
+chunk_scenes = Array[PackedScene]([ExtResource("3_i7141")])
 
-[node name="Player" parent="." unique_id=22477516 instance=ExtResource("2_rwgxs")]
+[node name="Player" parent="." unique_id=22477516 groups=["player"] instance=ExtResource("2_rwgxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8821583, -3.4492202)
 move_speed = 10.0
 jump_force = 8.0
-switch_speed = 7.0
+switch_speed = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 5.8821583, -0.9492202)
+transform = Transform3D(1, 0, 0, 0, 0.86602527, 0.49999994, 0, -0.49999994, 0.86602527, 0, 4.8821583, -0.44922018)
 top_level = true
+far = 70.0
 
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
 process_priority = 300
@@ -69,16 +88,58 @@ script = ExtResource("4_k0juu")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 5.8821583, -0.9492202)
+transform = Transform3D(1, 0, 0, 0, 0.86602527, 0.49999994, 0, -0.49999994, 0.86602527, 0, 4.8821583, -0.44922018)
 top_level = true
 script = ExtResource("5_qfnet")
 follow_mode = 2
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_4mrxx")
-follow_offset = Vector3(0, 5, 2.5)
+follow_offset = Vector3(0, 4, 3)
 follow_damping = true
-follow_damping_value = Vector3(0.15, 0.15, 0.15)
+follow_damping_value = Vector3(0.12, 0.12, 0.12)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1918104054]
+[node name="GameManager" type="Node" parent="." unique_id=174738255]
+script = ExtResource("8_4mrxx")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1842010287]
+
+[node name="GameUI" type="Control" parent="UILayer" unique_id=1534088429 node_paths=PackedStringArray("coins_label", "distance_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_7r4gi")
+coins_label = NodePath("CoinsPanel/CoinsLabel")
+distance_label = NodePath("DistancePanel/DistanceLabel")
+
+[node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 26.0
+offset_right = 273.0
+offset_bottom = 116.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_7r4gi")
+
+[node name="DistanceLabel" type="Label" parent="UILayer/GameUI/DistancePanel" unique_id=1891115711]
+layout_mode = 2
+text = "0m"
+label_settings = SubResource("LabelSettings_4mrxx")
+
+[node name="CoinsPanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=2018492439]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 121.0
+offset_right = 273.0
+offset_bottom = 211.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_7r4gi")
+
+[node name="CoinsLabel" type="Label" parent="UILayer/GameUI/CoinsPanel" unique_id=806398038]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_4mrxx")

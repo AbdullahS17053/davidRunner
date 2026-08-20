@@ -1,89 +1,30 @@
 [gd_scene format=3 uid="uid://c155obnxtiawa"]
 
 [ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/chunk_base.tscn" id="1_gcvhk"]
-[ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_1fowq"]
-[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="3_4j5ut"]
+[ext_resource type="Texture2D" uid="uid://b5hs5b8l2dk4l" path="res://scenes/player/player_shadow.png" id="4_tv3vx"]
 [ext_resource type="PackedScene" uid="uid://dhmtb6w3rv37b" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Stump_03.prefab.scn" id="4_w6dkj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j5ut"]
-albedo_color = Color(1, 0.43240297, 0.38162273, 1)
 
 [node name="Chunk1" unique_id=1451399318 instance=ExtResource("1_gcvhk")]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." index="0" unique_id=695160879 groups=["obstacle"]]
-use_collision = true
-collision_layer = 2
-
-[node name="Obstacle" type="CSGBox3D" parent="CSGCombiner3D" index="0" unique_id=660636726]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9898682, 1.9380267, -20.120478)
-use_collision = true
-collision_layer = 2
-size = Vector3(3.6779785, 0.5, 0.66967773)
-material = SubResource("StandardMaterial3D_4j5ut")
-
-[node name="Obstacle2" type="CSGBox3D" parent="CSGCombiner3D" index="1" unique_id=1503134124]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.557556, 1.1377454, -20.120478)
-use_collision = true
-collision_layer = 2
-size = Vector3(0.54260254, 2.0014648, 0.66967773)
-material = SubResource("StandardMaterial3D_4j5ut")
-
-[node name="Obstacle3" type="CSGBox3D" parent="CSGCombiner3D" index="2" unique_id=1281293840]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3945825, 1.0865369, -20.120478)
-use_collision = true
-collision_layer = 2
-size = Vector3(0.54260254, 1.8990479, 0.66967773)
-material = SubResource("StandardMaterial3D_4j5ut")
-
-[node name="LaneVisualizer" parent="." index="1" unique_id=328072525]
+[node name="LaneVisualizer" parent="." index="0" unique_id=328072525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.19849205)
-lane_length = 30.0
 
-[node name="Collectibles" parent="." index="2" unique_id=1703818379]
+[node name="Collectibles" parent="." index="1" unique_id=1703818379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.120478)
 
-[node name="Collectible10" parent="Collectibles" index="0" unique_id=434120145 instance=ExtResource("2_1fowq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, -2.0189476)
+[node name="EndPoint" parent="." index="3" unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.56945)
 
-[node name="Collectible11" parent="Collectibles" index="1" unique_id=160013010 instance=ExtResource("2_1fowq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, -0.29374886)
-
-[node name="Collectible12" parent="Collectibles" index="2" unique_id=1270851090 instance=ExtResource("2_1fowq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 1.2892742)
-
-[node name="Collectible13" parent="Collectibles" index="3" unique_id=757325419 instance=ExtResource("2_1fowq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 3.014473)
-
-[node name="Collectible14" parent="Collectibles" index="4" unique_id=675918741 instance=ExtResource("2_1fowq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 4.663416)
-
-[node name="Collectible15" parent="Collectibles" index="5" unique_id=1394632289 instance=ExtResource("2_1fowq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.023284, 1.1694717, 6.3886147)
-
-[node name="Ground" parent="." index="3" unique_id=1917496024]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.120478)
-size = Vector3(20.20996, 0.5, 30)
-
-[node name="EndPoint" parent="." index="4" unique_id=1320972013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.026442)
-
-[node name="SM_Env_Rock_Cliff_03" parent="." index="5" unique_id=2115676785]
+[node name="SM_Env_Rock_Cliff_03" parent="." index="4" unique_id=2115676785]
 transform = Transform3D(7.37241e-08, 0, -0.84330547, 0, 0.84330535, 0, 0.84330547, 0, 7.37241e-08, 10.832775, 9.536743e-07, -9.874292)
 
-[node name="SM_Env_Rock_Cliff_04" parent="." index="6" unique_id=488788523]
+[node name="SM_Env_Rock_Cliff_04" parent="." index="5" unique_id=488788523]
 transform = Transform3D(-1.5505579e-07, 0, 0.8868157, 0, 0.8868156, 0, -0.8868157, 0, -1.5505579e-07, -10.514099, 9.536743e-07, -10.477586)
 
-[node name="SM_Env_Rock_Cliff_05" parent="." index="7" unique_id=496771363 instance=ExtResource("3_4j5ut")]
-transform = Transform3D(-1.5505579e-07, 0, 0.8868157, 0, 0.8868156, 0, -0.8868157, 0, -1.5505579e-07, -10.514099, 9.536743e-07, -20.558678)
+[node name="SM_Gen_Env_Stump_03" parent="." index="6" unique_id=1986654710 instance=ExtResource("4_w6dkj")]
+transform = Transform3D(2.1673765, 0, 0, 0, 2.1673765, 0, 0, 0, 2.1673765, 4.1039324, -0.061616242, -11.199188)
 
-[node name="SM_Env_Rock_Cliff_06" parent="." index="8" unique_id=1730240277 instance=ExtResource("3_4j5ut")]
-transform = Transform3D(-1.1897534e-07, 0, 0.6804596, 0, 0.68045956, 0, -0.6804596, 0, -1.1897534e-07, 10.388649, 9.536743e-07, -22.949942)
-
-[node name="SM_Env_Rock_Cliff_07" parent="." index="9" unique_id=1738844002 instance=ExtResource("3_4j5ut")]
-transform = Transform3D(2.3258366e-07, 0, -0.8868156, 0, 0.8868156, 0, 0.8868156, 0, 2.3258366e-07, 10.926082, 9.536743e-07, -9.246656)
-
-[node name="SM_Env_Rock_Cliff_08" parent="." index="10" unique_id=1175054611 instance=ExtResource("3_4j5ut")]
-transform = Transform3D(1.7846301e-07, 0, -0.6804596, 0, 0.6804596, 0, 0.6804596, 0, 1.7846301e-07, -9.976666, 9.536743e-07, -6.8553905)
-
-[node name="SM_Gen_Env_Stump_03" parent="." index="11" unique_id=1986654710 instance=ExtResource("4_w6dkj")]
-transform = Transform3D(2.1673765, 0, 0, 0, 2.1673765, 0, 0, 0, 2.1673765, 4.1039324, 0.25000095, -18.899475)
+[node name="ShadowDecal" type="Decal" parent="SM_Gen_Env_Stump_03" index="2" unique_id=1973971496]
+transform = Transform3D(-2.016788e-08, 0, 0.4613873, 0, 0.4613873, 0, -0.4613873, 0, -2.016788e-08, -0.03664875, 0.06866808, 0.35353565)
+size = Vector3(2, 2, 2.6791992)
+texture_albedo = ExtResource("4_tv3vx")

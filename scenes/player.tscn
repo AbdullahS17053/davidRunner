@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://du2g430hqsqag"]
 
 [ext_resource type="Script" uid="uid://ch6xq4rp00elp" path="res://scenes/player/player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://bsutcx3w8osx" path="res://assets/character/PolygonSyntyCharacter.fbx" id="2_g2els"]
-[ext_resource type="ArrayMesh" uid="uid://pegpfk1for0q" path="res://assets/character/PolygonSyntyCharacter.SK_DUMMY_POLYGON_01.mesh" id="3_qhqgy"]
-[ext_resource type="AnimationLibrary" uid="uid://c5fvct842ug13" path="res://assets/character/animations/Polygon/player_animations.res" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://bsutcx3w8osx" path="res://scenes/player/character/PolygonSyntyCharacter.fbx" id="2_g2els"]
+[ext_resource type="ArrayMesh" uid="uid://pegpfk1for0q" path="res://scenes/player/character/PolygonSyntyCharacter.SK_DUMMY_POLYGON_01.mesh" id="3_qhqgy"]
+[ext_resource type="AnimationLibrary" uid="uid://c5fvct842ug13" path="res://scenes/player/character/animations/Polygon/player_animations.res" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://b5hs5b8l2dk4l" path="res://scenes/player/player_shadow.png" id="5_qlg0r"]
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
@@ -95,15 +96,9 @@ transitions = ["Sprint", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("
 graph_offset = Vector2(381.5993, -136.8894)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dqkch"]
-graph_offset = Vector2(-462, -101)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_dqkch")
 nodes/StateMachine/position = Vector2(-221, -9)
 node_connections = [&"output", 0, &"StateMachine"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
-albedo_color = Color(0.50657654, 0.7709893, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 radius = 0.23095703
@@ -191,36 +186,36 @@ dust_particles = NodePath("DustParticles")
 [node name="PolygonSyntyCharacter" parent="." unique_id=1167712067 instance=ExtResource("2_g2els")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="GeneralSkeleton" parent="PolygonSyntyCharacter" index="0" unique_id=1024460452]
-bones/1/position = Vector3(0.0046122605, 0.86498535, 0.029407835)
-bones/1/rotation = Quaternion(0.06556792, 0.12687956, -0.007944884, 0.9897169)
-bones/2/rotation = Quaternion(0.18477102, 0.0015974288, 0.07164061, 0.9801658)
-bones/3/rotation = Quaternion(-0.07582893, -0.10942591, 0.036008485, 0.99044406)
+[node name="GeneralSkeleton" parent="PolygonSyntyCharacter" index="0" unique_id=49308985]
+bones/1/position = Vector3(-0.01756961, 0.9080208, 0.020112475)
+bones/1/rotation = Quaternion(0.034170065, -0.07544391, -0.0049558664, 0.9965521)
+bones/2/rotation = Quaternion(0.20295072, -0.000505442, -0.07141768, 0.9765809)
+bones/3/rotation = Quaternion(-0.05847637, 0.13641241, -0.011770168, 0.98885477)
 bones/4/rotation = Quaternion(0.2835706, -1.2460077e-09, -0.003891982, 0.9589435)
-bones/5/rotation = Quaternion(-0.13406053, 3.6360572e-09, 0.0018400038, 0.99097145)
-bones/6/rotation = Quaternion(-0.0020890036, -0.01682304, -0.1383602, 0.99023694)
-bones/10/rotation = Quaternion(0.5605504, 0.3195637, 0.5214081, -0.55838704)
-bones/11/rotation = Quaternion(0.1895533, 0.8900749, -0.4144212, 0.009558629)
-bones/12/rotation = Quaternion(0.36805192, -0.60755193, 0.3224186, 0.6256715)
-bones/13/rotation = Quaternion(0.18740176, 0.86079973, 0.009017699, 0.4730996)
-bones/17/rotation = Quaternion(-0.17637148, 1.0430813e-07, 0.28027743, 0.94357705)
+bones/5/rotation = Quaternion(-0.13406056, 7.647715e-09, 0.0018400005, 0.99097145)
+bones/6/rotation = Quaternion(-0.029147347, -0.04546208, 0.0108103035, 0.9984823)
+bones/10/rotation = Quaternion(0.70277303, 0.23316735, 0.44683972, -0.502073)
+bones/11/rotation = Quaternion(0.4657059, 0.85313654, -0.23342644, 0.028074408)
+bones/12/rotation = Quaternion(0.5513549, -0.4874999, 0.43224257, 0.521074)
+bones/13/rotation = Quaternion(-0.05141924, 0.78943837, -0.17142762, 0.587159)
+bones/17/rotation = Quaternion(-0.17637147, 1.0430813e-07, 0.28027743, 0.9435771)
 bones/21/rotation = Quaternion(-0.32007205, 0.6311718, 0.31294045, 0.63343847)
-bones/26/rotation = Quaternion(0.5489122, -0.51452464, -0.45057014, -0.48056874)
-bones/27/rotation = Quaternion(-0.22697368, 0.8366642, -0.49828702, 0.013635321)
-bones/28/rotation = Quaternion(0.5734218, 0.55702335, -0.4643664, 0.38115144)
-bones/29/rotation = Quaternion(0.028712947, -0.48371077, 0.012476309, 0.8746678)
-bones/33/rotation = Quaternion(0.05230563, -1.4901159e-08, -0.31335792, 0.94819355)
+bones/26/rotation = Quaternion(0.59334755, -0.43651724, -0.39086342, -0.55192137)
+bones/27/rotation = Quaternion(-0.5249798, 0.7381214, -0.4226064, 0.031255636)
+bones/28/rotation = Quaternion(0.4114568, 0.67087907, -0.562429, 0.253571)
+bones/29/rotation = Quaternion(0.1591367, -0.63044715, 0.11525108, 0.75095206)
+bones/33/rotation = Quaternion(0.05230563, -1.4901159e-08, -0.31335792, 0.9481935)
 bones/37/rotation = Quaternion(-0.0022128127, -0.6826922, -0.51299816, 0.5203455)
-bones/42/rotation = Quaternion(0.00012290922, 0.061093304, 0.99813044, -0.0018051157)
-bones/43/rotation = Quaternion(-0.018496465, 0.8828851, -0.45816603, -0.101271264)
-bones/44/rotation = Quaternion(0.04804329, 0.5191181, -0.8521964, 0.044381324)
-bones/46/rotation = Quaternion(-0.004141664, 0.9672377, 0.25343066, 0.014384904)
-bones/47/rotation = Quaternion(0.0018395968, 0.52679074, 0.8391484, 0.13534488)
-bones/48/rotation = Quaternion(-0.10912256, 0.4048512, -0.9043831, -0.07924043)
-bones/49/rotation = Quaternion(-0.1410094, 0.82388115, -0.53944594, -0.10165857)
-bones/51/rotation = Quaternion(0.026703894, 0.97897327, -0.19744599, 0.043740436)
+bones/42/rotation = Quaternion(0.0030771885, 0.035003427, 0.99889755, 0.031130912)
+bones/43/rotation = Quaternion(0.12094471, 0.4837197, -0.86660475, 0.01959255)
+bones/44/rotation = Quaternion(0.07640883, 0.7189437, -0.67651045, 0.14005414)
+bones/46/rotation = Quaternion(-3.2927225e-09, 1, 0, 6.5854444e-10)
+bones/47/rotation = Quaternion(-0.008654727, 0.33222726, 0.941269, -0.059689905)
+bones/48/rotation = Quaternion(0.07563749, 0.90277576, -0.41631484, 0.0771812)
+bones/49/rotation = Quaternion(0.019819064, 0.78568524, -0.6168035, -0.0431216)
+bones/51/rotation = Quaternion(0.025538594, 0.9807861, -0.18882985, 0.04183169)
 
-[node name="SK_DUMMY_POLYGON_01" parent="PolygonSyntyCharacter/GeneralSkeleton" index="0" unique_id=157084671]
+[node name="SK_DUMMY_POLYGON_01" parent="PolygonSyntyCharacter/GeneralSkeleton" index="0" unique_id=224783079]
 mesh = ExtResource("3_qhqgy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PolygonSyntyCharacter" unique_id=325811258]
@@ -231,11 +226,6 @@ libraries/AC_Polygon_Masculine.library = ExtResource("4_dqkch")
 tree_root = SubResource("AnimationNodeBlendTree_dqkch")
 advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1035691742]
-visible = false
-material_override = SubResource("StandardMaterial3D_3vyb7")
-mesh = SubResource("CapsuleMesh_u8vuu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=29157549]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88012695, 0)
@@ -259,6 +249,10 @@ amount = 10
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_qlg0r")
 draw_pass_1 = SubResource("SphereMesh_qlg0r")
+
+[node name="Decal" type="Decal" parent="." unique_id=171089254]
+texture_albedo = ExtResource("5_qlg0r")
+modulate = Color(1, 1, 1, 0.627451)
 
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
 

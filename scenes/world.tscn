@@ -1,15 +1,29 @@
 [gd_scene format=3 uid="uid://dd8yjoo5ph6h4"]
 
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="1_nnsk1"]
-[ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/chunk_base.tscn" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/base_chunk.tscn" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="2_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://c155obnxtiawa" path="res://scenes/chunks/chunk_1.tscn" id="3_i7141"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_qfnet"]
+[ext_resource type="PackedScene" uid="uid://b5kve7h5vlyrr" path="res://scenes/chunks/chunk1.tscn" id="5_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://cr0o0gl6vbntm" path="res://scenes/chunks/chunk2.tscn" id="6_e3hyu"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_i7141"]
+[ext_resource type="PackedScene" uid="uid://blxfmx14ii4ki" path="res://scenes/chunks/chunk3.tscn" id="7_q5onr"]
 [ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="8_4mrxx"]
 [ext_resource type="Script" uid="uid://chi1x74nnrhkh" path="res://scripts/game_ui.gd" id="9_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://co1h7cb36030l" path="res://assets/ui_assets/panels/BubbleFrame04_White_Bg.png" id="10_w7kh3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
+texture = ExtResource("10_w7kh3")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mrxx"]
+font_size = 36
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,72 +52,7 @@ adjustment_saturation = 1.02
 [sub_resource type="Resource" id="Resource_4mrxx"]
 script = ExtResource("6_i7141")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
-texture = ExtResource("10_w7kh3")
-texture_margin_left = 20.0
-texture_margin_top = 20.0
-texture_margin_right = 20.0
-texture_margin_bottom = 20.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_4mrxx"]
-font_size = 36
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [node name="World" type="Node3D" unique_id=154977216]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1007658630]
-environment = SubResource("Environment_k0juu")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546126896]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.7254902, 0.59607846, 0.47843137, 1)
-shadow_opacity = 0.5
-shadow_blur = 0.5
-directional_shadow_mode = 0
-directional_shadow_max_distance = 30.0
-
-[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player")]
-script = ExtResource("1_nnsk1")
-player = NodePath("../Player")
-base_chunk = ExtResource("2_4wyf3")
-chunk_scenes = Array[PackedScene]([ExtResource("3_i7141")])
-
-[node name="Player" parent="." unique_id=22477516 groups=["player"] instance=ExtResource("2_rwgxs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8821583, -3.4492202)
-move_speed = 10.0
-jump_force = 8.0
-switch_speed = 6.0
-
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
-physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.86602527, 0.49999994, 0, -0.49999994, 0.86602527, 0, 4.8821583, -0.44922018)
-top_level = true
-far = 70.0
-
-[node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("4_k0juu")
-
-[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
-physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.86602527, 0.49999994, 0, -0.49999994, 0.86602527, 0, 4.8821583, -0.44922018)
-top_level = true
-script = ExtResource("5_qfnet")
-follow_mode = 2
-follow_target = NodePath("../Player")
-tween_resource = SubResource("Resource_4mrxx")
-follow_offset = Vector3(0, 4, 3)
-follow_damping = true
-follow_damping_value = Vector3(0.12, 0.12, 0.12)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
-draw_follow_line = true
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
-
-[node name="GameManager" type="Node" parent="." unique_id=174738255]
-script = ExtResource("8_4mrxx")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1842010287]
 
@@ -133,13 +82,66 @@ label_settings = SubResource("LabelSettings_4mrxx")
 
 [node name="CoinsPanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=2018492439]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 121.0
-offset_right = 273.0
-offset_bottom = 211.0
+offset_left = 288.0
+offset_top = 26.0
+offset_right = 545.0
+offset_bottom = 116.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_7r4gi")
 
 [node name="CoinsLabel" type="Label" parent="UILayer/GameUI/CoinsPanel" unique_id=806398038]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_4mrxx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1007658630]
+environment = SubResource("Environment_k0juu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546126896]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.7254902, 0.59607846, 0.47843137, 1)
+shadow_opacity = 0.5
+shadow_blur = 0.5
+directional_shadow_mode = 0
+directional_shadow_max_distance = 30.0
+
+[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player")]
+script = ExtResource("1_nnsk1")
+player = NodePath("../Player")
+base_chunk = ExtResource("2_4wyf3")
+chunk_scenes = Array[PackedScene]([ExtResource("5_w7kh3"), ExtResource("6_e3hyu"), ExtResource("7_q5onr")])
+chunks_ahead = 5
+despawn_distance = 10.0
+
+[node name="Player" parent="." unique_id=22477516 groups=["player"] instance=ExtResource("2_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54798985, -2.3558428)
+move_speed = 10.0
+jump_force = 8.0
+switch_speed = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.86602527, 0.49999994, 0, -0.49999994, 0.86602527, 0, 4.8821583, -0.44922018)
+top_level = true
+far = 50.0
+
+[node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("4_k0juu")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.8386704, 0.54463893, 0, -0.54463893, 0.8386704, 0, 4.8821583, -0.46641302)
+top_level = true
+script = ExtResource("5_qfnet")
+follow_mode = 2
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_4mrxx")
+follow_offset = Vector3(0, 4, 3)
+follow_damping = true
+follow_damping_value = Vector3(0.12, 0.12, 0.12)
+draw_follow_line = true
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="GameManager" type="Node" parent="." unique_id=174738255]
+script = ExtResource("8_4mrxx")

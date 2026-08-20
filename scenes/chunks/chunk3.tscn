@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://blxfmx14ii4ki"]
+
+[ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_kbvyr"]
+[ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_6os5m"]
+[ext_resource type="PackedScene" uid="uid://wtj6t36hgf8g" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_05.prefab.scn" id="6_1cw0s"]
+[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="6_oh3tx"]
+[ext_resource type="PackedScene" uid="uid://ctmk4wgi6urnc" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_02.prefab.scn" id="7_jndfs"]
+[ext_resource type="PackedScene" uid="uid://b0wg40k7by378" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Log_02.prefab.scn" id="7_y36kf"]
+[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="8_hm0k2"]
+[ext_resource type="PackedScene" uid="uid://cmgrhhccr81u8" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Log_01.prefab.scn" id="8_kbvyr"]
+
+[node name="Chunk3" type="Node3D" unique_id=1451399318]
+
+[node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
+script = ExtResource("1_kbvyr")
+lane_width = 4.0
+lane_length = 20.0
+
+[node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
+
+[node name="Collectible20" parent="Collectibles" unique_id=161968600 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0447125, 0.7089418, 3.3247733)
+
+[node name="Collectible21" parent="Collectibles" unique_id=1195496309 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0447125, 0.7089418, 1.9815807)
+
+[node name="Collectible22" parent="Collectibles" unique_id=376009984 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0447125, 0.7089418, 0.69994354)
+
+[node name="Collectible23" parent="Collectibles" unique_id=328239507 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0447125, 0.7089418, -0.7353029)
+
+[node name="Collectible24" parent="Collectibles" unique_id=919284373 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0447125, 0.7089418, -2.078496)
+
+[node name="Collectible25" parent="Collectibles" unique_id=434120145 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9860234, 0.7089418, -2.7437878)
+
+[node name="Collectible7" parent="Collectibles" unique_id=1377982762 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7089418, -6.060317)
+
+[node name="Collectible30" parent="Collectibles" unique_id=2077082535 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9082067, 0.7089418, -3.7155352)
+
+[node name="Collectible31" parent="Collectibles" unique_id=1586325285 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32609582, 0.7089418, -4.5443087)
+
+[node name="Collectible8" parent="Collectibles" unique_id=1254144870 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7089418, -7.40351)
+
+[node name="Collectible9" parent="Collectibles" unique_id=1137526048 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7089418, -8.685147)
+
+[node name="Collectible10" parent="Collectibles" unique_id=1407249025 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7089418, -10.071366)
+
+[node name="Collectible11" parent="Collectibles" unique_id=1658243275 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7089418, -11.414559)
+
+[node name="Collectible12" parent="Collectibles" unique_id=1973904316 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7089418, -12.696197)
+
+[node name="Collectible13" parent="Collectibles" unique_id=1901416909 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, 2.2435193)
+
+[node name="Collectible14" parent="Collectibles" unique_id=246220636 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, 0.90032625)
+
+[node name="Collectible15" parent="Collectibles" unique_id=878948272 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, -0.38131094)
+
+[node name="Collectible16" parent="Collectibles" unique_id=878266485 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 1.4507955, -1.8165569)
+
+[node name="Collectible17" parent="Collectibles" unique_id=634149585 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 2.351724, -3.1555262)
+
+[node name="Collectible18" parent="Collectibles" unique_id=1393472169 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 1.5040747, -5.268261)
+
+[node name="Collectible26" parent="Collectibles" unique_id=1697110200 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, -7.540413)
+
+[node name="Collectible27" parent="Collectibles" unique_id=1591844987 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, -8.883606)
+
+[node name="Collectible28" parent="Collectibles" unique_id=1339947522 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, -10.165243)
+
+[node name="Collectible29" parent="Collectibles" unique_id=1158302308 instance=ExtResource("2_6os5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9733038, 0.7089418, -11.756848)
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
+
+[node name="SM_Env_Rock_05" parent="Obstacles" unique_id=1015552838 instance=ExtResource("6_1cw0s")]
+transform = Transform3D(1.8387141, 0, 0, 0, 1.8387141, 0, 0, 0, 1.8387141, 5.556064, -0.91816545, -13.9165125)
+
+[node name="Decorations" type="Node3D" parent="." unique_id=294700162]
+
+[node name="SM_Env_Rock_Cliff_03" parent="Decorations" unique_id=2115676785 instance=ExtResource("6_oh3tx")]
+transform = Transform3D(-4.2821867e-08, 0, 0.97965026, 0, 0.97965026, 0, -0.97965026, 0, -4.2821867e-08, -10.885455, 0, -10)
+
+[node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("6_oh3tx")]
+transform = Transform3D(1.2207401e-07, 0, 0.9309094, 0, 0.9309094, 0, -0.9309094, 0, 1.2207401e-07, 10.743574, 0, -9.786096)
+
+[node name="SM_Gen_Env_Tree_Dead_02" parent="Decorations" unique_id=1780138525 instance=ExtResource("7_jndfs")]
+transform = Transform3D(1.1116427, -0.17607743, 0, 0.17607743, 1.1116425, 0, 0, 0, 1.1255012, 7.1584625, 0.2429086, -8.528416)
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.134853)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
+use_collision = true
+collision_layer = 4
+size = Vector3(25, 0.1, 20)
+material = ExtResource("8_hm0k2")
+
+[node name="CapsuleCollider" parent="." unique_id=1150054543 instance=ExtResource("7_y36kf")]
+transform = Transform3D(-0.09488818, 0.32109603, -0.8522505, -0.9106855, -0.024744198, 0.0920715, 0.009256197, 0.85715955, 0.32191503, -3.8697903, 0.40896586, -8.206077)
+
+[node name="CapsuleCollider2" parent="." unique_id=1178512681 instance=ExtResource("8_kbvyr")]
+transform = Transform3D(0.66364765, 0.050595917, 0.3333187, 0.059140578, 0.7070585, -0.22507828, -0.33190924, 0.2271517, 0.626361, -3.9661968, 0.6943957, -7.8952475)

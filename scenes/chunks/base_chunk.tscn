@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b02png6xwrrwt"]
+
+[ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="2_mxfye"]
+[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="2_ukgo8"]
+[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="2_wbgbu"]
+[ext_resource type="PackedScene" uid="uid://dyuotod4dd6vn" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_03.prefab.scn" id="3_h2snq"]
+
+[node name="ChunkBase" type="Node3D" unique_id=1451399318]
+
+[node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
+script = ExtResource("2_mxfye")
+lane_width = 4.0
+lane_length = 20.0
+
+[node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
+
+[node name="Decorations" type="Node3D" parent="." unique_id=294700162]
+
+[node name="SM_Env_Rock_Cliff_03" parent="Decorations" unique_id=2115676785 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-4.2821878e-08, 0, -0.9796504, 0, 0.9796504, 0, 0.9796504, 0, -4.2821878e-08, -10.885455, 0, -10)
+
+[node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-4.0691344e-08, 0, -0.93090945, 0, 0.93090945, 0, 0.93090945, 0, -4.0691344e-08, 11.425896, 0, -9.786096)
+
+[node name="SM_Gen_Env_Tree_Dead_03" parent="Decorations" unique_id=1931926740 instance=ExtResource("3_h2snq")]
+transform = Transform3D(0.36023477, 0, 0.57357717, 0, 0.6773181, 0, -0.57357717, 0, 0.36023477, 6.838242, -0.21370316, -13.042711)
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.822653)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
+use_collision = true
+collision_layer = 4
+size = Vector3(25, 0.1, 20)
+material = ExtResource("2_ukgo8")

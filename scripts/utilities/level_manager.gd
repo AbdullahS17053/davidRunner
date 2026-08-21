@@ -22,6 +22,7 @@ func _ready() -> void:
 		spawn_random_chunk()
 
 func _physics_process(delta: float) -> void:
+	if not Global.is_game_started: return
 	if not player or active_chunks.is_empty():
 		return
 		

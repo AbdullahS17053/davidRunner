@@ -20,6 +20,9 @@ animation = &"AC_Polygon_Masculine.library/Jump_Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjrip"]
 animation = &"AC_Polygon_Masculine.library/Fall"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ur7pv"]
+animation = &"AC_Polygon_Masculine.library/IdleStanding"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqkch"]
 animation = &"AC_Polygon_Masculine.library/RunStart"
 advance_on_start = true
@@ -79,23 +82,36 @@ advance_expression = "is_on_floor()"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tuyoq"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jej6c"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "game_start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oprun"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dqkch"]
 states/AC_Polygon_Masculine_library_Jump_Idle/node = SubResource("AnimationNodeAnimation_tuyoq")
 states/AC_Polygon_Masculine_library_Jump_Idle/position = Vector2(511, -53.733)
 states/End/position = Vector2(1217, 59)
 states/Fall/node = SubResource("AnimationNodeAnimation_fjrip")
 states/Fall/position = Vector2(1110, -53.733)
+states/Idle/node = SubResource("AnimationNodeAnimation_ur7pv")
+states/Idle/position = Vector2(229.2577, 100)
 states/RunStart/node = SubResource("AnimationNodeAnimation_dqkch")
-states/RunStart/position = Vector2(251, 171)
+states/RunStart/position = Vector2(366, 100)
 states/Slide/node = SubResource("AnimationNodeAnimation_smehm")
 states/Slide/position = Vector2(1110, 100)
 states/Sprint/node = SubResource("AnimationNodeAnimation_qlg0r")
 states/Sprint/position = Vector2(511, 100)
 states/Start/position = Vector2(66, 100)
-transitions = ["Sprint", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("AnimationNodeStateMachineTransition_smehm"), "AC_Polygon_Masculine_library_Jump_Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_ur7pv"), "Sprint", "Slide", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "Slide", "Sprint", SubResource("AnimationNodeStateMachineTransition_y4r1p"), "Slide", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("AnimationNodeStateMachineTransition_d2wvv"), "Fall", "Sprint", SubResource("AnimationNodeStateMachineTransition_3v2ag"), "AC_Polygon_Masculine_library_Jump_Idle", "Slide", SubResource("AnimationNodeStateMachineTransition_dqkch"), "AC_Polygon_Masculine_library_Jump_Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_f1ej7"), "Start", "Sprint", SubResource("AnimationNodeStateMachineTransition_tuyoq")]
-graph_offset = Vector2(381.5993, -136.8894)
+transitions = ["Sprint", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("AnimationNodeStateMachineTransition_smehm"), "AC_Polygon_Masculine_library_Jump_Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_ur7pv"), "Sprint", "Slide", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "Slide", "Sprint", SubResource("AnimationNodeStateMachineTransition_y4r1p"), "Slide", "AC_Polygon_Masculine_library_Jump_Idle", SubResource("AnimationNodeStateMachineTransition_d2wvv"), "Fall", "Sprint", SubResource("AnimationNodeStateMachineTransition_3v2ag"), "AC_Polygon_Masculine_library_Jump_Idle", "Slide", SubResource("AnimationNodeStateMachineTransition_dqkch"), "AC_Polygon_Masculine_library_Jump_Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_f1ej7"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "Idle", "RunStart", SubResource("AnimationNodeStateMachineTransition_jej6c"), "RunStart", "Sprint", SubResource("AnimationNodeStateMachineTransition_oprun")]
+graph_offset = Vector2(-93.742294, -136.8894)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dqkch"]
+graph_offset = Vector2(-497, -79)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_dqkch")
 nodes/StateMachine/position = Vector2(-221, -9)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -187,33 +203,34 @@ dust_particles = NodePath("DustParticles")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="GeneralSkeleton" parent="PolygonSyntyCharacter" index="0" unique_id=49308985]
-bones/1/position = Vector3(-0.01756961, 0.9080208, 0.020112475)
-bones/1/rotation = Quaternion(0.034170065, -0.07544391, -0.0049558664, 0.9965521)
-bones/2/rotation = Quaternion(0.20295072, -0.000505442, -0.07141768, 0.9765809)
-bones/3/rotation = Quaternion(-0.05847637, 0.13641241, -0.011770168, 0.98885477)
-bones/4/rotation = Quaternion(0.2835706, -1.2460077e-09, -0.003891982, 0.9589435)
-bones/5/rotation = Quaternion(-0.13406056, 7.647715e-09, 0.0018400005, 0.99097145)
-bones/6/rotation = Quaternion(-0.029147347, -0.04546208, 0.0108103035, 0.9984823)
-bones/10/rotation = Quaternion(0.70277303, 0.23316735, 0.44683972, -0.502073)
-bones/11/rotation = Quaternion(0.4657059, 0.85313654, -0.23342644, 0.028074408)
-bones/12/rotation = Quaternion(0.5513549, -0.4874999, 0.43224257, 0.521074)
-bones/13/rotation = Quaternion(-0.05141924, 0.78943837, -0.17142762, 0.587159)
-bones/17/rotation = Quaternion(-0.17637147, 1.0430813e-07, 0.28027743, 0.9435771)
-bones/21/rotation = Quaternion(-0.32007205, 0.6311718, 0.31294045, 0.63343847)
-bones/26/rotation = Quaternion(0.59334755, -0.43651724, -0.39086342, -0.55192137)
-bones/27/rotation = Quaternion(-0.5249798, 0.7381214, -0.4226064, 0.031255636)
-bones/28/rotation = Quaternion(0.4114568, 0.67087907, -0.562429, 0.253571)
-bones/29/rotation = Quaternion(0.1591367, -0.63044715, 0.11525108, 0.75095206)
-bones/33/rotation = Quaternion(0.05230563, -1.4901159e-08, -0.31335792, 0.9481935)
-bones/37/rotation = Quaternion(-0.0022128127, -0.6826922, -0.51299816, 0.5203455)
-bones/42/rotation = Quaternion(0.0030771885, 0.035003427, 0.99889755, 0.031130912)
-bones/43/rotation = Quaternion(0.12094471, 0.4837197, -0.86660475, 0.01959255)
-bones/44/rotation = Quaternion(0.07640883, 0.7189437, -0.67651045, 0.14005414)
-bones/46/rotation = Quaternion(-3.2927225e-09, 1, 0, 6.5854444e-10)
-bones/47/rotation = Quaternion(-0.008654727, 0.33222726, 0.941269, -0.059689905)
-bones/48/rotation = Quaternion(0.07563749, 0.90277576, -0.41631484, 0.0771812)
-bones/49/rotation = Quaternion(0.019819064, 0.78568524, -0.6168035, -0.0431216)
-bones/51/rotation = Quaternion(0.025538594, 0.9807861, -0.18882985, 0.04183169)
+bones/1/position = Vector3(0.003268541, 0.87686, -0.02355243)
+bones/1/rotation = Quaternion(-0.12881249, 0.00018156524, -0.01994344, 0.9914684)
+bones/2/rotation = Quaternion(0.16362754, -0.00013953164, 0.03449174, 0.9859191)
+bones/3/rotation = Quaternion(-0.06390304, 3.7737776e-05, -0.02459649, 0.99765307)
+bones/4/rotation = Quaternion(0.26966283, -0.00018955156, 0.03923827, 0.962155)
+bones/5/rotation = Quaternion(-0.13271448, 4.1909516e-09, -0.019037642, 0.99097145)
+bones/6/rotation = Quaternion(-0.00273458, 0.0037456458, -0.0027053826, 0.9999856)
+bones/10/rotation = Quaternion(0.6202439, 0.36317432, 0.47418535, -0.5084783)
+bones/11/rotation = Quaternion(0.23843423, 0.8149196, -0.5282565, 0.00060738635)
+bones/12/rotation = Quaternion(0.16937137, -0.68994397, 0.12041682, 0.69339055)
+bones/13/rotation = Quaternion(-0.16520049, 0.68854207, -0.15642233, 0.68858594)
+bones/17/rotation = Quaternion(-9.641758e-05, -0.00079151965, 0.2245068, 0.9744722)
+bones/21/rotation = Quaternion(-0.13600901, 0.6942896, 0.26885095, 0.65359217)
+bones/25/position = Vector3(-0.029475216, 0.07556195, 0.038552675)
+bones/26/rotation = Quaternion(0.6750182, -0.27752915, -0.3930878, -0.5592943)
+bones/27/rotation = Quaternion(-0.2718327, 0.8085971, -0.521802, -0.00065473927)
+bones/28/rotation = Quaternion(0.18705432, 0.6905958, -0.1277665, 0.6868506)
+bones/29/rotation = Quaternion(-0.15590966, -0.6882454, 0.13536431, 0.69547606)
+bones/33/rotation = Quaternion(-0.000566678, 0.0008301063, -0.20352343, 0.9790696)
+bones/37/rotation = Quaternion(-0.093994446, -0.69953877, -0.33444637, 0.6244647)
+bones/41/position = Vector3(0.028568214, 0.07568372, 0.039089713)
+bones/42/rotation = Quaternion(-0.00015929384, -0.15791628, 0.9868432, 0.034684293)
+bones/43/rotation = Quaternion(-0.08376001, 0.9921076, -0.09330573, 0.00089584244)
+bones/44/rotation = Quaternion(-8.1059425e-06, 0.7098679, -0.7043337, -0.0013454644)
+bones/46/rotation = Quaternion(0.00019135058, 0.99999297, 0.0034178204, 0.0015660347)
+bones/47/rotation = Quaternion(-7.239617e-05, -0.057541274, 0.99579, -0.07135465)
+bones/48/rotation = Quaternion(0.046205405, 0.99396133, -0.099529296, 8.077588e-05)
+bones/49/rotation = Quaternion(-0.0010190846, 0.7090704, -0.7051366, 0.0007127544)
 
 [node name="SK_DUMMY_POLYGON_01" parent="PolygonSyntyCharacter/GeneralSkeleton" index="0" unique_id=224783079]
 mesh = ExtResource("3_qhqgy")
@@ -245,6 +262,8 @@ process_material = SubResource("ParticleProcessMaterial_dqkch")
 draw_pass_1 = SubResource("SphereMesh_dqkch")
 
 [node name="DustParticles" type="GPUParticles3D" parent="." unique_id=1291793907]
+visible = false
+emitting = false
 amount = 10
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_qlg0r")

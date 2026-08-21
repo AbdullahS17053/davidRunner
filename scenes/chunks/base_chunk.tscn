@@ -24,8 +24,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 [node name="SM_Env_Rock_Cliff_03" parent="Decorations" unique_id=2115676785 instance=ExtResource("2_wbgbu")]
 transform = Transform3D(-4.2821878e-08, 0, -0.9796504, 0, 0.9796504, 0, 0.9796504, 0, -4.2821878e-08, -10.885455, 0, -10)
 
+[node name="SM_Env_Rock_Cliff_05" parent="Decorations" unique_id=1077479206 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-4.2821878e-08, 0, -0.9796504, 0, 0.9796504, 0, 0.9796504, 0, -4.2821878e-08, -10.885455, 0, 5.4639187)
+
 [node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("2_wbgbu")]
 transform = Transform3D(-4.0691344e-08, 0, -0.93090945, 0, 0.93090945, 0, 0.93090945, 0, -4.0691344e-08, 11.425896, 0, -9.786096)
+
+[node name="SM_Env_Rock_Cliff_06" parent="Decorations" unique_id=1156256141 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(-4.0691344e-08, 0, -0.93090945, 0, 0.93090945, 0, 0.93090945, 0, -4.0691344e-08, 11.425896, 0, 7.0649233)
 
 [node name="SM_Gen_Env_Tree_Dead_03" parent="Decorations" unique_id=1931926740 instance=ExtResource("3_h2snq")]
 transform = Transform3D(0.36023477, 0, 0.57357717, 0, 0.6773181, 0, -0.57357717, 0, 0.36023477, 6.838242, -0.21370316, -13.042711)
@@ -34,8 +40,8 @@ transform = Transform3D(0.36023477, 0, 0.57357717, 0, 0.6773181, 0, -0.57357717,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.822653)
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -3.2287607)
 use_collision = true
 collision_layer = 4
-size = Vector3(25, 0.1, 20)
+size = Vector3(25, 0.1, 33.54248)
 material = ExtResource("2_ukgo8")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/base_chunk.tscn" id="2_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://cdxgiggu1odd" path="res://scenes/ui/main_menu.gd" id="3_jhx03"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://b5kve7h5vlyrr" path="res://scenes/chunks/chunk1.tscn" id="5_w7kh3"]
@@ -24,6 +25,72 @@ texture_margin_bottom = 20.0
 font_size = 36
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q5onr"]
+font_size = 36
+
+[sub_resource type="Animation" id="Animation_o8fc1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayButton:offset_transform_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jhx03"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayButton:offset_transform_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.14311699866353483, 0.0, -0.14311699866353483, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:offset_transform_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
+_data = {
+&"RESET": SubResource("Animation_o8fc1"),
+&"loop": SubResource("Animation_jhx03")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -51,6 +118,67 @@ adjustment_saturation = 1.02
 
 [sub_resource type="Resource" id="Resource_4mrxx"]
 script = ExtResource("6_i7141")
+
+[sub_resource type="Animation" id="Animation_xo05s"]
+resource_name = "Intro"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera3D:follow_offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.865, 1.315, -0.38), Vector3(0, 4, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.2617994, 1.5707964, 0), Vector3(-0.57595867, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dss4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera3D:follow_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.865, 1.315, -0.38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2617994, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dss4m"]
+_data = {
+&"Intro": SubResource("Animation_xo05s"),
+&"RESET": SubResource("Animation_dss4m")
+}
 
 [node name="World" type="Node3D" unique_id=154977216]
 
@@ -93,6 +221,48 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_4mrxx")
 
+[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("world_anims", "player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_jhx03")
+world_anims = NodePath("../../WorldAnims")
+player = NodePath("../../Player")
+
+[node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="PlayButton" type="Label" parent="UILayer/MainMenu" unique_id=1869609826]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 0
+offset_top = 918.0
+offset_right = 648.0
+offset_bottom = 982.0
+size_flags_vertical = 8
+offset_transform_enabled = true
+text = "Tap To Play!"
+label_settings = SubResource("LabelSettings_q5onr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuAnims" type="AnimationPlayer" parent="UILayer/MainMenu" unique_id=215577975]
+libraries/ = SubResource("AnimationLibrary_o8fc1")
+autoplay = &"loop"
+
+[node name="GameManager" type="Node" parent="." unique_id=174738255]
+script = ExtResource("8_4mrxx")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1007658630]
 environment = SubResource("Environment_k0juu")
 
@@ -105,6 +275,7 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 30.0
 
 [node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player")]
+physics_interpolation_mode = 1
 script = ExtResource("1_nnsk1")
 player = NodePath("../Player")
 base_chunk = ExtResource("2_4wyf3")
@@ -112,15 +283,16 @@ chunk_scenes = Array[PackedScene]([ExtResource("5_w7kh3"), ExtResource("6_e3hyu"
 chunks_ahead = 5
 despawn_distance = 10.0
 
-[node name="Player" parent="." unique_id=22477516 groups=["player"] instance=ExtResource("2_rwgxs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54798985, -2.3558428)
+[node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("phantom_camera") groups=["player"] instance=ExtResource("2_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -2.3558428)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
+phantom_camera = NodePath("../PhantomCamera3D")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.86602527, 0.49999994, 0, -0.49999994, 0.86602527, 0, 4.8821583, -0.44922018)
+transform = Transform3D(-4.37108e-08, -0.25881383, 0.9659092, 0, 0.9659064, 0.25881457, -0.99998647, 1.1313111e-08, -4.222123e-08, 2.865, 1.3330232, -2.7358427)
 top_level = true
 far = 50.0
 
@@ -128,20 +300,24 @@ far = 50.0
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_k0juu")
+interpolation_mode = 2
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.8386704, 0.54463893, 0, -0.54463893, 0.8386704, 0, 4.8821583, -0.46641302)
+transform = Transform3D(-4.37107e-08, -0.25881338, 0.96590745, 0, 0.9659047, 0.25881413, -0.99998426, 1.1313092e-08, -4.2221156e-08, 2.865, 1.3330232, -2.7358427)
 top_level = true
 script = ExtResource("5_qfnet")
 follow_mode = 2
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_4mrxx")
-follow_offset = Vector3(0, 4, 3)
+follow_offset = Vector3(2.865, 1.315, -0.38)
 follow_damping = true
 follow_damping_value = Vector3(0.12, 0.12, 0.12)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="GameManager" type="Node" parent="." unique_id=174738255]
-script = ExtResource("8_4mrxx")
+[node name="WorldAnims" type="AnimationPlayer" parent="." unique_id=189864053]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_dss4m")

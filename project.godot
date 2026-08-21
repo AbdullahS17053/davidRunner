@@ -20,6 +20,7 @@ config/version="1.0.0"
 config/tags=PackedStringArray("freelance")
 run/main_scene="uid://dd8yjoo5ph6h4"
 config/features=PackedStringArray("4.7")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]

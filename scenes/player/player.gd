@@ -22,6 +22,7 @@ class_name Player extends CharacterBody3D
 @export var col_shape: CollisionShape3D
 @export var animation_tree: AnimationTree
 @export var dust_particles: GPUParticles3D
+@export var phantom_camera: PhantomCamera3D
 
 var is_swiping: bool = false
 var touch_start_pos: Vector2 = Vector2.ZERO
@@ -36,6 +37,8 @@ var is_switching_right: bool = false
 
 var normal_height: float
 var normal_pos_y: float
+
+var game_start: bool = false
 
 func _ready() -> void:
 	global_position.x = 0.0
@@ -71,6 +74,8 @@ func _input(event: InputEvent) -> void:
 					simulate_input("jump")
 
 func _physics_process(delta: float) -> void:
+	game_start = Global.is_game_started
+	
 	if move_speed < max_speed:
 		move_speed += acceleration * delta
 		move_speed = min(move_speed, max_speed)

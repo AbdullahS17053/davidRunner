@@ -2,13 +2,20 @@ extends Control
 
 @export var world_anims: AnimationPlayer
 @export var player: Player
+@export var settings_menu: Control
+@export var coins_label: Label
+@export var menu_anims: AnimationPlayer
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Global.is_game_started: return
 	if event is InputEventScreenTouch:
 		if event.pressed and event.position:
 			player.dust_particles.show()
-			print("Screen Touched")
 			world_anims.play("Intro")
 			Global.is_game_started = true
-			self.hide()
+
+func _process(_delta: float) -> void:
+	coins_label.text = "%d" % Global.total_coins
+
+func _on_settings_btn_pressed() -> void:
+	settings_menu.show()

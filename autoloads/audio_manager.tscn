@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://kg8uan5xebrq"]
+
+[ext_resource type="Script" uid="uid://dq0tnmydnflec" path="res://autoloads/audio_manager.gd" id="1_tr7pb"]
+[ext_resource type="AudioStream" uid="uid://c4duewe6v6nbb" path="res://assets/audio/Collect Coin.mp3" id="2_alnp1"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tr7pb"]
+streams_count = 1
+stream_0/stream = ExtResource("2_alnp1")
+
+[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide")]
+script = ExtResource("1_tr7pb")
+collect_coin = NodePath("CollectCoin")
+footsteps = NodePath("Footsteps")
+jump = NodePath("Jump")
+slide = NodePath("Slide")
+base_pitch = 0.8
+pitch_step = 0.03
+max_pitch = 1.5
+combo_timeout = 0.2
+
+[node name="CollectCoin" type="AudioStreamPlayer" parent="." unique_id=965787037]
+stream = SubResource("AudioStreamRandomizer_tr7pb")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="." unique_id=1777957074]
+stream = SubResource("AudioStreamRandomizer_tr7pb")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="." unique_id=285500626]
+stream = SubResource("AudioStreamRandomizer_tr7pb")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Slide" type="AudioStreamPlayer" parent="." unique_id=385616063]
+stream = SubResource("AudioStreamRandomizer_tr7pb")
+max_polyphony = 10
+bus = &"SFX"

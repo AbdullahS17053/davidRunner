@@ -23,11 +23,16 @@ config/features=PackedStringArray("4.7")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dfigxwo58mdy8"
+
 [autoload]
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 DebugMenu="*uid://cggqb75a8w8r"
 Global="*uid://c7y7yr3ypscjk"
+AudioManager="*uid://kg8uan5xebrq"
 
 [display]
 

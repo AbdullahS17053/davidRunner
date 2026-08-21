@@ -49,6 +49,8 @@ func _ready() -> void:
 	normal_pos_y = col_shape.position.y
 
 func _input(event: InputEvent) -> void:
+	if not Global.is_game_started: return
+	
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			is_swiping = true
@@ -74,6 +76,8 @@ func _input(event: InputEvent) -> void:
 					simulate_input("jump")
 
 func _physics_process(delta: float) -> void:
+	if not Global.is_game_started: return
+	
 	game_start = Global.is_game_started
 	
 	if move_speed < max_speed:
@@ -149,5 +153,6 @@ func simulate_input(action_name: String) -> void:
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
+		Global.total_coins += Global.coins
 		Global.reset_score()
 		get_tree().reload_current_scene.call_deferred()

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c843gok0n3sti"]
 
 [ext_resource type="Script" uid="uid://dpu2y5k6177t4" path="res://scenes/collectibles/collectible.gd" id="1_lb3xb"]
-[ext_resource type="Texture2D" uid="uid://b5hs5b8l2dk4l" path="res://scenes/player/player_shadow.png" id="2_irp14"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lb3xb"]
 shading_mode = 2
@@ -16,10 +15,8 @@ height = 0.1
 height = 0.1
 radius = 0.2
 
-[node name="Collectible" type="Area3D" unique_id=434120145 node_paths=PackedStringArray("ground_check", "shadow_decal")]
+[node name="Collectible" type="Area3D" unique_id=434120145]
 script = ExtResource("1_lb3xb")
-ground_check = NodePath("GroundCheck")
-shadow_decal = NodePath("ShadowDecal")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2011921473]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -30,12 +27,3 @@ mesh = SubResource("CylinderMesh_wahkq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1085672826]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pqufm")
-
-[node name="ShadowDecal" type="Decal" parent="." unique_id=1633506782]
-transform = Transform3D(-2.016788e-08, 0, 0.4613873, 0, 0.4613873, 0, -0.4613873, 0, -2.016788e-08, 0, -0.45174587, 0)
-size = Vector3(2, 1, 2.6791992)
-texture_albedo = ExtResource("2_irp14")
-
-[node name="GroundCheck" type="RayCast3D" parent="." unique_id=196151069]
-target_position = Vector3(0, -100, 0)
-collision_mask = 4

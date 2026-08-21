@@ -1,8 +1,10 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal coin_collected(amount: int)
 
 var coins: int = 0
+var total_coins: int = 0
 var distance: float = 0
 
 var is_game_started: bool = false

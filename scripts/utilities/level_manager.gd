@@ -3,7 +3,7 @@ class_name LevelManager
 
 @export var player: Player
 @export var base_chunk: PackedScene
-@export var chunk_scenes: Array[PackedScene]
+@export var chunks_data: Array[ChunkData] 
 @export var chunks_ahead: int = 4
 @export var despawn_distance: float = 25.0
 
@@ -13,7 +13,7 @@ var last_chunk_index: int = -1
 
 func _ready() -> void:
 	assert(base_chunk != null, "LevelManager needs a base chunk to start with.")
-	assert(chunk_scenes.size() > 0, "LevelManager needs random chunks.")
+	assert(chunks_data.size() > 0, "LevelManager needs random chunks.")
 	assert(player != null, "LevelManager needs a reference to the player.")
 	
 	spawn_specific_chunk(base_chunk)
@@ -46,6 +46,7 @@ func _physics_process(delta: float) -> void:
 		recycle_chunk()
 
 func spawn_specific_chunk(scene: PackedScene) -> void:
+	if scene == null: return
 	var chunk_instance: Node3D = scene.instantiate()
 	
 	add_child(chunk_instance)
@@ -60,17 +61,33 @@ func spawn_specific_chunk(scene: PackedScene) -> void:
 		next_spawn_z -= 50.0
 
 func spawn_random_chunk() -> void:
-	if chunk_scenes.size() <= 1:
-		spawn_specific_chunk(chunk_scenes[0])
+	if chunks_data.size() <= 1:
+		spawn_specific_chunk(chunks_data[0].chunk_scene)
 		return
 
-	var random_index: int = randi() % chunk_scenes.size()
+	var total_weight: float = 0.0
+	var valid_indices: Array[int] = []
 	
-	while random_index == last_chunk_index:
-		random_index = randi() % chunk_scenes.size()
+	for i in range(chunks_data.size()):
+		if i != last_chunk_index and chunks_data[i] != null and chunks_data[i].chunk_scene != null:
+			total_weight += chunks_data[i].weight
+			valid_indices.append(i)
+			
+	var random_roll: float = randf_range(0.0, total_weight)
+	var chosen_index: int = -1
+	
+	var current_weight_sum: float = 0.0
+	for i in valid_indices:
+		current_weight_sum += chunks_data[i].weight
+		if random_roll <= current_weight_sum:
+			chosen_index = i
+			break
+			
+	if chosen_index == -1:
+		chosen_index = valid_indices.back()
 		
-	last_chunk_index = random_index
-	spawn_specific_chunk(chunk_scenes[random_index])
+	last_chunk_index = chosen_index
+	spawn_specific_chunk(chunks_data[chosen_index].chunk_scene)
 
 func recycle_chunk() -> void:
 	var old_chunk: Node3D = active_chunks.pop_front()

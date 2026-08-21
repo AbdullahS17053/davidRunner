@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9860234, 0.5773567, -2.7437
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -6.060317)
 
 [node name="Collectible30" parent="Collectibles" unique_id=2077082535 instance=ExtResource("2_6os5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9082067, 0.5773567, -3.7155352)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7438457, 0.5773567, -3.597969)
 
 [node name="Collectible31" parent="Collectibles" unique_id=1586325285 instance=ExtResource("2_6os5m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32609582, 0.5773567, -4.5443087)

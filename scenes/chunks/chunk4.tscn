@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bah6hee3utrhg"]
+
+[ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_exesk"]
+[ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_k2yrj"]
+[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="4_07lrg"]
+[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="6_hrws6"]
+[ext_resource type="PackedScene" uid="uid://dx8o2obkwgva7" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cave_01.prefab.scn" id="7_sbxor"]
+
+[node name="Chunk4" type="Node3D" unique_id=1451399318]
+
+[node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
+script = ExtResource("1_exesk")
+lane_width = 4.0
+lane_length = 20.0
+
+[node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
+
+[node name="Collectible27" parent="Collectibles" unique_id=1558878511 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005466461, 0.5773567, 2.4856207)
+
+[node name="Collectible28" parent="Collectibles" unique_id=641106755 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005466461, 0.5773567, 1.2039835)
+
+[node name="Collectible29" parent="Collectibles" unique_id=1012261920 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005466461, 0.5773567, -0.23126316)
+
+[node name="Collectible32" parent="Collectibles" unique_id=2073547964 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005466461, 0.5773567, -1.5744562)
+
+[node name="Collectible33" parent="Collectibles" unique_id=1066424344 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005466461, 0.5773567, -3.0070848)
+
+[node name="Collectible34" parent="Collectibles" unique_id=2108115394 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005466461, 0.5773567, -4.58346)
+
+[node name="Collectible7" parent="Collectibles" unique_id=1377982762 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -6.060317)
+
+[node name="Collectible8" parent="Collectibles" unique_id=1254144870 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -7.40351)
+
+[node name="Collectible9" parent="Collectibles" unique_id=1137526048 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -8.685147)
+
+[node name="Collectible10" parent="Collectibles" unique_id=1407249025 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -10.071366)
+
+[node name="Collectible11" parent="Collectibles" unique_id=1658243275 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -11.414559)
+
+[node name="Collectible12" parent="Collectibles" unique_id=1973904316 instance=ExtResource("2_k2yrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -12.696197)
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
+
+[node name="Decorations" type="Node3D" parent="." unique_id=294700162]
+
+[node name="SM_Env_Rock_Cave_01" parent="Decorations" unique_id=55822544 instance=ExtResource("7_sbxor")]
+transform = Transform3D(1.1963542, 0, 0, 0, 1.1963542, 0, 0, 0, 1.1963542, 1.3182054, 1.0036163, -13.439562)
+
+[node name="SM_Env_Rock_Cliff_03" parent="Decorations" unique_id=2115676785 instance=ExtResource("4_07lrg")]
+transform = Transform3D(-4.2821867e-08, 0, 0.97965026, 0, 0.97965026, 0, -0.97965026, 0, -4.2821867e-08, -10.885455, 0, -10)
+
+[node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("4_07lrg")]
+transform = Transform3D(1.2207401e-07, 0, 0.9309094, 0, 0.9309094, 0, -0.9309094, 0, 1.2207401e-07, 10.743574, 0, -9.786096)
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036126137, -19.134853)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
+use_collision = true
+collision_layer = 4
+size = Vector3(25, 0.1, 20)
+material = ExtResource("6_hrws6")

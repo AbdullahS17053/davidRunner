@@ -1,8 +1,9 @@
 extends Control
+class_name GameUI
 
 @export var coins_label: Label
 @export var distance_label: Label
-@export var pause_menu: Control
+@export var pause_menu: PauseMenu
 
 func _ready() -> void:
 	Global.coin_collected.connect(on_coin_collected)
@@ -18,4 +19,4 @@ func on_coin_collected(amount: int) -> void:
 
 func _on_pause_btn_pressed() -> void:
 	get_tree().paused = true
-	pause_menu.show()
+	pause_menu.pause_anims.play("open", -1, 2.0)

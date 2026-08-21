@@ -123,6 +123,206 @@ _data = {
 &"show": SubResource("Animation_kpybi")
 }
 
+[sub_resource type="Animation" id="Animation_luhhm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ResumeBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SettingsBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/ExitBtn:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+
+[sub_resource type="Animation" id="Animation_fh13f"]
+resource_name = "exit"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ResumeBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SettingsBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/ExitBtn:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_navra"]
+resource_name = "open"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ResumeBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SettingsBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.450581e-09, 0.1, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/ExitBtn:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luhhm"]
+_data = {
+&"RESET": SubResource("Animation_luhhm"),
+&"exit": SubResource("Animation_fh13f"),
+&"open": SubResource("Animation_navra")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_q5onr"]
 font_size = 50
 outline_size = 10
@@ -412,6 +612,170 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="Animation" id="Animation_0nbtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloseBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_37qwj"]
+resource_name = "exit"
+length = 0.39999999999999997
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloseBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ts3gi"]
+resource_name = "open"
+length = 0.39999999999999997
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloseBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0nbtd"]
+_data = {
+&"RESET": SubResource("Animation_0nbtd"),
+&"exit": SubResource("Animation_37qwj"),
+&"open": SubResource("Animation_ts3gi")
+}
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -624,7 +988,7 @@ icon_alignment = 1
 [node name="GameUIAnims" type="AnimationPlayer" parent="UILayer/GameUI" unique_id=1847322117]
 libraries/ = SubResource("AnimationLibrary_ctatt")
 
-[node name="PauseMenu" type="Control" parent="UILayer" unique_id=1328896653 node_paths=PackedStringArray("settings_menu")]
+[node name="PauseMenu" type="Control" parent="UILayer" unique_id=1328896653 node_paths=PackedStringArray("settings_menu", "pause_anims")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -636,6 +1000,7 @@ grow_vertical = 2
 theme = ExtResource("1_xo05s")
 script = ExtResource("7_oo54l")
 settings_menu = NodePath("../SettingsMenu")
+pause_anims = NodePath("PauseAnims")
 
 [node name="BG" type="ColorRect" parent="UILayer/PauseMenu" unique_id=1426122051]
 layout_mode = 1
@@ -664,20 +1029,26 @@ grow_vertical = 2
 [node name="ResumeBtn" type="Button" parent="UILayer/PauseMenu/VBoxContainer" unique_id=1049883565]
 layout_mode = 2
 size_flags_vertical = 3
+offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
 text = "Resume"
 
 [node name="SettingsBtn" type="Button" parent="UILayer/PauseMenu/VBoxContainer" unique_id=661429249]
 layout_mode = 2
 size_flags_vertical = 3
+offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
 text = "Settings"
 
 [node name="ExitBtn" type="Button" parent="UILayer/PauseMenu/VBoxContainer" unique_id=1698492748]
 layout_mode = 2
 size_flags_vertical = 3
+offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
 text = "Exit"
+
+[node name="PauseAnims" type="AnimationPlayer" parent="UILayer/PauseMenu" unique_id=994902738]
+libraries/ = SubResource("AnimationLibrary_luhhm")
 
 [node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("world_anims", "player", "settings_menu", "coins_label", "menu_anims")]
 layout_mode = 3
@@ -765,7 +1136,7 @@ label_settings = SubResource("LabelSettings_4mrxx")
 libraries/ = SubResource("AnimationLibrary_o8fc1")
 autoplay = &"show"
 
-[node name="SettingsMenu" type="Control" parent="UILayer" unique_id=568473751]
+[node name="SettingsMenu" type="Control" parent="UILayer" unique_id=568473751 node_paths=PackedStringArray("settings_anims")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -776,6 +1147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_xo05s")
 script = ExtResource("9_7iits")
+settings_anims = NodePath("SettingsAnims")
 
 [node name="BG" type="ColorRect" parent="UILayer/SettingsMenu" unique_id=1727895336]
 layout_mode = 1
@@ -789,15 +1161,18 @@ color = Color(0, 0, 0, 0.47058824)
 
 [node name="SettingsPanel" type="PanelContainer" parent="UILayer/SettingsMenu" unique_id=555686805]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = 272.0
-offset_right = -61.0
-offset_bottom = -272.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -434.0
+offset_right = 263.0
+offset_bottom = 434.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel" unique_id=872399850]
@@ -826,6 +1201,11 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/h_separation = 10
 text = "Shadows"
+
+[node name="FPSToggle" type="CheckBox" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1905225051]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+text = "Show FPS"
 
 [node name="ResolutionScale" type="HBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1179474388]
 layout_mode = 2
@@ -868,11 +1248,20 @@ text = "Music"
 [node name="CloseBtn" type="Button" parent="UILayer/SettingsMenu" unique_id=1399988301]
 custom_minimum_size = Vector2(100, 100)
 custom_maximum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 36.0
-offset_top = 195.0
-offset_right = 136.0
-offset_bottom = 295.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.045627378
+anchor_top = -0.02764977
+anchor_right = 0.1444867
+anchor_bottom = 0.08755761
+offset_left = 66.56654
+offset_top = 149.85254
+offset_right = 43.37262
+offset_bottom = 117.13364
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
 theme_type_variation = &"FlatButton"
 theme_override_constants/icon_max_width = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_2lf6f")
@@ -889,6 +1278,10 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_2lf6f")
 icon = ExtResource("10_2lf6f")
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsAnims" type="AnimationPlayer" parent="UILayer/SettingsMenu" unique_id=1989398226]
+libraries/ = SubResource("AnimationLibrary_0nbtd")
 
 [node name="GameManager" type="Node" parent="." unique_id=174738255]
 script = ExtResource("8_4mrxx")
@@ -945,8 +1338,6 @@ tween_resource = SubResource("Resource_4mrxx")
 follow_offset = Vector3(2.865, 1.315, -0.38)
 follow_damping = true
 follow_damping_value = Vector3(0.12, 0.12, 0.12)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 

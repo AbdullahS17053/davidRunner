@@ -1,8 +1,9 @@
 extends Control
+class_name MainMenu
 
 @export var world_anims: AnimationPlayer
 @export var player: Player
-@export var settings_menu: Control
+@export var settings_menu: SettingsMenu
 @export var coins_label: Label
 @export var menu_anims: AnimationPlayer
 
@@ -18,4 +19,4 @@ func _process(_delta: float) -> void:
 	coins_label.text = "%d" % Global.total_coins
 
 func _on_settings_btn_pressed() -> void:
-	settings_menu.show()
+	settings_menu.settings_anims.play("open")

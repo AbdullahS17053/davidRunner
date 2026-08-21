@@ -5,6 +5,7 @@ class_name PauseMenu
 @export var pause_anims: AnimationPlayer
 
 func _on_menu_btn_pressed(pressed_button: StringName) -> void:
+	AudioManager.ui_click.play()
 	match pressed_button:
 		&"resume":
 			pause_anims.play("exit", -1, 2.0)

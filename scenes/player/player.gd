@@ -153,6 +153,7 @@ func simulate_input(action_name: String) -> void:
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
+		AudioManager.bgm.stop()
 		Global.total_coins += Global.coins
 		Global.reset_score()
 		get_tree().reload_current_scene.call_deferred()

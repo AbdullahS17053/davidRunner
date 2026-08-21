@@ -4,6 +4,8 @@ extends Node
 @export var footsteps: AudioStreamPlayer
 @export var jump: AudioStreamPlayer
 @export var slide: AudioStreamPlayer
+@export var bgm: AudioStreamPlayer
+@export var ui_click: AudioStreamPlayer
 
 @export_group("Coin Pitch Settings")
 @export var base_pitch: float = 1.0

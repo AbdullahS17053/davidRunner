@@ -3,8 +3,16 @@
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_exesk"]
 [ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_k2yrj"]
 [ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="4_07lrg"]
-[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="6_hrws6"]
+[ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="5_pwgu0"]
 [ext_resource type="PackedScene" uid="uid://dx8o2obkwgva7" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cave_01.prefab.scn" id="7_sbxor"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pwgu0"]
+material = ExtResource("5_pwgu0")
+size = Vector3(25, 0, 20.12)
+subdivide_depth = 15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_854kg"]
+size = Vector3(25, 0.1, 20)
 
 [node name="Chunk4" type="Node3D" unique_id=1451399318]
 
@@ -59,7 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5773567, -12.696197)
 [node name="Decorations" type="Node3D" parent="." unique_id=294700162]
 
 [node name="SM_Env_Rock_Cave_01" parent="Decorations" unique_id=55822544 instance=ExtResource("7_sbxor")]
-transform = Transform3D(1.1963542, 0, 0, 0, 1.1963542, 0, 0, 0, 1.1963542, 1.3182054, 1.0036163, -13.439562)
+transform = Transform3D(1.1963542, 0, 0, 0, 1.1963542, 0, 0, 0, 1.1963542, 1.3182054, 0.65213585, -13.439562)
 
 [node name="SM_Env_Rock_Cliff_03" parent="Decorations" unique_id=2115676785 instance=ExtResource("4_07lrg")]
 transform = Transform3D(-4.2821867e-08, 0, 0.97965026, 0, 0.97965026, 0, -0.97965026, 0, -4.2821867e-08, -10.885455, 0, -10)
@@ -68,11 +76,14 @@ transform = Transform3D(-4.2821867e-08, 0, 0.97965026, 0, 0.97965026, 0, -0.9796
 transform = Transform3D(1.2207401e-07, 0, 0.9309094, 0, 0.9309094, 0, -0.9309094, 0, 1.2207401e-07, 10.743574, 0, -9.786096)
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036126137, -19.134853)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036126137, -18.988232)
 
-[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
-use_collision = true
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=84202540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.93988)
+mesh = SubResource("BoxMesh_pwgu0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=854521822]
 collision_layer = 4
-size = Vector3(25, 0.1, 20)
-material = ExtResource("6_hrws6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=2071786109]
+shape = SubResource("BoxShape3D_854kg")

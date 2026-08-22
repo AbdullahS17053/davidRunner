@@ -1,36 +1,8 @@
 [gd_scene format=4 uid="uid://c843gok0n3sti"]
 
 [ext_resource type="Script" uid="uid://dpu2y5k6177t4" path="res://scenes/collectibles/collectible.gd" id="1_lb3xb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rbxqr"]
-resource_name = "Yellow"
-shading_mode = 2
-albedo_color = Color(0.7423052, 0.6338204, 0.22761574, 1)
-metallic = 0.4
-roughness = 0.4150871
-emission_enabled = true
-emission = Color(1, 0.6976015, 0.30270457, 1)
-emission_energy_multiplier = 1.3
-metadata/extras = {
-"fromFBX": {
-"isTruePBR": false,
-"shadingModel": "Phong"
-}
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5uof"]
-resource_name = "DarkYellow"
-albedo_color = Color(0.58436, 0.4988073, 0.17846778, 1)
-metallic = 0.4
-roughness = 0.4150871
-emission_enabled = true
-emission = Color(0.65125984, 0.45368668, 0, 1)
-metadata/extras = {
-"fromFBX": {
-"isTruePBR": false,
-"shadingModel": "Phong"
-}
-}
+[ext_resource type="Material" uid="uid://cxn3vqexwsk3b" path="res://resources/materials/coin_base_material.tres" id="2_irp14"]
+[ext_resource type="Material" uid="uid://bfw1pe0iig6k6" path="res://resources/materials/coin_dark_material.tres" id="3_vee0f"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nynfa"]
 _surfaces = [{
@@ -63,7 +35,7 @@ _surfaces = [{
 "format": 34896613383,
 "index_count": 570,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACwAIAAoADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHwAcAB4AIAAhACIAIwAgACIAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMwAyADEANAA1ADYANwA4ADkAOgA7ADwAPQA+AD8AQABBAEIAQgBDAEAARABFAEYARQBEAEcASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUgBTAFAAVABVAFYAVgBXAFQAWABZAFoAWgBbAFgAXABdAF4AXwBdAFwAYABhAGIAYwBkAGUAZgBjAGUAZwBoAGkAaQBqAGcAawBsAG0AbQBuAGsAbwBwAHEAcgBvAHEAcwB0AHUAdQB2AHMAdwB4AHkAeQB6AHcAewB8AH0AfgB7AH0AfwCAAIEAgQCCAH8AgwCEAIUAhQCGAIMAhwCIAIkAigCIAIcAiwCMAI0AjQCOAIsAjwCQAJEAkQCSAI8AkwCUAJUAlgCUAJMAlwCYAJkAmQCaAJcAmwCcAJ0AnQCeAJsAnwCgAKEAoQCiAJ8AowCkAKUApQCmAKMApwCoAKkAqQCqAKcAqwCsAK0ArgCtAKwArwCwALEAsACyALEAswC0ALUAtQC2ALMAtwC4ALkAuQC6ALcAuwC8AL0AvQC+ALsAvwDAAMEAwQDCAL8AwwDEAMUAwwDGAMQAxwDIAMkAyQDKAMcAywDMAM0AzADLAM4AzwDQANEA0ADPANIA0wDUANUA1QDWANMA1wDYANkA2QDaANcA2wDcAN0A3QDeANsA3wDgAOEA3wDhAOIA4wDkAOUA5gDnAOgA6QDqAOsA7ADtAO4A7wDwAPEA8gDxAPAA8wD0APUA9gDzAPUA9wD4APkA+QD6APcA+wD8AP0A/QD+APsA/wAAAQEBAQECAf8AAwEEAQUBBQEGAQMBBwEIAQkBCQEKAQcBCwEMAQ0BDAEOAQ0BDwEQAREBEgETARQBEgEVARMBFgEXARgBGAEZARYBGgEbARwBHAEdARoBHgEfASABIAEhAR4BIgEjASQBIgElASMBJgEnASgBKAEpASYBKgErASwBLAEtASoBLgEvATABMAExAS4BMgEzATQBNAE1ATIBNgE3ATgBOAE5ATYBOgE7ATwBOwE6AT0BPgE/AUABPgFAAUEBQgFDAUQBRAFFAUIBRgFHAUgBRgFIAUkBSgFLAUwBSwFKAU0BTgFPAVABUAFRAU4BUgFTAVQBVAFVAVIBVgFXAVgBVwFWAVkBWgFbAVwBXAFdAVoBXgFfAWABXgFgAWEBYgFjAWQBZQFjAWIBZgFnAWgBaAFpAWYBagFrAWwBbAFtAWoBbgFvAXABcAFxAW4BcgFzAXQBdAF1AXIBdgF3AXgBeAF5AXYBegF7AXwBfAF9AXoBfgF/AYABgAGBAX4BggGDAYQBggGEAYUB"),
-"material": SubResource("StandardMaterial3D_rbxqr"),
+"material": ExtResource("2_irp14"),
 "name": "Yellow",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -74,7 +46,7 @@ _surfaces = [{
 "format": 34896613383,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAwAAAAIAAwAEAAAAAgAFAAMAAgAGAAUAAgAHAAYABgAIAAUABgAJAAgACgALAAwADQAKAAwADQAOAAoADAAPAA0AEAANAA8AEAARAA0ADwASABAAEgATABAA"),
-"material": SubResource("StandardMaterial3D_e5uof"),
+"material": ExtResource("3_vee0f"),
 "name": "DarkYellow",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

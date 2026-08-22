@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://b02png6xwrrwt"]
 
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="2_mxfye"]
-[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="2_ukgo8"]
 [ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="2_wbgbu"]
 [ext_resource type="PackedScene" uid="uid://dyuotod4dd6vn" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_03.prefab.scn" id="3_h2snq"]
+[ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="4_h2snq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2snq"]
+material = ExtResource("4_h2snq")
+size = Vector3(25, 0, 40)
+subdivide_depth = 15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iry7p"]
+size = Vector3(25, 0.1, 40)
 
 [node name="ChunkBase" type="Node3D" unique_id=1451399318]
 
@@ -37,11 +45,14 @@ transform = Transform3D(-4.0691344e-08, 0, -0.93090945, 0, 0.93090945, 0, 0.9309
 transform = Transform3D(0.36023477, 0, 0.57357717, 0, 0.6773181, 0, -0.57357717, 0, 0.36023477, 6.838242, -0.21370316, -13.042711)
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.822653)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.954235)
 
-[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -3.2287607)
-use_collision = true
-collision_layer = 4
-size = Vector3(25, 0.1, 33.54248)
-material = ExtResource("2_ukgo8")
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=949234256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02578125, -1.5535526)
+mesh = SubResource("BoxMesh_h2snq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=2017753066]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=719750250]
+shape = SubResource("BoxShape3D_iry7p")

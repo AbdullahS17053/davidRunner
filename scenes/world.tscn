@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bah6hee3utrhg" path="res://scenes/chunks/chunk4.tscn" id="20_ctatt"]
 [ext_resource type="PackedScene" uid="uid://dyvoonw56fspx" path="res://scenes/chunks/chunk5.tscn" id="22_munwf"]
 [ext_resource type="PackedScene" uid="uid://cy2ax78u8s147" path="res://scenes/chunks/chunk6.tscn" id="23_ts3gi"]
+[ext_resource type="Script" uid="uid://edgimgwmxjxi" path="res://scripts/utilities/bending_manager.gd" id="28_0nbtd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("10_w7kh3")
@@ -669,7 +670,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_37qwj"]
 resource_name = "exit"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -722,7 +723,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_ts3gi"]
 resource_name = "open"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -801,7 +802,7 @@ glow_blend_mode = 0
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.8288257, 0.63300407, 0.42531443, 1)
-fog_density = 1.0
+fog_density = 0.5
 fog_depth_curve = 3.0
 fog_depth_end = 55.0
 adjustment_enabled = true
@@ -1371,6 +1372,9 @@ chunks_data = Array[ExtResource("17_oo54l")]([SubResource("Resource_2lf6f"), Sub
 chunks_ahead = 5
 despawn_distance = 10.0
 
+[node name="WorldBendingManager" type="Node3D" parent="LevelManager" unique_id=1035616828]
+script = ExtResource("28_0nbtd")
+
 [node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("phantom_camera") groups=["player"] instance=ExtResource("2_rwgxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -2.3558428)
 move_speed = 10.0
@@ -1380,8 +1384,7 @@ phantom_camera = NodePath("../PhantomCamera3D")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
 physics_interpolation_mode = 1
-transform = Transform3D(-4.371036e-08, -0.25881147, 0.965901, 0, 0.96589756, 0.2588124, -0.9999765, 1.1313008e-08, -4.2220876e-08, 2.865, 1.3330232, -2.7358427)
-top_level = true
+transform = Transform3D(-4.371139e-08, -0.25881904, 0.9659258, 0, 0.9659258, 0.25881904, -1, 1.13133405e-08, -4.222196e-08, 2.865, 1.315, -0.37999988)
 far = 50.0
 
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]

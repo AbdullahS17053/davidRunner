@@ -6,8 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="6_oh3tx"]
 [ext_resource type="PackedScene" uid="uid://ctmk4wgi6urnc" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_02.prefab.scn" id="7_jndfs"]
 [ext_resource type="PackedScene" uid="uid://b0wg40k7by378" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Log_02.prefab.scn" id="7_y36kf"]
-[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="8_hm0k2"]
+[ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="8_6os5m"]
 [ext_resource type="PackedScene" uid="uid://cmgrhhccr81u8" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Log_01.prefab.scn" id="8_kbvyr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbvyr"]
+material = ExtResource("8_6os5m")
+size = Vector3(25, 0, 20.231)
+subdivide_depth = 15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6os5m"]
+size = Vector3(25, 0.1, 20)
 
 [node name="Chunk3" type="Node3D" unique_id=1451399318]
 
@@ -97,12 +105,15 @@ transform = Transform3D(1.2207401e-07, 0, 0.9309094, 0, 0.9309094, 0, -0.9309094
 [node name="SM_Gen_Env_Tree_Dead_02" parent="Decorations" unique_id=1780138525 instance=ExtResource("7_jndfs")]
 transform = Transform3D(1.1116427, -0.17607743, 0, 0.17607743, 1.1116425, 0, 0, 0, 1.1255012, 7.1584625, 0.2429086, -8.528416)
 
-[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
-use_collision = true
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=734433230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04848385, 0.024167776, -9.785035)
+mesh = SubResource("BoxMesh_kbvyr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=2053026476]
 collision_layer = 4
-size = Vector3(25, 0.1, 20)
-material = ExtResource("8_hm0k2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=814904315]
+shape = SubResource("BoxShape3D_6os5m")
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1579153841]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.588017)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.63146)

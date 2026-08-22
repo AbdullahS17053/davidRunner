@@ -114,3 +114,14 @@ scaling_3d/fsr_sharpness=0.5
 occlusion_culling/use_occlusion_culling=true
 lights_and_shadows/positional_shadow/atlas_size=512
 lights_and_shadows/positional_shadow/atlas_size.mobile=512
+
+[shader_globals]
+
+global_curve_intensity={
+"type": "vec2",
+"value": Vector2(0.01, -0.01)
+}
+global_curve_start={
+"type": "float",
+"value": 20.0
+}

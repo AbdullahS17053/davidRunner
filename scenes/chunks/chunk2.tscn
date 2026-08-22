@@ -6,8 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://w8r8pd85apfw" path="res://scenes/obstacles/wolf/wolf_obstacle.tscn" id="2_slq2u"]
 [ext_resource type="Script" uid="uid://dfhopuwqptpu1" path="res://scripts/moving_obstacle.gd" id="3_fi4j4"]
 [ext_resource type="PackedScene" uid="uid://ctmk4wgi6urnc" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_02.prefab.scn" id="3_slq2u"]
-[ext_resource type="Material" uid="uid://b3x1ec8eojc5n" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Terrain/Terrain_Sand_02.terrainlayer.res" id="5_1o4j6"]
+[ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="8_1o4j6"]
 [ext_resource type="PackedScene" uid="uid://dui83ewpo2fl4" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Ramp_02.prefab.scn" id="8_fi4j4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fi4j4"]
+material = ExtResource("8_1o4j6")
+size = Vector3(25, 0, 20.109)
+subdivide_depth = 15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1o4j6"]
+size = Vector3(25, 0.1, 20)
 
 [node name="Chunk2" type="Node3D" unique_id=1451399318]
 
@@ -128,15 +136,15 @@ transform = Transform3D(1.2207401e-07, 0, 0.9309094, 0, 0.9309094, 0, -0.9309094
 [node name="SM_Gen_Env_Tree_Dead_02" parent="Decorations" unique_id=1780138525 instance=ExtResource("3_slq2u")]
 transform = Transform3D(1.1116427, -0.17607743, 0, 0.17607743, 1.1116425, 0, 0, 0, 1.1255012, 7.1584625, 0.2429086, -8.528416)
 
-[node name="Ground" type="CSGBox3D" parent="." unique_id=1181030703]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, -10)
-use_collision = true
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1100280355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+mesh = SubResource("BoxMesh_fi4j4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=1826971983]
 collision_layer = 4
-size = Vector3(25, 0.1, 20)
-material = ExtResource("5_1o4j6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=1144346115]
+shape = SubResource("BoxShape3D_1o4j6")
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1692959741]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.550217)
-
-[node name="EndPoint2" type="Marker3D" parent="." unique_id=138213825]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9161253, 0, -19.550217)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.29854)

@@ -1,0 +1,1628 @@
+[gd_scene format=3 uid="uid://dd8yjoo5ph6h4"]
+
+[ext_resource type="Theme" uid="uid://cp15gk0cghgys" path="res://resources/themes/ui_theme.tres" id="1_8ckoj"]
+[ext_resource type="Script" uid="uid://chi1x74nnrhkh" path="res://scripts/game_ui.gd" id="2_d3c03"]
+[ext_resource type="Texture2D" uid="uid://co1h7cb36030l" path="res://assets/ui_assets/panels/BubbleFrame04_White_Bg.png" id="3_ocy1v"]
+[ext_resource type="FontFile" uid="uid://bgg04ec335l0g" path="res://assets/fonts/cairo/Cairo-Black.ttf" id="4_xokok"]
+[ext_resource type="Texture2D" uid="uid://bo0b2qw024y8i" path="res://assets/ui_assets/icons/ItemIcon_Money_Coin.png" id="5_bybcv"]
+[ext_resource type="Texture2D" uid="uid://du5dg4r1a80xq" path="res://assets/ui_assets/icons/Icon_Pause.png" id="6_1pyl5"]
+[ext_resource type="Script" uid="uid://xqcxrxvffrlj" path="res://scenes/ui/pause_menu.gd" id="7_idkr2"]
+[ext_resource type="Script" uid="uid://cdxgiggu1odd" path="res://scenes/ui/main_menu.gd" id="8_lxcvk"]
+[ext_resource type="Texture2D" uid="uid://bvr7kx20l5eko" path="res://assets/ui_assets/icons/ItemIcon_Gear.png" id="9_df5f1"]
+[ext_resource type="Texture2D" uid="uid://bskjx8uosbk3x" path="res://assets/ui_assets/icons/Icon_Back.png" id="10_18djc"]
+[ext_resource type="Texture2D" uid="uid://dpsduhnxs1tk5" path="res://assets/ui_assets/icons/ShopItem_l_CoinPack_1.png" id="11_kuy5h"]
+[ext_resource type="Script" uid="uid://btbkt5eyv7w06" path="res://scenes/ui/settings_menu.gd" id="12_kuekq"]
+[ext_resource type="Texture2D" uid="uid://b388vv8277rvv" path="res://assets/ui_assets/panels/BorderFrame_Round30.png" id="13_lml1k"]
+[ext_resource type="Texture2D" uid="uid://1lf3qw8s5dp6" path="res://assets/ui_assets/icons/Icon_Close02.png" id="14_btbn3"]
+[ext_resource type="Script" uid="uid://blgbwpyo5nx3b" path="res://scenes/ui/game_over_ui.gd" id="15_suita"]
+[ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="16_0abdq"]
+[ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="17_wkq8n"]
+[ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/maps/mountains_level/chunks/base_chunk.tscn" id="18_2xul0"]
+[ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/chunk_data/chunk_data.gd" id="19_fn2xa"]
+[ext_resource type="PackedScene" uid="uid://b5kve7h5vlyrr" path="res://scenes/maps/mountains_level/chunks/chunk1.tscn" id="20_74vyo"]
+[ext_resource type="PackedScene" uid="uid://cr0o0gl6vbntm" path="res://scenes/maps/mountains_level/chunks/chunk2.tscn" id="21_rg0ue"]
+[ext_resource type="PackedScene" uid="uid://blxfmx14ii4ki" path="res://scenes/maps/mountains_level/chunks/chunk3.tscn" id="22_13cnj"]
+[ext_resource type="PackedScene" uid="uid://bah6hee3utrhg" path="res://scenes/maps/mountains_level/chunks/chunk4.tscn" id="23_5gjuj"]
+[ext_resource type="PackedScene" uid="uid://dyvoonw56fspx" path="res://scenes/maps/mountains_level/chunks/chunk5.tscn" id="24_61ixb"]
+[ext_resource type="PackedScene" uid="uid://cy2ax78u8s147" path="res://scenes/maps/mountains_level/chunks/chunk6.tscn" id="25_nwl1k"]
+[ext_resource type="Script" uid="uid://edgimgwmxjxi" path="res://scripts/utilities/bending_manager.gd" id="26_n3hxp"]
+[ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player/player.tscn" id="27_i1rv8"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_3h0g4"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="29_v510e"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="30_c12n2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
+texture = ExtResource("3_ocy1v")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mrxx"]
+font = ExtResource("4_xokok")
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ctatt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -150)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseBtn:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -150)]
+}
+
+[sub_resource type="Animation" id="Animation_kpybi"]
+resource_name = "show"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseBtn:offset_transform_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ctatt"]
+_data = {
+&"RESET": SubResource("Animation_ctatt"),
+&"show": SubResource("Animation_kpybi")
+}
+
+[sub_resource type="Animation" id="Animation_luhhm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ResumeBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SettingsBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/ExitBtn:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+
+[sub_resource type="Animation" id="Animation_fh13f"]
+resource_name = "exit"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ResumeBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SettingsBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/ExitBtn:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_navra"]
+resource_name = "open"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ResumeBtn:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SettingsBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.450581e-09, 0.1, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/ExitBtn:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luhhm"]
+_data = {
+&"RESET": SubResource("Animation_luhhm"),
+&"exit": SubResource("Animation_fh13f"),
+&"open": SubResource("Animation_navra")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_q5onr"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_o8fc1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayButton:offset_transform_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SettingsBtn:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuAnims:current_animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&""]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExitBtn:offset_transform_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_munwf"]
+resource_name = "exit"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsBtn:offset_transform_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.39999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-300, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayButton:offset_transform_scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.01, 0.01), Vector2(0.01, 0.01)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ExitBtn:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jhx03"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayButton:offset_transform_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.14311699866353483, 0.0, -0.14311699866353483, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:offset_transform_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xgqkh"]
+resource_name = "show"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsBtn:offset_transform_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-200, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-300, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayButton:offset_transform_scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(0.01, 0.01), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuAnims:current_animation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"loop"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ExitBtn:offset_transform_position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(150, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
+_data = {
+&"RESET": SubResource("Animation_o8fc1"),
+&"exit": SubResource("Animation_munwf"),
+&"loop": SubResource("Animation_jhx03"),
+&"show": SubResource("Animation_xgqkh")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lakw3"]
+texture = ExtResource("13_lml1k")
+texture_margin_left = 30.0
+texture_margin_top = 25.0
+texture_margin_right = 30.0
+texture_margin_bottom = 25.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pm21f"]
+font = ExtResource("4_xokok")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2lf6f"]
+font = ExtResource("4_xokok")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpybi"]
+font = ExtResource("4_xokok")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lf6f"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="Animation" id="Animation_0nbtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_37qwj"]
+resource_name = "exit"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ts3gi"]
+resource_name = "open"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0nbtd"]
+_data = {
+&"RESET": SubResource("Animation_0nbtd"),
+&"exit": SubResource("Animation_37qwj"),
+&"open": SubResource("Animation_ts3gi")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_0nbtd"]
+font = ExtResource("4_xokok")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_4kbfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOverPanel:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rup4s"]
+resource_name = "open"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOverPanel:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.012490012, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kbfs"]
+_data = {
+&"RESET": SubResource("Animation_4kbfs"),
+&"open": SubResource("Animation_rup4s")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4wyf3"]
+sky_material = SubResource("ProceduralSkyMaterial_rwgxs")
+
+[sub_resource type="Environment" id="Environment_k0juu"]
+background_mode = 2
+sky = SubResource("Sky_4wyf3")
+ambient_light_source = 2
+ambient_light_color = Color(0.52630603, 0.40679, 0.29430434, 1)
+tonemap_mode = 4
+tonemap_agx_contrast = 1.3
+glow_enabled = true
+glow_strength = 1.1
+glow_bloom = 0.15
+glow_blend_mode = 0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.8288257, 0.63300407, 0.42531443, 1)
+fog_density = 0.5
+fog_depth_curve = 3.0
+fog_depth_end = 55.0
+adjustment_enabled = true
+adjustment_brightness = 1.2
+adjustment_saturation = 1.02
+
+[sub_resource type="Resource" id="Resource_2lf6f"]
+script = ExtResource("19_fn2xa")
+chunk_scene = ExtResource("20_74vyo")
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_kpybi"]
+script = ExtResource("19_fn2xa")
+chunk_scene = ExtResource("21_rg0ue")
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_ctatt"]
+script = ExtResource("19_fn2xa")
+chunk_scene = ExtResource("22_13cnj")
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_xgqkh"]
+script = ExtResource("19_fn2xa")
+chunk_scene = ExtResource("23_5gjuj")
+weight = 0.1
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_lsabw"]
+script = ExtResource("19_fn2xa")
+chunk_scene = ExtResource("24_61ixb")
+weight = 0.1
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_munwf"]
+script = ExtResource("19_fn2xa")
+chunk_scene = ExtResource("25_nwl1k")
+weight = 0.5
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_4mrxx"]
+script = ExtResource("30_c12n2")
+
+[sub_resource type="Animation" id="Animation_xo05s"]
+resource_name = "Intro"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera3D:follow_offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.865, 1.315, -0.38), Vector3(0, 4, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.2617994, 1.5707964, 0), Vector3(-0.57595867, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UILayer/GameUI/GameUIAnims:current_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"RESET", &"show"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"exit"]
+}
+
+[sub_resource type="Animation" id="Animation_dss4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera3D:follow_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.865, 1.315, -0.38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2617994, 1.5707964, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UILayer/GameUI/GameUIAnims:current_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&""]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dss4m"]
+_data = {
+&"Intro": SubResource("Animation_xo05s"),
+&"RESET": SubResource("Animation_dss4m")
+}
+
+[node name="LevelRoot" type="Node3D" unique_id=154977216]
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1842010287]
+
+[node name="GameUI" type="Control" parent="UILayer" unique_id=1534088429 node_paths=PackedStringArray("coins_label", "distance_label", "pause_menu")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("2_d3c03")
+coins_label = NodePath("CoinsPanel/HBoxContainer/CoinsLabel")
+distance_label = NodePath("DistancePanel/DistanceLabel")
+pause_menu = NodePath("../PauseMenu")
+
+[node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 26.0
+offset_right = 273.0
+offset_bottom = 116.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_7r4gi")
+
+[node name="DistanceLabel" type="Label" parent="UILayer/GameUI/DistancePanel" unique_id=1891115711]
+layout_mode = 2
+text = "0m "
+label_settings = SubResource("LabelSettings_4mrxx")
+
+[node name="CoinsPanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=2018492439]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -273.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 117.0
+grow_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -150)
+theme_override_styles/panel = SubResource("StyleBoxTexture_7r4gi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/GameUI/CoinsPanel" unique_id=1362858275]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="UILayer/GameUI/CoinsPanel/HBoxContainer" unique_id=1615136882]
+layout_mode = 2
+texture = ExtResource("5_bybcv")
+expand_mode = 3
+
+[node name="CoinsLabel" type="Label" parent="UILayer/GameUI/CoinsPanel/HBoxContainer" unique_id=806398038]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_4mrxx")
+
+[node name="PauseBtn" type="Button" parent="UILayer/GameUI" unique_id=1123375949]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 96.0
+offset_bottom = 96.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -150)
+icon = ExtResource("6_1pyl5")
+flat = true
+icon_alignment = 1
+
+[node name="GameUIAnims" type="AnimationPlayer" parent="UILayer/GameUI" unique_id=1847322117]
+libraries/ = SubResource("AnimationLibrary_ctatt")
+
+[node name="PauseMenu" type="Control" parent="UILayer" unique_id=1328896653 node_paths=PackedStringArray("settings_menu", "pause_anims")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("7_idkr2")
+settings_menu = NodePath("../SettingsMenu")
+pause_anims = NodePath("PauseAnims")
+
+[node name="BG" type="ColorRect" parent="UILayer/PauseMenu" unique_id=1426122051]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/PauseMenu" unique_id=2081427442]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -183.0
+offset_right = 263.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeBtn" type="Button" parent="UILayer/PauseMenu/VBoxContainer" unique_id=1049883565]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_type_variation = &"ButtonVariation"
+text = "Resume"
+
+[node name="SettingsBtn" type="Button" parent="UILayer/PauseMenu/VBoxContainer" unique_id=661429249]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_type_variation = &"ButtonVariation"
+text = "Settings"
+
+[node name="ExitBtn" type="Button" parent="UILayer/PauseMenu/VBoxContainer" unique_id=1698492748]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_type_variation = &"ButtonVariation"
+text = "Exit"
+
+[node name="PauseAnims" type="AnimationPlayer" parent="UILayer/PauseMenu" unique_id=994902738]
+libraries/ = SubResource("AnimationLibrary_luhhm")
+
+[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("8_lxcvk")
+settings_menu = NodePath("../SettingsMenu")
+menu_anims = NodePath("MenuAnims")
+
+[node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="PlayButton" type="Label" parent="UILayer/MainMenu" unique_id=1869609826]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 0
+offset_top = 813.0
+offset_right = 648.0
+offset_bottom = 908.0
+size_flags_vertical = 8
+offset_transform_enabled = true
+text = "Tap To Start!"
+label_settings = SubResource("LabelSettings_q5onr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsBtn" type="Button" parent="UILayer/MainMenu" unique_id=1108027232]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -186.0
+offset_right = 205.0
+grow_vertical = 0
+offset_transform_enabled = true
+theme = ExtResource("1_8ckoj")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+icon = ExtResource("9_df5f1")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ExitBtn" type="Button" parent="UILayer/MainMenu" unique_id=2074422684]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -186.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+theme = ExtResource("1_8ckoj")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "EXIT"
+icon = ExtResource("10_18djc")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="CoinsPanel" type="PanelContainer" parent="UILayer/MainMenu" unique_id=1779019668]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 273.0
+offset_bottom = 117.0
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_7r4gi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/MainMenu/CoinsPanel" unique_id=1460138845]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="UILayer/MainMenu/CoinsPanel/HBoxContainer" unique_id=1004307938]
+layout_mode = 2
+texture = ExtResource("11_kuy5h")
+expand_mode = 3
+
+[node name="TotalCoinsLabel" type="Label" parent="UILayer/MainMenu/CoinsPanel/HBoxContainer" unique_id=1756750080]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_4mrxx")
+
+[node name="MenuAnims" type="AnimationPlayer" parent="UILayer/MainMenu" unique_id=215577975]
+libraries/ = SubResource("AnimationLibrary_o8fc1")
+autoplay = &"show"
+
+[node name="SettingsMenu" type="Control" parent="UILayer" unique_id=568473751 node_paths=PackedStringArray("res_scale_value", "shadows_toggle", "fps_toggle", "res_scale_slider", "sfx_toggle", "music_toggle", "settings_anims", "directional_light")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("12_kuekq")
+res_scale_value = NodePath("SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer/ResScaleValue")
+shadows_toggle = NodePath("SettingsPanel/VBoxContainer/VideoSettings/ShadowsToggle")
+fps_toggle = NodePath("SettingsPanel/VBoxContainer/VideoSettings/FPSToggle")
+res_scale_slider = NodePath("SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer/ResScaleSlider")
+sfx_toggle = NodePath("SettingsPanel/VBoxContainer/AudioSettings/SoundFXCheckBox")
+music_toggle = NodePath("SettingsPanel/VBoxContainer/AudioSettings/MusicCheckbox")
+settings_anims = NodePath("SettingsAnims")
+directional_light = NodePath("../../DirectionalLight3D")
+
+[node name="BG" type="ColorRect" parent="UILayer/SettingsMenu" unique_id=1727895336]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="SettingsPanel" type="PanelContainer" parent="UILayer/SettingsMenu" unique_id=555686805]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -434.0
+offset_right = 263.0
+offset_bottom = 434.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel" unique_id=872399850]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="SettingsHeaderLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer" unique_id=2006224357]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_pm21f")
+horizontal_alignment = 1
+
+[node name="VideoSettings" type="VBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer" unique_id=2048967953]
+layout_mode = 2
+
+[node name="VideoLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1457612164]
+layout_mode = 2
+text = "VIDEO"
+label_settings = SubResource("LabelSettings_2lf6f")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1471814547]
+layout_mode = 2
+
+[node name="ShadowsToggle" type="CheckBox" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=23560680]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+text = "Shadows"
+
+[node name="FPSToggle" type="CheckBox" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1905225051]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+text = "Show FPS"
+
+[node name="ResolutionScale" type="HBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1179474388]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ResScaleLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale" unique_id=270816533]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Resolution Scale"
+label_settings = SubResource("LabelSettings_kpybi")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale" unique_id=96996385]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -20
+
+[node name="ResScaleSlider" type="HSlider" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer" unique_id=1485091439]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="ResScaleValue" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer" unique_id=370292934]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = SubResource("LabelSettings_kpybi")
+horizontal_alignment = 1
+
+[node name="AudioSettings" type="VBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer" unique_id=1810194787]
+layout_mode = 2
+
+[node name="AudioLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings" unique_id=615678618]
+layout_mode = 2
+text = "AUDIO"
+label_settings = SubResource("LabelSettings_2lf6f")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings" unique_id=450577737]
+layout_mode = 2
+
+[node name="SoundFXCheckBox" type="CheckBox" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings" unique_id=1152556216]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+text = "Sound FX"
+
+[node name="MusicCheckbox" type="CheckBox" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings" unique_id=895637173]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+text = "Music"
+
+[node name="CloseBtn" type="Button" parent="UILayer/SettingsMenu" unique_id=1399988301]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.045627378
+anchor_top = -0.02764977
+anchor_right = 0.1444867
+anchor_bottom = 0.08755761
+offset_left = 66.56654
+offset_top = 149.85254
+offset_right = 43.37262
+offset_bottom = 117.13364
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2lf6f")
+icon = ExtResource("14_btbn3")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsAnims" type="AnimationPlayer" parent="UILayer/SettingsMenu" unique_id=1989398226]
+libraries/ = SubResource("AnimationLibrary_0nbtd")
+
+[node name="GameOverUI" type="Control" parent="UILayer" unique_id=1862970273 node_paths=PackedStringArray("game_over_anims", "world_anims", "high_score_label", "coins_collected_label")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("15_suita")
+game_over_anims = NodePath("GameOverAnims")
+world_anims = NodePath("../../WorldAnims")
+high_score_label = NodePath("GameOverPanel/VBoxContainer/HighScoreLabel")
+coins_collected_label = NodePath("GameOverPanel/VBoxContainer/CoinsCollectedLabel")
+
+[node name="BG" type="ColorRect" parent="UILayer/GameOverUI" unique_id=2142170262]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="GameOverPanel" type="PanelContainer" parent="UILayer/GameOverUI" unique_id=1375036325]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -253.0
+offset_right = 281.0
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/GameOverUI/GameOverPanel" unique_id=1426661397]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=138604914]
+layout_mode = 2
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_pm21f")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CoinsCollectedLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=326246065]
+layout_mode = 2
+text = "Coins: 0"
+label_settings = SubResource("LabelSettings_0nbtd")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HighScoreLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1735045578]
+layout_mode = 2
+text = "Highest Coins: 0"
+label_settings = SubResource("LabelSettings_0nbtd")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="RestartBtn" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=665393161]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1161678758]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Main Menu"
+
+[node name="GameOverAnims" type="AnimationPlayer" parent="UILayer/GameOverUI" unique_id=1230722019]
+libraries/ = SubResource("AnimationLibrary_4kbfs")
+
+[node name="GameManager" type="Node" parent="." unique_id=174738255 node_paths=PackedStringArray("player", "total_coins_label", "main_menu", "world_anims")]
+script = ExtResource("16_0abdq")
+player = NodePath("../Player")
+total_coins_label = NodePath("../UILayer/MainMenu/CoinsPanel/HBoxContainer/TotalCoinsLabel")
+main_menu = NodePath("../UILayer/MainMenu")
+world_anims = NodePath("../WorldAnims")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1007658630]
+environment = SubResource("Environment_k0juu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546126896]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.7254902, 0.59607846, 0.47843137, 1)
+light_bake_mode = 1
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 0.5
+directional_shadow_mode = 0
+directional_shadow_max_distance = 20.0
+
+[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player")]
+physics_interpolation_mode = 1
+script = ExtResource("17_wkq8n")
+player = NodePath("../Player")
+base_chunk = ExtResource("18_2xul0")
+chunks_data = Array[ExtResource("19_fn2xa")]([SubResource("Resource_2lf6f"), SubResource("Resource_kpybi"), SubResource("Resource_ctatt"), SubResource("Resource_xgqkh"), SubResource("Resource_lsabw"), SubResource("Resource_munwf")])
+chunks_ahead = 5
+despawn_distance = 10.0
+
+[node name="WorldBendingManager" type="Node3D" parent="LevelManager" unique_id=1035616828]
+script = ExtResource("26_n3hxp")
+
+[node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("phantom_camera") groups=["player"] instance=ExtResource("27_i1rv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -2.3558428)
+move_speed = 10.0
+jump_force = 8.0
+switch_speed = 6.0
+phantom_camera = NodePath("../PhantomCamera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
+physics_interpolation_mode = 1
+transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
+top_level = true
+far = 50.0
+
+[node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("28_3h0g4")
+interpolation_mode = 2
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
+physics_interpolation_mode = 1
+transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
+top_level = true
+script = ExtResource("29_v510e")
+follow_mode = 2
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_4mrxx")
+follow_offset = Vector3(2.865, 1.315, -0.38)
+follow_damping = true
+follow_damping_value = Vector3(0.12, 0.12, 0.12)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+draw_follow_line = true
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="WorldAnims" type="AnimationPlayer" parent="." unique_id=189864053]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_dss4m")
+
+[connection signal="pressed" from="UILayer/GameUI/PauseBtn" to="UILayer/GameUI" method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ResumeBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"resume"]]
+[connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/SettingsBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"settings"]]
+[connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ExitBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"exit"]]
+[connection signal="pressed" from="UILayer/MainMenu/SettingsBtn" to="UILayer/MainMenu" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/ExitBtn" to="UILayer/MainMenu" method="_on_exit_btn_pressed"]
+[connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ShadowsToggle" to="UILayer/SettingsMenu" method="_on_shadows_toggle_toggled"]
+[connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/FPSToggle" to="UILayer/SettingsMenu" method="_on_fps_toggle_toggled"]
+[connection signal="value_changed" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer/ResScaleSlider" to="UILayer/SettingsMenu" method="_on_res_scale_slider_value_changed"]
+[connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings/SoundFXCheckBox" to="UILayer/SettingsMenu" method="_on_sound_fx_check_box_toggled"]
+[connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings/MusicCheckbox" to="UILayer/SettingsMenu" method="_on_music_checkbox_toggled"]
+[connection signal="pressed" from="UILayer/SettingsMenu/CloseBtn" to="UILayer/SettingsMenu" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]

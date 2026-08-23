@@ -29,7 +29,6 @@ void vertex() {
     
     float raw_dist = -cam_to_vertex.z;
     
-    // 2. Use the global variables in your math
     float effect_dist = max(0.0, raw_dist - global_curve_start); 
     float curve_factor = effect_dist * effect_dist;
     

@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b0v3q2jaqtkn7"]
+
+[ext_resource type="Shader" uid="uid://daheucsbmvl0e" path="res://resources/shaders/bending_shader.gdshader" id="1_e7gim"]
+[ext_resource type="Texture2D" uid="uid://bp4ctcy2ens1u" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/Plants/Branches_01.tga" id="1_vww80"]
+
+[resource]
+resource_name = "Branches_01"
+render_priority = 0
+shader = ExtResource("1_e7gim")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_vww80")
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/albedo_texture_size = Vector2i(1024, 1024)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.132
+shader_parameter/uv1_scale = Vector3(1, 1, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)

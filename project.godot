@@ -18,7 +18,7 @@ settings/font_size=14
 config/name="RunnerGame3D"
 config/version="1.0.0"
 config/tags=PackedStringArray("freelance")
-run/main_scene="uid://dd8yjoo5ph6h4"
+run/main_scene="uid://cwhbx7nkq0tv0"
 config/features=PackedStringArray("4.7")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -46,7 +46,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/destruction/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/unidot_importer/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/lowpolyterrain/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/unidot_importer/plugin.cfg")
 
 [global_group]
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dpu2y5k6177t4" path="res://scenes/collectibles/collectible.gd" id="1_lb3xb"]
 [ext_resource type="Material" uid="uid://cxn3vqexwsk3b" path="res://resources/materials/coin_base_material.tres" id="2_irp14"]
 [ext_resource type="Material" uid="uid://bfw1pe0iig6k6" path="res://resources/materials/coin_dark_material.tres" id="3_vee0f"]
+[ext_resource type="Texture2D" uid="uid://b84wt5h1ofekd" path="res://assets/textures/star_07.png" id="4_0ysio"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nynfa"]
 _surfaces = [{
@@ -60,6 +61,57 @@ shadow_mesh = SubResource("ArrayMesh_nynfa")
 height = 0.2
 radius = 0.35
 
+[sub_resource type="Curve" id="Curve_vee0f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dqkch"]
+curve = SubResource("Curve_vee0f")
+
+[sub_resource type="Gradient" id="Gradient_0ysio"]
+colors = PackedColorArray(1, 0.99014676, 0.3290106, 1, 1, 0.68058085, 0.28955162, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ysio"]
+gradient = SubResource("Gradient_0ysio")
+
+[sub_resource type="Curve" id="Curve_0ysio"]
+_data = [Vector2(0, 0), 0.0, 2.0032258, 0, 0, Vector2(0.51111114, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.2062502, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+curve = SubResource("Curve_0ysio")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pbksw"]
+lifetime_randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 0.4
+angle_min = 1.0728835e-05
+angle_max = 90.000015
+spread = 180.0
+initial_velocity_min = 0.19999999
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_qlg0r")
+color_initial_ramp = SubResource("GradientTexture1D_0ysio")
+alpha_curve = SubResource("CurveTexture_dqkch")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbwe3"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_0ysio")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_vee0f"]
+material = SubResource("StandardMaterial3D_tbwe3")
+
 [sub_resource type="Animation" id="Animation_irp14"]
 length = 0.001
 tracks/0/type = "value"
@@ -85,6 +137,97 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coin:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(100, 100, 100)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CoinCollectParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0ysio"]
+resource_name = "collect"
+length = 0.19999999999999998
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coin:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(100, 100, 100), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinCollectParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_lb3xb"]
@@ -119,14 +262,15 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_irp14"]
 _data = {
 &"RESET": SubResource("Animation_irp14"),
+&"collect": SubResource("Animation_0ysio"),
 &"hover": SubResource("Animation_lb3xb")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_lb3xb"]
-
-[node name="Collectible" type="Area3D" unique_id=434120145]
+[node name="Collectible" type="Area3D" unique_id=434120145 node_paths=PackedStringArray("animation_player")]
+collision_layer = 8
 script = ExtResource("1_lb3xb")
 bob_height = 0.15
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Coin" type="MeshInstance3D" parent="." unique_id=1505410789]
 transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, 0, 0, 0)
@@ -137,10 +281,17 @@ mesh = SubResource("ArrayMesh_6wojk")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pqufm")
 
+[node name="CoinCollectParticles" type="GPUParticles3D" parent="." unique_id=810414007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01816094, 0.16884226, 0)
+cast_shadow = 0
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pbksw")
+draw_pass_1 = SubResource("QuadMesh_vee0f")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=863628128]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_irp14")
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1567924372]
-visible = false
-mesh = SubResource("QuadMesh_lb3xb")

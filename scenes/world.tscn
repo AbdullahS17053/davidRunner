@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="1_nnsk1"]
 [ext_resource type="Theme" uid="uid://cp15gk0cghgys" path="res://resources/themes/ui_theme.tres" id="1_xo05s"]
 [ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/chunks/base_chunk.tscn" id="2_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player/player.tscn" id="2_rwgxs"]
 [ext_resource type="Script" uid="uid://cdxgiggu1odd" path="res://scenes/ui/main_menu.gd" id="3_jhx03"]
 [ext_resource type="FontFile" uid="uid://bgg04ec335l0g" path="res://assets/fonts/cairo/Cairo-Black.ttf" id="3_o8fc1"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_k0juu"]
@@ -22,7 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://b388vv8277rvv" path="res://assets/ui_assets/panels/BorderFrame_Round30.png" id="9_pm21f"]
 [ext_resource type="Texture2D" uid="uid://1lf3qw8s5dp6" path="res://assets/ui_assets/icons/Icon_Close02.png" id="10_2lf6f"]
 [ext_resource type="Texture2D" uid="uid://dpsduhnxs1tk5" path="res://assets/ui_assets/icons/ShopItem_l_CoinPack_1.png" id="10_kpybi"]
+[ext_resource type="Texture2D" uid="uid://bskjx8uosbk3x" path="res://assets/ui_assets/icons/Icon_Back.png" id="10_navra"]
 [ext_resource type="Texture2D" uid="uid://co1h7cb36030l" path="res://assets/ui_assets/panels/BubbleFrame04_White_Bg.png" id="10_w7kh3"]
+[ext_resource type="Script" uid="uid://blgbwpyo5nx3b" path="res://scenes/ui/game_over_ui.gd" id="14_37qwj"]
 [ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/chunk_data/chunk_data.gd" id="17_oo54l"]
 [ext_resource type="PackedScene" uid="uid://bah6hee3utrhg" path="res://scenes/chunks/chunk4.tscn" id="20_ctatt"]
 [ext_resource type="PackedScene" uid="uid://dyvoonw56fspx" path="res://scenes/chunks/chunk5.tscn" id="22_munwf"]
@@ -419,6 +421,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExitBtn:offset_transform_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_munwf"]
 resource_name = "exit"
@@ -483,6 +497,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ExitBtn:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jhx03"]
@@ -579,6 +605,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [&"loop"]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ExitBtn:offset_transform_position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(150, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
 _data = {
@@ -634,34 +672,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CloseBtn:offset_transform_scale")
+tracks/1/path = NodePath("BG:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(0, 0, 0, 0.47058824)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BG:color")
+tracks/2/path = NodePath(".:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0.47058824)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -687,34 +713,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CloseBtn:offset_transform_scale")
+tracks/1/path = NodePath("BG:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BG:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -740,34 +754,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CloseBtn:offset_transform_scale")
+tracks/1/path = NodePath("BG:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BG:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -779,6 +781,97 @@ _data = {
 &"RESET": SubResource("Animation_0nbtd"),
 &"exit": SubResource("Animation_37qwj"),
 &"open": SubResource("Animation_ts3gi")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_0nbtd"]
+font = ExtResource("3_o8fc1")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_4kbfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOverPanel:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.47058824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rup4s"]
+resource_name = "open"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOverPanel:offset_transform_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.012490012, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kbfs"]
+_data = {
+&"RESET": SubResource("Animation_4kbfs"),
+&"open": SubResource("Animation_rup4s")
 }
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
@@ -886,7 +979,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -1092,7 +1185,7 @@ text = "Exit"
 [node name="PauseAnims" type="AnimationPlayer" parent="UILayer/PauseMenu" unique_id=994902738]
 libraries/ = SubResource("AnimationLibrary_luhhm")
 
-[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("world_anims", "player", "settings_menu", "coins_label", "menu_anims")]
+[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1102,10 +1195,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_xo05s")
 script = ExtResource("3_jhx03")
-world_anims = NodePath("../../WorldAnims")
-player = NodePath("../../Player")
 settings_menu = NodePath("../SettingsMenu")
-coins_label = NodePath("CoinsPanel/HBoxContainer/TotalCoinsLabel")
 menu_anims = NodePath("MenuAnims")
 
 [node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
@@ -1146,6 +1236,29 @@ theme_override_constants/icon_max_width = 128
 theme_override_font_sizes/font_size = 36
 text = "SETTINGS"
 icon = ExtResource("6_dss4m")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ExitBtn" type="Button" parent="UILayer/MainMenu" unique_id=2074422684]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -186.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+theme = ExtResource("1_xo05s")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "EXIT"
+icon = ExtResource("10_navra")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -1347,8 +1460,93 @@ metadata/_edit_use_anchors_ = true
 [node name="SettingsAnims" type="AnimationPlayer" parent="UILayer/SettingsMenu" unique_id=1989398226]
 libraries/ = SubResource("AnimationLibrary_0nbtd")
 
-[node name="GameManager" type="Node" parent="." unique_id=174738255]
+[node name="GameOverUI" type="Control" parent="UILayer" unique_id=1862970273 node_paths=PackedStringArray("game_over_anims", "world_anims", "high_score_label", "coins_collected_label")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xo05s")
+script = ExtResource("14_37qwj")
+game_over_anims = NodePath("GameOverAnims")
+world_anims = NodePath("../../WorldAnims")
+high_score_label = NodePath("GameOverPanel/VBoxContainer/HighScoreLabel")
+coins_collected_label = NodePath("GameOverPanel/VBoxContainer/CoinsCollectedLabel")
+
+[node name="BG" type="ColorRect" parent="UILayer/GameOverUI" unique_id=2142170262]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="GameOverPanel" type="PanelContainer" parent="UILayer/GameOverUI" unique_id=1375036325]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -253.0
+offset_right = 281.0
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/GameOverUI/GameOverPanel" unique_id=1426661397]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=138604914]
+layout_mode = 2
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_pm21f")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CoinsCollectedLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=326246065]
+layout_mode = 2
+text = "Coins: 0"
+label_settings = SubResource("LabelSettings_0nbtd")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HighScoreLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1735045578]
+layout_mode = 2
+text = "Highest Coins: 0"
+label_settings = SubResource("LabelSettings_0nbtd")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="RestartBtn" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=665393161]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1161678758]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Main Menu"
+
+[node name="GameOverAnims" type="AnimationPlayer" parent="UILayer/GameOverUI" unique_id=1230722019]
+libraries/ = SubResource("AnimationLibrary_4kbfs")
+
+[node name="GameManager" type="Node" parent="." unique_id=174738255 node_paths=PackedStringArray("player", "total_coins_label", "main_menu", "world_anims")]
 script = ExtResource("8_4mrxx")
+player = NodePath("../Player")
+total_coins_label = NodePath("../UILayer/MainMenu/CoinsPanel/HBoxContainer/TotalCoinsLabel")
+main_menu = NodePath("../UILayer/MainMenu")
+world_anims = NodePath("../WorldAnims")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1007658630]
 environment = SubResource("Environment_k0juu")
@@ -1384,7 +1582,8 @@ phantom_camera = NodePath("../PhantomCamera3D")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
 physics_interpolation_mode = 1
-transform = Transform3D(-4.371139e-08, -0.25881904, 0.9659258, 0, 0.9659258, 0.25881904, -1, 1.13133405e-08, -4.222196e-08, 2.865, 1.315, -0.37999988)
+transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
+top_level = true
 far = 50.0
 
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
@@ -1395,7 +1594,7 @@ interpolation_mode = 2
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
 physics_interpolation_mode = 1
-transform = Transform3D(-4.371036e-08, -0.25881147, 0.965901, 0, 0.96589756, 0.2588124, -0.9999765, 1.1313008e-08, -4.2220876e-08, 2.865, 1.3330232, -2.7358427)
+transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
 top_level = true
 script = ExtResource("5_qfnet")
 follow_mode = 2
@@ -1404,6 +1603,8 @@ tween_resource = SubResource("Resource_4mrxx")
 follow_offset = Vector3(2.865, 1.315, -0.38)
 follow_damping = true
 follow_damping_value = Vector3(0.12, 0.12, 0.12)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -1416,9 +1617,12 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/SettingsBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"settings"]]
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ExitBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"exit"]]
 [connection signal="pressed" from="UILayer/MainMenu/SettingsBtn" to="UILayer/MainMenu" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/ExitBtn" to="UILayer/MainMenu" method="_on_exit_btn_pressed"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ShadowsToggle" to="UILayer/SettingsMenu" method="_on_shadows_toggle_toggled"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/FPSToggle" to="UILayer/SettingsMenu" method="_on_fps_toggle_toggled"]
 [connection signal="value_changed" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer/ResScaleSlider" to="UILayer/SettingsMenu" method="_on_res_scale_slider_value_changed"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings/SoundFXCheckBox" to="UILayer/SettingsMenu" method="_on_sound_fx_check_box_toggled"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings/MusicCheckbox" to="UILayer/SettingsMenu" method="_on_music_checkbox_toggled"]
 [connection signal="pressed" from="UILayer/SettingsMenu/CloseBtn" to="UILayer/SettingsMenu" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]

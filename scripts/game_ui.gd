@@ -16,6 +16,9 @@ func _process(delta: float) -> void:
 
 func on_coin_collected(amount: int) -> void:
 	coins_label.text = "%d" % amount
+	if amount > Global.highest_coins:
+		Global.highest_coins += 1
+		Global.save_stats()
 
 func _on_pause_btn_pressed() -> void:
 	get_tree().paused = true

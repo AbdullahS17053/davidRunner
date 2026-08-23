@@ -1,4 +1,5 @@
-class_name Player extends CharacterBody3D
+class_name Player
+extends CharacterBody3D
 
 @export var move_speed: float = 12.0
 @export var jump_force: float = 8.0
@@ -23,6 +24,8 @@ class_name Player extends CharacterBody3D
 @export var animation_tree: AnimationTree
 @export var dust_particles: GPUParticles3D
 @export var phantom_camera: PhantomCamera3D
+@export var player_anims: AnimationPlayer
+@export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
 
 var is_swiping: bool = false
 var touch_start_pos: Vector2 = Vector2.ZERO
@@ -47,6 +50,7 @@ func _ready() -> void:
 	
 	normal_height = col_shape.shape.height
 	normal_pos_y = col_shape.position.y
+	
 
 func _input(event: InputEvent) -> void:
 	if not Global.is_game_started: return
@@ -153,7 +157,14 @@ func simulate_input(action_name: String) -> void:
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
+		Global.is_game_started = false
+		dust_particles.emitting = false
+		player_anims.play("death")
+		AudioManager.fail.play()
 		AudioManager.bgm.stop()
+		AudioManager.death_impact.play()
+		physical_bone_simulator_3d.physical_bones_start_simulation()
 		Global.total_coins += Global.coins
-		Global.reset_score()
-		get_tree().reload_current_scene.call_deferred()
+		Global.save_stats()
+		await get_tree().create_timer(0.6).timeout
+		Global.game_over.emit()

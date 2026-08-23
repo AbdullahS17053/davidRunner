@@ -12,6 +12,7 @@ func _ready() -> void:
 	start_random_sway()
 
 func start_random_sway() -> void:
+	if not Global.is_game_started: return
 	var target_x: float = randf_range(min_curve_x, max_curve_x)
 	var sway_duration: float = randf_range(min_sway_time, max_sway_time)
 	
@@ -23,6 +24,7 @@ func start_random_sway() -> void:
 	tween.tween_callback(start_random_sway)
 
 func update_shader_curve(new_x: float) -> void:
+	if not Global.is_game_started: return
 	current_curve_x = new_x
 	
 	var new_intensity = Vector2(current_curve_x, curve_y)

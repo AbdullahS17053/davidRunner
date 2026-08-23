@@ -22,7 +22,7 @@ var settings_data: Dictionary = {
 }
 
 func _ready() -> void:
-	# settings_data = SaveSystem.load_settings()
+	settings_data = SaveManager.data["settings"]
 	
 	shadows_toggle.button_pressed = settings_data["shadows_on"]
 	fps_toggle.button_pressed = settings_data["fps_on"]
@@ -33,7 +33,8 @@ func _ready() -> void:
 func _on_close_btn_pressed() -> void:
 	AudioManager.ui_click.play()
 	settings_anims.play("exit")
-	# SaveSystem.save_settings(settings_data) # Save to disk when closing
+	SaveManager.data["settings"] = settings_data
+	SaveManager.save_game()
 
 func _on_shadows_toggle_toggled(toggled_on: bool) -> void:
 	settings_data["shadows_on"] = toggled_on

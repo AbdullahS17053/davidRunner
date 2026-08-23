@@ -14,7 +14,6 @@ func _on_game_over() -> void:
 	game_over_anims.play("open")
 	coins_collected_label.text = "Coins: %d" % Global.coins
 	high_score_label.text = "Highest Coins: %d" % Global.highest_coins
-	#if Global.coins >= Global.highest_coins:
 
 func _on_restart_btn_pressed() -> void:
 	Global.reset_score()
@@ -25,6 +24,7 @@ func _on_restart_btn_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_main_menu_pressed() -> void:
+	Global.reset_score()
 	AudioManager.ui_click.play()
 	game_over_anims.play_backwards("open")
 	await game_over_anims.animation_finished

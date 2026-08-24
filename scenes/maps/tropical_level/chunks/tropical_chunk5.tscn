@@ -284,7 +284,7 @@ metadata/_edit_lock_ = false
 [node name="GrassSides" type="Node3D" parent="Decorations" unique_id=1156129479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
 script = ExtResource("10_x2s7h")
-chunk_activity_data = PackedByteArray("AQABAQABAQAB")
+chunk_activity_data = PackedByteArray("AQABAQABAQABAQEBAQEBAQEBAQEBAQEBAQ==")
 preview_world_chunks = Vector2i(3, 3)
 show_deactivated_chunks = false
 smooth_iterations = 2

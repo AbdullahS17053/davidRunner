@@ -14,21 +14,27 @@ class_name SettingsMenu
 @export var directional_light: DirectionalLight3D
 
 var settings_data: Dictionary = {
-	"shadows_on": true,
-	"fps_on": true,
-	"res_scale": 0.6,
-	"sfx_on": true,
-	"music_on": true
 }
 
 func _ready() -> void:
 	settings_data = SaveManager.data["settings"]
 	
 	shadows_toggle.button_pressed = settings_data["shadows_on"]
+	if directional_light: directional_light.shadow_enabled = settings_data["shadows_on"]
+	
 	fps_toggle.button_pressed = settings_data["fps_on"]
+	DebugMenu.visible = settings_data["fps_on"]
+	
 	res_scale_slider.value = settings_data["res_scale"]
+	res_scale_value.text = "%.2f" % settings_data["res_scale"] 
+	
+	var sfx_bus_index: int = AudioServer.get_bus_index("SFX")
 	sfx_toggle.button_pressed = settings_data["sfx_on"]
+	AudioServer.set_bus_mute(sfx_bus_index, not settings_data["sfx_on"])
+	
+	var music_bus_index: int = AudioServer.get_bus_index("Music")
 	music_toggle.button_pressed = settings_data["music_on"]
+	AudioServer.set_bus_mute(music_bus_index, not settings_data["music_on"])
 
 func _on_close_btn_pressed() -> void:
 	AudioManager.ui_click.play()

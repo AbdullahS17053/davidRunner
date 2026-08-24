@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wtj6t36hgf8g" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_05.prefab.scn" id="4_lsabw"]
 [ext_resource type="PackedScene" uid="uid://chnnsikyebrph" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Arch_01.prefab.scn" id="5_7vwxd"]
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="6_lsabw"]
+[ext_resource type="PackedScene" uid="uid://w8r8pd85apfw" path="res://scenes/obstacles/wolf/wolf_obstacle.tscn" id="7_ba54y"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lsabw"]
 material = ExtResource("6_lsabw")
@@ -106,3 +107,7 @@ collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=1801716722]
 shape = SubResource("BoxShape3D_m5wdw")
+
+[node name="WolfObstacle" parent="." unique_id=312577444 instance=ExtResource("7_ba54y")]
+transform = Transform3D(0.3498673, -0.1804377, -0.6059879, 0.09021885, 0.6997345, -0.15626362, 0.62581116, 1.909278e-09, 0.36131233, 0.17933396, 2.664781, -10.896995)
+can_move = false

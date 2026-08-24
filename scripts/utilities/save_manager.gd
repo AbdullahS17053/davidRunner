@@ -9,7 +9,7 @@ var data: Dictionary = {
 	},
 	"settings": {
 		"shadows_on": true,
-		"fps_on": false,
+		"fps_on": true,
 		"res_scale": 0.5,
 		"sfx_on": true,
 		"music_on": true

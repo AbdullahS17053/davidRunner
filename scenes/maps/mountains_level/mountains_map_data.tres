@@ -35,6 +35,7 @@ metadata/_custom_type_script = "uid://bxveokvt3308s"
 [sub_resource type="Resource" id="Resource_d3c03"]
 script = ExtResource("2_tgown")
 chunk_scene = ExtResource("7_xjo0s")
+weight = 0.1
 metadata/_custom_type_script = "uid://bxveokvt3308s"
 
 [sub_resource type="Resource" id="Resource_ocy1v"]

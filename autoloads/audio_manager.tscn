@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cqpe36phvfjpp" path="res://assets/audio/runner_music.mp3" id="3_xdfsh"]
 [ext_resource type="AudioStream" uid="uid://dqd5s6aixundi" path="res://scenes/player/audio/fall_impact.mp3" id="4_vovef"]
 [ext_resource type="AudioStream" uid="uid://cupwodhm2ggp7" path="res://assets/audio/game_over.mp3" id="5_a4ose"]
+[ext_resource type="AudioStream" uid="uid://bpwohgxugilva" path="res://scenes/obstacles/wolf/audio/wolf_snarl.wav" id="7_plitr"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tr7pb"]
 streams_count = 1
@@ -28,7 +29,12 @@ random_pitch = 1.1892071
 streams_count = 1
 stream_0/stream = ExtResource("3_nb6j2")
 
-[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide", "bgm", "ui_click", "death_impact", "fail")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jwsh5"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("7_plitr")
+
+[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide", "bgm", "ui_click", "death_impact", "fail", "wolf_snarl", "punch")]
 script = ExtResource("1_tr7pb")
 collect_coin = NodePath("CollectCoin")
 footsteps = NodePath("Footsteps")
@@ -38,6 +44,8 @@ bgm = NodePath("BGM")
 ui_click = NodePath("UIClick")
 death_impact = NodePath("DeathImpact")
 fail = NodePath("Fail")
+wolf_snarl = NodePath("WolfSnarl")
+punch = NodePath("Punch")
 base_pitch = 0.8
 pitch_step = 0.03
 max_pitch = 1.5
@@ -66,6 +74,13 @@ pitch_scale = 2.0
 max_polyphony = 10
 bus = &"SFX"
 
+[node name="Punch" type="AudioStreamPlayer" parent="." unique_id=153557288]
+stream = ExtResource("3_k2mv4")
+volume_db = -5.0
+pitch_scale = 2.0
+max_polyphony = 10
+bus = &"SFX"
+
 [node name="Fail" type="AudioStreamPlayer" parent="." unique_id=1246846036]
 stream = SubResource("AudioStreamRandomizer_plitr")
 volume_db = -5.0
@@ -82,8 +97,14 @@ stream = SubResource("AudioStreamRandomizer_xdfsh")
 max_polyphony = 10
 bus = &"SFX"
 
+[node name="WolfSnarl" type="AudioStreamPlayer" parent="." unique_id=143763679]
+stream = SubResource("AudioStreamRandomizer_jwsh5")
+max_polyphony = 10
+bus = &"SFX"
+
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1707634196]
 stream = ExtResource("3_xdfsh")
 volume_db = -12.0
 pitch_scale = 0.9
 bus = &"Music"
+parameters/looping = true

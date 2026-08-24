@@ -32,40 +32,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0291457, 0.8487483, -18.834648)
 
 [node name="Collectible28" parent="Collectibles" unique_id=434120145 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -18.834648)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -18.834648)
 
 [node name="Collectible34" parent="Collectibles" unique_id=203784729 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -15.976697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -15.976697)
 
 [node name="Collectible36" parent="Collectibles" unique_id=1969487373 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -13.219155)
-
-[node name="Collectible37" parent="Collectibles" unique_id=17109382 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -10.654627)
-
-[node name="Collectible38" parent="Collectibles" unique_id=446010664 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -8.354191)
-
-[node name="Collectible39" parent="Collectibles" unique_id=1037800263 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -6.2090673)
-
-[node name="Collectible40" parent="Collectibles" unique_id=512057728 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -4.0411396)
-
-[node name="Collectible41" parent="Collectibles" unique_id=698994130 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -1.8960161)
-
-[node name="Collectible42" parent="Collectibles" unique_id=1496518492 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, -0.10376692)
-
-[node name="Collectible43" parent="Collectibles" unique_id=139752924 instance=ExtResource("2_mrssm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07343054, 0.8487483, 1.8956726)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -13.219155)
 
 [node name="Collectible30" parent="Collectibles" unique_id=1160561948 instance=ExtResource("2_mrssm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0291457, 1.7589635, -20.808453)
 
+[node name="Collectible38" parent="Collectibles" unique_id=446010664 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -8.354191)
+
+[node name="Collectible37" parent="Collectibles" unique_id=17109382 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -10.654627)
+
+[node name="Collectible39" parent="Collectibles" unique_id=1037800263 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -6.2090673)
+
+[node name="Collectible41" parent="Collectibles" unique_id=698994130 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -1.8960161)
+
+[node name="Collectible42" parent="Collectibles" unique_id=1496518492 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -0.10376692)
+
 [node name="Collectible31" parent="Collectibles" unique_id=1097830994 instance=ExtResource("2_mrssm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0291457, 2.42759, -22.968868)
+
+[node name="Collectible40" parent="Collectibles" unique_id=512057728 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, -4.0411396)
+
+[node name="Collectible43" parent="Collectibles" unique_id=139752924 instance=ExtResource("2_mrssm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9876924, 0.8487483, 1.8956726)
 
 [node name="Collectible32" parent="Collectibles" unique_id=842866218 instance=ExtResource("2_mrssm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0291457, 1.6761758, -25.238934)

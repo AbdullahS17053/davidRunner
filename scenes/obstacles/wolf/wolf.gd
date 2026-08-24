@@ -7,13 +7,13 @@ extends CharacterBody3D
 @export var direction: float = -1
 
 @export var animation_player: AnimationPlayer
-@export var wolf_snarl: AudioStreamPlayer3D
 @export var collision_shape_3d: CollisionShape3D
+@export var click_particles: GPUParticles3D
+@export var tap_to_kill: Label3D
 
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 
 var is_dead: bool = false
-var has_snarled: bool = false
 
 func _ready() -> void:
 	if can_move:
@@ -38,10 +38,6 @@ func _physics_process(delta: float) -> void:
 	var distance: float = global_position.distance_squared_to(player.global_position)
 	
 	if is_on_screen and distance < distance_threshold:
-		if not has_snarled:
-			wolf_snarl.play()
-			has_snarled = true
-			
 		if can_move:
 			position.z -= direction * move_speed * delta
 
@@ -52,7 +48,10 @@ func _on_click_detection_input_event(camera: Node, event: InputEvent, event_posi
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			is_dead = true
-			wolf_snarl.play()
+			AudioManager.wolf_snarl.play()
+			AudioManager.punch.play()
+			click_particles.restart()
+			player.shaker_component_3d.play_shake()
 			Global.coins += randi_range(5, 10)
 			animation_player.play("Death")
 			collision_shape_3d.set_deferred("disabled", true)

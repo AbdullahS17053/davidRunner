@@ -12,7 +12,6 @@ func _physics_process(delta: float) -> void:
 	var is_on_screen = get_viewport().get_camera_3d().is_position_in_frustum(parent.global_position)
 	var distance = parent.global_position.distance_squared_to(parent.player.global_position)
 	if is_on_screen and distance < distance_threshold:
-		parent.wolf_snarl.play()
 		parent.position.z -= direction * move_speed * delta
 	else:
 		return

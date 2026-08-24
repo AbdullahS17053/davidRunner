@@ -39,7 +39,7 @@ Shortcuts/density_decrement=Object(Shortcut,"resource_local_to_scene":false,"res
 
 [application]
 
-config/name="RunnerGame3D"
+config/name="David Runner"
 config/version="1.0.0"
 config/tags=PackedStringArray("freelance")
 run/main_scene="uid://dd8yjoo5ph6h4"

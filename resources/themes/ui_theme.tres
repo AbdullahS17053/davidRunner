@@ -1,16 +1,27 @@
 [gd_resource type="Theme" format=3 uid="uid://cp15gk0cghgys"]
 
 [ext_resource type="Texture2D" uid="uid://bn2v6lt17n8u0" path="res://assets/ui_assets/icons/CheckedIcon.png" id="1_3jxlk"]
-[ext_resource type="Texture2D" uid="uid://b388vv8277rvv" path="res://assets/ui_assets/panels/BorderFrame_Round30.png" id="1_nlrje"]
+[ext_resource type="Texture2D" uid="uid://clxttr2bml2o8" path="res://assets/ui_assets/buttons/Button_Round01_Yellow.png" id="1_nlrje"]
 [ext_resource type="FontFile" uid="uid://bgg04ec335l0g" path="res://assets/fonts/cairo/Cairo-Black.ttf" id="1_uc1im"]
 [ext_resource type="Texture2D" uid="uid://bej4gr42c8vbu" path="res://assets/ui_assets/icons/UnCheckedIcon.png" id="2_nlrje"]
+[ext_resource type="Texture2D" uid="uid://ckclcs5xbg1t6" path="res://assets/ui_assets/sliders/Slider_StageHorizontal_Icon_l_Yellow.png" id="4_be67o"]
+[ext_resource type="Texture2D" uid="uid://juhfoi1f57sw" path="res://assets/ui_assets/sliders/Slider_Basic01_Bg_Single.png" id="5_i1sty"]
+[ext_resource type="Texture2D" uid="uid://c8ldpucsbop2u" path="res://assets/ui_assets/sliders/Slider_Basic01_Bg_White1.png" id="6_i1sty"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3jxlk"]
 texture = ExtResource("1_nlrje")
-texture_margin_left = 25.0
-texture_margin_top = 25.0
-texture_margin_right = 25.0
-texture_margin_bottom = 25.0
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nlrje"]
+texture = ExtResource("1_nlrje")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+modulate_color = Color(0.38819927, 0.38819927, 0.38819927, 1)
 
 [sub_resource type="DPITexture" id="DPITexture_nlrje"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#fff\" fill-opacity=\".37\" rx=\"2.333\"/><path fill=\"#1a1a1a\" fill-opacity=\".5\" d=\"m11.5 3.75-5.6 5.6-1.7-1.7-1.5 1.5 3.2 3.2 7.1-7.1z\"/></svg>
@@ -68,6 +79,24 @@ grow_begin = -50.0
 grow_end = -50.0
 thickness = 3
 
+[sub_resource type="DPITexture" id="DPITexture_hu21k"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"4\" height=\"8\"><path fill=\"#fff\" fill-opacity=\".25\" d=\"M1 0h2v16H1z\"/></svg>
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_77iv5"]
+texture = ExtResource("5_i1sty")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cel0v"]
+texture = ExtResource("6_i1sty")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
 [resource]
 default_font = ExtResource("1_uc1im")
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -116,7 +145,7 @@ ButtonVariation/styles/disabled = SubResource("StyleBoxTexture_3jxlk")
 ButtonVariation/styles/focus = SubResource("StyleBoxTexture_3jxlk")
 ButtonVariation/styles/hover = SubResource("StyleBoxTexture_3jxlk")
 ButtonVariation/styles/normal = SubResource("StyleBoxTexture_3jxlk")
-ButtonVariation/styles/pressed = SubResource("StyleBoxTexture_3jxlk")
+ButtonVariation/styles/pressed = SubResource("StyleBoxTexture_nlrje")
 CheckBox/colors/checkbox_checked_color = Color(1, 1, 1, 1)
 CheckBox/colors/checkbox_unchecked_color = Color(1, 1, 1, 1)
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
@@ -145,3 +174,13 @@ CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_0cnqg")
 CheckBox/styles/normal = SubResource("StyleBoxEmpty_0cnqg")
 CheckBox/styles/pressed = SubResource("StyleBoxEmpty_0cnqg")
 HSeparator/styles/separator = SubResource("StyleBoxLine_pm21f")
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = ExtResource("4_be67o")
+HSlider/icons/grabber_disabled = ExtResource("4_be67o")
+HSlider/icons/grabber_highlight = ExtResource("4_be67o")
+HSlider/icons/tick = SubResource("DPITexture_hu21k")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_77iv5")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_77iv5")
+HSlider/styles/slider = SubResource("StyleBoxTexture_cel0v")

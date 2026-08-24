@@ -7,6 +7,7 @@ extends Node
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Global.is_game_started: return
+	
 	if event is InputEventScreenTouch:
 		if event.pressed and event.position:
 			if main_menu: main_menu.menu_anims.play("exit")

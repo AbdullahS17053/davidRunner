@@ -83,37 +83,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01510191, 0.7089418, 1.727
 [node name="Collectible44" parent="Collectibles" unique_id=1840279918 instance=ExtResource("2_fi4j4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01510191, 0.7089418, -0.43158722)
 
-[node name="Collectible45" parent="Collectibles" unique_id=960282818 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -8.49628)
-
-[node name="Collectible46" parent="Collectibles" unique_id=1781554001 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -10.370702)
-
-[node name="Collectible47" parent="Collectibles" unique_id=297825793 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -12.529571)
-
-[node name="Collectible48" parent="Collectibles" unique_id=85961594 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -2.3838882)
-
-[node name="Collectible49" parent="Collectibles" unique_id=1231283908 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -4.2583103)
-
-[node name="Collectible50" parent="Collectibles" unique_id=2055129513 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -6.417177)
-
-[node name="Collectible51" parent="Collectibles" unique_id=870484277 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, 3.6017017)
-
-[node name="Collectible52" parent="Collectibles" unique_id=142501094 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, 1.7272797)
-
-[node name="Collectible53" parent="Collectibles" unique_id=1786806384 instance=ExtResource("2_fi4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9010234, 0.7089418, -0.43158722)
-
 [node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
 
 [node name="WolfObstacle" parent="Obstacles" unique_id=312577444 instance=ExtResource("2_slq2u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.920208, 0, -15.343085)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.920208, 0, -17.220684)
 
 [node name="MovingObstacle" type="Node3D" parent="Obstacles/WolfObstacle" unique_id=806393164 node_paths=PackedStringArray("parent")]
 script = ExtResource("3_fi4j4")

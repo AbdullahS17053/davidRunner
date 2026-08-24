@@ -19,14 +19,16 @@
 [ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="16_0abdq"]
 [ext_resource type="Script" uid="uid://b0uyqfkc831l4" path="res://scenes/ui/map_select_menu.gd" id="16_dgt7p"]
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="17_wkq8n"]
-[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="19_kto32"]
-[ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://resources/maps/mountains_map_data.tres" id="20_jkcmn"]
-[ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://resources/maps/tropical_map_data.tres" id="21_kto32"]
+[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="19_kto32"]
+[ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://scenes/maps/mountains_level/mountains_map_data.tres" id="20_jkcmn"]
+[ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://scenes/maps/tropical_level/tropical_map_data.tres" id="21_kto32"]
+[ext_resource type="Script" uid="uid://bagu61ausjpp8" path="res://addons/interpolated_camera_3d/interpolated_camera_3d.gd" id="25_jkcmn"]
+[ext_resource type="Script" uid="uid://bypjg77awrwwv" path="res://addons/shaker/src/Vector3/shaker_component3D.gd" id="25_kto32"]
+[ext_resource type="Script" uid="uid://dfrx0yal6dp8q" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="26_006py"]
 [ext_resource type="Script" uid="uid://edgimgwmxjxi" path="res://scripts/utilities/bending_manager.gd" id="26_n3hxp"]
+[ext_resource type="Script" uid="uid://p4qtqtq03pj0" path="res://addons/shaker/data/Vector3/ShakerTypeNoiseShake3D.gd" id="27_8ckoj"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player/player.tscn" id="27_i1rv8"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_3h0g4"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="29_v510e"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="30_c12n2"]
+[ext_resource type="Script" uid="uid://b706cc1bskcf1" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="28_d3c03"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("3_ocy1v")
@@ -865,8 +867,22 @@ adjustment_enabled = true
 adjustment_brightness = 1.2
 adjustment_saturation = 1.02
 
-[sub_resource type="Resource" id="Resource_4mrxx"]
-script = ExtResource("30_c12n2")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_006py"]
+frequency = 0.0697
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_ocy1v"]
+noise = SubResource("FastNoiseLite_006py")
+
+[sub_resource type="Resource" id="Resource_as1cp"]
+script = ExtResource("27_8ckoj")
+noise_texture = SubResource("NoiseTexture3D_ocy1v")
+amplitude = Vector3(1.2, 1.2, 1.2)
+metadata/_custom_type_script = "uid://p4qtqtq03pj0"
+
+[sub_resource type="Resource" id="Resource_dgt7p"]
+script = ExtResource("28_d3c03")
+PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
+metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -874,50 +890,50 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PhantomCamera3D:follow_offset")
-tracks/0/interp = 2
+tracks/0/path = NodePath("UILayer/GameUI/GameUIAnims:current_animation")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(2.865, 1.315, -0.38), Vector3(0, 4, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PhantomCamera3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.2617994, 1.5707964, 0), Vector3(-0.57595867, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UILayer/GameUI/GameUIAnims:current_animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [&"RESET", &"show"]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"exit"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/Marker3D:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(-0.34906584, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Marker3D:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.5, 1, -0.36242437), Vector3(0, 2.905, 3.487)]
 }
 
 [sub_resource type="Animation" id="Animation_dss4m"]
@@ -925,50 +941,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PhantomCamera3D:follow_offset")
+tracks/0/path = NodePath("UILayer/GameUI/GameUIAnims:current_animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(2.865, 1.315, -0.38)]
+"update": 1,
+"values": [&""]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PhantomCamera3D:rotation")
+tracks/1/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.2617994, 1.5707964, 0)]
+"update": 1,
+"values": [&""]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UILayer/GameUI/GameUIAnims:current_animation")
+tracks/2/path = NodePath("Player/Marker3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&""]
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("UILayer/MainMenu/MenuAnims:current_animation")
+tracks/3/path = NodePath("Player/Marker3D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&""]
+"update": 0,
+"values": [Vector3(2.5, 1, -0.36242437)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dss4m"]
@@ -1633,38 +1649,29 @@ world_environment = NodePath("../WorldEnvironment")
 [node name="WorldBendingManager" type="Node3D" parent="LevelManager" unique_id=1035616828]
 script = ExtResource("26_n3hxp")
 
-[node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("phantom_camera") groups=["player"] instance=ExtResource("27_i1rv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -2.3558428)
+[node name="InterpolatedCamera3D" type="Camera3D" parent="." unique_id=1138056526 node_paths=PackedStringArray("target")]
+physics_interpolation_mode = 1
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5, 1, -0.36242437)
+script = ExtResource("25_jkcmn")
+target = NodePath("../Player/Marker3D")
+metadata/_custom_type_script = "uid://bagu61ausjpp8"
+
+[node name="ShakerComponent3D" type="Node3D" parent="InterpolatedCamera3D" unique_id=1731478361]
+script = ExtResource("25_kto32")
+intensity = 0.2
+duration = 0.3
+shakerPreset = SubResource("Resource_dgt7p")
+metadata/_custom_type_script = "uid://bypjg77awrwwv"
+
+[node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("shaker_component_3d") groups=["player"] instance=ExtResource("27_i1rv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-phantom_camera = NodePath("../PhantomCamera3D")
+shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
-physics_interpolation_mode = 1
-transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
-top_level = true
-far = 50.0
-
-[node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("28_3h0g4")
-interpolation_mode = 2
-
-[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=205200578 node_paths=PackedStringArray("follow_target")]
-physics_interpolation_mode = 1
-transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
-top_level = true
-script = ExtResource("29_v510e")
-follow_mode = 2
-follow_target = NodePath("../Player")
-tween_resource = SubResource("Resource_4mrxx")
-follow_offset = Vector3(2.865, 1.315, -0.38)
-follow_damping = true
-follow_damping_value = Vector3(0.12, 0.12, 0.12)
-draw_follow_line = true
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+[node name="Marker3D" type="Marker3D" parent="Player" unique_id=1740994092]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5, 1, -0.36242437)
 
 [node name="WorldAnims" type="AnimationPlayer" parent="." unique_id=189864053]
 callback_mode_process = 0

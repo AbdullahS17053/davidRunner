@@ -3,12 +3,38 @@
 [ext_resource type="PackedScene" uid="uid://t432fb6xir17" path="res://scenes/maps/tropical_level/chunks/tropical_base_chunk.tscn" id="1_ynhcb"]
 [ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/map_data/chunk_data/chunk_data.gd" id="2_3k6t0"]
 [ext_resource type="Texture2D" uid="uid://d0yd2g1bjbt62" path="res://assets/textures/map_previews/Tropical_preview.png" id="3_3k6t0"]
+[ext_resource type="PackedScene" uid="uid://2og86gvybhcd" path="res://scenes/maps/tropical_level/chunks/tropical_chunk1.tscn" id="3_4dtgn"]
 [ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://scenes/maps/tropical_level/tropical_map_env.tres" id="3_8k5j5"]
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="3_hloqb"]
+[ext_resource type="PackedScene" uid="uid://dn6jn5xgp3v61" path="res://scenes/maps/tropical_level/chunks/tropical_chunk2.tscn" id="4_y1puv"]
+[ext_resource type="PackedScene" uid="uid://dlhejw8c81d63" path="res://scenes/maps/tropical_level/chunks/tropical_chunk3.tscn" id="5_byhhh"]
+[ext_resource type="PackedScene" uid="uid://0mhp7kj7yrct" path="res://scenes/maps/tropical_level/chunks/tropical_chunk4.tscn" id="6_i8geo"]
+[ext_resource type="PackedScene" uid="uid://c36u3a6flt24h" path="res://scenes/maps/tropical_level/chunks/tropical_chunk5.tscn" id="7_28706"]
 
 [sub_resource type="Resource" id="Resource_006py"]
 script = ExtResource("2_3k6t0")
-chunk_scene = ExtResource("1_ynhcb")
+chunk_scene = ExtResource("3_4dtgn")
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_8td8j"]
+script = ExtResource("2_3k6t0")
+chunk_scene = ExtResource("4_y1puv")
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_i8geo"]
+script = ExtResource("2_3k6t0")
+chunk_scene = ExtResource("5_byhhh")
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_aq2n0"]
+script = ExtResource("2_3k6t0")
+chunk_scene = ExtResource("6_i8geo")
+weight = 0.2
+metadata/_custom_type_script = "uid://bxveokvt3308s"
+
+[sub_resource type="Resource" id="Resource_l0fef"]
+script = ExtResource("2_3k6t0")
+chunk_scene = ExtResource("7_28706")
 metadata/_custom_type_script = "uid://bxveokvt3308s"
 
 [resource]
@@ -17,5 +43,5 @@ map_name = "Tropical"
 map_image = ExtResource("3_3k6t0")
 map_env = ExtResource("3_8k5j5")
 base_chunk = ExtResource("1_ynhcb")
-chunks_data = Array[ExtResource("2_3k6t0")]([SubResource("Resource_006py")])
+chunks_data = Array[ExtResource("2_3k6t0")]([SubResource("Resource_006py"), SubResource("Resource_8td8j"), SubResource("Resource_i8geo"), SubResource("Resource_aq2n0"), SubResource("Resource_l0fef")])
 metadata/_custom_type_script = "uid://cttjx60q28xvo"

@@ -23,8 +23,8 @@ extends CharacterBody3D
 @export var col_shape: CollisionShape3D
 @export var animation_tree: AnimationTree
 @export var dust_particles: GPUParticles3D
-@export var phantom_camera: PhantomCamera3D
 @export var player_anims: AnimationPlayer
+@export var shaker_component_3d: ShakerComponent3D
 @export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
 
 var is_swiping: bool = false
@@ -157,6 +157,7 @@ func simulate_input(action_name: String) -> void:
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
+		shaker_component_3d.play_shake()
 		Global.is_game_started = false
 		dust_particles.emitting = false
 		player_anims.play("death")

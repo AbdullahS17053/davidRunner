@@ -3,8 +3,9 @@ extends Control
 
 @export var available_maps: Array[MapData]
 
-@export var map_select_anims: AnimationPlayer
 @export var map_image: TextureRect
+@export var map_select_anims: AnimationPlayer
+@export var world_environment: WorldEnvironment
 
 var current_preview_index: int = 0
 

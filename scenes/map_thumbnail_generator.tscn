@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://dij4q41wfk82e"]
 
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="1_q7rd7"]
-[ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://resources/maps/mountains_map_data.tres" id="2_r6n4j"]
+[ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://resources/env/tropical_map_env.tres" id="3_fdqmi"]
 [ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://resources/maps/tropical_map_data.tres" id="3_r6n4j"]
-[ext_resource type="Environment" uid="uid://bx20w4imuaw8k" path="res://resources/env/mountains_map_env.tres" id="4_fdqmi"]
 
 [sub_resource type="GDScript" id="GDScript_dp4i4"]
 resource_name = "MapThumbnailGenerator"
@@ -75,17 +74,17 @@ func _ready() -> void:
 
 [node name="MapThumbnailGenerator" type="Node3D" unique_id=928049516]
 script = SubResource("GDScript_dp4i4")
-maps_to_capture = Array[ExtResource("1_q7rd7")]([ExtResource("2_r6n4j"), ExtResource("3_r6n4j")])
+maps_to_capture = Array[ExtResource("1_q7rd7")]([ExtResource("3_r6n4j")])
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=271747250]
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=645319789]
-transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999994, 0, -0.49999994, 0.86602545, 0, 4.7861834, 3)
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999994, 0, -0.49999994, 0.86602545, 0, 4.7861834, 1.494961)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=32520901]
-environment = ExtResource("4_fdqmi")
+environment = ExtResource("3_fdqmi")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1532930148]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)

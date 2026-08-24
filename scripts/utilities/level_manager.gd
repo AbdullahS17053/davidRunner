@@ -6,6 +6,8 @@ class_name LevelManager
 @export var chunks_ahead: int = 4
 @export var despawn_distance: float = 25.0
 
+@export var world_environment: WorldEnvironment
+
 var active_base_chunk: PackedScene
 var active_chunks_data: Array[ChunkData]
 
@@ -18,6 +20,9 @@ func _ready() -> void:
 	var current_map: MapData = available_maps[Global.selected_map_index]
 	active_base_chunk = current_map.base_chunk
 	active_chunks_data = current_map.chunks_data
+	
+	if world_environment and current_map.map_env:
+		world_environment.environment = current_map.map_env
 	
 	assert(active_base_chunk != null, "LevelManager needs a base chunk to start with.")
 	assert(active_chunks_data.size() > 0, "LevelManager needs random chunks.")

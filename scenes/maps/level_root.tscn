@@ -836,8 +836,10 @@ _data = {
 }
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(0.23400095, 0.4212816, 0.6709894, 1)
+sky_horizon_color = Color(0.6709894, 0.7806596, 1, 1)
+ground_bottom_color = Color(0.19324192, 0.28836685, 0.6118008, 1)
+ground_horizon_color = Color(0.66441286, 0.7762753, 1, 1)
 
 [sub_resource type="Sky" id="Sky_4wyf3"]
 sky_material = SubResource("ProceduralSkyMaterial_rwgxs")
@@ -1403,7 +1405,7 @@ metadata/_edit_use_anchors_ = true
 [node name="SettingsAnims" type="AnimationPlayer" parent="UILayer/SettingsMenu" unique_id=1989398226]
 libraries/ = SubResource("AnimationLibrary_0nbtd")
 
-[node name="MapSelectMenu" type="Control" parent="UILayer" unique_id=1228504419 node_paths=PackedStringArray("map_select_anims", "map_image")]
+[node name="MapSelectMenu" type="Control" parent="UILayer" unique_id=1228504419 node_paths=PackedStringArray("map_image", "map_select_anims", "world_environment")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -1415,8 +1417,9 @@ grow_vertical = 2
 theme = ExtResource("1_8ckoj")
 script = ExtResource("16_dgt7p")
 available_maps = Array[ExtResource("19_kto32")]([ExtResource("20_jkcmn"), ExtResource("21_kto32")])
-map_select_anims = NodePath("MapSelectAnims")
 map_image = NodePath("SettingsPanel/VBoxContainer/HBoxContainer/MapImage")
+map_select_anims = NodePath("MapSelectAnims")
+world_environment = NodePath("../../WorldEnvironment")
 
 [node name="BG" type="ColorRect" parent="UILayer/MapSelectMenu" unique_id=2076322804]
 layout_mode = 1
@@ -1618,13 +1621,14 @@ shadow_blur = 0.5
 directional_shadow_mode = 0
 directional_shadow_max_distance = 20.0
 
-[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player")]
+[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player", "world_environment")]
 physics_interpolation_mode = 1
 script = ExtResource("17_wkq8n")
 player = NodePath("../Player")
 available_maps = Array[ExtResource("19_kto32")]([ExtResource("20_jkcmn"), ExtResource("21_kto32")])
 chunks_ahead = 5
 despawn_distance = 10.0
+world_environment = NodePath("../WorldEnvironment")
 
 [node name="WorldBendingManager" type="Node3D" parent="LevelManager" unique_id=1035616828]
 script = ExtResource("26_n3hxp")

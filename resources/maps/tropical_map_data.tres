@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://t432fb6xir17" path="res://scenes/maps/tropical_level_chunks/tropical_base_chunk.tscn" id="1_ynhcb"]
 [ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/maps/chunk_data/chunk_data.gd" id="2_3k6t0"]
+[ext_resource type="Texture2D" uid="uid://d0yd2g1bjbt62" path="res://assets/textures/map_previews/Tropical_preview.png" id="3_3k6t0"]
+[ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://resources/env/tropical_map_env.tres" id="3_8k5j5"]
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="3_hloqb"]
 
 [sub_resource type="Resource" id="Resource_006py"]
@@ -12,6 +14,8 @@ metadata/_custom_type_script = "uid://bxveokvt3308s"
 [resource]
 script = ExtResource("3_hloqb")
 map_name = "Tropical"
+map_image = ExtResource("3_3k6t0")
+map_env = ExtResource("3_8k5j5")
 base_chunk = ExtResource("1_ynhcb")
 chunks_data = Array[ExtResource("2_3k6t0")]([SubResource("Resource_006py")])
 metadata/_custom_type_script = "uid://cttjx60q28xvo"

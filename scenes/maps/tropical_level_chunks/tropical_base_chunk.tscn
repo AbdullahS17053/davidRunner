@@ -107,6 +107,7 @@ data = PackedVector3Array(-5, 0.024847101, 5, -4.005841, 0.17597088, 4.0205464, 
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
 script = ExtResource("1_gk0ub")
 lane_width = 4.0
 lane_length = 30.435

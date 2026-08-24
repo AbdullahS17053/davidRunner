@@ -2,10 +2,12 @@ extends Node3D
 class_name LevelManager
 
 @export var player: Player
-@export var base_chunk: PackedScene
-@export var chunks_data: Array[ChunkData] 
+@export var available_maps: Array[MapData]
 @export var chunks_ahead: int = 4
 @export var despawn_distance: float = 25.0
+
+var active_base_chunk: PackedScene
+var active_chunks_data: Array[ChunkData]
 
 var active_chunks: Array[Node3D] = []
 var next_spawn_z: float = 0.0
@@ -13,11 +15,15 @@ var last_chunk_index: int = -1
 var pending_tasks: Dictionary = {}
 
 func _ready() -> void:
-	assert(base_chunk != null, "LevelManager needs a base chunk to start with.")
-	assert(chunks_data.size() > 0, "LevelManager needs random chunks.")
+	var current_map: MapData = available_maps[Global.selected_map_index]
+	active_base_chunk = current_map.base_chunk
+	active_chunks_data = current_map.chunks_data
+	
+	assert(active_base_chunk != null, "LevelManager needs a base chunk to start with.")
+	assert(active_chunks_data.size() > 0, "LevelManager needs random chunks.")
 	assert(player != null, "LevelManager needs a reference to the player.")
 	
-	spawn_specific_chunk_sync(base_chunk)
+	spawn_specific_chunk_sync(active_base_chunk)
 	for i in range(chunks_ahead - 1):
 		spawn_random_chunk_sync()
 
@@ -103,15 +109,15 @@ func recycle_chunk() -> void:
 	spawn_random_chunk_async()
 
 func _get_random_chunk_scene() -> PackedScene:
-	if chunks_data.size() <= 1:
-		return chunks_data[0].chunk_scene
+	if active_chunks_data.size() <= 1:
+		return active_chunks_data[0].chunk_scene
 
 	var total_weight: float = 0.0
 	var valid_indices: Array[int] = []
 	
-	for i in range(chunks_data.size()):
-		if i != last_chunk_index and chunks_data[i] != null and chunks_data[i].chunk_scene != null:
-			total_weight += chunks_data[i].weight
+	for i in range(active_chunks_data.size()):
+		if i != last_chunk_index and active_chunks_data[i] != null and active_chunks_data[i].chunk_scene != null:
+			total_weight += active_chunks_data[i].weight
 			valid_indices.append(i)
 			
 	var random_roll: float = randf_range(0.0, total_weight)
@@ -119,7 +125,7 @@ func _get_random_chunk_scene() -> PackedScene:
 	
 	var current_weight_sum: float = 0.0
 	for i in valid_indices:
-		current_weight_sum += chunks_data[i].weight
+		current_weight_sum += active_chunks_data[i].weight
 		if random_roll <= current_weight_sum:
 			chosen_index = i
 			break
@@ -128,4 +134,4 @@ func _get_random_chunk_scene() -> PackedScene:
 		chosen_index = valid_indices.back()
 		
 	last_chunk_index = chosen_index
-	return chunks_data[chosen_index].chunk_scene
+	return active_chunks_data[chosen_index].chunk_scene

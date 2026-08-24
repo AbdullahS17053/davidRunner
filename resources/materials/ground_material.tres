@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://daheucsbmvl0e" path="res://resources/shaders/bending_shader.gdshader" id="1_fswdt"]
 
 [resource]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_fswdt")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("1_4vua1")

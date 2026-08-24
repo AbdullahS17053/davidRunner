@@ -68,6 +68,8 @@ varying flat vec3 v_normal_grass;
 
 const highp float EPSILON = 0.0001;
 
+global uniform vec2 global_curve_intensity;
+global uniform float global_curve_start;
 
 float get_value(sampler2D tex, vec2 uv) {
 	vec4 color = textureLod(tex, uv, 0);
@@ -133,6 +135,21 @@ void vertex() {
 		VERTEX.y -= (VERTEX.y - NODE_POSITION_WORLD.y) * norm_mov.b * interactive_level_y;
 	}
 	v_normal_grass = (MODELVIEW_MATRIX * vec4(0.0, 1.0, 0.0, 1.0)).xyz - NODE_POSITION_VIEW;
+
+	vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec3 cam_to_vertex = world_pos - CAMERA_POSITION_WORLD;
+    
+    float raw_dist = -cam_to_vertex.z;
+    float effect_dist = max(0.0, raw_dist - global_curve_start); 
+    float curve_factor = effect_dist * effect_dist;
+    
+    vec3 curve_offset = vec3(
+        curve_factor * global_curve_intensity.x,
+        curve_factor * global_curve_intensity.y,
+        0.0
+    );
+    
+    VERTEX += (inverse(MODEL_MATRIX) * vec4(curve_offset, 0.0)).xyz;
 }
 
 

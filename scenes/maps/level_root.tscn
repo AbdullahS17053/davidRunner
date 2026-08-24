@@ -11,20 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://bvr7kx20l5eko" path="res://assets/ui_assets/icons/ItemIcon_Gear.png" id="9_df5f1"]
 [ext_resource type="Texture2D" uid="uid://bskjx8uosbk3x" path="res://assets/ui_assets/icons/Icon_Back.png" id="10_18djc"]
 [ext_resource type="Texture2D" uid="uid://dpsduhnxs1tk5" path="res://assets/ui_assets/icons/ShopItem_l_CoinPack_1.png" id="11_kuy5h"]
+[ext_resource type="Texture2D" uid="uid://csm1bre0hucg5" path="res://assets/ui_assets/icons/Icon_MapPoint.png" id="12_d3c03"]
 [ext_resource type="Script" uid="uid://btbkt5eyv7w06" path="res://scenes/ui/settings_menu.gd" id="12_kuekq"]
 [ext_resource type="Texture2D" uid="uid://b388vv8277rvv" path="res://assets/ui_assets/panels/BorderFrame_Round30.png" id="13_lml1k"]
 [ext_resource type="Texture2D" uid="uid://1lf3qw8s5dp6" path="res://assets/ui_assets/icons/Icon_Close02.png" id="14_btbn3"]
 [ext_resource type="Script" uid="uid://blgbwpyo5nx3b" path="res://scenes/ui/game_over_ui.gd" id="15_suita"]
 [ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="16_0abdq"]
+[ext_resource type="Script" uid="uid://b0uyqfkc831l4" path="res://scenes/ui/map_select_menu.gd" id="16_dgt7p"]
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="17_wkq8n"]
-[ext_resource type="PackedScene" uid="uid://b02png6xwrrwt" path="res://scenes/maps/mountains_level/chunks/base_chunk.tscn" id="18_2xul0"]
-[ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/chunk_data/chunk_data.gd" id="19_fn2xa"]
-[ext_resource type="PackedScene" uid="uid://b5kve7h5vlyrr" path="res://scenes/maps/mountains_level/chunks/chunk1.tscn" id="20_74vyo"]
-[ext_resource type="PackedScene" uid="uid://cr0o0gl6vbntm" path="res://scenes/maps/mountains_level/chunks/chunk2.tscn" id="21_rg0ue"]
-[ext_resource type="PackedScene" uid="uid://blxfmx14ii4ki" path="res://scenes/maps/mountains_level/chunks/chunk3.tscn" id="22_13cnj"]
-[ext_resource type="PackedScene" uid="uid://bah6hee3utrhg" path="res://scenes/maps/mountains_level/chunks/chunk4.tscn" id="23_5gjuj"]
-[ext_resource type="PackedScene" uid="uid://dyvoonw56fspx" path="res://scenes/maps/mountains_level/chunks/chunk5.tscn" id="24_61ixb"]
-[ext_resource type="PackedScene" uid="uid://cy2ax78u8s147" path="res://scenes/maps/mountains_level/chunks/chunk6.tscn" id="25_nwl1k"]
+[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="19_kto32"]
+[ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://resources/maps/mountains_map_data.tres" id="20_jkcmn"]
+[ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://resources/maps/tropical_map_data.tres" id="21_kto32"]
 [ext_resource type="Script" uid="uid://edgimgwmxjxi" path="res://scripts/utilities/bending_manager.gd" id="26_n3hxp"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player/player.tscn" id="27_i1rv8"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_3h0g4"]
@@ -364,7 +361,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SettingsBtn:offset_transform_position")
+tracks/2/path = NodePath("CoinsPanel:offset_transform_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -376,58 +373,46 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/3/path = NodePath("BG:color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Color(0, 0, 0, 0.47058824)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("BG:color")
+tracks/4/path = NodePath("MenuAnims:current_animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0.47058824)]
+"update": 1,
+"values": [&""]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MenuAnims:current_animation")
+tracks/5/path = NodePath(".:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&""]
+"values": [true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".:visible")
+tracks/6/path = NodePath("MenuBtns:offset_transform_position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("ExitBtn:offset_transform_position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -441,74 +426,62 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SettingsBtn:offset_transform_position")
+tracks/0/path = NodePath("CoinsPanel:offset_transform_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.39999998),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-200, 0)]
+"values": [Vector2(0, 0), Vector2(-300, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/1/path = NodePath("BG:color")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.39999998),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-300, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BG:color")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0.47058824), Color(0, 0, 0, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayButton:offset_transform_scale")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayButton:offset_transform_scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.01, 0.01), Vector2(0.01, 0.01)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("ExitBtn:offset_transform_position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuBtns:offset_transform_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(150, 0)]
+"values": [Vector2(0, 0), Vector2(0, 200)]
 }
 
 [sub_resource type="Animation" id="Animation_jhx03"]
@@ -548,74 +521,62 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SettingsBtn:offset_transform_position")
+tracks/0/path = NodePath("CoinsPanel:offset_transform_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-200, 0), Vector2(0, 0)]
+"values": [Vector2(-300, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CoinsPanel:offset_transform_position")
+tracks/1/path = NodePath("BG:color")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-300, 0), Vector2(0, 0)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BG:color")
+tracks/2/path = NodePath("PlayButton:offset_transform_scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.47058824)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayButton:offset_transform_scale")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.01, 0.01), Vector2(0.01, 0.01), Vector2(1, 1)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MenuAnims:current_animation")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuAnims:current_animation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"loop"]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("ExitBtn:offset_transform_position")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuBtns:offset_transform_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(150, 0), Vector2(0, 0)]
+"values": [Vector2(0, 200), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
@@ -902,39 +863,6 @@ adjustment_enabled = true
 adjustment_brightness = 1.2
 adjustment_saturation = 1.02
 
-[sub_resource type="Resource" id="Resource_2lf6f"]
-script = ExtResource("19_fn2xa")
-chunk_scene = ExtResource("20_74vyo")
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
-[sub_resource type="Resource" id="Resource_kpybi"]
-script = ExtResource("19_fn2xa")
-chunk_scene = ExtResource("21_rg0ue")
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
-[sub_resource type="Resource" id="Resource_ctatt"]
-script = ExtResource("19_fn2xa")
-chunk_scene = ExtResource("22_13cnj")
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
-[sub_resource type="Resource" id="Resource_xgqkh"]
-script = ExtResource("19_fn2xa")
-chunk_scene = ExtResource("23_5gjuj")
-weight = 0.1
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
-[sub_resource type="Resource" id="Resource_lsabw"]
-script = ExtResource("19_fn2xa")
-chunk_scene = ExtResource("24_61ixb")
-weight = 0.1
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
-[sub_resource type="Resource" id="Resource_munwf"]
-script = ExtResource("19_fn2xa")
-chunk_scene = ExtResource("25_nwl1k")
-weight = 0.5
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
 [sub_resource type="Resource" id="Resource_4mrxx"]
 script = ExtResource("30_c12n2")
 
@@ -1185,7 +1113,7 @@ text = "Exit"
 [node name="PauseAnims" type="AnimationPlayer" parent="UILayer/PauseMenu" unique_id=994902738]
 libraries/ = SubResource("AnimationLibrary_luhhm")
 
-[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims")]
+[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims", "map_select_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1197,6 +1125,7 @@ theme = ExtResource("1_8ckoj")
 script = ExtResource("8_lxcvk")
 settings_menu = NodePath("../SettingsMenu")
 menu_anims = NodePath("MenuAnims")
+map_select_menu = NodePath("../MapSelectMenu")
 
 [node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
 layout_mode = 1
@@ -1220,49 +1149,6 @@ text = "Tap To Start!"
 label_settings = SubResource("LabelSettings_q5onr")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SettingsBtn" type="Button" parent="UILayer/MainMenu" unique_id=1108027232]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -186.0
-offset_right = 205.0
-grow_vertical = 0
-offset_transform_enabled = true
-theme = ExtResource("1_8ckoj")
-theme_type_variation = &"FlatButton"
-theme_override_constants/icon_max_width = 128
-theme_override_font_sizes/font_size = 36
-text = "SETTINGS"
-icon = ExtResource("9_df5f1")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="ExitBtn" type="Button" parent="UILayer/MainMenu" unique_id=2074422684]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -141.0
-offset_top = -186.0
-grow_horizontal = 0
-grow_vertical = 0
-offset_transform_enabled = true
-theme = ExtResource("1_8ckoj")
-theme_type_variation = &"FlatButton"
-theme_override_constants/icon_max_width = 128
-theme_override_font_sizes/font_size = 36
-text = "EXIT"
-icon = ExtResource("10_18djc")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
 
 [node name="CoinsPanel" type="PanelContainer" parent="UILayer/MainMenu" unique_id=1779019668]
 layout_mode = 1
@@ -1290,6 +1176,63 @@ label_settings = SubResource("LabelSettings_4mrxx")
 [node name="MenuAnims" type="AnimationPlayer" parent="UILayer/MainMenu" unique_id=215577975]
 libraries/ = SubResource("AnimationLibrary_o8fc1")
 autoplay = &"show"
+
+[node name="MenuBtns" type="HBoxContainer" parent="UILayer/MainMenu" unique_id=1683557572]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -186.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+alignment = 1
+
+[node name="ExitBtn" type="Button" parent="UILayer/MainMenu/MenuBtns" unique_id=2074422684]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme = ExtResource("1_8ckoj")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "EXIT"
+icon = ExtResource("10_18djc")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="SettingsBtn" type="Button" parent="UILayer/MainMenu/MenuBtns" unique_id=1108027232]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme = ExtResource("1_8ckoj")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+icon = ExtResource("9_df5f1")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MapsBtn" type="Button" parent="UILayer/MainMenu/MenuBtns" unique_id=1007571021]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme = ExtResource("1_8ckoj")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "MAPS"
+icon = ExtResource("12_d3c03")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="SettingsMenu" type="Control" parent="UILayer" unique_id=568473751 node_paths=PackedStringArray("res_scale_value", "shadows_toggle", "fps_toggle", "res_scale_slider", "sfx_toggle", "music_toggle", "settings_anims", "directional_light")]
 process_mode = 3
@@ -1460,6 +1403,120 @@ metadata/_edit_use_anchors_ = true
 [node name="SettingsAnims" type="AnimationPlayer" parent="UILayer/SettingsMenu" unique_id=1989398226]
 libraries/ = SubResource("AnimationLibrary_0nbtd")
 
+[node name="MapSelectMenu" type="Control" parent="UILayer" unique_id=1228504419 node_paths=PackedStringArray("map_select_anims", "map_image")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("16_dgt7p")
+available_maps = Array[ExtResource("19_kto32")]([ExtResource("20_jkcmn"), ExtResource("21_kto32")])
+map_select_anims = NodePath("MapSelectAnims")
+map_image = NodePath("SettingsPanel/VBoxContainer/HBoxContainer/MapImage")
+
+[node name="BG" type="ColorRect" parent="UILayer/MapSelectMenu" unique_id=2076322804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="SettingsPanel" type="PanelContainer" parent="UILayer/MapSelectMenu" unique_id=1877996135]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -292.0
+offset_right = 263.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/MapSelectMenu/SettingsPanel" unique_id=628940058]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SettingsHeaderLabel" type="Label" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer" unique_id=1712667880]
+layout_mode = 2
+text = "Select Map"
+label_settings = SubResource("LabelSettings_pm21f")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer" unique_id=708707301]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonLeft" type="Button" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1270963435]
+layout_mode = 2
+theme_type_variation = &"ButtonVariation"
+text = "<"
+
+[node name="MapImage" type="TextureRect" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1024186796]
+custom_minimum_size = Vector2(256, 256)
+custom_maximum_size = Vector2(256, 256)
+layout_mode = 2
+
+[node name="ButtonRight" type="Button" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1257184585]
+layout_mode = 2
+theme_type_variation = &"ButtonVariation"
+text = ">"
+
+[node name="SelectBtn" type="Button" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer" unique_id=1802142305]
+layout_mode = 2
+theme_type_variation = &"ButtonVariation"
+text = "Select"
+
+[node name="CloseBtn" type="Button" parent="UILayer/MapSelectMenu" unique_id=479627779]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04562738
+anchor_top = 0.08780161
+anchor_right = 0.1444867
+anchor_bottom = 0.203009
+offset_left = 66.56654
+offset_top = 149.85254
+offset_right = 43.37262
+offset_bottom = 117.13364
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2lf6f")
+icon = ExtResource("14_btbn3")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="MapSelectAnims" type="AnimationPlayer" parent="UILayer/MapSelectMenu" unique_id=1236897070]
+libraries/ = SubResource("AnimationLibrary_0nbtd")
+
 [node name="GameOverUI" type="Control" parent="UILayer" unique_id=1862970273 node_paths=PackedStringArray("game_over_anims", "world_anims", "high_score_label", "coins_collected_label")]
 process_mode = 3
 visible = false
@@ -1565,8 +1622,7 @@ directional_shadow_max_distance = 20.0
 physics_interpolation_mode = 1
 script = ExtResource("17_wkq8n")
 player = NodePath("../Player")
-base_chunk = ExtResource("18_2xul0")
-chunks_data = Array[ExtResource("19_fn2xa")]([SubResource("Resource_2lf6f"), SubResource("Resource_kpybi"), SubResource("Resource_ctatt"), SubResource("Resource_xgqkh"), SubResource("Resource_lsabw"), SubResource("Resource_munwf")])
+available_maps = Array[ExtResource("19_kto32")]([ExtResource("20_jkcmn"), ExtResource("21_kto32")])
 chunks_ahead = 5
 despawn_distance = 10.0
 
@@ -1603,8 +1659,6 @@ tween_resource = SubResource("Resource_4mrxx")
 follow_offset = Vector3(2.865, 1.315, -0.38)
 follow_damping = true
 follow_damping_value = Vector3(0.12, 0.12, 0.12)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -1616,13 +1670,18 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ResumeBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"resume"]]
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/SettingsBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"settings"]]
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ExitBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"exit"]]
-[connection signal="pressed" from="UILayer/MainMenu/SettingsBtn" to="UILayer/MainMenu" method="_on_settings_btn_pressed"]
-[connection signal="pressed" from="UILayer/MainMenu/ExitBtn" to="UILayer/MainMenu" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/MenuBtns/ExitBtn" to="UILayer/MainMenu" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/MenuBtns/SettingsBtn" to="UILayer/MainMenu" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/MenuBtns/MapsBtn" to="UILayer/MainMenu" method="_on_maps_btn_pressed"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ShadowsToggle" to="UILayer/SettingsMenu" method="_on_shadows_toggle_toggled"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/FPSToggle" to="UILayer/SettingsMenu" method="_on_fps_toggle_toggled"]
 [connection signal="value_changed" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer/ResScaleSlider" to="UILayer/SettingsMenu" method="_on_res_scale_slider_value_changed"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings/SoundFXCheckBox" to="UILayer/SettingsMenu" method="_on_sound_fx_check_box_toggled"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings/MusicCheckbox" to="UILayer/SettingsMenu" method="_on_music_checkbox_toggled"]
 [connection signal="pressed" from="UILayer/SettingsMenu/CloseBtn" to="UILayer/SettingsMenu" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonLeft" to="UILayer/MapSelectMenu" method="_on_button_left_pressed"]
+[connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonRight" to="UILayer/MapSelectMenu" method="_on_button_right_pressed"]
+[connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/SelectBtn" to="UILayer/MapSelectMenu" method="_on_select_btn_pressed"]
+[connection signal="pressed" from="UILayer/MapSelectMenu/CloseBtn" to="UILayer/MapSelectMenu" method="_on_close_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]

@@ -6,6 +6,7 @@ signal coin_collected(amount: int)
 signal game_over
 
 var coins: int = 0
+var selected_map_index: int = 0
 
 var total_coins: int:
 	get: return SaveManager.data["stats"]["total_coins"]

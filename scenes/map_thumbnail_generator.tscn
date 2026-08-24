@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dij4q41wfk82e"]
+
+[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="1_q7rd7"]
+[ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://resources/maps/mountains_map_data.tres" id="2_r6n4j"]
+[ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://resources/maps/tropical_map_data.tres" id="3_r6n4j"]
+[ext_resource type="Environment" uid="uid://bx20w4imuaw8k" path="res://resources/env/mountains_map_env.tres" id="4_fdqmi"]
+
+[sub_resource type="GDScript" id="GDScript_dp4i4"]
+resource_name = "MapThumbnailGenerator"
+script/source = "extends Node3D
+
+@export var maps_to_capture: Array[MapData]
+@export var extra_chunks_to_spawn: int = 3 # Adjust this to make the track longer
+@onready var sub_viewport: SubViewport = $SubViewport
+
+func _ready() -> void:
+	for map in maps_to_capture:
+		if not map.base_chunk:
+			continue
+			
+		var spawned_nodes: Array[Node3D] = []
+		var next_spawn_z: float = 0.0
+		
+		# 1. Spawn the Base Chunk
+		var base_instance: Node3D = map.base_chunk.instantiate()
+		sub_viewport.add_child(base_instance)
+		base_instance.global_position = Vector3(0, 0, next_spawn_z)
+		spawned_nodes.append(base_instance)
+		
+		var end_point: Node3D = base_instance.get_node_or_null(\"EndPoint\")
+		if end_point:
+			next_spawn_z = end_point.global_position.z
+		else:
+			next_spawn_z -= 50.0
+			
+		# 2. Spawn Random Additional Chunks
+		for i in range(extra_chunks_to_spawn):
+			if map.chunks_data.is_empty(): 
+				break
+				
+			# Filter out any empty slots just in case
+			var valid_chunks = map.chunks_data.filter(func(c): return c != null and c.chunk_scene != null)
+			if valid_chunks.is_empty():
+				break
+				
+			# Pick a random chunk (simplified random for the photo booth)
+			var random_chunk_data = valid_chunks.pick_random()
+			var chunk_instance: Node3D = random_chunk_data.chunk_scene.instantiate()
+			
+			sub_viewport.add_child(chunk_instance)
+			chunk_instance.global_position = Vector3(0, 0, next_spawn_z)
+			spawned_nodes.append(chunk_instance)
+			
+			var chunk_end = chunk_instance.get_node_or_null(\"EndPoint\")
+			if chunk_end:
+				next_spawn_z = chunk_end.global_position.z
+			else:
+				next_spawn_z -= 50.0
+		
+		# 3. Wait for shaders and textures to load
+		await get_tree().process_frame
+		await get_tree().process_frame
+		
+		# 4. Take the Picture
+		var img: Image = sub_viewport.get_texture().get_image()
+		var file_name: String = map.map_name.replace(\" \", \"_\")
+		var save_path: String = \"res://assets/textures/map_previews/\" + file_name + \"_preview.png\"
+		
+		img.save_png(save_path)
+		
+		# 5. Clean up the track so the next map starts with a clean slate
+		for node in spawned_nodes:
+			node.queue_free()
+"
+
+[node name="MapThumbnailGenerator" type="Node3D" unique_id=928049516]
+script = SubResource("GDScript_dp4i4")
+maps_to_capture = Array[ExtResource("1_q7rd7")]([ExtResource("2_r6n4j"), ExtResource("3_r6n4j")])
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=271747250]
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=645319789]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999994, 0, -0.49999994, 0.86602545, 0, 4.7861834, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=32520901]
+environment = ExtResource("4_fdqmi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1532930148]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true

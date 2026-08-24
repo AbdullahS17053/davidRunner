@@ -295,7 +295,9 @@ func _generate_noise_terrain() -> void:
 
 	for coord in _get_chunk_coords():
 		_update_single_chunk(coord)
-		
+
+	queue_particles_collision_refresh()
+
 	# [GLOBAL UNDO] Securely fetch manager and commit history entry inside editor workspace
 	if Engine.is_editor_hint():
 		if _active_undo_redo_manager == null:
@@ -358,7 +360,29 @@ var smooth_terrain_button: Callable = func() -> void: _smooth_entire_terrain()
 	set(v): jitter_slope_threshold = v; _queue_setup()
 
 
-## Automatically falls back to a pre-configured terrain_and_cliff ShaderMaterial if left empty.
+## Selects what normals the chunk meshes are built with. Purely a look; the geometry is the same.
+enum ShadingMode {
+	FLAT = 0,  ## One normal per triangle. Every face reads as its own crisp plate.
+	SMOOTH = 1 ## Normals averaged across the faces meeting at a point. Rounded, organic light.
+}
+
+## Chooses between the faceted low-poly look and a soft, rounded one. Both build the SAME
+## geometry - same vertices, same triangles, same silhouette - and differ only in what normal
+## each corner claims, so this costs no extra polygons. SMOOTH is in fact the lighter of the
+## two: matching normals let far more vertices merge into the index buffer.
+##
+## Requires a shader that USES the mesh normal, which the bundled ones do - nothing else to set
+## up. A hand-written shader that overwrites NORMAL with one recomputed from screen derivatives
+## discards what this writes, and will look faceted whatever it is set to.
+@export var shading_mode: ShadingMode = ShadingMode.FLAT:
+	set(v): shading_mode = v; _queue_setup()
+
+
+## The material every chunk is drawn with. Left empty - which is the default - the chunks carry no
+## material_override at all and Godot draws them with its own default one. There is no automatic
+## fallback to any bundled shader; the ones in shader/ are there to be assigned deliberately.
+##
+## Godot's default material reads the mesh normal, so Shading Mode works with an empty slot too.
 @export_custom(PROPERTY_HINT_RESOURCE_TYPE, "ShaderMaterial,StandardMaterial3D") var custom_material: Material = null:
 	set(v):
 		custom_material = v
@@ -438,8 +462,9 @@ var paint_layer_4_slope: Vector2 = Vector2(0.0, 90.0)
 ## layer colours and roughness values belong to this terrain alone. Assign your own to share one
 ## look across several terrains. Only applied while something is actually painted.
 ##
-## For a single draw call, and for blending the material PROPERTIES rather than the lit results,
-## include terrain_paint.gdshaderinc in your own shader instead and clear this slot.
+## Only used while Paint Routing is OVERLAY. On INLINE the layers live on Custom Material instead
+## and this slot is ignored entirely - clearing it by hand does not work, because the Paint tool
+## recreates it on selection.
 @export_custom(PROPERTY_HINT_RESOURCE_TYPE, "ShaderMaterial") var paint_material: Material = null:
 	set(v):
 		paint_material = v
@@ -599,6 +624,28 @@ enum CollisionDebugDraw {
 var bake_collisions_button: Callable = func() -> void: _bake_live_collisions_as_child()
 
 
+@export_group("Particle Collision")
+
+## Keeps a GPUParticlesCollisionHeightField3D child fitted to the terrain, so GPU particles land
+## on the ground instead of falling through it.
+##
+## Only size and position are the manager's, and both are rewritten whenever the terrain changes:
+## the full applied dimensions horizontally, the span from the lowest to the highest point of the
+## height matrix vertically. Everything else on the node is yours to set in the scene tree.
+##
+## The child is owned and saved into the .tscn, which is what makes those settings survive a
+## reload. Switching this off deletes it again. Works in both backends, since the field captures
+## what is rendered beneath it.
+@export var generate_particles_collision: bool = false:
+	set(v):
+		generate_particles_collision = v
+		# Setters also fire during deserialization, before this node is in the tree.
+		# rebuild_chunks_structure() builds the field for the value restored from disk.
+		if not is_node_ready():
+			return
+		_refresh_particles_collision_field()
+
+
 ## Extends the activity array to cover the current world size, defaulting only the entries
 ## that were not there before to active.
 ##
@@ -745,6 +792,10 @@ var _total_vertices_z: int = 0
 @export_group("Data Export")
 ## The target path within your project where the generated terrain mesh will be saved
 ## as a GLTF file.
+##
+## The extension decides the shape of the result. '.glb' writes ONE self-contained file. '.gltf'
+## is a text file that cannot hold an image, so the baked paint textures land beside it in a
+## 'textures/' folder - readable and diffable, at the price of extra files.
 @export var export_target_path: String = "res://terrain_export.gltf"
 
 # Click to open a native Editor Save Dialog where you can choose a folder and name
@@ -788,6 +839,14 @@ var _server_backend: LowPolyTerrainServerBackend = null
 ## Remembers which scene group this manager joined, so it can leave exactly that group again
 ## even after collision_group was edited in the meantime.
 var _joined_collision_group: String = ""
+
+## Set while a deferred particle collision refit is already on its way, so an operation that
+## touches many chunks still refits the height field exactly once.
+var _particles_collision_refresh_pending: bool = false
+
+## Editor only: sculpting changed the heights and the field has not been refitted for it yet.
+## Cleared by the refit, which happens when the scene is saved.
+var _particles_collision_dirty: bool = false
 
 
 
@@ -962,12 +1021,67 @@ const PAINT_LAYER_DEFAULT_COLORS: PackedColorArray = [
 const PAINT_LAYER_DEFAULT_ROUGHNESS: PackedFloat32Array = [0.85, 0.70, 0.25, 0.90]
 
 
-## Returns the paint material, creating the bundled one if this terrain has none yet.
+## Where the painted layers are drawn.
+enum PaintRouting {
+	OVERLAY = 0, ## A second pass over the chunks. Works with any base material, changes nothing.
+	INLINE = 1   ## Custom Material draws them itself, having included terrain_paint.gdshaderinc.
+}
+
+## Selects who draws the paint layers.
+##
+## OVERLAY is the route that asks nothing of your material: the layers are drawn as a separate
+## pass on top of it. INLINE is for a Custom Material that includes 'terrain_paint.gdshaderinc'
+## and blends the layers itself - it saves that second pass over the whole terrain, and it is the
+## ONLY correct choice for a shader that modifies NORMAL, because an overlay cannot know what the
+## shader below it did to the lighting and would draw its patch differently from the ground
+## around it.
+##
+## On INLINE the layer settings live on Custom Material, since that is the material carrying the
+## uniforms, and no overlay is created or attached. None of the bundled shaders need it - they
+## leave NORMAL to the mesh - so OVERLAY stays the default and this only matters once you write
+## your own.
+@export var paint_routing: PaintRouting = PaintRouting.OVERLAY:
+	set(v):
+		paint_routing = v
+		_queue_setup()
+		signal_brush_settings_changed.emit()
+
+
+## The material that CARRIES the four layers' uniforms, which is not always the one that draws
+## them. On OVERLAY that is the generated overlay material; on INLINE it is Custom Material,
+## because the layer uniforms come from the include compiled into its shader.
+##
+## Null when INLINE is selected but Custom Material is not a ShaderMaterial, in which case there
+## is nowhere for the settings to live and the brush falls back to the shipped defaults.
+func get_paint_settings_material() -> ShaderMaterial:
+	if paint_routing == PaintRouting.INLINE:
+		return custom_material as ShaderMaterial
+	return paint_material as ShaderMaterial
+
+
+## Returns the material holding the paint layer settings, creating the bundled overlay if this
+## terrain has none yet.
 ##
 ## Called when the Paint tool is SELECTED rather than when the first stroke lands: the layer
 ## colours are what you want to set up before painting, and an empty slot in the inspector gives
 ## you nothing to set up. Stored on this terrain, so its four layers are its own.
 func ensure_paint_material() -> Material:
+	# On INLINE there is nothing to create. The layers belong to Custom Material's own shader, and
+	# generating an overlay here would hang a SECOND set of layers on a terrain that already draws
+	# them - the paint would be applied twice, the second time with the overlay's own lighting.
+	if paint_routing == PaintRouting.INLINE:
+		var inline_material: ShaderMaterial = custom_material as ShaderMaterial
+		if inline_material == null:
+			push_warning(
+				("LowPolyTerrain '%s': Paint Routing is INLINE, but Custom Material is not a "
+				+ "ShaderMaterial. The layers have nowhere to be configured. Assign a shader "
+				+ "that includes terrain_paint.gdshaderinc, or switch Paint Routing to OVERLAY.")
+				% name
+			)
+			return null
+		_write_paint_layer_defaults(inline_material)
+		return inline_material
+
 	if paint_material != null:
 		return paint_material
 
@@ -979,37 +1093,67 @@ func ensure_paint_material() -> Material:
 
 	var created := ShaderMaterial.new()
 	created.shader = shader
-
-	# Written out rather than left to the shader's own defaults, because Godot exposes no way to
-	# READ those back: get_shader_parameter() reports null for anything not explicitly set, and
-	# the RenderingServer route needs a compiled shader. The brush ring has to know the layer
-	# colour to tint itself with, so the values have to exist as parameters.
-	for layer in range(PAINT_LAYER_COUNT):
-		created.set_shader_parameter(
-			"paint_layer_%d_color" % (layer + 1), PAINT_LAYER_DEFAULT_COLORS[layer]
-		)
-		created.set_shader_parameter(
-			"paint_layer_%d_roughness" % (layer + 1), PAINT_LAYER_DEFAULT_ROUGHNESS[layer]
-		)
+	_write_paint_layer_defaults(created)
 
 	paint_material = created
 	return paint_material
 
 
-## The overlay to actually draw with, or null while there is nothing painted.
+## Writes the shipped layer colours and roughness values onto a material, skipping any that are
+## already set so a configured terrain is never reset.
 ##
+## Written out rather than left to the shader's own defaults, because Godot exposes no way to
+## READ those back: get_shader_parameter() reports null for anything not explicitly set, and
+## the RenderingServer route needs a compiled shader. The brush ring has to know the layer
+## colour to tint itself with, so the values have to exist as parameters.
+func _write_paint_layer_defaults(target: ShaderMaterial) -> void:
+	for layer in range(PAINT_LAYER_COUNT):
+		var color_name: String = "paint_layer_%d_color" % (layer + 1)
+		if target.get_shader_parameter(color_name) == null:
+			target.set_shader_parameter(color_name, PAINT_LAYER_DEFAULT_COLORS[layer])
+
+		var roughness_name: String = "paint_layer_%d_roughness" % (layer + 1)
+		if target.get_shader_parameter(roughness_name) == null:
+			target.set_shader_parameter(roughness_name, PAINT_LAYER_DEFAULT_ROUGHNESS[layer])
+
+
+## The overlay to actually draw with, or null while there is nothing to draw.
+##
+## Where the paint overlay sorts against everything else transparent in the scene.
+##
+## The overlay is a transparent pass on a CHUNK-sized object, and transparent objects are sorted
+## back to front by bounding box centre. Under a water plane that comparison flips per chunk, and
+## the terrain then shows its chunk grid as squares of paint floating on the water. Render
+## priority is sorted before distance, so one step ahead settles it.
+##
+## Safe in the other direction: anything behind the terrain is already discarded by the depth
+## test, because the chunk's base material is opaque and writes depth.
+const PAINT_OVERLAY_RENDER_PRIORITY: int = -1
+
+
 ## Deliberately separate from ensure_paint_material(): the material may exist so its layers can
 ## be configured, while the overlay is still not worth hanging on the chunks. An overlay that
 ## discards every fragment costs a second pass over the whole terrain for no result.
 func get_active_paint_material() -> Material:
-	return paint_material if has_paint_data() else null
+	# INLINE means Custom Material already draws the layers. Attaching an overlay as well would
+	# draw them a second time, over the top of themselves.
+	if paint_routing == PaintRouting.INLINE:
+		return null
+	if not has_paint_data():
+		return null
+
+	if paint_material != null \
+			and paint_material.render_priority != PAINT_OVERLAY_RENDER_PRIORITY:
+		paint_material.render_priority = PAINT_OVERLAY_RENDER_PRIORITY
+
+	return paint_material
 
 
 ## The configured colour of one paint layer, 1 to 4. Falls back to white when the material does
 ## not carry the uniform, which is the case for a hand-written shader that only implements some
 ## of them.
 func get_paint_layer_color(layer: int) -> Color:
-	var shader_material: ShaderMaterial = paint_material as ShaderMaterial
+	var shader_material: ShaderMaterial = get_paint_settings_material()
 	if shader_material == null:
 		return Color.WHITE
 
@@ -1022,6 +1166,26 @@ func get_paint_layer_color(layer: int) -> Color:
 	# without ensure_paint_material(). Falling back to the shipped default beats reporting a
 	# colour the brush would then wrongly advertise.
 	return PAINT_LAYER_DEFAULT_COLORS[index - 1]
+
+
+## The configured roughness of one paint layer, 1 to 4. The counterpart of
+## get_paint_layer_color(), and it falls back the same way for the same reason.
+##
+## Read by the glTF export, which bakes the layers into a texture and needs every property the
+## overlay shader would have applied.
+func get_paint_layer_roughness(layer: int) -> float:
+	var shader_material: ShaderMaterial = get_paint_settings_material()
+	var index: int = clampi(layer, 1, PAINT_LAYER_COUNT)
+	if shader_material == null:
+		return PAINT_LAYER_DEFAULT_ROUGHNESS[index - 1]
+
+	var value: Variant = shader_material.get_shader_parameter(
+		"paint_layer_%d_roughness" % index
+	)
+	if value is float or value is int:
+		return float(value)
+
+	return PAINT_LAYER_DEFAULT_ROUGHNESS[index - 1]
 
 
 ## True once anything has been painted. An unpainted terrain keeps an empty array, so this is
@@ -1401,6 +1565,9 @@ func rebuild_chunks_structure() -> void:
 	# both backends without duplicating it into the branch below.
 	_update_chunk_grid_overlay()
 
+	# Also where the field is built: every path that brings a terrain into existence ends here.
+	_refresh_particles_collision_field()
+
 	if terrain_backend == TerrainBackend.SERVERS:
 		_rebuild_server_chunks()
 		return
@@ -1496,7 +1663,9 @@ func _smooth_entire_terrain() -> void:
 	# Synchronize and push fresh data blocks directly into the active chunks
 	for coord in _get_chunk_coords():
 		_update_single_chunk(coord)
-		
+
+	queue_particles_collision_refresh()
+
 	# [GLOBAL UNDO] Securely fetch manager and commit history entry inside editor workspace
 	if Engine.is_editor_hint():
 		if _active_undo_redo_manager == null:
@@ -1645,6 +1814,8 @@ func apply_ramp(from_world: Vector3, to_world: Vector3) -> void:
 	for coord: Vector2i in touched:
 		if _has_chunk(coord):
 			_update_single_chunk(coord)
+
+	queue_particles_collision_refresh()
 
 	_register_ramp_undo(old_state)
 
@@ -2393,7 +2564,9 @@ func _update_single_chunk(coord: Vector2i) -> void:
 		chunk_local_heights, jitter_strength,
 		jitter_slope_threshold, custom_material,
 		extract_chunk_paint(coord), PAINT_STEPS,
-		get_active_paint_material()
+		get_active_paint_material(),
+		shading_mode == ShadingMode.SMOOTH,
+		extract_chunk_heights_padded(coord)
 	)
 
 
@@ -2441,6 +2614,9 @@ func stroke_finished() -> void:
 	# [E5] One inspector refresh per stroke instead of one per paint event.
 	if Engine.is_editor_hint():
 		notify_property_list_changed()
+
+	# Once per stroke, not per brush event - a held brush would re-render the depth map per frame.
+	queue_particles_collision_refresh()
 
 	if not Engine.is_editor_hint() or _active_undo_redo_manager == null:
 		return
@@ -2580,7 +2756,10 @@ func _apply_sparse_delta(indices: PackedInt32Array, heights: PackedFloat32Array)
 	# Visually update only the specific chunk nodes that were actually modified by this delta
 	for coord in unique_chunks_to_rebuild:
 		_update_single_chunk(coord)
-		
+
+	# Undoing a mountain shrinks the field again, exactly like building it grew it.
+	queue_particles_collision_refresh()
+
 	notify_property_list_changed()
 
 
@@ -2593,6 +2772,8 @@ func _apply_historical_snapshot(target_matrix: PackedFloat32Array) -> void:
 	# Full matrix structural re-triangulation synchronizations
 	for coord in _get_chunk_coords():
 		_update_single_chunk(coord)
+
+	queue_particles_collision_refresh()
 
 	notify_property_list_changed()
 
@@ -2621,6 +2802,39 @@ func extract_chunk_heights(coord: Vector2i) -> PackedFloat32Array:
 			chunk_local_heights[local_offset + i] = global_height_data[global_row_start + i]
 
 	return chunk_local_heights
+
+
+## The height window of one chunk plus ONE RING of its neighbours' heights around it.
+##
+## Only smooth shading needs this, and only to compute normals with. A normal taken from the
+## height field is continuous across a chunk border because the height field is - but computing
+## one at the border needs a sample from the far side of it, which the ordinary window stops
+## exactly one row short of. Returns an EMPTY array while shading is FLAT, which the builder
+## reads as "compute them yourself".
+##
+## Beyond the edge of the world the outermost row is repeated rather than treated as zero, so the
+## terrain's rim keeps the slope it visibly has instead of folding towards a cliff that is not
+## there.
+func extract_chunk_heights_padded(coord: Vector2i) -> PackedFloat32Array:
+	if shading_mode != ShadingMode.SMOOTH:
+		return PackedFloat32Array()
+	if global_height_data.is_empty() or _total_vertices_x <= 0 or _total_vertices_z <= 0:
+		return PackedFloat32Array()
+
+	var stride: int = LowPolyTerrainMeshBuilder.padded_stride_for(chunk_size)
+	var padded := PackedFloat32Array()
+	padded.resize(stride * stride)
+
+	for pz in range(stride):
+		var global_z: int = clampi((coord.y * chunk_size) + pz - 1, 0, _total_vertices_z - 1)
+		var global_row_start: int = global_z * _total_vertices_x
+		var local_offset: int = pz * stride
+
+		for px in range(stride):
+			var global_x: int = clampi((coord.x * chunk_size) + px - 1, 0, _total_vertices_x - 1)
+			padded[local_offset + px] = global_height_data[global_row_start + global_x]
+
+	return padded
 
 
 ## The paint window of one chunk, laid out like extract_chunk_heights() but four bytes wide.
@@ -2782,6 +2996,105 @@ func _update_chunk_grid_overlay() -> void:
 	grid.visible = true
 
 
+## Name of the GPUParticlesCollisionHeightField3D child kept fitted to the terrain.
+const PARTICLES_COLLISION_NODE_NAME := "Terrain_Particles_Collision"
+
+## Smallest vertical extent the field is given. A flat terrain spans nothing, and Godot rejects
+## a size below 0.01 anyway.
+const PARTICLES_COLLISION_MIN_HEIGHT: float = 0.1
+
+
+## The lowest and the highest point of the height matrix, as (min, max), in LOCAL space. Read
+## from the matrix rather than the meshes, so both backends and deactivated chunks are covered.
+func get_height_range() -> Vector2:
+	if global_height_data.is_empty():
+		return Vector2.ZERO
+
+	var lowest: float = global_height_data[0]
+	var highest: float = lowest
+	for height in global_height_data:
+		if height < lowest:
+			lowest = height
+		elif height > highest:
+			highest = height
+
+	return Vector2(lowest, highest)
+
+
+## Creates, refits or removes the particle collision height field. Only size and position are
+## written; everything else on the node stays as the user configured it.
+func _refresh_particles_collision_field() -> void:
+	if not is_inside_tree():
+		return
+
+	_particles_collision_dirty = false
+
+	var existing: Node = find_child(PARTICLES_COLLISION_NODE_NAME, false, false)
+
+	if not generate_particles_collision:
+		if existing != null:
+			existing.free()
+		return
+
+	var field := existing as GPUParticlesCollisionHeightField3D
+	if field == null:
+		# Either nothing is there, or something else took the name. Neither can be fitted.
+		if existing != null:
+			existing.free()
+		field = GPUParticlesCollisionHeightField3D.new()
+		field.name = PARTICLES_COLLISION_NODE_NAME
+		add_child(field)
+
+		# Owned, unlike every other node this manager creates: settings made on it in the scene
+		# tree only survive a reload if it is written to the .tscn.
+		if Engine.is_editor_hint() and get_tree() and get_tree().edited_scene_root:
+			field.set_owner(get_tree().edited_scene_root)
+
+	var width: float = float(world_chunks.x * chunk_size) * cell_size
+	var length: float = float(world_chunks.y * chunk_size) * cell_size
+	var span: Vector2 = get_height_range()
+
+	# The box is centred on its own origin, the terrain grows towards +X and -Z from this
+	# manager's, so the field sits half a world away along both axes.
+	var box := Vector3(width, maxf(span.y - span.x, PARTICLES_COLLISION_MIN_HEIGHT), length)
+	var centre := Vector3(width * 0.5, (span.x + span.y) * 0.5, -length * 0.5)
+
+	if not field.size.is_equal_approx(box):
+		field.size = box
+	if not field.position.is_equal_approx(centre):
+		field.position = centre
+
+	# Sculpting inside the existing bounds changes the surface without moving the box, and
+	# UPDATE_MODE_WHEN_MOVED would then keep serving the depth map from before the edit.
+	RenderingServer.particles_collision_height_field_update(field.get_base())
+
+
+## Marks the height field for a refit: at most once per frame at run time, at the next scene save
+## in the editor, where nothing reads the box before then. Public because a game writing heights
+## through set_height_at() has to say when it is done; the plugin's own paths already call it.
+func queue_particles_collision_refresh() -> void:
+	if not generate_particles_collision or not is_inside_tree():
+		return
+
+	if Engine.is_editor_hint():
+		_particles_collision_dirty = true
+		return
+
+	if _particles_collision_refresh_pending:
+		return
+
+	# Coalesced: a refit scans the whole matrix and re-renders a depth map, and a smoothing pass
+	# would otherwise pay for that once per chunk.
+	_particles_collision_refresh_pending = true
+	_flush_particles_collision_refresh.call_deferred()
+
+
+## Deferred tail of queue_particles_collision_refresh().
+func _flush_particles_collision_refresh() -> void:
+	_particles_collision_refresh_pending = false
+	_refresh_particles_collision_field()
+
+
 ## Resolves collision_debug_draw against Godot's debug flag and forwards it to the backend.
 func _sync_collision_debug_draw() -> void:
 	if _server_backend == null:
@@ -2827,6 +3140,12 @@ func _leave_collision_group() -> void:
 ## Mirrors the node bookkeeping that a MeshInstance3D child would otherwise inherit for free.
 func _notification(what: int) -> void:
 	match what:
+		NOTIFICATION_EDITOR_PRE_SAVE:
+			# The box is about to be written into the scene file, so this is the one moment in
+			# the editor where it has to be current. Sculpting only marks it out of date.
+			if _particles_collision_dirty:
+				_refresh_particles_collision_field()
+
 		NOTIFICATION_TRANSFORM_CHANGED:
 			if _server_backend == null:
 				return

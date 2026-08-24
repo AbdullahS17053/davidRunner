@@ -17,8 +17,6 @@
 [ext_resource type="Script" uid="uid://blgbwpyo5nx3b" path="res://scenes/ui/game_over_ui.gd" id="15_v1hon"]
 [ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="16_dvmhk"]
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="17_gf848"]
-[ext_resource type="PackedScene" uid="uid://t432fb6xir17" path="res://scenes/maps/tropical_base_chunk.tscn" id="18_07t71"]
-[ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/chunk_data/chunk_data.gd" id="19_0s1r3"]
 [ext_resource type="Script" uid="uid://edgimgwmxjxi" path="res://scripts/utilities/bending_manager.gd" id="26_j4ga3"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player/player.tscn" id="27_8kw8c"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_hcbsx"]
@@ -896,11 +894,6 @@ adjustment_enabled = true
 adjustment_brightness = 1.2
 adjustment_saturation = 1.02
 
-[sub_resource type="Resource" id="Resource_trmuw"]
-script = ExtResource("19_0s1r3")
-chunk_scene = ExtResource("18_07t71")
-metadata/_custom_type_script = "uid://bxveokvt3308s"
-
 [sub_resource type="Resource" id="Resource_4mrxx"]
 script = ExtResource("30_pggox")
 
@@ -1531,8 +1524,6 @@ directional_shadow_max_distance = 20.0
 physics_interpolation_mode = 1
 script = ExtResource("17_gf848")
 player = NodePath("../Player")
-base_chunk = ExtResource("18_07t71")
-chunks_data = Array[ExtResource("19_0s1r3")]([SubResource("Resource_trmuw")])
 chunks_ahead = 5
 despawn_distance = 10.0
 
@@ -1548,8 +1539,7 @@ phantom_camera = NodePath("../PhantomCamera3D")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=461129305]
 physics_interpolation_mode = 1
-transform = Transform3D(-4.371015e-08, -0.2588102, 0.96589667, 0, 0.96589285, 0.25881124, -0.9999716, 1.1312953e-08, -4.2220687e-08, 2.865, 1.3330232, -2.7358427)
-top_level = true
+transform = Transform3D(-4.371139e-08, -0.25881904, 0.9659258, 0, 0.9659258, 0.25881904, -1, 1.131334e-08, -4.2221956e-08, 2.865, 1.315, -0.37999988)
 far = 50.0
 
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera3D" unique_id=566408685]
@@ -1569,6 +1559,8 @@ tween_resource = SubResource("Resource_4mrxx")
 follow_offset = Vector3(2.865, 1.315, -0.38)
 follow_damping = true
 follow_damping_value = Vector3(0.12, 0.12, 0.12)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 

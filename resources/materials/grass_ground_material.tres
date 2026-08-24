@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://24gbg1kjyoxn" path="res://assets/NatureBiomesPack/PolygonGeneric/Textures/Generic_Grass.png" id="2_u6aby"]
 
 [resource]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_u6aby")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("2_u6aby")

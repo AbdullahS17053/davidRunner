@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dij4q41wfk82e"]
 
-[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="1_q7rd7"]
-[ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://resources/env/tropical_map_env.tres" id="3_fdqmi"]
-[ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://resources/maps/tropical_map_data.tres" id="3_r6n4j"]
+[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="1_q7rd7"]
+[ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://scenes/maps/tropical_level/tropical_map_env.tres" id="3_fdqmi"]
+[ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://scenes/maps/tropical_level/tropical_map_data.tres" id="3_r6n4j"]
 
 [sub_resource type="GDScript" id="GDScript_dp4i4"]
 resource_name = "MapThumbnailGenerator"

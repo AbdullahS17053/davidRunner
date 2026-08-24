@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="MapData" format=3 uid="uid://coym5yjegojpq"]
 
-[ext_resource type="PackedScene" uid="uid://t432fb6xir17" path="res://scenes/maps/tropical_level_chunks/tropical_base_chunk.tscn" id="1_ynhcb"]
-[ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/maps/chunk_data/chunk_data.gd" id="2_3k6t0"]
+[ext_resource type="PackedScene" uid="uid://t432fb6xir17" path="res://scenes/maps/tropical_level/chunks/tropical_base_chunk.tscn" id="1_ynhcb"]
+[ext_resource type="Script" uid="uid://bxveokvt3308s" path="res://resources/map_data/chunk_data/chunk_data.gd" id="2_3k6t0"]
 [ext_resource type="Texture2D" uid="uid://d0yd2g1bjbt62" path="res://assets/textures/map_previews/Tropical_preview.png" id="3_3k6t0"]
-[ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://resources/env/tropical_map_env.tres" id="3_8k5j5"]
-[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/maps/map_data.gd" id="3_hloqb"]
+[ext_resource type="Environment" uid="uid://dbqlbuvakjx82" path="res://scenes/maps/tropical_level/tropical_map_env.tres" id="3_8k5j5"]
+[ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="3_hloqb"]
 
 [sub_resource type="Resource" id="Resource_006py"]
 script = ExtResource("2_3k6t0")

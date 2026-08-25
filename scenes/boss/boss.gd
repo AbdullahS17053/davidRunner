@@ -35,6 +35,7 @@ func _ready() -> void:
 			is_stunned = true
 			animation_player.play("HitReact", 0.2)
 			animation_player.queue("Walk")
+			$Punch.play()
 	)
 
 func _physics_process(delta: float) -> void:
@@ -44,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	global_position.x = lerp(global_position.x, player.global_position.x, 15.0 * delta)
 	
 	if is_falling:
+		$Growl.play()
 		global_position.z = player.global_position.z - target_distance_ahead
 		return
 		

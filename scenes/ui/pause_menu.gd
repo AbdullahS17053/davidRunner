@@ -8,6 +8,7 @@ func _on_menu_btn_pressed(pressed_button: StringName) -> void:
 	AudioManager.ui_click.play()
 	match pressed_button:
 		&"resume":
+			AudioManager.bgm.stream_paused = false
 			pause_anims.play("exit", -1, 2.0)
 			get_tree().paused = false
 		&"settings": settings_menu.settings_anims.play("open")

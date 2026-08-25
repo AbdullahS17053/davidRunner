@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxdpc70sph2l1"
+path="res://.godot/imported/Howls and Yips of Endangered Red Wolf.mp3-74667b68cff5fd24f99ac05bc7537135.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Howls and Yips of Endangered Red Wolf.mp3"
+dest_files=["res://.godot/imported/Howls and Yips of Endangered Red Wolf.mp3-74667b68cff5fd24f99ac05bc7537135.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

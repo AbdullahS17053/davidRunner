@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://cdxgiggu1odd" path="res://scenes/ui/main_menu.gd" id="8_lxcvk"]
 [ext_resource type="Texture2D" uid="uid://dm8lqj7hru8hp" path="res://assets/textures/circle_03.png" id="9_bybcv"]
 [ext_resource type="Texture2D" uid="uid://bvr7kx20l5eko" path="res://assets/ui_assets/icons/ItemIcon_Gear.png" id="9_df5f1"]
+[ext_resource type="Texture2D" uid="uid://juhfoi1f57sw" path="res://assets/ui_assets/sliders/Slider_Basic01_Bg_Single.png" id="9_idkr2"]
 [ext_resource type="Texture2D" uid="uid://bskjx8uosbk3x" path="res://assets/ui_assets/icons/Icon_Back.png" id="10_18djc"]
+[ext_resource type="Texture2D" uid="uid://c8ldpucsbop2u" path="res://assets/ui_assets/sliders/Slider_Basic01_Bg_White1.png" id="10_lxcvk"]
 [ext_resource type="Texture2D" uid="uid://dpsduhnxs1tk5" path="res://assets/ui_assets/icons/ShopItem_l_CoinPack_1.png" id="11_kuy5h"]
 [ext_resource type="Texture2D" uid="uid://csm1bre0hucg5" path="res://assets/ui_assets/icons/Icon_MapPoint.png" id="12_d3c03"]
 [ext_resource type="Script" uid="uid://btbkt5eyv7w06" path="res://scenes/ui/settings_menu.gd" id="12_kuekq"]
@@ -138,10 +140,6 @@ _data = {
 font_size = 59
 font_color = Color(1, 0.15802127, 0.15802127, 1)
 outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_pqufm"]
-font_size = 49
 
 [sub_resource type="Animation" id="Animation_luhhm"]
 length = 0.001
@@ -342,11 +340,6 @@ _data = {
 &"exit": SubResource("Animation_fh13f"),
 &"open": SubResource("Animation_navra")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_q5onr"]
-font_size = 50
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_o8fc1"]
 length = 0.001
@@ -610,21 +603,6 @@ texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_pm21f"]
-font = ExtResource("4_xokok")
-font_size = 64
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2lf6f"]
-font = ExtResource("4_xokok")
-font_size = 48
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_kpybi"]
-font = ExtResource("4_xokok")
-font_size = 32
-font_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lf6f"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 50
@@ -807,11 +785,6 @@ texture_margin_bottom = 30.0
 shader = ExtResource("19_8ckoj")
 shader_parameter/corner_scale = 0.10000000475
 
-[sub_resource type="LabelSettings" id="LabelSettings_0nbtd"]
-font = ExtResource("4_xokok")
-font_size = 48
-font_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Animation" id="Animation_4kbfs"]
 length = 0.001
 tracks/0/type = "value"
@@ -945,7 +918,7 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_bybcv"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_idkr2"]
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -1078,7 +1051,7 @@ boss_ui = NodePath("../BossBattleUI")
 warning_label = NodePath("WarningLabel")
 player = NodePath("../../Player")
 boss_scene = ExtResource("3_ocy1v")
-boss_trigger_time = 1200.0
+boss_trigger_time = 2.0
 
 [node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
 visible = false
@@ -1120,7 +1093,6 @@ expand_mode = 3
 [node name="CoinsLabel" type="Label" parent="UILayer/GameUI/CoinsPanel/HBoxContainer" unique_id=806398038]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_4mrxx")
 
 [node name="PauseBtn" type="Button" parent="UILayer/GameUI" unique_id=1123375949]
 custom_minimum_size = Vector2(80, 80)
@@ -1153,7 +1125,6 @@ text = "BOSS INCOMING!!"
 label_settings = SubResource("LabelSettings_bybcv")
 
 [node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("progress_bar", "tap_zone", "player") groups=["boss_ui"]]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1167,7 +1138,7 @@ progress_bar = NodePath("ProgressBar")
 tap_zone = NodePath("TapZone")
 player = NodePath("../../Player")
 
-[node name="ProgressBar" type="ProgressBar" parent="UILayer/BossBattleUI" unique_id=248255718]
+[node name="ProgressBar" type="TextureProgressBar" parent="UILayer/BossBattleUI" unique_id=398142572]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1180,7 +1151,15 @@ offset_right = 158.5
 offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 0
-show_percentage = false
+step = 0.01
+value = 36.0
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("9_idkr2")
+texture_progress = ExtResource("10_lxcvk")
 
 [node name="TapZone" type="TextureRect" parent="UILayer/BossBattleUI" unique_id=1713444813]
 layout_mode = 1
@@ -1210,8 +1189,8 @@ offset_right = 31.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 48
 text = "Tap Here!!"
-label_settings = SubResource("LabelSettings_pqufm")
 
 [node name="PauseMenu" type="Control" parent="UILayer" unique_id=1328896653 node_paths=PackedStringArray("settings_menu", "pause_anims")]
 process_mode = 3
@@ -1308,8 +1287,8 @@ offset_right = 648.0
 offset_bottom = 908.0
 size_flags_vertical = 8
 offset_transform_enabled = true
+theme_override_font_sizes/font_size = 48
 text = "Tap To Start!"
-label_settings = SubResource("LabelSettings_q5onr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1334,7 +1313,6 @@ expand_mode = 3
 [node name="TotalCoinsLabel" type="Label" parent="UILayer/MainMenu/CoinsPanel/HBoxContainer" unique_id=1756750080]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_4mrxx")
 
 [node name="MenuAnims" type="AnimationPlayer" parent="UILayer/MainMenu" unique_id=215577975]
 libraries/ = SubResource("AnimationLibrary_o8fc1")
@@ -1450,8 +1428,9 @@ theme_override_constants/separation = 15
 
 [node name="SettingsHeaderLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer" unique_id=2006224357]
 layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 56
 text = "SETTINGS"
-label_settings = SubResource("LabelSettings_pm21f")
 horizontal_alignment = 1
 
 [node name="VideoSettings" type="VBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer" unique_id=2048967953]
@@ -1459,8 +1438,8 @@ layout_mode = 2
 
 [node name="VideoLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1457612164]
 layout_mode = 2
+theme_override_constants/outline_size = 12
 text = "VIDEO"
-label_settings = SubResource("LabelSettings_2lf6f")
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings" unique_id=1471814547]
@@ -1483,8 +1462,8 @@ theme_override_constants/separation = 40
 [node name="ResScaleLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale" unique_id=270816533]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/outline_size = 15
 text = "Res Scale"
-label_settings = SubResource("LabelSettings_kpybi")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale" unique_id=96996385]
@@ -1503,8 +1482,8 @@ value = 0.5
 [node name="ResScaleValue" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer" unique_id=370292934]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
 text = "0"
-label_settings = SubResource("LabelSettings_kpybi")
 horizontal_alignment = 1
 
 [node name="AudioSettings" type="VBoxContainer" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer" unique_id=1810194787]
@@ -1512,8 +1491,8 @@ layout_mode = 2
 
 [node name="AudioLabel" type="Label" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings" unique_id=615678618]
 layout_mode = 2
+theme_override_constants/outline_size = 12
 text = "AUDIO"
-label_settings = SubResource("LabelSettings_2lf6f")
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/AudioSettings" unique_id=450577737]
@@ -1617,8 +1596,9 @@ alignment = 1
 
 [node name="SettingsHeaderLabel" type="Label" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer" unique_id=1712667880]
 layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
 text = "Select Map"
-label_settings = SubResource("LabelSettings_pm21f")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer" unique_id=708707301]
@@ -1736,22 +1716,25 @@ layout_mode = 2
 
 [node name="GameOverLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=138604914]
 layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 64
 text = "GAME OVER!"
-label_settings = SubResource("LabelSettings_pm21f")
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="CoinsCollectedLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=326246065]
 layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 48
 text = "Coins: 0"
-label_settings = SubResource("LabelSettings_0nbtd")
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="HighScoreLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1735045578]
 layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 48
 text = "Highest Coins: 0"
-label_settings = SubResource("LabelSettings_0nbtd")
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
@@ -1818,22 +1801,25 @@ layout_mode = 2
 
 [node name="VictoryLabel" type="Label" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=1842496441]
 layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
 text = "VICTORY!"
-label_settings = SubResource("LabelSettings_pm21f")
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="CoinsCollectedLabel" type="Label" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=1123320325]
 layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 48
 text = "Coins: 0"
-label_settings = SubResource("LabelSettings_0nbtd")
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="HighScoreLabel" type="Label" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=2098867798]
 layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 48
 text = "Highest Coins: 0"
-label_settings = SubResource("LabelSettings_0nbtd")
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
@@ -1905,7 +1891,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-animation_playback = SubResource("AnimationNodeStateMachinePlayback_bybcv")
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_idkr2")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
 [node name="Marker3D" type="Marker3D" parent="Player" unique_id=1740994092]

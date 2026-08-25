@@ -11,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://cvnegsf68nkii" path="res://assets/audio/victory.mp3" id="6_tp26y"]
 [ext_resource type="AudioStream" uid="uid://dg5a3uo85smvj" path="res://assets/audio/ui_tap.mp3" id="7_jwsh5"]
 [ext_resource type="AudioStream" uid="uid://bpwohgxugilva" path="res://scenes/obstacles/wolf/audio/wolf_snarl.wav" id="7_plitr"]
+[ext_resource type="AudioStream" uid="uid://cf80ksaql0ehv" path="res://scenes/obstacles/wolf/audio/wolf_growl1.mp3" id="12_thxvw"]
+[ext_resource type="AudioStream" uid="uid://cqvkyu1q5p7tg" path="res://scenes/obstacles/wolf/audio/wolf_growl2.mp3" id="13_hscw7"]
+[ext_resource type="AudioStream" uid="uid://xim6mo75yco1" path="res://scenes/obstacles/wolf/audio/wolf_growl3.mp3" id="14_8w84n"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tr7pb"]
 streams_count = 1
@@ -46,7 +49,14 @@ random_pitch = 1.122462
 streams_count = 1
 stream_0/stream = ExtResource("7_plitr")
 
-[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide", "bgm", "ui_click", "ui_tap", "death_impact", "heavy_fall_impact", "fail", "victory", "wolf_snarl", "punch")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3jomf"]
+random_pitch = 1.122462
+streams_count = 3
+stream_0/stream = ExtResource("12_thxvw")
+stream_1/stream = ExtResource("13_hscw7")
+stream_2/stream = ExtResource("14_8w84n")
+
+[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide", "bgm", "ui_click", "ui_tap", "death_impact", "heavy_fall_impact", "fail", "victory", "wolf_snarl", "wolf_howl", "punch")]
 script = ExtResource("1_tr7pb")
 collect_coin = NodePath("CollectCoin")
 footsteps = NodePath("Footsteps")
@@ -60,6 +70,7 @@ heavy_fall_impact = NodePath("HeavyFallImpact")
 fail = NodePath("Fail")
 victory = NodePath("Victory")
 wolf_snarl = NodePath("WolfSnarl")
+wolf_howl = NodePath("WolfHowl")
 punch = NodePath("Punch")
 base_pitch = 0.8
 pitch_step = 0.03
@@ -129,6 +140,13 @@ bus = &"SFX"
 
 [node name="WolfSnarl" type="AudioStreamPlayer" parent="." unique_id=143763679]
 stream = SubResource("AudioStreamRandomizer_jwsh5")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="WolfHowl" type="AudioStreamPlayer" parent="." unique_id=844248287]
+stream = SubResource("AudioStreamRandomizer_3jomf")
+volume_db = 2.0
+pitch_scale = 1.2
 max_polyphony = 10
 bus = &"SFX"
 

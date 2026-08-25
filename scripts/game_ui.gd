@@ -112,6 +112,7 @@ func on_coin_collected(amount: int) -> void:
 
 func _on_pause_btn_pressed() -> void:
 	get_tree().paused = true
+	AudioManager.bgm.stream_paused = true
 	AudioManager.ui_click.play()
 	pause_menu.pause_anims.play("open", -1, 2.0)
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cgnbk73ydd726" path="res://scenes/obstacles/wolf/wolf.gd" id="1_fxpeh"]
 [ext_resource type="PackedScene" uid="uid://d07kx4wx75h0y" path="res://assets/wolf/Wolf.glb" id="2_5rc8i"]
+[ext_resource type="TextMesh" uid="uid://ckmhm3g88twhp" path="res://resources/text_mesh.tres" id="4_h6imj"]
 [ext_resource type="Texture2D" uid="uid://dm8lqj7hru8hp" path="res://assets/textures/circle_03.png" id="5_cvotk"]
-[ext_resource type="FontFile" uid="uid://bgg04ec335l0g" path="res://assets/fonts/cairo/Cairo-Black.ttf" id="6_hryuf"]
 
 [sub_resource type="Shader" id="Shader_fxpeh"]
 code = "shader_type spatial;
@@ -9438,124 +9438,6 @@ height = 2.2314453
 [sub_resource type="SphereShape3D" id="SphereShape3D_h6imj"]
 radius = 1.1454855
 
-[sub_resource type="Shader" id="Shader_hryuf"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx, unshaded;
-stencil_mode write, compare_always, 1;
-
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
-
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
-
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float outline_width : hint_range(0.0, 20.0, 0.1) = 2.0;
-
-global uniform vec2 global_curve_intensity;
-global uniform float global_curve_start;
-
-void vertex() {
-    UV = UV * uv1_scale.xy + uv1_offset.xy;
-
-    MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
-            MAIN_CAM_INV_VIEW_MATRIX[0],
-            MAIN_CAM_INV_VIEW_MATRIX[1],
-            MAIN_CAM_INV_VIEW_MATRIX[2],
-            MODEL_MATRIX[3]);
-
-    MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
-            vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
-            vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
-            vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
-            vec4(0.0, 0.0, 0.0, 1.0));
-    MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
-    
-    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    vec3 cam_to_vertex = world_pos - CAMERA_POSITION_WORLD;
-    
-    float raw_dist = -cam_to_vertex.z;
-    float effect_dist = max(0.0, raw_dist - global_curve_start); 
-    float curve_factor = effect_dist * effect_dist;
-    
-    vec3 offset = vec3(
-        curve_factor * global_curve_intensity.x,
-        curve_factor * global_curve_intensity.y,
-        0.0
-    );
-    
-    VERTEX += (inverse(MODEL_MATRIX) * vec4(offset, 0.0)).xyz;
-    ROUGHNESS = roughness;
-    UV = UV * uv1_scale.xy + uv1_offset.xy;
-}
-
-void fragment() {
-    vec2 base_uv = UV;
-    vec2 tex_size = vec2(textureSize(texture_albedo, 0));
-    vec2 pixel_size = 1.0 / tex_size;
-
-    vec4 main_tex = texture(texture_albedo, base_uv);
-
-    float alpha_up = texture(texture_albedo, base_uv + vec2(0.0, -outline_width) * pixel_size).a;
-    float alpha_down = texture(texture_albedo, base_uv + vec2(0.0, outline_width) * pixel_size).a;
-    float alpha_left = texture(texture_albedo, base_uv + vec2(-outline_width, 0.0) * pixel_size).a;
-    float alpha_right = texture(texture_albedo, base_uv + vec2(outline_width, 0.0) * pixel_size).a;
-
-    float max_neighbor_alpha = max(max(alpha_up, alpha_down), max(alpha_left, alpha_right));
-    float is_outline = clamp(max_neighbor_alpha - main_tex.a, 0.0, 1.0);
-
-    vec3 final_color = mix(albedo.rgb * main_tex.rgb, outline_color.rgb, is_outline);
-    float final_alpha = max(main_tex.a * albedo.a, is_outline * outline_color.a);
-
-    ALBEDO = final_color;
-    ALPHA = final_alpha;
-
-    float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
-    METALLIC = metallic_tex * metallic;
-    SPECULAR = specular;
-
-    vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-    float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
-    ROUGHNESS = roughness_tex * roughness;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x3qb8"]
-render_priority = 0
-shader = SubResource("Shader_hryuf")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/outline_width = 20.0
-
-[sub_resource type="TextMesh" id="TextMesh_pqufm"]
-material = SubResource("ShaderMaterial_x3qb8")
-text = "Tap!!"
-font = ExtResource("6_hryuf")
-font_size = 111
-uppercase = true
-depth = 0.0
-
 [sub_resource type="Curve" id="Curve_hryuf"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -9604,12 +9486,14 @@ _data = {
 &"loop": SubResource("Animation_h6imj")
 }
 
-[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles") groups=["obstacle", "wolf"]]
+[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles", "tap_to_kill_text_mesh", "sub_viewport") groups=["obstacle", "wolf"]]
 collision_layer = 2
 script = ExtResource("1_fxpeh")
 animation_player = NodePath("WolfModel/AnimationPlayer")
 collision_shape_3d = NodePath("CollisionShape3D")
 click_particles = NodePath("ClickParticles")
+tap_to_kill_text_mesh = NodePath("TapToKillTextMesh")
+sub_viewport = NodePath("")
 
 [node name="WolfModel" parent="." unique_id=250543619 instance=ExtResource("2_5rc8i")]
 transform = Transform3D(0.5476528, 0, 0, 0, 0.5476528, 0, 0, 0, 0.5476528, 0, 0, 0)
@@ -9735,10 +9619,6 @@ shape = SubResource("CapsuleShape3D_pqufm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6989292, 0)
 shape = SubResource("SphereShape3D_h6imj")
 
-[node name="TapToKillTextMesh" type="MeshInstance3D" parent="." unique_id=1561481344]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2271423, 0)
-mesh = SubResource("TextMesh_pqufm")
-
 [node name="ClickParticles" type="GPUParticles3D" parent="." unique_id=2124035520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8227351, 0)
 emitting = false
@@ -9749,11 +9629,19 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_cvotk")
 draw_pass_1 = SubResource("QuadMesh_h6imj")
 
+[node name="TapToKillTextMesh" type="MeshInstance3D" parent="." unique_id=1561481344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8986034, 0)
+mesh = ExtResource("4_h6imj")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="." unique_id=422479235]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=446931921]
 libraries/ = SubResource("AnimationLibrary_cvotk")
 autoplay = &"loop"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="ClickDetection" to="." method="_on_click_detection_input_event"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="." method="_on_visible_on_screen_enabler_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="." method="_on_visible_on_screen_enabler_3d_screen_exited"]
 
 [editable path="WolfModel"]

@@ -12,6 +12,7 @@ extends Node
 @export var fail: AudioStreamPlayer
 @export var victory: AudioStreamPlayer
 @export var wolf_snarl: AudioStreamPlayer
+@export var wolf_howl: AudioStreamPlayer
 @export var punch: AudioStreamPlayer
 
 @export_group("Coin Pitch Settings")

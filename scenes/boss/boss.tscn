@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bu3h30lirqnmv" path="res://scenes/boss/Big arm by Quaternius - KaVJET0WHx.glb" id="2_8ftqf"]
 [ext_resource type="AudioStream" uid="uid://dqd5s6aixundi" path="res://scenes/player/audio/fall_impact.mp3" id="3_0xsra"]
 [ext_resource type="AudioStream" uid="uid://blkqugd8usnfe" path="res://scenes/player/audio/punch_impact.mp3" id="4_iva7r"]
+[ext_resource type="AudioStream" uid="uid://cisjhq6213pla" path="res://assets/audio/beast_long_roar.wav" id="5_iva7r"]
 
 [sub_resource type="Animation" id="Animation_0xsra"]
 resource_name = "CharacterArmature|No"
@@ -5237,6 +5238,11 @@ _data = {
 &"death": SubResource("Animation_dgf3a")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iva7r"]
+random_pitch = 1.3348398
+streams_count = 1
+stream_0/stream = ExtResource("4_iva7r")
+
 [node name="Boss" type="CharacterBody3D" unique_id=768810446 node_paths=PackedStringArray("smoke", "boss_anims", "animation_player") groups=["boss"]]
 process_mode = 3
 script = ExtResource("1_dgf3a")
@@ -5394,9 +5400,14 @@ pitch_scale = 2.0
 bus = &"SFX"
 
 [node name="Punch" type="AudioStreamPlayer" parent="." unique_id=250917820]
-stream = ExtResource("4_iva7r")
+stream = SubResource("AudioStreamRandomizer_iva7r")
 volume_db = -6.0
 pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="Growl" type="AudioStreamPlayer" parent="." unique_id=1625161680]
+stream = ExtResource("5_iva7r")
+volume_db = -6.0
 bus = &"SFX"
 
 [editable path="Model"]

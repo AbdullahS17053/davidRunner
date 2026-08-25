@@ -1,7 +1,7 @@
 extends Control
 class_name BossBattleUI
 
-@export var progress_bar: ProgressBar
+@export var progress_bar: TextureProgressBar
 @export var tap_zone: Control
 @export var drain_rate: float = 25.0
 @export var tap_power: float = 6.0

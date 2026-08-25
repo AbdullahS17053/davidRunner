@@ -41,9 +41,11 @@ var is_switching_right: bool = false
 var normal_height: float
 var normal_pos_y: float
 
+var is_dead: bool = false
 var game_start: bool = false
 
 func _ready() -> void:
+	is_dead = false
 	global_position.x = 0.0
 	
 	col_shape.shape = col_shape.shape.duplicate()
@@ -157,6 +159,7 @@ func simulate_input(action_name: String) -> void:
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
+		is_dead = true
 		shaker_component_3d.play_shake()
 		Global.is_game_started = false
 		dust_particles.emitting = false

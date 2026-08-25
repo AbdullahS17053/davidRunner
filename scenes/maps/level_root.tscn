@@ -1078,7 +1078,7 @@ boss_ui = NodePath("../BossBattleUI")
 warning_label = NodePath("WarningLabel")
 player = NodePath("../../Player")
 boss_scene = ExtResource("3_ocy1v")
-boss_trigger_time = 2.0
+boss_trigger_time = 1200.0
 
 [node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
 visible = false

@@ -10,7 +10,7 @@ class_name GameUI
 
 @export var player: Player
 @export var boss_scene: PackedScene
-@export var boss_trigger_time: float = 120.0
+@export_custom(PROPERTY_HINT_NONE, "suffix:Seconds") var boss_trigger_time: float = 120.0
 
 var current_boss: Boss
 var time_played: float = 0.0

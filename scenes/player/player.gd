@@ -22,7 +22,9 @@ extends CharacterBody3D
 @export_group("References")
 @export var col_shape: CollisionShape3D
 @export var animation_tree: AnimationTree
+@export var animation_playback: AnimationNodeStateMachinePlayback
 @export var dust_particles: GPUParticles3D
+@export var slide_particles: GPUParticles3D
 @export var player_anims: AnimationPlayer
 @export var shaker_component_3d: ShakerComponent3D
 @export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
@@ -157,18 +159,30 @@ func simulate_input(action_name: String) -> void:
 	release_event.pressed = false
 	Input.parse_input_event(release_event)
 
+func reset_for_boss() -> void:
+	position.y = 0.0 
+	velocity = Vector3.ZERO
+	dust_particles.emitting = false
+	slide_particles.emitting = false
+	
+	is_jumping = false
+	is_sliding = false
+
+func player_death() -> void:
+	is_dead = true
+	shaker_component_3d.play_shake()
+	Global.is_game_started = false
+	dust_particles.emitting = false
+	player_anims.play("death")
+	AudioManager.fail.play()
+	AudioManager.bgm.stop()
+	AudioManager.death_impact.play()
+	physical_bone_simulator_3d.physical_bones_start_simulation()
+	Global.total_coins += Global.coins
+	Global.save_stats()
+
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
-		is_dead = true
-		shaker_component_3d.play_shake()
-		Global.is_game_started = false
-		dust_particles.emitting = false
-		player_anims.play("death")
-		AudioManager.fail.play()
-		AudioManager.bgm.stop()
-		AudioManager.death_impact.play()
-		physical_bone_simulator_3d.physical_bones_start_simulation()
-		Global.total_coins += Global.coins
-		Global.save_stats()
-		await get_tree().create_timer(0.6).timeout
+		#player_death()
+		#await get_tree().create_timer(0.6).timeout
 		Global.game_over.emit()

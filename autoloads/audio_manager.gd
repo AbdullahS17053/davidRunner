@@ -6,8 +6,11 @@ extends Node
 @export var slide: AudioStreamPlayer
 @export var bgm: AudioStreamPlayer
 @export var ui_click: AudioStreamPlayer
+@export var ui_tap: AudioStreamPlayer
 @export var death_impact: AudioStreamPlayer
+@export var heavy_fall_impact: AudioStreamPlayer
 @export var fail: AudioStreamPlayer
+@export var victory: AudioStreamPlayer
 @export var wolf_snarl: AudioStreamPlayer
 @export var punch: AudioStreamPlayer
 

@@ -10,7 +10,6 @@ func _ready() -> void:
 	Global.game_over.connect(_on_game_over)
 
 func _on_game_over() -> void:
-	print("GAME OVER!")
 	game_over_anims.play("open")
 	coins_collected_label.text = "Coins: %d" % Global.coins
 	high_score_label.text = "Highest Coins: %d" % Global.highest_coins

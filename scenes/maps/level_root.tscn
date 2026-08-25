@@ -2,11 +2,14 @@
 
 [ext_resource type="Theme" uid="uid://cp15gk0cghgys" path="res://resources/themes/ui_theme.tres" id="1_8ckoj"]
 [ext_resource type="Script" uid="uid://chi1x74nnrhkh" path="res://scripts/game_ui.gd" id="2_d3c03"]
+[ext_resource type="PackedScene" uid="uid://p6aggnvcpslu" path="res://scenes/boss/boss.tscn" id="3_ocy1v"]
 [ext_resource type="FontFile" uid="uid://bgg04ec335l0g" path="res://assets/fonts/cairo/Cairo-Black.ttf" id="4_xokok"]
 [ext_resource type="Texture2D" uid="uid://bo0b2qw024y8i" path="res://assets/ui_assets/icons/ItemIcon_Money_Coin.png" id="5_bybcv"]
 [ext_resource type="Texture2D" uid="uid://du5dg4r1a80xq" path="res://assets/ui_assets/icons/Icon_Pause.png" id="6_1pyl5"]
+[ext_resource type="Script" uid="uid://dmona1hkrg415" path="res://scenes/ui/boss_battle_ui.gd" id="7_d3c03"]
 [ext_resource type="Script" uid="uid://xqcxrxvffrlj" path="res://scenes/ui/pause_menu.gd" id="7_idkr2"]
 [ext_resource type="Script" uid="uid://cdxgiggu1odd" path="res://scenes/ui/main_menu.gd" id="8_lxcvk"]
+[ext_resource type="Texture2D" uid="uid://dm8lqj7hru8hp" path="res://assets/textures/circle_03.png" id="9_bybcv"]
 [ext_resource type="Texture2D" uid="uid://bvr7kx20l5eko" path="res://assets/ui_assets/icons/ItemIcon_Gear.png" id="9_df5f1"]
 [ext_resource type="Texture2D" uid="uid://bskjx8uosbk3x" path="res://assets/ui_assets/icons/Icon_Back.png" id="10_18djc"]
 [ext_resource type="Texture2D" uid="uid://dpsduhnxs1tk5" path="res://assets/ui_assets/icons/ShopItem_l_CoinPack_1.png" id="11_kuy5h"]
@@ -23,6 +26,7 @@
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="19_kto32"]
 [ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://scenes/maps/mountains_level/mountains_map_data.tres" id="20_jkcmn"]
 [ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://scenes/maps/tropical_level/tropical_map_data.tres" id="21_kto32"]
+[ext_resource type="Script" uid="uid://bm8rkudutcwm8" path="res://scenes/ui/victory_ui.gd" id="24_xokok"]
 [ext_resource type="Script" uid="uid://bagu61ausjpp8" path="res://addons/interpolated_camera_3d/interpolated_camera_3d.gd" id="25_jkcmn"]
 [ext_resource type="Script" uid="uid://bypjg77awrwwv" path="res://addons/shaker/src/Vector3/shaker_component3D.gd" id="25_kto32"]
 [ext_resource type="Script" uid="uid://dfrx0yal6dp8q" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="26_006py"]
@@ -129,6 +133,15 @@ _data = {
 &"RESET": SubResource("Animation_ctatt"),
 &"show": SubResource("Animation_kpybi")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_bybcv"]
+font_size = 59
+font_color = Color(1, 0.15802127, 0.15802127, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqufm"]
+font_size = 49
 
 [sub_resource type="Animation" id="Animation_luhhm"]
 length = 0.001
@@ -932,6 +945,8 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_bybcv"]
+
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
 step = 0.1
@@ -1045,7 +1060,7 @@ _data = {
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1842010287]
 
-[node name="GameUI" type="Control" parent="UILayer" unique_id=1534088429 node_paths=PackedStringArray("coins_label", "distance_label", "pause_menu")]
+[node name="GameUI" type="Control" parent="UILayer" unique_id=1534088429 node_paths=PackedStringArray("coins_label", "distance_label", "pause_menu", "boss_ui", "warning_label", "player")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1059,6 +1074,11 @@ script = ExtResource("2_d3c03")
 coins_label = NodePath("CoinsPanel/HBoxContainer/CoinsLabel")
 distance_label = NodePath("DistancePanel/DistanceLabel")
 pause_menu = NodePath("../PauseMenu")
+boss_ui = NodePath("../BossBattleUI")
+warning_label = NodePath("WarningLabel")
+player = NodePath("../../Player")
+boss_scene = ExtResource("3_ocy1v")
+boss_trigger_time = 2.0
 
 [node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
 visible = false
@@ -1117,6 +1137,81 @@ icon_alignment = 1
 
 [node name="GameUIAnims" type="AnimationPlayer" parent="UILayer/GameUI" unique_id=1847322117]
 libraries/ = SubResource("AnimationLibrary_ctatt")
+
+[node name="WarningLabel" type="Label" parent="UILayer/GameUI" unique_id=175390714]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -111.5
+offset_top = 248.0
+offset_right = 111.5
+offset_bottom = 309.0
+grow_horizontal = 2
+text = "BOSS INCOMING!!"
+label_settings = SubResource("LabelSettings_bybcv")
+
+[node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("progress_bar", "tap_zone", "player") groups=["boss_ui"]]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("7_d3c03")
+progress_bar = NodePath("ProgressBar")
+tap_zone = NodePath("TapZone")
+player = NodePath("../../Player")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/BossBattleUI" unique_id=248255718]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -158.5
+offset_top = -147.0
+offset_right = 158.5
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="TapZone" type="TextureRect" parent="UILayer/BossBattleUI" unique_id=1713444813]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -687.0
+offset_right = 256.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_bybcv")
+
+[node name="TapHere" type="Label" parent="UILayer/BossBattleUI/TapZone" unique_id=306089882]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -15.5
+offset_right = 31.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tap Here!!"
+label_settings = SubResource("LabelSettings_pqufm")
 
 [node name="PauseMenu" type="Control" parent="UILayer" unique_id=1328896653 node_paths=PackedStringArray("settings_menu", "pause_anims")]
 process_mode = 3
@@ -1675,6 +1770,88 @@ text = "Main Menu"
 [node name="GameOverAnims" type="AnimationPlayer" parent="UILayer/GameOverUI" unique_id=1230722019]
 libraries/ = SubResource("AnimationLibrary_4kbfs")
 
+[node name="VictoryUI" type="Control" parent="UILayer" unique_id=676128661 node_paths=PackedStringArray("player", "game_over_anims", "world_anims", "high_score_label", "coins_collected_label")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("24_xokok")
+player = NodePath("../../Player")
+game_over_anims = NodePath("GameOverAnims")
+world_anims = NodePath("../../WorldAnims")
+high_score_label = NodePath("GameOverPanel/VBoxContainer/HighScoreLabel")
+coins_collected_label = NodePath("GameOverPanel/VBoxContainer/CoinsCollectedLabel")
+
+[node name="BG" type="ColorRect" parent="UILayer/VictoryUI" unique_id=1963933195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="GameOverPanel" type="PanelContainer" parent="UILayer/VictoryUI" unique_id=424860059]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -253.0
+offset_right = 281.0
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/VictoryUI/GameOverPanel" unique_id=2123068891]
+layout_mode = 2
+
+[node name="VictoryLabel" type="Label" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=1842496441]
+layout_mode = 2
+text = "VICTORY!"
+label_settings = SubResource("LabelSettings_pm21f")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CoinsCollectedLabel" type="Label" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=1123320325]
+layout_mode = 2
+text = "Coins: 0"
+label_settings = SubResource("LabelSettings_0nbtd")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HighScoreLabel" type="Label" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=2098867798]
+layout_mode = 2
+text = "Highest Coins: 0"
+label_settings = SubResource("LabelSettings_0nbtd")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="PlayAgain" type="Button" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=897030100]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="UILayer/VictoryUI/GameOverPanel/VBoxContainer" unique_id=1818249225]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Main Menu"
+
+[node name="GameOverAnims" type="AnimationPlayer" parent="UILayer/VictoryUI" unique_id=159320600]
+libraries/ = SubResource("AnimationLibrary_4kbfs")
+
 [node name="GameManager" type="Node" parent="." unique_id=174738255 node_paths=PackedStringArray("player", "total_coins_label", "main_menu", "world_anims")]
 script = ExtResource("16_0abdq")
 player = NodePath("../Player")
@@ -1708,6 +1885,7 @@ world_environment = NodePath("../WorldEnvironment")
 script = ExtResource("26_n3hxp")
 
 [node name="InterpolatedCamera3D" type="Camera3D" parent="." unique_id=1138056526 node_paths=PackedStringArray("target")]
+process_mode = 3
 physics_interpolation_mode = 1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5, 1, -0.36242437)
 script = ExtResource("25_jkcmn")
@@ -1715,6 +1893,7 @@ target = NodePath("../Player/Marker3D")
 metadata/_custom_type_script = "uid://bagu61ausjpp8"
 
 [node name="ShakerComponent3D" type="Node3D" parent="InterpolatedCamera3D" unique_id=1731478361]
+process_mode = 3
 script = ExtResource("25_kto32")
 intensity = 0.2
 duration = 0.3
@@ -1726,6 +1905,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_bybcv")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
 [node name="Marker3D" type="Marker3D" parent="Player" unique_id=1740994092]
@@ -1754,3 +1934,5 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/MapSelectMenu/CloseBtn" to="UILayer/MapSelectMenu" method="_on_close_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/PlayAgain" to="UILayer/VictoryUI" method="_on_play_again_pressed"]
+[connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/VictoryUI" method="_on_main_menu_pressed"]

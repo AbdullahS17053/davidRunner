@@ -12,6 +12,8 @@
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="11_dqxjm"]
 [ext_resource type="Material" uid="uid://dpgmqwb1bj6wl" path="res://resources/materials/grass_ground_material.tres" id="12_1yp6v"]
 [ext_resource type="PackedScene" uid="uid://cyjmah6rb0nnd" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Bld_Shack_Pirate_01.prefab.scn" id="12_a5xdy"]
+[ext_resource type="PackedScene" uid="uid://bnfj2kh0452f1" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Tree_Forest_01.prefab.scn" id="13_8wu0w"]
+[ext_resource type="PackedScene" uid="uid://bfi76xb1tyu3g" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Tree_Forest_02.prefab.scn" id="14_4thk7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a5xdy"]
 render_priority = 0
@@ -238,6 +240,15 @@ transform = Transform3D(-0.6280013, -0.39067033, -0.6730461, -0.40706402, 0.9020
 [node name="SM_Env_Bush_Palm_07" parent="Decorations" unique_id=1818697942 instance=ExtResource("9_bbi5j")]
 transform = Transform3D(-0.74602747, 0.08532704, -0.6604259, -0.05941191, 0.9792731, 0.19363487, 0.6632596, 0.18369412, -0.7254951, 10.971408, 1.5006685, -17.24561)
 
+[node name="SM_Bld_Shack_Pirate_01" parent="Decorations" unique_id=669469767 instance=ExtResource("12_a5xdy")]
+transform = Transform3D(-1.1201806, 0, -9.79293e-08, 0, 1.1201806, 0, 9.79293e-08, 0, -1.1201806, 0.61231804, 0, -19.561142)
+
+[node name="SM_Env_Tree_Forest_01" parent="Decorations" unique_id=1768891863 instance=ExtResource("13_8wu0w")]
+transform = Transform3D(0.47617796, 0, 0, 0, 0.47617796, 0, 0, 0, 0.47617796, -10.214152, 0.48884916, -17.212881)
+
+[node name="SM_Env_Tree_Forest_02" parent="Decorations" unique_id=418643483 instance=ExtResource("13_8wu0w")]
+transform = Transform3D(0.47617796, 0, 0, 0, 0.47617796, 0, 0, 0, 0.47617796, -11.169469, 1.0653462, -5.8117785)
+
 [node name="SandPath" type="Node3D" parent="Decorations" unique_id=795888883 groups=["Wall"]]
 transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, -5.036, 0, 0)
 script = ExtResource("10_py4rb")
@@ -335,5 +346,5 @@ shape = SubResource("ConcavePolygonShape3D_3c8wn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.974483)
 metadata/_edit_lock_ = true
 
-[node name="SM_Bld_Shack_Pirate_01" parent="." unique_id=669469767 instance=ExtResource("12_a5xdy")]
-transform = Transform3D(-1.1201806, 0, -9.79293e-08, 0, 1.1201806, 0, 9.79293e-08, 0, -1.1201806, 0.61231804, 0, -19.561142)
+[node name="SM_Env_Tree_Forest_02" parent="." unique_id=151375702 instance=ExtResource("14_4thk7")]
+transform = Transform3D(0.6356138, -0.1331675, 0, 0.1331675, 0.6356138, 0, 0, 0, 0.64941376, 10.411495, 1.5607913, -15.973312)

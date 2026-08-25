@@ -11,8 +11,9 @@
 [ext_resource type="Script" uid="uid://dxq4p56omxx80" path="res://addons/lowpolyterrain/LowPolyTerrainManager.gd" id="9_pk21e"]
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="10_nseee"]
 [ext_resource type="Material" uid="uid://dpgmqwb1bj6wl" path="res://resources/materials/grass_ground_material.tres" id="11_84wb8"]
+[ext_resource type="PackedScene" uid="uid://bnfj2kh0452f1" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Tree_Forest_01.prefab.scn" id="12_wbi0s"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ug4ms"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbi0s"]
 render_priority = 0
 shader = ExtResource("2_wbi0s")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -46,7 +47,7 @@ instance_count = 11
 mesh = ExtResource("4_rcj6b")
 buffer = PackedFloat32Array(0.67770094, 0, 0.7353376, -6.745607, 0, 1, 0, 0.24712753, -0.7353376, 0, 0.67770094, -5.7284856, 0.9999818, 0, -0.0060276543, -8.783805, 0, 1, 0, 0.37548876, 0.0060276543, 0, 0.9999818, -12.791294, 0.7068794, 0, 0.7073341, -6.7394857, 0, 1, 0, 0.14362478, -0.7073341, 0, 0.7068794, -20.810202, -0.7123814, 0, -0.70179254, -9.99359, 0, 1, 0, 0.78571844, 0.70179254, 0, -0.7123814, -4.7304306, 0.31345776, 0, 0.9496021, -9.329522, 0, 1, 0, 0.46529722, -0.9496021, 0, 0.31345776, -9.660931, 0.84473205, 0, 0.5351895, 7.778017, 0, 1, 0, 0.6498203, -0.5351895, 0, 0.84473205, -15.519466, 0.29137787, 0, -0.95660806, 7.4008303, 0, 1, 0, 0.6470337, 0.95660806, 0, 0.29137787, -19.738728, 0.8537094, 0, -0.5207497, 13.113258, 0, 1, 0, 0.8830004, 0.5207497, 0, 0.8537094, -11.447889, -0.55155236, 0, 0.83414024, 12.8199005, 0, 1, 0, 1.3983245, -0.83414024, 0, -0.55155236, -1.5323474, 0.9980916, 0, 0.061751537, 10.373422, 0, 1, 0, 0.71166134, -0.061751537, 0, 0.9980916, -11.485251, 0.31929934, -0.08185896, -0.9441118, 8.781791, -0.1608282, 0.9771293, -0.13911395, 0.9507847, 0.933907, 0.19625878, 0.29883146, -2.149487)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbi0s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec2av"]
 render_priority = 0
 shader = ExtResource("2_wbi0s")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -125,7 +126,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 
 [node name="YellowFlowers" type="MultiMeshInstance3D" parent="Decorations" unique_id=324003236]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.9834948)
-material_override = SubResource("ShaderMaterial_ug4ms")
+material_override = SubResource("ShaderMaterial_wbi0s")
 cast_shadow = 0
 visibility_range_end = 30.0
 multimesh = SubResource("MultiMesh_arja1")
@@ -152,7 +153,7 @@ metadata/SimpleGrassTextured = "2.0.5"
 
 [node name="BlueFlowers" type="MultiMeshInstance3D" parent="Decorations" unique_id=2145570294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.9834948)
-material_override = SubResource("ShaderMaterial_wbi0s")
+material_override = SubResource("ShaderMaterial_ec2av")
 visibility_range_end = 30.0
 multimesh = SubResource("MultiMesh_plnjg")
 script = ExtResource("5_w3b0w")
@@ -177,22 +178,28 @@ metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
 
 [node name="SM_Env_Tree_Forest_02" parent="Decorations" unique_id=151375702 instance=ExtResource("7_kbnj6")]
-transform = Transform3D(0.6440072, 0.083624914, 0, -0.083624914, 0.6440072, 0, 0, 0, 0.6494138, -9.480335, 0.4851451, -7.958952)
+transform = Transform3D(0.6440072, 0.083624914, 0, -0.083624914, 0.6440072, 0, 0, 0, 0.6494138, -9.480335, 0.4851451, -5.704366)
 
 [node name="SM_Env_Tree_Forest_03" parent="Decorations" unique_id=2040761179 instance=ExtResource("7_kbnj6")]
 transform = Transform3D(0.63486445, -0.13669515, 0, 0.13669515, 0.63486445, 0, 0, 0, 0.6494138, 8.550222, 0.8158612, -17.777584)
 
 [node name="SM_Env_Bush_Palm_02" parent="Decorations" unique_id=1639687570 instance=ExtResource("8_xroou")]
-transform = Transform3D(0.9637217, 0.2669091, 0, -0.2669091, 0.9637217, 0, 0, 0, 1, -10.495853, 0.16397387, -2.2345142)
+transform = Transform3D(0.9637217, 0.2669091, 0, -0.2669091, 0.9637217, 0, 0, 0, 1, -10.495853, 0.16397387, -1.72296)
 
 [node name="SM_Env_Bush_Palm_04" parent="Decorations" unique_id=1010752143 instance=ExtResource("8_xroou")]
-transform = Transform3D(1.7428354, 0.28439534, 0, -0.28439534, 1.7428354, 0, 0, 0, 1.765887, -11.123355, -0.27796984, -15.206529)
+transform = Transform3D(1.7428354, 0.28439534, 0, -0.28439534, 1.7428354, 0, 0, 0, 1.765887, -11.123355, -0.27796984, -13.413375)
 
 [node name="SM_Env_Bush_Palm_05" parent="Decorations" unique_id=1827465736 instance=ExtResource("8_xroou")]
 transform = Transform3D(0.97493595, 0.15908974, 0, -0.15908974, 0.97493595, 0, 0, 0, 0.98783094, 8.505807, 0.025309086, -2.2693048)
 
 [node name="SM_Env_Bush_Palm_03" parent="Decorations" unique_id=1833635887 instance=ExtResource("8_xroou")]
 transform = Transform3D(1.2350845, -0.13154893, 0, 0.13154893, 1.2350845, 0, 0, 0, 1.2420703, 8.95598, 0.5918681, -12.591884)
+
+[node name="SM_Env_Tree_Forest_04" parent="Decorations" unique_id=490228687 instance=ExtResource("7_kbnj6")]
+transform = Transform3D(0.9999069, 0.013643426, 0, -0.013643426, 0.9999069, 0, 0, 0, 1, -9.540296, 1.0069518, -19.52793)
+
+[node name="SM_Env_Tree_Forest_01" parent="Decorations" unique_id=1768891863 instance=ExtResource("12_wbi0s")]
+transform = Transform3D(0.47617796, 0, 0, 0, 0.47617796, 0, 0, 0, 0.47617796, 8.26048, 0.48884916, -4.8062654)
 
 [node name="SandPath" type="Node3D" parent="Decorations" unique_id=795888883]
 transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, -5.036, 0, 4.9834948)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_1tmgx"]
 [ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_r5hu4"]
+[ext_resource type="PackedScene" uid="uid://w8r8pd85apfw" path="res://scenes/obstacles/wolf/wolf_obstacle.tscn" id="3_odd6u"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="4_xircn"]
 [ext_resource type="Texture2D" uid="uid://b2mp23xtnueyu" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Textures/PolygonNatureBiomes_Tropical_Texture_01.png" id="5_2lshq"]
 [ext_resource type="ArrayMesh" uid="uid://ominwwk4qn4t" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Models/extracted/SM_Env_Flowers_01.SM_Env_Flowers_01_LOD0.mesh" id="6_ivg1t"]
@@ -12,9 +13,10 @@
 [ext_resource type="Script" uid="uid://dxq4p56omxx80" path="res://addons/lowpolyterrain/LowPolyTerrainManager.gd" id="11_im4hl"]
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="12_axcj0"]
 [ext_resource type="Material" uid="uid://dpgmqwb1bj6wl" path="res://resources/materials/grass_ground_material.tres" id="13_r7ipk"]
+[ext_resource type="PackedScene" uid="uid://bnfj2kh0452f1" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Tree_Forest_01.prefab.scn" id="14_odd6u"]
 [ext_resource type="PackedScene" uid="uid://7hddu1b5x4ek" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Pile_04.prefab.scn" id="14_r5hu4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tmgx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5hu4"]
 render_priority = 0
 shader = ExtResource("4_xircn")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -48,7 +50,7 @@ instance_count = 16
 mesh = ExtResource("6_ivg1t")
 buffer = PackedFloat32Array(0.67770094, 0, 0.7353376, -6.745607, 0, 1, 0, 0.24712753, -0.7353376, 0, 0.67770094, -5.7284856, 0.9999818, 0, -0.0060276543, -8.783805, 0, 1, 0, 0.37548876, 0.0060276543, 0, 0.9999818, -12.791294, 0.7068794, 0, 0.7073341, -6.7394857, 0, 1, 0, 0.14362478, -0.7073341, 0, 0.7068794, -20.810202, -0.7123814, 0, -0.70179254, -9.99359, 0, 1, 0, 0.78571844, 0.70179254, 0, -0.7123814, -4.7304306, 0.31345776, 0, 0.9496021, -9.329522, 0, 1, 0, 0.46529722, -0.9496021, 0, 0.31345776, -9.660931, 0.84473205, 0, 0.5351895, 7.778017, 0, 1, 0, 0.6498203, -0.5351895, 0, 0.84473205, -15.519466, 0.29137787, 0, -0.95660806, 7.4008303, 0, 1, 0, 0.6470337, 0.95660806, 0, 0.29137787, -19.738728, 0.8537094, 0, -0.5207497, 13.113258, 0, 1, 0, 0.8830004, 0.5207497, 0, 0.8537094, -11.447889, -0.55155236, 0, 0.83414024, 12.8199005, 0, 1, 0, 1.3983245, -0.83414024, 0, -0.55155236, -1.5323474, 0.9980916, 0, 0.061751537, 10.373422, 0, 1, 0, 0.71166134, -0.061751537, 0, 0.9980916, -11.485251, 0.31929934, -0.08185896, -0.9441118, 8.781791, -0.1608282, 0.9771293, -0.13911395, 0.9507847, 0.933907, 0.19625878, 0.29883146, -2.149487, -0.52135926, 0.020813892, -0.8530835, 11.008066, -0.12469912, 0.98711264, 0.10029347, 1.4505882, 0.84417695, 0.15866768, -0.51204485, -23.014608, 0.0920688, -0.17164141, 0.9808479, 10.051924, 0.096427895, 0.9819389, 0.16278099, 1.2499514, -0.99107265, 0.07959404, 0.10695695, -22.021347, -0.9581039, 0.24127665, 0.15434584, -12.251065, 0.26366872, 0.95346093, 0.14625704, 2.2150974, -0.111874305, 0.1808256, -0.97713166, -24.244354, -0.66189796, 0.22937238, -0.71363807, -12.534468, 0.0064460635, 0.9537395, 0.30056524, 1.8225198, 0.7495662, 0.19434339, -0.63275677, -21.405739, 0.7145042, 0.5378767, -0.4474063, -11.424599, -0.45877233, 0.8430109, 0.28082123, 1.1302857, 0.5282156, 0.004609702, 0.8490978, -8.724639)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5hu4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odd6u"]
 render_priority = 0
 shader = ExtResource("4_xircn")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -159,10 +161,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9523044, 2.9166996, -15.478
 
 [node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
 
+[node name="WolfObstacle" parent="Obstacles" unique_id=312577444 instance=ExtResource("3_odd6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91248, 0, -28.317642)
+
 [node name="Decorations" type="Node3D" parent="." unique_id=294700162]
 
 [node name="YellowFlowers" type="MultiMeshInstance3D" parent="Decorations" unique_id=324003236]
-material_override = SubResource("ShaderMaterial_1tmgx")
+material_override = SubResource("ShaderMaterial_r5hu4")
 cast_shadow = 0
 visibility_range_end = 30.0
 multimesh = SubResource("MultiMesh_r5hu4")
@@ -188,7 +193,7 @@ metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
 
 [node name="BlueFlowers" type="MultiMeshInstance3D" parent="Decorations" unique_id=2145570294]
-material_override = SubResource("ShaderMaterial_r5hu4")
+material_override = SubResource("ShaderMaterial_odd6u")
 visibility_range_end = 30.0
 multimesh = SubResource("MultiMesh_1tmgx")
 script = ExtResource("7_diupu")
@@ -213,13 +218,25 @@ metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
 
 [node name="SM_Env_Tree_Forest_02" parent="Decorations" unique_id=151375702 instance=ExtResource("9_eptaa")]
-transform = Transform3D(0.61879987, -0.19704105, 0, 0.19704105, 0.61879987, 0, 0, 0, 0.64941376, 10.411495, 0.4851451, -7.6928844)
+transform = Transform3D(0.61879987, -0.19704105, 0, 0.19704105, 0.61879987, 0, 0, 0, 0.64941376, 10.411495, 1.2018597, -7.6928844)
+
+[node name="SM_Env_Rock_Pile_04" parent="Decorations" unique_id=325283886 instance=ExtResource("14_r5hu4")]
+transform = Transform3D(1.2639322, 0, 0, 0, 1.2639322, 0, 0, 0, 1.2639322, -1.7476196, 0, -9.664074)
+
+[node name="SM_Env_Rock_Pile_05" parent="Decorations" unique_id=2082601791 instance=ExtResource("14_r5hu4")]
+transform = Transform3D(-0.42761385, 0, 0.6438648, 0.07710258, 0.7673647, 0.0512066, -0.6392317, 0.092557676, -0.4245368, 3.860406, -0.27037954, -19.868946)
+
+[node name="SM_Env_Tree_Forest_01" parent="Decorations" unique_id=1768891863 instance=ExtResource("14_odd6u")]
+transform = Transform3D(0.67867297, 0, 0, 0, 0.67867297, 0, 0, 0, 0.67867297, -11.135941, 0.48884916, -5.4214334)
 
 [node name="SM_Env_Tree_Forest_04" parent="Decorations" unique_id=1926208141 instance=ExtResource("9_eptaa")]
-transform = Transform3D(0.64938116, 0.006526917, 0, -0.006526917, 0.64938116, 0, 0, 0, 0.64941376, 11.101959, 0.4851451, -21.913654)
+transform = Transform3D(0.64817995, -0.040015496, 0, 0.040015496, 0.64817995, 0, 0, 0, 0.64941376, 6.929306, 0.4851451, -21.913654)
 
 [node name="SM_Env_Tree_Forest_03" parent="Decorations" unique_id=2040761179 instance=ExtResource("9_eptaa")]
-transform = Transform3D(0.74571955, -0.12393148, 0, 0.12393148, 0.74571955, 0, 0, 0, 0.7559473, -11.710325, 0.8158612, -22.76108)
+transform = Transform3D(0.78960234, -0.13122438, 0, 0.13122438, 0.78960234, 0, 0, 0, 0.80043197, -11.710325, 0.8158612, -22.76108)
+
+[node name="SM_Env_Tree_Forest_05" parent="Decorations" unique_id=119259984 instance=ExtResource("9_eptaa")]
+transform = Transform3D(0.7020789, 0.13845353, 0, -0.13845353, 0.7020789, 0, 0, 0, 0.7156002, -7.995373, 0.62353706, -14.370576)
 
 [node name="SM_Env_Bush_Palm_02" parent="Decorations" unique_id=1639687570 instance=ExtResource("10_8mll5")]
 transform = Transform3D(0.9637217, 0.2669091, 0, -0.2669091, 0.9637217, 0, 0, 0, 1, -10.495853, 0.16397387, -21.72484)
@@ -329,9 +346,3 @@ shape = SubResource("ConcavePolygonShape3D_3c8wn")
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.974483)
 metadata/_edit_lock_ = true
-
-[node name="SM_Env_Rock_Pile_04" parent="." unique_id=325283886 instance=ExtResource("14_r5hu4")]
-transform = Transform3D(1.2639322, 0, 0, 0, 1.2639322, 0, 0, 0, 1.2639322, -1.7476196, 0, -9.664074)
-
-[node name="SM_Env_Rock_Pile_05" parent="." unique_id=2082601791 instance=ExtResource("14_r5hu4")]
-transform = Transform3D(-0.42761385, 0, 0.6438648, 0.07710258, 0.7673647, 0.0512066, -0.6392317, 0.092557676, -0.4245368, 3.860406, -0.27037954, -19.868946)

@@ -9604,7 +9604,7 @@ _data = {
 &"loop": SubResource("Animation_h6imj")
 }
 
-[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles") groups=["obstacle"]]
+[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles") groups=["obstacle", "wolf"]]
 collision_layer = 2
 script = ExtResource("1_fxpeh")
 animation_player = NodePath("WolfModel/AnimationPlayer")

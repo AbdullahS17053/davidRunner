@@ -8,7 +8,7 @@ extends Node
 func _unhandled_input(event: InputEvent) -> void:
 	if Global.is_game_started: return
 	
-	if not player.is_dead:
+	if not player.is_dead and main_menu.visible:
 		if event is InputEventScreenTouch:
 			if event.pressed and event.position:
 				if main_menu: main_menu.menu_anims.play("exit")
@@ -19,6 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				start_gameplay()
 
 func _ready() -> void:
+	Global.game_over.connect(_on_game_over)
 	if Global.auto_restart:
 		Global.auto_restart = false
 		start_gameplay()
@@ -32,3 +33,6 @@ func start_gameplay() -> void:
 	world_anims.play("Intro")
 	Global.is_game_started = true
 	AudioManager.bgm.play()
+
+func _on_game_over() -> void:
+	player.player_death()

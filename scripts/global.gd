@@ -5,6 +5,13 @@ signal coin_collected(amount: int)
 @warning_ignore("unused_signal")
 signal game_over
 
+@warning_ignore("unused_signal")
+signal boss_defeated
+@warning_ignore("unused_signal")
+signal boss_failed
+@warning_ignore("unused_signal")
+signal on_boss_hit
+
 var coins: int = 0
 var selected_map_index: int = 0
 
@@ -19,7 +26,7 @@ var highest_coins: int:
 var distance: float = 0
 
 var auto_restart: bool = false
-var is_game_started: bool = false
+var is_game_started: bool = false	
 
 func reset_score() -> void:
 	coins = 0

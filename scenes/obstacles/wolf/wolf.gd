@@ -41,6 +41,10 @@ func _physics_process(delta: float) -> void:
 		if can_move:
 			position.z -= direction * move_speed * delta
 
+func stop_moving() -> void:
+	can_move = false
+	animation_player.play("Idle", 0.2)
+
 func _on_click_detection_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if is_dead:
 		return

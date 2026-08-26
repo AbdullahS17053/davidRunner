@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ly7wmfol8iy2"
-path.s3tc="res://.godot/imported/T_Polygon_Dummy_01.png-bd93cb00996bae8143ffa554b8c118a7.s3tc.ctex"
-path.etc2="res://.godot/imported/T_Polygon_Dummy_01.png-bd93cb00996bae8143ffa554b8c118a7.etc2.ctex"
+uid="uid://btbk8qti3bjol"
+path.s3tc="res://.godot/imported/David_0.png-cbcbd979e712722844add848410548a9.s3tc.ctex"
+path.etc2="res://.godot/imported/David_0.png-cbcbd979e712722844add848410548a9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "3ef027064ed03f4d78fa528a343ca24b"
+}
 
 [deps]
 
-source_file="res://scenes/player/character/T_Polygon_Dummy_01.png"
-dest_files=["res://.godot/imported/T_Polygon_Dummy_01.png-bd93cb00996bae8143ffa554b8c118a7.s3tc.ctex", "res://.godot/imported/T_Polygon_Dummy_01.png-bd93cb00996bae8143ffa554b8c118a7.etc2.ctex"]
+source_file="res://scenes/player/character/David_0.png"
+dest_files=["res://.godot/imported/David_0.png-cbcbd979e712722844add848410548a9.s3tc.ctex", "res://.godot/imported/David_0.png-cbcbd979e712722844add848410548a9.etc2.ctex"]
 
 [params]
 

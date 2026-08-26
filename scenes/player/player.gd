@@ -26,6 +26,7 @@ extends CharacterBody3D
 @export var dust_particles: GPUParticles3D
 @export var slide_particles: GPUParticles3D
 @export var player_anims: AnimationPlayer
+@export var heavy_shake: ShakerComponent3D
 @export var shaker_component_3d: ShakerComponent3D
 @export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
 

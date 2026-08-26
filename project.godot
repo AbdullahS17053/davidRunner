@@ -81,6 +81,7 @@ moving_obstacle=""
 boss_ui=""
 wolf=""
 boss=""
+level_manager=""
 
 [godots]
 

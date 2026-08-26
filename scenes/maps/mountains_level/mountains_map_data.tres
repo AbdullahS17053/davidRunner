@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bx6kcxp1hg4xn" path="res://assets/textures/map_previews/Mountains_preview.png" id="9_b6udj"]
 [ext_resource type="Environment" uid="uid://bx20w4imuaw8k" path="res://scenes/maps/mountains_level/mountains_map_env.tres" id="9_n6wpd"]
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="10_n6wpd"]
+[ext_resource type="PackedScene" uid="uid://cpwanr8mr5fjx" path="res://scenes/maps/mountains_level/chunks/end_chunk.tscn" id="12_abrh4"]
 
 [sub_resource type="Resource" id="Resource_dgt7p"]
 script = ExtResource("2_tgown")
@@ -49,5 +50,6 @@ map_name = "Mountains"
 map_image = ExtResource("9_b6udj")
 map_env = ExtResource("9_n6wpd")
 base_chunk = ExtResource("1_uja6m")
+world_end_chunk = ExtResource("12_abrh4")
 chunks_data = Array[ExtResource("2_tgown")]([SubResource("Resource_dgt7p"), SubResource("Resource_as1cp"), SubResource("Resource_006py"), SubResource("Resource_8ckoj"), SubResource("Resource_d3c03"), SubResource("Resource_ocy1v")])
 metadata/_custom_type_script = "uid://cttjx60q28xvo"

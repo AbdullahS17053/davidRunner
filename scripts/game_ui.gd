@@ -21,6 +21,8 @@ var is_warning_phase: bool = false
 var warning_timer: float = 0.0
 var warning_tween: Tween
 
+var world_end_z: float = 0.0
+
 func _ready() -> void:
 	Global.coin_collected.connect(on_coin_collected)
 	
@@ -44,9 +46,10 @@ func _process(delta: float) -> void:
 		if warning_timer >= warning_duration:
 			is_warning_phase = false
 			is_waiting_for_clearance = true
+			Global.can_spawn_chunks = false # STOP SPAWNING CHUNKS NOW!
 			
 	if is_waiting_for_clearance:
-		if _is_path_clear():
+		if _is_at_world_end(): 
 			is_waiting_for_clearance = false
 			boss_fought = true
 			
@@ -59,40 +62,43 @@ func _process(delta: float) -> void:
 
 func _trigger_boss_encounter() -> void:
 	if boss_scene and player:
+		Global.is_game_started = false
+		get_tree().call_group("wolf", "stop_moving")
+		
+		if player:
+			player.move_speed = 0.0
+			if player.has_method("reset_for_boss"):
+				player.reset_for_boss()
+		
 		current_boss = boss_scene.instantiate() as Boss
 		get_tree().current_scene.add_child(current_boss)
 		
-		# Call the new rising function instead of the old sky drop
-		current_boss.rise_from_abyss(player) 
+		current_boss.rise_from_abyss(player, world_end_z)
 		
-		# Use the new rise_duration variable for the timer
 		var timer: SceneTreeTimer = get_tree().create_timer(current_boss.rise_duration)
 		timer.timeout.connect(func():
 			boss_ui.start_boss_fight()
 		)
 
-func _is_path_clear() -> bool:
-	if not player: 
-		return false
+func _is_at_world_end() -> bool:
+	var level_manager = get_tree().get_first_node_in_group("level_manager")
+	if not level_manager or level_manager.active_chunks.is_empty():
+		return true # Failsafe
 		
-	var obstacles = get_tree().get_nodes_in_group("obstacle")
-	var check_distance: float = 20.0 
-	var safe_zone_radius: float = 5.0
+	var last_chunk = level_manager.active_chunks.back()
+	var end_point = last_chunk.get_node_or_null("EndPoint")
 	
-	for obs in obstacles:
-		var is_same_lane: bool = abs(obs.global_position.x - player.global_position.x) < 0.5
+	var end_z: float = last_chunk.global_position.z - 50.0
+	if end_point:
+		end_z = end_point.global_position.z
 		
-		if is_same_lane:
-			var is_in_front: bool = obs.global_position.z < player.global_position.z
-			var is_in_drop_range: bool = obs.global_position.z > (player.global_position.z - check_distance)
-			
-			var distance_to_player: float = abs(obs.global_position.z - player.global_position.z)
-			var is_too_close_to_player: bool = distance_to_player < safe_zone_radius
-			
-			if (is_in_front and is_in_drop_range) or is_too_close_to_player:
-				return false
-				
-	return true
+	var distance_to_end = abs(player.global_position.z - end_z)
+	
+	if distance_to_end <= 10.0:
+		world_end_z = end_z
+		return true
+		
+	return false
 
 func _play_warning_effect() -> void:
 	if not warning_label:

@@ -1051,7 +1051,7 @@ boss_ui = NodePath("../BossBattleUI")
 warning_label = NodePath("WarningLabel")
 player = NodePath("../../Player")
 boss_scene = ExtResource("3_ocy1v")
-boss_trigger_time = 2.0
+boss_trigger_time = 1.0
 
 [node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
 visible = false
@@ -1857,12 +1857,11 @@ shadow_blur = 0.5
 directional_shadow_mode = 0
 directional_shadow_max_distance = 20.0
 
-[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player", "world_environment")]
+[node name="LevelManager" type="Node3D" parent="." unique_id=806967199 node_paths=PackedStringArray("player", "world_environment") groups=["level_manager"]]
 physics_interpolation_mode = 1
 script = ExtResource("17_wkq8n")
 player = NodePath("../Player")
 available_maps = Array[ExtResource("19_kto32")]([ExtResource("20_jkcmn"), ExtResource("21_kto32")])
-chunks_ahead = 5
 despawn_distance = 10.0
 world_environment = NodePath("../WorldEnvironment")
 
@@ -1872,7 +1871,7 @@ script = ExtResource("26_n3hxp")
 [node name="InterpolatedCamera3D" type="Camera3D" parent="." unique_id=1138056526 node_paths=PackedStringArray("target")]
 process_mode = 3
 physics_interpolation_mode = 1
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5, 1, -0.36242437)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.500003, 0.99999946, -0.36242396)
 script = ExtResource("25_jkcmn")
 target = NodePath("../Player/Marker3D")
 metadata/_custom_type_script = "uid://bagu61ausjpp8"
@@ -1885,12 +1884,21 @@ duration = 0.3
 shakerPreset = SubResource("Resource_dgt7p")
 metadata/_custom_type_script = "uid://bypjg77awrwwv"
 
-[node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("shaker_component_3d") groups=["player"] instance=ExtResource("27_i1rv8")]
+[node name="HeavyShake" type="Node3D" parent="InterpolatedCamera3D" unique_id=1836865190]
+process_mode = 3
+script = ExtResource("25_kto32")
+intensity = 0.1
+duration = 6.0
+shakerPreset = SubResource("Resource_dgt7p")
+metadata/_custom_type_script = "uid://bypjg77awrwwv"
+
+[node name="Player" parent="." unique_id=22477516 node_paths=PackedStringArray("heavy_shake", "shaker_component_3d") groups=["player"] instance=ExtResource("27_i1rv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
 animation_playback = SubResource("AnimationNodeStateMachinePlayback_idkr2")
+heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
 [node name="Marker3D" type="Marker3D" parent="Player" unique_id=1740994092]

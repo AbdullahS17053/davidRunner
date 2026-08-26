@@ -5,4 +5,5 @@ extends Resource
 @export var map_image: Texture2D
 @export var map_env: Environment
 @export var base_chunk: PackedScene
+@export var world_end_chunk: PackedScene
 @export var chunks_data: Array[ChunkData]

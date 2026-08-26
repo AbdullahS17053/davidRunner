@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cpwanr8mr5fjx"]
+
+[ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_qu5mc"]
+[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="2_jlyjf"]
+[ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="4_bdoik"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2snq"]
+material = ExtResource("4_bdoik")
+size = Vector3(25, 0, 15.427002)
+subdivide_depth = 15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iry7p"]
+size = Vector3(25, 0.1, 13.41349)
+
+[node name="EndChunk" type="Node3D" unique_id=1451399318]
+
+[node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
+script = ExtResource("1_qu5mc")
+lane_width = 4.0
+lane_length = 20.0
+
+[node name="Collectibles" type="Node3D" parent="." unique_id=1703818379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
+
+[node name="Decorations" type="Node3D" parent="." unique_id=294700162]
+
+[node name="SM_Env_Rock_Cliff_03" parent="Decorations" unique_id=2115676785 instance=ExtResource("2_jlyjf")]
+transform = Transform3D(-4.820067e-08, 0, -1.1027027, 0, 1.1027027, 0, 1.1027027, 0, -4.820067e-08, -11.180583, -0.4355793, -9.429164)
+
+[node name="SM_Env_Rock_Cliff_05" parent="Decorations" unique_id=1467202377 instance=ExtResource("2_jlyjf")]
+transform = Transform3D(1.2931046, 0, -4.68946e-15, 0, 1.2931046, 0, 4.68946e-15, 0, 1.2931046, -0.6054783, -9.870349, -17.312695)
+
+[node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("2_jlyjf")]
+transform = Transform3D(-4.8742947e-08, 0, -1.1151086, 0, 1.1151086, 0, 1.1151086, 0, -4.8742947e-08, 11.456154, -0.4355793, -8.9388)
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.224438)
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=949234256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02578125, -7.86471)
+mesh = SubResource("BoxMesh_h2snq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=2017753066]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=719750250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0497932)
+shape = SubResource("BoxShape3D_iry7p")

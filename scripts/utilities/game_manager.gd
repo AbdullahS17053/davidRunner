@@ -29,6 +29,7 @@ func _process(_delta: float) -> void:
 	total_coins_label.text = "%d" % Global.total_coins
 
 func start_gameplay() -> void:
+	Global.can_spawn_chunks = true
 	player.dust_particles.show()
 	world_anims.play("Intro")
 	Global.is_game_started = true

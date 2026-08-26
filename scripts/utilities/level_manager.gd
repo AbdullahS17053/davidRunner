@@ -10,20 +10,27 @@ class_name LevelManager
 
 var active_base_chunk: PackedScene
 var active_chunks_data: Array[ChunkData]
+var active_end_chunk: PackedScene
 
 var active_chunks: Array[Node3D] = []
 var next_spawn_z: float = 0.0
 var last_chunk_index: int = -1
 var pending_tasks: Dictionary = {}
 
+var has_spawned_end_chunk: bool = false
+
 func _ready() -> void:
+	has_spawned_end_chunk = false
+	
 	var current_map: MapData = available_maps[Global.selected_map_index]
 	active_base_chunk = current_map.base_chunk
 	active_chunks_data = current_map.chunks_data
 	
+	active_end_chunk = current_map.world_end_chunk 
+	
 	if world_environment and current_map.map_env:
 		world_environment.environment = current_map.map_env
-	
+		
 	assert(active_base_chunk != null, "LevelManager needs a base chunk to start with.")
 	assert(active_chunks_data.size() > 0, "LevelManager needs random chunks.")
 	assert(player != null, "LevelManager needs a reference to the player.")
@@ -79,6 +86,16 @@ func _thread_instantiate(scene: PackedScene, result_container: Array) -> void:
 	result_container.append(scene.instantiate())
 
 func spawn_random_chunk_async() -> void:
+	if not Global.can_spawn_chunks:
+		if not has_spawned_end_chunk and active_end_chunk != null:
+			has_spawned_end_chunk = true
+			
+			var result_container: Array = []
+			var callable = _thread_instantiate.bind(active_end_chunk, result_container)
+			var task_id = WorkerThreadPool.add_task(callable, true, "Instantiate End Chunk")
+			pending_tasks[task_id] = result_container
+		return
+		
 	var scene: PackedScene = _get_random_chunk_scene()
 	if scene == null: return
 	
@@ -88,11 +105,20 @@ func spawn_random_chunk_async() -> void:
 	pending_tasks[task_id] = result_container
 
 func spawn_specific_chunk_sync(scene: PackedScene) -> void:
+	if not Global.can_spawn_chunks:
+		return
+
 	if scene == null: return
 	var chunk_instance: Node3D = scene.instantiate()
 	_finalize_chunk(chunk_instance)
 
 func spawn_random_chunk_sync() -> void:
+	if not Global.can_spawn_chunks:
+		if not has_spawned_end_chunk and active_end_chunk != null:
+			has_spawned_end_chunk = true
+			spawn_specific_chunk_sync(active_end_chunk)
+		return
+		
 	var scene: PackedScene = _get_random_chunk_scene()
 	spawn_specific_chunk_sync(scene)
 

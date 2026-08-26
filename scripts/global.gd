@@ -14,6 +14,7 @@ signal on_boss_hit
 
 var coins: int = 0
 var selected_map_index: int = 0
+var can_spawn_chunks: bool = true
 
 var total_coins: int:
 	get: return SaveManager.data["stats"]["total_coins"]

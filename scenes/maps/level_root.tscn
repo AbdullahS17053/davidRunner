@@ -1124,7 +1124,7 @@ grow_horizontal = 2
 text = "BOSS INCOMING!!"
 label_settings = SubResource("LabelSettings_bybcv")
 
-[node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("progress_bar", "tap_zone", "player") groups=["boss_ui"]]
+[node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("tap_zone", "player") groups=["boss_ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1134,7 +1134,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_8ckoj")
 script = ExtResource("7_d3c03")
-progress_bar = NodePath("ProgressBar")
 tap_zone = NodePath("TapZone")
 player = NodePath("../../Player")
 

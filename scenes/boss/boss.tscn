@@ -5245,10 +5245,9 @@ stream_0/stream = ExtResource("4_iva7r")
 
 [node name="Boss" type="CharacterBody3D" unique_id=768810446 node_paths=PackedStringArray("smoke", "boss_anims", "animation_player") groups=["boss"]]
 process_mode = 3
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_dgf3a")
 target_distance_ahead = 4.0
-walk_speed = 0.6
-attack_distance = 0.5
 smoke = NodePath("Smoke")
 boss_anims = NodePath("BossAnims")
 animation_player = NodePath("Model/AnimationPlayer")

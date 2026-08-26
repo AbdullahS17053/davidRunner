@@ -61,9 +61,12 @@ func _trigger_boss_encounter() -> void:
 	if boss_scene and player:
 		current_boss = boss_scene.instantiate() as Boss
 		get_tree().current_scene.add_child(current_boss)
-		current_boss.spawn_from_sky(player)
 		
-		var timer: SceneTreeTimer = get_tree().create_timer(current_boss.fall_duration)
+		# Call the new rising function instead of the old sky drop
+		current_boss.rise_from_abyss(player) 
+		
+		# Use the new rise_duration variable for the timer
+		var timer: SceneTreeTimer = get_tree().create_timer(current_boss.rise_duration)
 		timer.timeout.connect(func():
 			boss_ui.start_boss_fight()
 		)

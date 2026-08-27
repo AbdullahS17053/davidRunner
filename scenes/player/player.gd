@@ -29,6 +29,9 @@ extends CharacterBody3D
 @export var heavy_shake: ShakerComponent3D
 @export var shaker_component_3d: ShakerComponent3D
 @export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
+@export_subgroup("Projectile")
+@export var projectile_scene: PackedScene
+@export var projectile_spawn_point: Marker3D
 
 var is_swiping: bool = false
 var touch_start_pos: Vector2 = Vector2.ZERO
@@ -55,7 +58,6 @@ func _ready() -> void:
 	
 	normal_height = col_shape.shape.height
 	normal_pos_y = col_shape.position.y
-	
 
 func _input(event: InputEvent) -> void:
 	if not Global.is_game_started: return
@@ -166,6 +168,10 @@ func reset_for_boss() -> void:
 	velocity = Vector3.ZERO
 	dust_particles.emitting = false
 	slide_particles.emitting = false
+
+	current_lane = 0
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "position:x", 0.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	is_jumping = false
 	is_sliding = false
@@ -183,8 +189,26 @@ func player_death() -> void:
 	Global.total_coins += Global.coins
 	Global.save_stats()
 
+func shoot_at_target(target_node: Node3D) -> void:
+	animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
+	await get_tree().create_timer(0.2).timeout
+	
+	if not is_inside_tree():
+		return
+		
+	if not is_instance_valid(target_node) or not projectile_scene or not projectile_spawn_point:
+		return
+		
+	var projectile: Projectile = projectile_scene.instantiate() as Projectile
+	get_tree().root.add_child(projectile)
+	
+	projectile.global_position = projectile_spawn_point.global_position
+	projectile.fire_at(target_node)
+
+func play_slingshot_animation() -> void:
+	animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):
-		#player_death()
-		#await get_tree().create_timer(0.6).timeout
 		Global.game_over.emit()

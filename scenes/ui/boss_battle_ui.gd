@@ -29,8 +29,11 @@ func _on_tap_zone_gui_input(event: InputEvent) -> void:
 		return
 		
 	if event is InputEventScreenTouch and event.pressed:
-		if AudioManager.has_method("ui_tap"):
-			AudioManager.ui_tap.play()
+		var boss: Boss = get_tree().get_first_node_in_group("boss") as Boss
+		if boss:
+			player.shoot_at_target(boss.head_point)
+			
+		AudioManager.ui_tap.play()
 		end_fight(true)
 
 func _on_time_out() -> void:
@@ -49,10 +52,9 @@ func end_fight(won: bool) -> void:
 	
 	Global.can_spawn_chunks = true
 	
-	if won:
-		Global.boss_defeated.emit()
+	if won: pass
 	else:
-		var boss = get_tree().get_first_node_in_group("boss")
+		var boss: Boss = get_tree().get_first_node_in_group("boss") as Boss
 		if boss and boss.has_method("play_attack"):
 			boss.play_attack()
 		await get_tree().create_timer(0.5).timeout

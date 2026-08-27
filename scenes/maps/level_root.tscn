@@ -1908,7 +1908,7 @@ animation_playback = SubResource("AnimationNodeStateMachinePlayback_idkr2")
 heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
-[node name="Marker3D" type="Marker3D" parent="Player" unique_id=1740994092]
+[node name="Marker3D" type="Marker3D" parent="Player" unique_id=1039119968]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5, 1, -0.36242437)
 
 [node name="WorldAnims" type="AnimationPlayer" parent="." unique_id=189864053]

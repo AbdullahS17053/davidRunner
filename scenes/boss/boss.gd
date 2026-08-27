@@ -7,6 +7,8 @@ extends CharacterBody3D
 @export var smoke: GPUParticles3D
 @export var boss_anims: AnimationPlayer
 @export var boss_entrance_rumble: AudioStreamPlayer
+@export var head_point: Marker3D
+@export var growl: AudioStreamPlayer
 
 var player: Player
 var is_active: bool = false
@@ -51,10 +53,19 @@ func _on_landed() -> void:
 	if player and player.shaker_component_3d:
 		player.shaker_component_3d.play_shake()
 
+func die() -> void:
+	Global.boss_defeated.emit()
+
+func get_target_position() -> Vector3:
+	if head_point:
+		return head_point.global_position
+	return global_position
+
 func play_defeat() -> void:
 	is_active = false
 	if boss_anims.has_animation("fall"):
 		AudioManager.heavy_fall_impact.play()
+		growl.play()
 		boss_anims.play("fall", 0.2)
 
 	var tween: Tween = create_tween()
@@ -64,5 +75,3 @@ func play_defeat() -> void:
 func play_attack() -> void:
 	if boss_anims and boss_anims.has_animation("attack"):
 		boss_anims.play("attack", 0.2)
-		#if player and player.has_method("player_death"):
-			#player.player_death()

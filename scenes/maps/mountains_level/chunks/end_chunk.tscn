@@ -588,6 +588,7 @@ stream_0/stream = ExtResource("7_khsdi")
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
 script = ExtResource("1_qu5mc")
 lane_width = 4.0
 lane_length = 20.0
@@ -625,15 +626,16 @@ collision_layer = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0497932)
 shape = SubResource("BoxShape3D_iry7p")
 
-[node name="Boss" type="CharacterBody3D" parent="." unique_id=768810446 node_paths=PackedStringArray("smoke", "boss_anims", "boss_entrance_rumble") groups=["boss"]]
+[node name="Boss" type="CharacterBody3D" parent="." unique_id=768810446 node_paths=PackedStringArray("boss_anims", "boss_entrance_rumble", "head_point", "growl") groups=["boss"]]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24.563854, -25.166714)
 script = ExtResource("4_nys2j")
 boss_scale = 1.0
 rise_duration = 4.0
-smoke = NodePath("")
 boss_anims = NodePath("BossAnims")
 boss_entrance_rumble = NodePath("BossEntrance Rumble")
+head_point = NodePath("Knight/HeadPoint")
+growl = NodePath("Growl")
 
 [node name="Knight" parent="Boss" unique_id=1612502435 instance=ExtResource("5_avdmn")]
 transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 0, -10.56, 0)
@@ -675,6 +677,9 @@ bone = 25
 target_node = NodePath("../../../../RHandLookAtTarget")
 bone_name = "RightHand"
 bone = 49
+
+[node name="HeadPoint" type="Marker3D" parent="Boss/Knight" unique_id=7758290]
+transform = Transform3D(0.055555556, 0, 0, 0, 0.055555556, 0, 0, 0, 0.055555556, 0, 1.6261921, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Boss" unique_id=137392534]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1135254, 0)

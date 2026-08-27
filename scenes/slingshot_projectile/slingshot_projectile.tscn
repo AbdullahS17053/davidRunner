@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cnt0q746wkmyg"]
+
+[ext_resource type="Script" uid="uid://bd7akrxgca1ud" path="res://scenes/slingshot_projectile/slingshot_projectile.gd" id="1_ckd63"]
+[ext_resource type="ArrayMesh" uid="uid://bwlg15p3p2vlg" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Models/extracted/SM_Env_Rock_Small_01.SM_Env_Rock_Small_01.mesh" id="2_r3xip"]
+
+[node name="SlingshotProjectile" type="Node3D" unique_id=1708725568]
+script = ExtResource("1_ckd63")
+
+[node name="Slingshot" type="MeshInstance3D" parent="." unique_id=865136347]
+mesh = ExtResource("2_r3xip")

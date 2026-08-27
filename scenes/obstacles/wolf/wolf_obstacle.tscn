@@ -9486,14 +9486,13 @@ _data = {
 &"loop": SubResource("Animation_h6imj")
 }
 
-[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles", "tap_to_kill_text_mesh", "sub_viewport") groups=["obstacle", "wolf"]]
+[node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles", "tap_to_kill_text_mesh") groups=["obstacle", "wolf"]]
 collision_layer = 2
 script = ExtResource("1_fxpeh")
 animation_player = NodePath("WolfModel/AnimationPlayer")
 collision_shape_3d = NodePath("CollisionShape3D")
 click_particles = NodePath("ClickParticles")
 tap_to_kill_text_mesh = NodePath("TapToKillTextMesh")
-sub_viewport = NodePath("")
 
 [node name="WolfModel" parent="." unique_id=250543619 instance=ExtResource("2_5rc8i")]
 transform = Transform3D(0.5476528, 0, 0, 0, 0.5476528, 0, 0, 0, 0.5476528, 0, 0, 0)

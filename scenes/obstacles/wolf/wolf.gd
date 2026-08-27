@@ -49,21 +49,24 @@ func stop_moving() -> void:
 	can_move = false
 	animation_player.play("Idle", 0.2)
 
+func die() -> void:
+	is_dead = true
+	AudioManager.wolf_snarl.play()
+	AudioManager.punch.play()
+	click_particles.restart()
+	player.shaker_component_3d.play_shake()
+	Global.coins += randi_range(5, 10)
+	Global.coin_collected.emit(Global.coins)
+	animation_player.play("Death")
+	collision_shape_3d.set_deferred("disabled", true)
+
 func _on_click_detection_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if is_dead:
 		return
 		
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			is_dead = true
-			AudioManager.wolf_snarl.play()
-			AudioManager.punch.play()
-			click_particles.restart()
-			player.shaker_component_3d.play_shake()
-			Global.coins += randi_range(5, 10)
-			Global.coin_collected.emit(Global.coins)
-			animation_player.play("Death")
-			collision_shape_3d.set_deferred("disabled", true)
+			player.shoot_at_target(self)
 
 func _on_visible_on_screen_enabler_3d_screen_entered() -> void:
 	is_on_screen = true

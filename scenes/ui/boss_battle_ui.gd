@@ -1,13 +1,19 @@
 extends Control
 class_name BossBattleUI
 
-@export var tap_zone: Control
-@export var shrink_time: float = 2.0
 @export var player: Player
+@export var tap_zone: Control
 @export var world_anims: AnimationPlayer
+@export var progress_bar: TextureProgressBar
+
+@export var drain_rate: float = 25.0
+@export var tap_power: float = 8.0
+@export var completion_value: float = 95.0
+@export var min_zone_scale: float = 0.8
+@export var max_zone_scale: float = 1.2
 
 var is_active: bool = false
-var shrink_tween: Tween
+var tap_tween: Tween
 
 func _ready() -> void:
 	self.visible = false
@@ -17,28 +23,46 @@ func _ready() -> void:
 func start_boss_fight() -> void:
 	self.visible = true
 	is_active = true
+	progress_bar.value = 50.0
+
+func _process(delta: float) -> void:
+	if not is_active:
+		return
+		
+	progress_bar.value -= drain_rate * delta
 	
-	tap_zone.scale = Vector2(1.0, 1.0)
+	var current_scale = lerp(min_zone_scale, max_zone_scale, progress_bar.value / 100.0)
 	
-	shrink_tween = create_tween()
-	shrink_tween.tween_property(tap_zone, "scale", Vector2.ZERO, shrink_time)
-	shrink_tween.finished.connect(_on_time_out)
+	if not tap_tween or not tap_tween.is_valid():
+		tap_zone.scale = Vector2(current_scale, current_scale)
+		
+	if progress_bar.value <= 0:
+		end_fight(false)
+	elif progress_bar.value >= completion_value:
+		end_fight(true)
 
 func _on_tap_zone_gui_input(event: InputEvent) -> void:
 	if not is_active:
 		return
 		
 	if event is InputEventScreenTouch and event.pressed:
+		progress_bar.value += tap_power
+		AudioManager.ui_tap.play()
+		_animate_tap()
+		
 		var boss: Boss = get_tree().get_first_node_in_group("boss") as Boss
 		if boss:
-			player.shoot_at_target(boss.head_point)
-			
-		AudioManager.ui_tap.play()
-		end_fight(true)
+			player.shoot_at_target(boss)
 
-func _on_time_out() -> void:
-	if is_active:
-		end_fight(false)
+func _animate_tap() -> void:
+	if tap_tween and tap_tween.is_valid():
+		tap_tween.kill()
+		
+	var target_scale = lerp(min_zone_scale, max_zone_scale, progress_bar.value / 100.0)
+	tap_zone.scale = Vector2(target_scale + 0.15, target_scale + 0.15)
+	
+	tap_tween = create_tween()
+	tap_tween.tween_property(tap_zone, "scale", Vector2(target_scale, target_scale), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func end_fight(won: bool) -> void:
 	if not is_active:
@@ -46,15 +70,14 @@ func end_fight(won: bool) -> void:
 		
 	is_active = false
 	self.visible = false
-	
-	if shrink_tween and shrink_tween.is_valid():
-		shrink_tween.kill()
-	
 	Global.can_spawn_chunks = true
 	
-	if won: pass
+	var boss: Boss = get_tree().get_first_node_in_group("boss") as Boss
+	
+	if won:
+		if boss:
+			boss.vulnerable = true
 	else:
-		var boss: Boss = get_tree().get_first_node_in_group("boss") as Boss
 		if boss and boss.has_method("play_attack"):
 			boss.play_attack()
 		await get_tree().create_timer(0.5).timeout

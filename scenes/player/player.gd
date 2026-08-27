@@ -49,6 +49,7 @@ var normal_pos_y: float
 
 var is_dead: bool = false
 var game_start: bool = false
+var is_shooting: bool = false
 
 func _ready() -> void:
 	is_dead = false
@@ -190,21 +191,28 @@ func player_death() -> void:
 	Global.save_stats()
 
 func shoot_at_target(target_node: Node3D) -> void:
+	if is_shooting:
+		return
+		
+	is_shooting = true
 	animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.4).timeout
 	
 	if not is_inside_tree():
+		is_shooting = false
 		return
 		
-	if not is_instance_valid(target_node) or not projectile_scene or not projectile_spawn_point:
-		return
+	if is_instance_valid(target_node) and projectile_scene and projectile_spawn_point:
+		var projectile: Projectile = projectile_scene.instantiate() as Projectile
+		get_parent().add_child(projectile)
 		
-	var projectile: Projectile = projectile_scene.instantiate() as Projectile
-	get_tree().root.add_child(projectile)
+		projectile.global_position = projectile_spawn_point.global_position
+		projectile.fire_at(target_node)
+		
+	await get_tree().create_timer(0.5).timeout
 	
-	projectile.global_position = projectile_spawn_point.global_position
-	projectile.fire_at(target_node)
+	is_shooting = false
 
 func play_slingshot_animation() -> void:
 	animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE

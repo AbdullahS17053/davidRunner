@@ -72,4 +72,5 @@ func _on_visible_on_screen_enabler_3d_screen_entered() -> void:
 	is_on_screen = true
 
 func _on_visible_on_screen_enabler_3d_screen_exited() -> void:
-	is_on_screen = false
+	#is_on_screen = false
+	pass

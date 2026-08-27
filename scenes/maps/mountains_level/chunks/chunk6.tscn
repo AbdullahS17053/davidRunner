@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_7mhpe"]
 [ext_resource type="PackedScene" uid="uid://c843gok0n3sti" path="res://scenes/collectibles/collectible.tscn" id="2_mrssm"]
-[ext_resource type="Script" uid="uid://dfhopuwqptpu1" path="res://scripts/moving_obstacle.gd" id="4_mrssm"]
 [ext_resource type="PackedScene" uid="uid://w8r8pd85apfw" path="res://scenes/obstacles/wolf/wolf_obstacle.tscn" id="5_7mhpe"]
 [ext_resource type="PackedScene" uid="uid://uxj8kf3lr407" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Ground_02.prefab.scn" id="5_dq5gv"]
 [ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="5_vbda5"]
@@ -77,12 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0291457, 0.6584816, -27.01
 
 [node name="WolfObstacle" parent="Obstacles" unique_id=312577444 instance=ExtResource("5_7mhpe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0116016865, 0, -22.847784)
-
-[node name="MovingObstacle" type="Node3D" parent="Obstacles/WolfObstacle" unique_id=1141393183 node_paths=PackedStringArray("parent")]
-script = ExtResource("4_mrssm")
-move_speed = 8.0
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://dfhopuwqptpu1"
+move_speed = 7.0
 
 [node name="Decorations" type="Node3D" parent="." unique_id=294700162]
 

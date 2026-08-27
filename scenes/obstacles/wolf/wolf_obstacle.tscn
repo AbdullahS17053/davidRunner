@@ -9489,6 +9489,7 @@ _data = {
 [node name="WolfObstacle" type="CharacterBody3D" unique_id=312577444 node_paths=PackedStringArray("animation_player", "collision_shape_3d", "click_particles", "tap_to_kill_text_mesh") groups=["obstacle", "wolf"]]
 collision_layer = 2
 script = ExtResource("1_fxpeh")
+move_speed = 7.0
 animation_player = NodePath("WolfModel/AnimationPlayer")
 collision_shape_3d = NodePath("CollisionShape3D")
 click_particles = NodePath("ClickParticles")

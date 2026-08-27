@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 var player: Player
 var is_active: bool = false
+var vulnerable: bool = false
 
 func _ready() -> void:
 	scale = Vector3(boss_scale, boss_scale, boss_scale)
@@ -29,6 +30,8 @@ func activate(player_node: Node3D) -> void:
 	
 	if boss_anims and boss_anims.has_animation("rise"):
 		boss_anims.play("rise", 0.2)
+	elif boss_anims and boss_anims.has_animation("Rise"):
+		boss_anims.play("Rise", 0.2)
 	else:
 		_on_landed()
 
@@ -39,7 +42,7 @@ func shake_camera_intense() -> void:
 	player.heavy_shake.play_shake()
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Rise":
+	if anim_name.to_lower() == "rise":
 		_on_landed()
 
 func _on_landed() -> void:
@@ -54,6 +57,11 @@ func _on_landed() -> void:
 		player.shaker_component_3d.play_shake()
 
 func die() -> void:
+	if not vulnerable:
+		return
+		
+	vulnerable = false
+	play_defeat()
 	Global.boss_defeated.emit()
 
 func get_target_position() -> Vector3:

@@ -26,7 +26,7 @@ func activate(player_node: Node3D) -> void:
 	boss_entrance_rumble.play()
 	
 	if boss_anims and boss_anims.has_animation("rise"):
-		boss_anims.play_section_with_markers("rise", "rise", "death")
+		boss_anims.play("rise", 0.2)
 	else:
 		_on_landed()
 
@@ -55,7 +55,7 @@ func play_defeat() -> void:
 	is_active = false
 	if boss_anims.has_animation("fall"):
 		AudioManager.heavy_fall_impact.play()
-		boss_anims.play("fall")
+		boss_anims.play("fall", 0.2)
 
 	var tween: Tween = create_tween()
 	tween.tween_interval(1.5)

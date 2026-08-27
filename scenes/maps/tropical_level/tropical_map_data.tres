@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dlhejw8c81d63" path="res://scenes/maps/tropical_level/chunks/tropical_chunk3.tscn" id="5_byhhh"]
 [ext_resource type="PackedScene" uid="uid://0mhp7kj7yrct" path="res://scenes/maps/tropical_level/chunks/tropical_chunk4.tscn" id="6_i8geo"]
 [ext_resource type="PackedScene" uid="uid://c36u3a6flt24h" path="res://scenes/maps/tropical_level/chunks/tropical_chunk5.tscn" id="7_28706"]
+[ext_resource type="PackedScene" uid="uid://drr4mykwoih54" path="res://scenes/maps/tropical_level/chunks/tropical_end_chunk.tscn" id="11_wlobt"]
 
 [sub_resource type="Resource" id="Resource_006py"]
 script = ExtResource("2_3k6t0")
@@ -43,5 +44,6 @@ map_name = "Tropical"
 map_image = ExtResource("3_3k6t0")
 map_env = ExtResource("3_8k5j5")
 base_chunk = ExtResource("1_ynhcb")
+world_end_chunk = ExtResource("11_wlobt")
 chunks_data = Array[ExtResource("2_3k6t0")]([SubResource("Resource_006py"), SubResource("Resource_8td8j"), SubResource("Resource_i8geo"), SubResource("Resource_aq2n0"), SubResource("Resource_l0fef")])
 metadata/_custom_type_script = "uid://cttjx60q28xvo"

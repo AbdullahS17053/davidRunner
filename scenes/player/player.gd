@@ -161,6 +161,7 @@ func simulate_input(action_name: String) -> void:
 	Input.parse_input_event(release_event)
 
 func reset_for_boss() -> void:
+	game_start = false
 	position.y = 0.0 
 	velocity = Vector3.ZERO
 	dust_particles.emitting = false

@@ -62,7 +62,7 @@ func play_defeat() -> void:
 	tween.tween_callback(queue_free)
 
 func play_attack() -> void:
-	if boss_anims and boss_anims.has_animation("Punch"):
-		boss_anims.play("Punch", 0.2)
-		if player and player.has_method("player_death"):
-			player.player_death()
+	if boss_anims and boss_anims.has_animation("attack"):
+		boss_anims.play("attack", 0.2)
+		#if player and player.has_method("player_death"):
+			#player.player_death()

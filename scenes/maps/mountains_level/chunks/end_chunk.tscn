@@ -243,6 +243,92 @@ tracks/9/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_avdmn"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LArmIKTarget:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40000004, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.322, 25.702, 6.026), Vector3(3.322, 28.147, 10.771), Vector3(1.302, 29.062, 11.096), Vector3(1.302, 26.297, 12.341)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RArmIKTarget:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.40000004),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.665, 25.017, 5.626), Vector3(-4.665, 25.017, 5.626)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Knight:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.7683716e-07, 0.40000004),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.8000002, 0), Vector3(0, 0.8, 2.585)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LHandLookAtTarget:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.3527613e-08),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.312, 13.517, 8.906)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RHandLookAtTarget:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.3527613e-08),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.608, -1.168, 12.151)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Growl:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="Animation" id="Animation_dgf3a"]
 resource_name = "death"
 step = 0.1
@@ -393,10 +479,6 @@ markers = [{
 "color": Color(1, 1, 1, 1),
 "name": &"rise",
 "time": 0.0
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"death_end",
-"time": 5.9666667
 }]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -491,6 +573,7 @@ tracks/6/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nys2j"]
 _data = {
 &"RESET": SubResource("Animation_8ftqf"),
+&"attack": SubResource("Animation_avdmn"),
 &"death": SubResource("Animation_dgf3a"),
 &"fall": SubResource("Animation_nys2j"),
 &"rise": SubResource("Animation_wf233")

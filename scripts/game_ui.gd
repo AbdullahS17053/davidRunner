@@ -10,6 +10,7 @@ class_name GameUI
 
 @export var player: Player
 @export var boss_scene: PackedScene
+@export var world_anims: AnimationPlayer
 @export_custom(PROPERTY_HINT_NONE, "suffix:Seconds") var boss_trigger_time: float = 120.0
 
 var current_boss: Boss
@@ -39,14 +40,14 @@ func _process(delta: float) -> void:
 		time_played += delta
 		if time_played >= boss_trigger_time:
 			is_warning_phase = true
-			_play_warning_effect()
+			#_play_warning_effect()
 			
 	if is_warning_phase:
 		warning_timer += delta
 		if warning_timer >= warning_duration:
 			is_warning_phase = false
 			is_waiting_for_clearance = true
-			Global.can_spawn_chunks = false # STOP SPAWNING CHUNKS NOW!
+			Global.can_spawn_chunks = false
 			
 	if is_waiting_for_clearance:
 		if _is_at_world_end(): 
@@ -61,19 +62,18 @@ func _process(delta: float) -> void:
 			_trigger_boss_encounter()
 
 func _trigger_boss_encounter() -> void:
-	if boss_scene and player:
-		Global.is_game_started = false
-		get_tree().call_group("wolf", "stop_moving")
-		
-		if player:
-			player.move_speed = 0.0
-			if player.has_method("reset_for_boss"):
-				player.reset_for_boss()
-		
-		current_boss = boss_scene.instantiate() as Boss
-		get_tree().current_scene.add_child(current_boss)
-		
-		current_boss.rise_from_abyss(player, world_end_z)
+	Global.is_game_started = false
+	get_tree().call_group("wolf", "stop_moving")
+	
+	if player:
+		player.move_speed = 0.0
+		if player.has_method("reset_for_boss"):
+			player.reset_for_boss()
+	
+	current_boss = get_tree().get_first_node_in_group("boss") as Boss
+	
+	if current_boss:
+		current_boss.activate(player)
 		
 		var timer: SceneTreeTimer = get_tree().create_timer(current_boss.rise_duration)
 		timer.timeout.connect(func():
@@ -83,7 +83,7 @@ func _trigger_boss_encounter() -> void:
 func _is_at_world_end() -> bool:
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
 	if not level_manager or level_manager.active_chunks.is_empty():
-		return true # Failsafe
+		return true
 		
 	var last_chunk = level_manager.active_chunks.back()
 	var end_point = last_chunk.get_node_or_null("EndPoint")

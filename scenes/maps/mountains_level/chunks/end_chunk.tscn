@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://tw7o5f7yarua" path="res://scenes/player/lane_visualizer.gd" id="1_qu5mc"]
 [ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="2_jlyjf"]
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="4_bdoik"]
+[ext_resource type="Script" uid="uid://dro5pupth0fho" path="res://scenes/boss/boss.gd" id="4_nys2j"]
+[ext_resource type="PackedScene" uid="uid://g0frm1e51mft" path="res://scenes/boss/models/boss_knight/Human-Custom-monster2.fbx" id="5_avdmn"]
+[ext_resource type="AudioStream" uid="uid://dqd5s6aixundi" path="res://scenes/player/audio/fall_impact.mp3" id="6_ofjhe"]
+[ext_resource type="AudioStream" uid="uid://blkqugd8usnfe" path="res://scenes/player/audio/punch_impact.mp3" id="7_khsdi"]
+[ext_resource type="AudioStream" uid="uid://cisjhq6213pla" path="res://assets/audio/beast_long_roar.wav" id="8_qv8s3"]
+[ext_resource type="AudioStream" uid="uid://bvlu55u3r5u11" path="res://scenes/boss/boss_entrance_rumble.mp3" id="9_3biye"]
+[ext_resource type="PackedScene" uid="uid://bp2vilbp11eri" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Flat_01.prefab.scn" id="10_avdmn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2snq"]
 material = ExtResource("4_bdoik")
@@ -12,11 +19,492 @@ subdivide_depth = 15
 [sub_resource type="BoxShape3D" id="BoxShape3D_iry7p"]
 size = Vector3(25, 0.1, 13.41349)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dq6vu"]
+radius = 1.3100586
+height = 4.227051
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq6vu"]
+radius = 0.65722656
+height = 1.9156494
+
+[sub_resource type="Curve" id="Curve_dgf3a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p47bc"]
+curve = SubResource("Curve_dgf3a")
+
+[sub_resource type="Gradient" id="Gradient_8ftqf"]
+colors = PackedColorArray(0, 0, 0, 1, 0.5394591, 0.5394591, 0.5394591, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0owmy"]
+gradient = SubResource("Gradient_8ftqf")
+
+[sub_resource type="Curve" id="Curve_i4fbv"]
+_data = [Vector2(0, 0), 0.0, 0.09693873, 0, 0, Vector2(1, 1), 3.1561465, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8ftqf"]
+curve = SubResource("Curve_i4fbv")
+
+[sub_resource type="Curve" id="Curve_atjq5"]
+_data = [Vector2(0, 0), 0.0, 2.8718896, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gtgg"]
+curve = SubResource("Curve_atjq5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0xsra"]
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
+radial_velocity_curve = SubResource("CurveTexture_8ftqf")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_5gtgg")
+color_initial_ramp = SubResource("GradientTexture1D_0owmy")
+alpha_curve = SubResource("CurveTexture_p47bc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_iva7r"]
+material = SubResource("StandardMaterial3D_qlg0r")
+
+[sub_resource type="Curve" id="Curve_dlpkd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dqkch"]
+curve = SubResource("Curve_dlpkd")
+
+[sub_resource type="Curve" id="Curve_7kbl1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5037037, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+curve = SubResource("Curve_7kbl1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2mupd"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -20, 0)
+linear_accel_min = 9.999997
+linear_accel_max = 14.999997
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_qlg0r")
+color = Color(1, 0.8213948, 0.269822, 1)
+alpha_curve = SubResource("CurveTexture_dqkch")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvxji"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p4gry"]
+material = SubResource("StandardMaterial3D_lvxji")
+top_radius = 0.06
+bottom_radius = 0.0
+height = 0.885
+
+[sub_resource type="Animation" id="Animation_8ftqf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Impact:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Punch:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LArmIKTarget:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5.777, 20.562, 5.621)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RArmIKTarget:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-6.296, 21.159, 5.46)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Knight:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -10.56, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LHandLookAtTarget:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5.777, 20.562, 5.621)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RHandLookAtTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5.777, 20.562, 5.621)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Knight:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Growl:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dgf3a"]
+resource_name = "death"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Impact:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Punch:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nys2j"]
+resource_name = "fall"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LArmIKTarget:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.3666668, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.322, 25.702, 6.026), Vector3(3.322, 26.952, 6.026), Vector3(3.322, 26.952, 2.731), Vector3(3.322, 19.602, -1.689)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RArmIKTarget:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.3666668, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-4.665, 25.017, 5.626), Vector3(-4.665, 25.832, 5.036), Vector3(-4.665, 25.832, 2.361), Vector3(-4.665, 13.672, 0.716)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Knight:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.7683716e-07, 0.6, 1.3666668, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.8000002, 0), Vector3(0, 0.8, -3.56), Vector3(0, -3.11, -5.665), Vector3(0, -12.415, -5.665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LHandLookAtTarget:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.3527613e-08),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.312, 13.517, 8.906)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RHandLookAtTarget:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.3527613e-08),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.608, -1.168, 12.151)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Knight:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.7683716e-07),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Growl:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_wf233"]
+resource_name = "rise"
+length = 5.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"death",
+"time": 5.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"rise",
+"time": 0.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"death_end",
+"time": 5.9666667
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LArmIKTarget:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1333334, 1.5666667, 2.2666667, 3.0000002, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(9.127, 17.377, 3.661), Vector3(9.127, 17.377, -0.029), Vector3(6.807, 20.732, -0.314), Vector3(3.322, 25.702, 3.851), Vector3(3.322, 25.702, 3.851), Vector3(3.322, 25.702, 6.026)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RArmIKTarget:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5666667, 2.0666666, 2.4333334, 3, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-21.075, 8.372, 5.626), Vector3(-21.075, 8.372, 5.626), Vector3(-5.13, 21.332, 2.821), Vector3(-5.13, 23.522, 2.821), Vector3(-4.665, 25.017, 5.626), Vector3(-4.665, 25.017, 5.626)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Knight:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 3, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -10.56, 1.825), Vector3(0, -9.44, 3.115), Vector3(0, -9.44, 0), Vector3(0, 0.8000002, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LHandLookAtTarget:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1333334, 2.0333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(5.777, 20.562, 5.621), Vector3(5.777, 20.562, 5.621), Vector3(-4.923, -34.558, 4.386)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RHandLookAtTarget:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(5.777, 20.562, 5.621), Vector3(5.777, 20.562, 5.621), Vector3(5.777, -1.428, 12.541)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.5666666, 3.1666667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"shake_camera_light"
+}, {
+"args": [],
+"method": &"shake_camera_light"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Knight:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.0000005),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nys2j"]
+_data = {
+&"RESET": SubResource("Animation_8ftqf"),
+&"death": SubResource("Animation_dgf3a"),
+&"fall": SubResource("Animation_nys2j"),
+&"rise": SubResource("Animation_wf233")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iva7r"]
+random_pitch = 1.3348398
+streams_count = 1
+stream_0/stream = ExtResource("7_khsdi")
+
 [node name="EndChunk" type="Node3D" unique_id=1451399318]
 
 [node name="LaneVisualizer" type="Node3D" parent="." unique_id=328072525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-visible = false
 script = ExtResource("1_qu5mc")
 lane_width = 4.0
 lane_length = 20.0
@@ -25,6 +513,12 @@ lane_length = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9959574)
 
 [node name="Obstacles" type="Node3D" parent="." unique_id=1012268051]
+
+[node name="SM_Env_Rock_Flat_01" parent="Obstacles" unique_id=453105694 instance=ExtResource("10_avdmn")]
+transform = Transform3D(-7.621026e-08, 0, -1.7446626, 0, 3.0966809, 0, 1.7434875, 0, -7.626163e-08, -6.659439, -0.4089183, -3.303626)
+
+[node name="SM_Env_Rock_Flat_02" parent="Obstacles" unique_id=653373344 instance=ExtResource("10_avdmn")]
+transform = Transform3D(2.2636814e-07, -1.7701759, 1.7273965, 1.3069369e-07, 3.066034, 0.9973127, -1.9932821, 0, 2.6156357e-07, 7.010728, -0.097587496, -4.1249056)
 
 [node name="Decorations" type="Node3D" parent="." unique_id=294700162]
 
@@ -37,9 +531,6 @@ transform = Transform3D(1.2931046, 0, -4.68946e-15, 0, 1.2931046, 0, 4.68946e-15
 [node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("2_jlyjf")]
 transform = Transform3D(-4.8742947e-08, 0, -1.1151086, 0, 1.1151086, 0, 1.1151086, 0, -4.8742947e-08, 11.456154, -0.4355793, -8.9388)
 
-[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.224438)
-
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=949234256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02578125, -7.86471)
 mesh = SubResource("BoxMesh_h2snq")
@@ -50,3 +541,139 @@ collision_layer = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=719750250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0497932)
 shape = SubResource("BoxShape3D_iry7p")
+
+[node name="Boss" type="CharacterBody3D" parent="." unique_id=768810446 node_paths=PackedStringArray("smoke", "boss_anims", "boss_entrance_rumble") groups=["boss"]]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24.563854, -25.166714)
+script = ExtResource("4_nys2j")
+boss_scale = 1.0
+rise_duration = 4.0
+smoke = NodePath("")
+boss_anims = NodePath("BossAnims")
+boss_entrance_rumble = NodePath("BossEntrance Rumble")
+
+[node name="Knight" parent="Boss" unique_id=1612502435 instance=ExtResource("5_avdmn")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 0, -10.56, 0)
+
+[node name="LeftArmIK" type="TwoBoneIK3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="1" unique_id=1327731832]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../LArmIKTarget")
+settings/0/pole_node = NodePath("../../../../LArmIKPole")
+settings/0/root_bone_name = "LeftShoulder"
+settings/0/root_bone = 20
+settings/0/middle_bone_name = "LeftLowerArm"
+settings/0/middle_bone = 23
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "LeftHand"
+settings/0/end_bone = 25
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="RightArmIK" type="TwoBoneIK3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="2" unique_id=92733160]
+setting_count = 1
+settings/0/target_node = NodePath("../../../../RArmIKTarget")
+settings/0/pole_node = NodePath("../../../../RArmIKPole")
+settings/0/root_bone_name = "RightShoulder"
+settings/0/root_bone = 44
+settings/0/middle_bone_name = "RightLowerArm"
+settings/0/middle_bone = 47
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "RightHand"
+settings/0/end_bone = 49
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="LHandLookAt" type="LookAtModifier3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="3" unique_id=1254327868]
+target_node = NodePath("../../../../LHandLookAtTarget")
+bone_name = "LeftHand"
+bone = 25
+
+[node name="RHandLookAt" type="LookAtModifier3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="4" unique_id=517195801]
+target_node = NodePath("../../../../RHandLookAtTarget")
+bone_name = "RightHand"
+bone = 49
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boss" unique_id=137392534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1135254, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_dq6vu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss" unique_id=1743289667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9920044, 0)
+shape = SubResource("CapsuleShape3D_dq6vu")
+
+[node name="Smoke" type="GPUParticles3D" parent="Boss" unique_id=2128817327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.642677, 25.5579, 8.742933)
+cast_shadow = 0
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_0xsra")
+draw_pass_1 = SubResource("SphereMesh_iva7r")
+
+[node name="Trails" type="GPUParticles3D" parent="Boss" unique_id=2127900545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8089123, 0)
+cast_shadow = 0
+emitting = false
+amount = 15
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2mupd")
+draw_pass_1 = SubResource("CylinderMesh_p4gry")
+
+[node name="BossAnims" type="AnimationPlayer" parent="Boss" unique_id=1186876768]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_nys2j")
+
+[node name="Impact" type="AudioStreamPlayer" parent="Boss" unique_id=454709342]
+stream = ExtResource("6_ofjhe")
+volume_db = -6.0
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="Punch" type="AudioStreamPlayer" parent="Boss" unique_id=250917820]
+stream = SubResource("AudioStreamRandomizer_iva7r")
+volume_db = -6.0
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="Growl" type="AudioStreamPlayer" parent="Boss" unique_id=1625161680]
+stream = ExtResource("8_qv8s3")
+volume_db = -6.0
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="BossEntrance Rumble" type="AudioStreamPlayer" parent="Boss" unique_id=1795603307]
+stream = ExtResource("9_3biye")
+volume_db = 7.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="LHandLookAtTarget" type="Marker3D" parent="Boss" unique_id=495007297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.777, 20.562, 5.621)
+
+[node name="RHandLookAtTarget" type="Marker3D" parent="Boss" unique_id=494989681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.777, 20.562, 5.621)
+
+[node name="LArmIKTarget" type="Marker3D" parent="Boss" unique_id=317060960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.777, 20.562, 5.621)
+
+[node name="LArmIKTarget3" type="Marker3D" parent="Boss" unique_id=1089471190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.777, 20.562, 5.621)
+
+[node name="LArmIKPole" type="Marker3D" parent="Boss" unique_id=716872201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.257189, 23.572779, -10)
+
+[node name="RArmIKTarget" type="Marker3D" parent="Boss" unique_id=1436857135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.296, 21.159, 5.46)
+
+[node name="RArmIKPole" type="Marker3D" parent="Boss" unique_id=369052930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 25, -10)
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.224438)
+
+[editable path="Boss/Knight"]

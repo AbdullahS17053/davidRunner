@@ -1023,17 +1023,21 @@ tracks/3/keys = {
 "values": [Vector3(2.5, 1, -0.36242437)]
 }
 
+[sub_resource type="Animation" id="Animation_idkr2"]
+resource_name = "outro"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dss4m"]
 _data = {
 &"Intro": SubResource("Animation_xo05s"),
-&"RESET": SubResource("Animation_dss4m")
+&"RESET": SubResource("Animation_dss4m"),
+&"outro": SubResource("Animation_idkr2")
 }
 
 [node name="LevelRoot" type="Node3D" unique_id=154977216]
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1842010287]
 
-[node name="GameUI" type="Control" parent="UILayer" unique_id=1534088429 node_paths=PackedStringArray("coins_label", "distance_label", "pause_menu", "boss_ui", "warning_label", "player")]
+[node name="GameUI" type="Control" parent="UILayer" unique_id=1534088429 node_paths=PackedStringArray("coins_label", "distance_label", "pause_menu", "boss_ui", "warning_label", "player", "world_anims")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1051,6 +1055,7 @@ boss_ui = NodePath("../BossBattleUI")
 warning_label = NodePath("WarningLabel")
 player = NodePath("../../Player")
 boss_scene = ExtResource("3_ocy1v")
+world_anims = NodePath("../../WorldAnims")
 boss_trigger_time = 1.0
 
 [node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
@@ -1124,7 +1129,7 @@ grow_horizontal = 2
 text = "BOSS INCOMING!!"
 label_settings = SubResource("LabelSettings_bybcv")
 
-[node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("tap_zone", "player") groups=["boss_ui"]]
+[node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("tap_zone", "player", "world_anims") groups=["boss_ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1136,8 +1141,10 @@ theme = ExtResource("1_8ckoj")
 script = ExtResource("7_d3c03")
 tap_zone = NodePath("TapZone")
 player = NodePath("../../Player")
+world_anims = NodePath("../../WorldAnims")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="UILayer/BossBattleUI" unique_id=398142572]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1168,9 +1175,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -256.0
-offset_top = -687.0
+offset_top = -1176.0
 offset_right = 256.0
-offset_bottom = -175.0
+offset_bottom = -664.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("9_bybcv")

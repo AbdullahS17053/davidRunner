@@ -1,56 +1,68 @@
 class_name Boss
 extends CharacterBody3D
 
-@export var rise_depth: float = -50.0
-@export var target_distance_ahead: float = 18.0
-@export var rise_duration: float = 1.5
-@export var boss_scale: float = 1.0
+@export var boss_scale: float = 4.0
+@export var rise_duration: float = 3.0
 
 @export var smoke: GPUParticles3D
 @export var boss_anims: AnimationPlayer
-@export var animation_player: AnimationPlayer
-
-@onready var player: Player = get_tree().get_first_node_in_group("player")
-
 @export var boss_entrance_rumble: AudioStreamPlayer
 
+var player: Player
 var is_active: bool = false
-var is_rising: bool = false
 
 func _ready() -> void:
 	scale = Vector3(boss_scale, boss_scale, boss_scale)
-
-func rise_from_abyss(player_node: Node3D, spawn_z: float) -> void:
-	is_rising = true
+	visible = false
 	
-	var target_position: Vector3 = Vector3(player_node.global_position.x, -10.0, spawn_z)
-	global_position = target_position + Vector3(0, rise_depth, 0)
-	visible = true
+	if boss_anims:
+		boss_anims.animation_finished.connect(_on_animation_finished)
 
-	boss_entrance_rumble.play()
+func activate(player_node: Node3D) -> void:
+	player = player_node as Player
+	visible = true
+	
 	player.heavy_shake.play_shake()
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "global_position:y", -5.0, rise_duration)
-	tween.finished.connect(_on_landed)
+	boss_entrance_rumble.play()
+	
+	if boss_anims and boss_anims.has_animation("rise"):
+		boss_anims.play_section_with_markers("rise", "rise", "death")
+	else:
+		_on_landed()
+
+func shake_camera_light() -> void:
+	player.shaker_component_3d.play_shake()
+
+func shake_camera_intense() -> void:
+	player.heavy_shake.play_shake()
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Rise":
+		_on_landed()
 
 func _on_landed() -> void:
-	is_rising = false
 	is_active = true
+
+	AudioManager.heavy_fall_impact.play()
 
 	if smoke:
 		smoke.restart()
 
+	if player and player.shaker_component_3d:
+		player.shaker_component_3d.play_shake()
+
 func play_defeat() -> void:
 	is_active = false
-	if boss_anims.has_animation("death"):
-		boss_anims.play("death")
+	if boss_anims.has_animation("fall"):
+		AudioManager.heavy_fall_impact.play()
+		boss_anims.play("fall")
 
 	var tween: Tween = create_tween()
 	tween.tween_interval(1.5)
 	tween.tween_callback(queue_free)
 
 func play_attack() -> void:
-	if animation_player and animation_player.has_animation("Punch"):
-		animation_player.play("Punch", 0.2)
+	if boss_anims and boss_anims.has_animation("Punch"):
+		boss_anims.play("Punch", 0.2)
 		if player and player.has_method("player_death"):
 			player.player_death()

@@ -36,4 +36,5 @@ func start_gameplay() -> void:
 	AudioManager.bgm.play()
 
 func _on_game_over() -> void:
+	Global.can_spawn_chunks = true
 	player.player_death()

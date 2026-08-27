@@ -4,6 +4,7 @@ class_name BossBattleUI
 @export var tap_zone: Control
 @export var shrink_time: float = 2.0
 @export var player: Player
+@export var world_anims: AnimationPlayer
 
 var is_active: bool = false
 var shrink_tween: Tween
@@ -18,7 +19,7 @@ func start_boss_fight() -> void:
 	is_active = true
 	
 	tap_zone.scale = Vector2(1.0, 1.0)
-
+	
 	shrink_tween = create_tween()
 	shrink_tween.tween_property(tap_zone, "scale", Vector2.ZERO, shrink_time)
 	shrink_tween.finished.connect(_on_time_out)
@@ -45,7 +46,9 @@ func end_fight(won: bool) -> void:
 	
 	if shrink_tween and shrink_tween.is_valid():
 		shrink_tween.kill()
-		
+	
+	Global.can_spawn_chunks = true
+	
 	if won:
 		Global.boss_defeated.emit()
 	else:

@@ -71,7 +71,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/interpolated_camera_3d/plugin.cfg", "res://addons/lowpolyterrain/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/unidot_importer/plugin.cfg", "res://addons/vfx_animaiton_player/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/interpolated_camera_3d/plugin.cfg", "res://addons/lowpolyterrain/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/unidot_importer/plugin.cfg")
 
 [global_group]
 

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dhnny22qhkmd3"]
+
+[ext_resource type="Script" uid="uid://sbennywuf5uc" path="res://scenes/ui/floating_text.gd" id="1_0qskq"]
+[ext_resource type="Texture2D" uid="uid://bo0b2qw024y8i" path="res://assets/ui_assets/icons/ItemIcon_Money_Coin.png" id="2_x405i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lxcvk"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FloatingText" type="HBoxContainer" unique_id=864858120 node_paths=PackedStringArray("floating_text")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0qskq")
+floating_text = NodePath("FloatingText")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1302350272]
+custom_minimum_size = Vector2(48, 48)
+custom_maximum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_x405i")
+expand_mode = 3
+
+[node name="FloatingText" type="Label" parent="." unique_id=409916641]
+layout_mode = 2
+text = "+1"
+label_settings = SubResource("LabelSettings_lxcvk")
+horizontal_alignment = 1
+vertical_alignment = 1

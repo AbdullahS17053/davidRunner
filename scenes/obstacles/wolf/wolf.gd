@@ -55,8 +55,10 @@ func die() -> void:
 	AudioManager.punch.play()
 	click_particles.restart()
 	player.shaker_component_3d.play_shake()
-	Global.coins += randi_range(5, 10)
+	var coin_reward := randi_range(5, 10)
+	Global.coins += coin_reward
 	Global.coin_collected.emit(Global.coins)
+	Global.enemy_killed_for_coins.emit(global_position, coin_reward)
 	animation_player.play("Death")
 	collision_shape_3d.set_deferred("disabled", true)
 

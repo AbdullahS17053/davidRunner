@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://du5dg4r1a80xq" path="res://assets/ui_assets/icons/Icon_Pause.png" id="6_1pyl5"]
 [ext_resource type="Script" uid="uid://dmona1hkrg415" path="res://scenes/ui/boss_battle_ui.gd" id="7_d3c03"]
 [ext_resource type="Script" uid="uid://xqcxrxvffrlj" path="res://scenes/ui/pause_menu.gd" id="7_idkr2"]
+[ext_resource type="PackedScene" uid="uid://dhnny22qhkmd3" path="res://scenes/ui/floating_text.tscn" id="8_df5f1"]
 [ext_resource type="Script" uid="uid://cdxgiggu1odd" path="res://scenes/ui/main_menu.gd" id="8_lxcvk"]
 [ext_resource type="Texture2D" uid="uid://dm8lqj7hru8hp" path="res://assets/textures/circle_03.png" id="9_bybcv"]
 [ext_resource type="Texture2D" uid="uid://bvr7kx20l5eko" path="res://assets/ui_assets/icons/ItemIcon_Gear.png" id="9_df5f1"]
@@ -19,10 +20,12 @@
 [ext_resource type="Script" uid="uid://btbkt5eyv7w06" path="res://scenes/ui/settings_menu.gd" id="12_kuekq"]
 [ext_resource type="Texture2D" uid="uid://b388vv8277rvv" path="res://assets/ui_assets/panels/BorderFrame_Round30.png" id="13_lml1k"]
 [ext_resource type="Texture2D" uid="uid://1lf3qw8s5dp6" path="res://assets/ui_assets/icons/Icon_Close02.png" id="14_btbn3"]
+[ext_resource type="Script" uid="uid://cpt7tjtbyqpos" path="res://scenes/ui/shop_menu.gd" id="14_df5f1"]
 [ext_resource type="Script" uid="uid://blgbwpyo5nx3b" path="res://scenes/ui/game_over_ui.gd" id="15_suita"]
 [ext_resource type="Script" uid="uid://cplg46nwa7j48" path="res://scripts/utilities/game_manager.gd" id="16_0abdq"]
 [ext_resource type="Script" uid="uid://b0uyqfkc831l4" path="res://scenes/ui/map_select_menu.gd" id="16_dgt7p"]
 [ext_resource type="Script" uid="uid://bsheti7rpxuw" path="res://scripts/utilities/level_manager.gd" id="17_wkq8n"]
+[ext_resource type="Texture2D" uid="uid://hw2ucig845o8" path="res://assets/ui_assets/icons/ItemIcon_Shop.png" id="18_df5f1"]
 [ext_resource type="Texture2D" uid="uid://d0yd2g1bjbt62" path="res://assets/textures/map_previews/Tropical_preview.png" id="19_006py"]
 [ext_resource type="Shader" uid="uid://77jlyx08wjrj" path="res://resources/shaders/rounded_corner_shader.gdshader" id="19_8ckoj"]
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="19_kto32"]
@@ -918,7 +921,7 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_idkr2"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lxcvk"]
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -1056,7 +1059,8 @@ warning_label = NodePath("WarningLabel")
 player = NodePath("../../Player")
 boss_scene = ExtResource("3_ocy1v")
 world_anims = NodePath("../../WorldAnims")
-boss_trigger_time = 1.0
+boss_trigger_time = 1200.0
+floating_text_scene = ExtResource("8_df5f1")
 
 [node name="DistancePanel" type="PanelContainer" parent="UILayer/GameUI" unique_id=1584573551]
 visible = false
@@ -1130,6 +1134,7 @@ text = "BOSS INCOMING!!"
 label_settings = SubResource("LabelSettings_bybcv")
 
 [node name="BossBattleUI" type="Control" parent="UILayer" unique_id=1624230158 node_paths=PackedStringArray("player", "tap_zone", "world_anims", "progress_bar") groups=["boss_ui"]]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1144,7 +1149,7 @@ tap_zone = NodePath("TapZone")
 world_anims = NodePath("../../WorldAnims")
 progress_bar = NodePath("ProgressBar")
 drain_rate = 30.0
-tap_power = 6.0
+tap_power = 5.0
 
 [node name="ProgressBar" type="TextureProgressBar" parent="UILayer/BossBattleUI" unique_id=398142572]
 layout_mode = 1
@@ -1263,7 +1268,7 @@ text = "Exit"
 [node name="PauseAnims" type="AnimationPlayer" parent="UILayer/PauseMenu" unique_id=994902738]
 libraries/ = SubResource("AnimationLibrary_luhhm")
 
-[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims", "map_select_menu")]
+[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims", "map_select_menu", "shop_menu_anims")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1276,6 +1281,7 @@ script = ExtResource("8_lxcvk")
 settings_menu = NodePath("../SettingsMenu")
 menu_anims = NodePath("MenuAnims")
 map_select_menu = NodePath("../MapSelectMenu")
+shop_menu_anims = NodePath("../ShopMenu/ShopMenuAnims")
 
 [node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
 layout_mode = 1
@@ -1332,10 +1338,11 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -186.0
+offset_top = -216.0
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
+theme_override_constants/separation = -30
 alignment = 1
 
 [node name="ExitBtn" type="Button" parent="UILayer/MainMenu/MenuBtns" unique_id=2074422684]
@@ -1363,6 +1370,21 @@ theme_override_constants/icon_max_width = 128
 theme_override_font_sizes/font_size = 36
 text = "SETTINGS"
 icon = ExtResource("9_df5f1")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ShopBtn" type="Button" parent="UILayer/MainMenu/MenuBtns" unique_id=737686160]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme = ExtResource("1_8ckoj")
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 128
+theme_override_font_sizes/font_size = 36
+text = "SHOP"
+icon = ExtResource("18_df5f1")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -1677,6 +1699,126 @@ metadata/_edit_use_anchors_ = true
 [node name="MapSelectAnims" type="AnimationPlayer" parent="UILayer/MapSelectMenu" unique_id=1236897070]
 libraries/ = SubResource("AnimationLibrary_0nbtd")
 
+[node name="ShopMenu" type="Control" parent="UILayer" unique_id=253112936 node_paths=PackedStringArray("shop_menu_anims")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_8ckoj")
+script = ExtResource("14_df5f1")
+shop_menu_anims = NodePath("ShopMenuAnims")
+
+[node name="BG" type="ColorRect" parent="UILayer/ShopMenu" unique_id=438997891]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="SettingsPanel" type="PanelContainer" parent="UILayer/ShopMenu" unique_id=147932719]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -292.0
+offset_right = 263.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/ShopMenu/SettingsPanel" unique_id=1689603760]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SettingsHeaderLabel" type="Label" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer" unique_id=737781299]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Select Skin"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer" unique_id=1866175237]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonLeft" type="Button" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=80462002]
+layout_mode = 2
+theme_type_variation = &"ButtonVariation"
+text = "<"
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1541928661]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_006py")
+
+[node name="MapImage" type="TextureRect" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=41152910]
+material = SubResource("ShaderMaterial_8ckoj")
+custom_minimum_size = Vector2(256, 256)
+custom_maximum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("19_006py")
+
+[node name="ButtonRight" type="Button" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1791278107]
+layout_mode = 2
+theme_type_variation = &"ButtonVariation"
+text = ">"
+
+[node name="SelectBtn" type="Button" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer" unique_id=1619697424]
+layout_mode = 2
+theme_type_variation = &"ButtonVariation"
+text = "Purchase"
+
+[node name="CloseBtn" type="Button" parent="UILayer/ShopMenu" unique_id=1884680700]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04562738
+anchor_top = 0.08780161
+anchor_right = 0.1444867
+anchor_bottom = 0.203009
+offset_left = 66.56654
+offset_top = 149.85254
+offset_right = 43.37262
+offset_bottom = 117.13364
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+theme_type_variation = &"FlatButton"
+theme_override_constants/icon_max_width = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_2lf6f")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2lf6f")
+icon = ExtResource("14_btbn3")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopMenuAnims" type="AnimationPlayer" parent="UILayer/ShopMenu" unique_id=1732963523]
+libraries/ = SubResource("AnimationLibrary_0nbtd")
+
 [node name="GameOverUI" type="Control" parent="UILayer" unique_id=1862970273 node_paths=PackedStringArray("game_over_anims", "world_anims", "high_score_label", "coins_collected_label")]
 process_mode = 3
 visible = false
@@ -1906,7 +2048,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-animation_playback = SubResource("AnimationNodeStateMachinePlayback_idkr2")
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_lxcvk")
 heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
@@ -1923,6 +2065,7 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ExitBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"exit"]]
 [connection signal="pressed" from="UILayer/MainMenu/MenuBtns/ExitBtn" to="UILayer/MainMenu" method="_on_exit_btn_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/MenuBtns/SettingsBtn" to="UILayer/MainMenu" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/MenuBtns/ShopBtn" to="UILayer/MainMenu" method="_on_shop_btn_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/MenuBtns/MapsBtn" to="UILayer/MainMenu" method="_on_maps_btn_pressed"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ShadowsToggle" to="UILayer/SettingsMenu" method="_on_shadows_toggle_toggled"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/FPSToggle" to="UILayer/SettingsMenu" method="_on_fps_toggle_toggled"]
@@ -1934,6 +2077,10 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonRight" to="UILayer/MapSelectMenu" method="_on_button_right_pressed"]
 [connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/SelectBtn" to="UILayer/MapSelectMenu" method="_on_select_btn_pressed"]
 [connection signal="pressed" from="UILayer/MapSelectMenu/CloseBtn" to="UILayer/MapSelectMenu" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonLeft" to="UILayer/ShopMenu" method="_on_button_left_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonRight" to="UILayer/ShopMenu" method="_on_button_right_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/SettingsPanel/VBoxContainer/SelectBtn" to="UILayer/ShopMenu" method="_on_select_btn_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/CloseBtn" to="UILayer/ShopMenu" method="_on_close_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/PlayAgain" to="UILayer/VictoryUI" method="_on_play_again_pressed"]

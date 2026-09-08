@@ -1,6 +1,7 @@
 class_name Boss
 extends CharacterBody3D
 
+@export var coin_reward: int = 500
 @export var boss_scale: float = 4.0
 @export var rise_duration: float = 3.0
 
@@ -30,8 +31,6 @@ func activate(player_node: Node3D) -> void:
 	
 	if boss_anims and boss_anims.has_animation("rise"):
 		boss_anims.play("rise", 0.2)
-	elif boss_anims and boss_anims.has_animation("Rise"):
-		boss_anims.play("Rise", 0.2)
 	else:
 		_on_landed()
 
@@ -56,6 +55,9 @@ func _on_landed() -> void:
 	if player and player.shaker_component_3d:
 		player.shaker_component_3d.play_shake()
 
+func take_hit() -> void:
+	pass
+
 func die() -> void:
 	if not vulnerable:
 		return
@@ -63,6 +65,7 @@ func die() -> void:
 	vulnerable = false
 	play_defeat()
 	Global.boss_defeated.emit()
+	Global.enemy_killed_for_coins.emit(get_target_position(), coin_reward)
 
 func get_target_position() -> Vector3:
 	if head_point:

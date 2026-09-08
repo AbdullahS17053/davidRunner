@@ -77,6 +77,7 @@ func end_fight(won: bool) -> void:
 	if won:
 		if boss:
 			boss.vulnerable = true
+			boss.die()
 	else:
 		if boss and boss.has_method("play_attack"):
 			boss.play_attack()

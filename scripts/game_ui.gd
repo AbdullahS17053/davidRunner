@@ -12,6 +12,7 @@ class_name GameUI
 @export var boss_scene: PackedScene
 @export var world_anims: AnimationPlayer
 @export_custom(PROPERTY_HINT_NONE, "suffix:Seconds") var boss_trigger_time: float = 120.0
+@export var floating_text_scene: PackedScene
 
 var current_boss: Boss
 var time_played: float = 0.0
@@ -25,8 +26,8 @@ var warning_tween: Tween
 var world_end_z: float = 0.0
 
 func _ready() -> void:
+	Global.enemy_killed_for_coins.connect(_on_enemy_killed)
 	Global.coin_collected.connect(on_coin_collected)
-	
 	Global.boss_failed.connect(_on_boss_failed)
 	Global.boss_defeated.connect(_on_boss_defeated)
 
@@ -111,7 +112,18 @@ func _play_warning_effect() -> void:
 	warning_tween.tween_property(warning_label, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
 	warning_tween.tween_property(warning_label, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE)
 	# AudioManager.play_warning_siren()
-
+	
+func _on_enemy_killed(pos_3d: Vector3, amount: int) -> void:
+	var cam: Camera3D = get_viewport().get_camera_3d()
+	if not cam or cam.is_position_behind(pos_3d):
+		return
+		
+	var screen_pos: Vector2 = cam.unproject_position(pos_3d)
+	
+	var float_text: FloatingText2D = floating_text_scene.instantiate() as FloatingText2D
+	add_child(float_text)
+	float_text.setup_and_play(amount, screen_pos)
+	
 func on_coin_collected(amount: int) -> void:
 	coins_label.text = "%d" % amount
 	print(amount)
@@ -135,5 +147,5 @@ func _on_boss_failed() -> void:
 func _on_boss_defeated() -> void:
 	if current_boss:
 		current_boss.play_defeat()
-	Global.coins += 100
+	Global.coins += current_boss.coin_reward
 	Global.coin_collected.emit(Global.coins)

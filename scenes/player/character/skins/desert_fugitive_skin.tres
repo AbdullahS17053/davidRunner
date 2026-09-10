@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkinsData" format=3 uid="uid://cphg04fu1iir"]
+
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="1_lep5v"]
+[ext_resource type="PackedScene" uid="uid://c0cvphcittomw" path="res://scenes/player/character/skins/desert_fugitive.tscn" id="2_kb76b"]
+
+[resource]
+script = ExtResource("1_lep5v")
+skin_name = "Desert Fugitive"
+skin_scene = ExtResource("2_kb76b")
+skin_price = 2500
+metadata/_custom_type_script = "uid://do4dmn7k7l76c"

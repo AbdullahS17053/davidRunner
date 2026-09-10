@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkinsData" format=3 uid="uid://ct76h3jji1ue8"]
+
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="1_ukdu2"]
+[ext_resource type="PackedScene" uid="uid://8ptelngijlby" path="res://scenes/player/character/skins/bear_slayer.tscn" id="2_qb5vg"]
+
+[resource]
+script = ExtResource("1_ukdu2")
+skin_name = "Bear Slayer"
+skin_scene = ExtResource("2_qb5vg")
+skin_price = 1000
+metadata/_custom_type_script = "uid://do4dmn7k7l76c"

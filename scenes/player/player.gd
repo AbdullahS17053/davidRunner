@@ -20,6 +20,7 @@ extends CharacterBody3D
 @export var fast_fall_force: float = 15.0
 
 @export_group("References")
+@export var default_skin: SkinsData
 @export var col_shape: CollisionShape3D
 @export var animation_tree: AnimationTree
 @export var animation_playback: AnimationNodeStateMachinePlayback
@@ -28,10 +29,14 @@ extends CharacterBody3D
 @export var player_anims: AnimationPlayer
 @export var heavy_shake: ShakerComponent3D
 @export var shaker_component_3d: ShakerComponent3D
-@export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
+
+@export var visuals_node: Node3D 
+
 @export_subgroup("Projectile")
 @export var projectile_scene: PackedScene
 @export var projectile_spawn_point: Marker3D
+
+var current_skin_node: Node3D
 
 var is_swiping: bool = false
 var touch_start_pos: Vector2 = Vector2.ZERO
@@ -59,6 +64,14 @@ func _ready() -> void:
 	
 	normal_height = col_shape.shape.height
 	normal_pos_y = col_shape.position.y
+	
+	if Global.equipped_skin == null:
+		Global.equipped_skin = default_skin
+		
+		if Global.equipped_skin:
+			Global.equipped_skin.skin_unlocked = true
+	
+	apply_equipped_skin()
 
 func _input(event: InputEvent) -> void:
 	if not Global.is_game_started: return
@@ -177,25 +190,93 @@ func reset_for_boss() -> void:
 	is_jumping = false
 	is_sliding = false
 
+func apply_equipped_skin() -> void:
+	if not visuals_node:
+		return
+		
+	if current_skin_node:
+		current_skin_node.queue_free()
+		
+	if Global.equipped_skin and Global.equipped_skin.skin_scene:
+		current_skin_node = Global.equipped_skin.skin_scene.instantiate()
+		visuals_node.add_child(current_skin_node)
+		
+		var anim_players = current_skin_node.find_children("*", "AnimationPlayer", true, false)
+		if anim_players.size() > 0:
+			player_anims = anim_players[0] as AnimationPlayer
+			
+		var anim_trees = current_skin_node.find_children("*", "AnimationTree", true, false)
+		if anim_trees.size() > 0:
+			animation_tree = anim_trees[0] as AnimationTree
+			
+		var markers = current_skin_node.find_children("*ProjectileSpawn*", "Marker3D", true, false)
+		if markers.size() > 0:
+			projectile_spawn_point = markers[0] as Marker3D
+
+		var skeleton: Skeleton3D = current_skin_node as Skeleton3D
+		if not skeleton:
+			var skeletons = current_skin_node.find_children("*", "Skeleton3D", true, false)
+			if skeletons.size() > 0:
+				skeleton = skeletons[0] as Skeleton3D
+
+		if skeleton:
+			var target_root = skeleton.get_parent()
+			
+			if player_anims and not player_anims.is_ancestor_of(skeleton):
+				player_anims.root_node = player_anims.get_path_to(target_root)
+			
+			if animation_tree and not animation_tree.is_ancestor_of(skeleton):
+				animation_tree.root_node = animation_tree.get_path_to(target_root)
+
+		if animation_tree:
+			animation_tree.advance_expression_base_node = animation_tree.get_path_to(self)
+			
+			animation_tree.active = false
+			animation_tree.active = true
+			var playback = animation_tree.get("parameters/playback")
+			if playback is AnimationNodeStateMachinePlayback:
+				animation_playback = playback
+
 func player_death() -> void:
 	is_dead = true
 	shaker_component_3d.play_shake()
 	Global.is_game_started = false
 	dust_particles.emitting = false
-	player_anims.play("death")
+	
+	if player_anims and player_anims.has_animation("death"):
+		player_anims.play("death")
+		
 	AudioManager.fail.play()
 	AudioManager.bgm.stop()
 	AudioManager.death_impact.play()
-	physical_bone_simulator_3d.physical_bones_start_simulation()
+	
+	_trigger_ragdoll()
+	
 	Global.total_coins += Global.coins
 	Global.save_stats()
+
+func _trigger_ragdoll() -> void:
+	if not current_skin_node:
+		return
+		
+	var simulators = current_skin_node.find_children("*", "PhysicalBoneSimulator3D", true, false)
+	if simulators.size() > 0:
+		simulators[0].physical_bones_start_simulation()
+	else:
+		var skeletons = current_skin_node.find_children("*", "Skeleton3D", true, false)
+		if skeletons.size() > 0:
+			skeletons[0].physical_bones_start_simulation()
 
 func shoot_at_target(target_node: Node3D) -> void:
 	if is_shooting:
 		return
 		
 	is_shooting = true
-	animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
+	if animation_tree:
+		animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	elif player_anims and player_anims.has_animation("slingshot"):
+		player_anims.play("slingshot")
 	
 	await get_tree().create_timer(0.4).timeout
 	
@@ -215,7 +296,10 @@ func shoot_at_target(target_node: Node3D) -> void:
 	is_shooting = false
 
 func play_slingshot_animation() -> void:
-	animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	if animation_tree:
+		animation_tree["parameters/slingshot_oneshot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	elif player_anims and player_anims.has_animation("slingshot"):
+		player_anims.play("slingshot")
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle"):

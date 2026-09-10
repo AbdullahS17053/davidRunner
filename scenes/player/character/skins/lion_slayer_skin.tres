@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkinsData" format=3 uid="uid://bkmfvu84esx7f"]
+
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="1_dlr8u"]
+[ext_resource type="PackedScene" uid="uid://ctojpbrjji268" path="res://scenes/player/character/skins/lion_slayer.tscn" id="2_yuvyq"]
+
+[resource]
+script = ExtResource("1_dlr8u")
+skin_name = "Lion Slayer"
+skin_scene = ExtResource("2_yuvyq")
+skin_price = 3500
+metadata/_custom_type_script = "uid://do4dmn7k7l76c"

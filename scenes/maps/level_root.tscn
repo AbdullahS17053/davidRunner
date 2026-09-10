@@ -39,6 +39,15 @@
 [ext_resource type="Script" uid="uid://p4qtqtq03pj0" path="res://addons/shaker/data/Vector3/ShakerTypeNoiseShake3D.gd" id="27_8ckoj"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player/player.tscn" id="27_i1rv8"]
 [ext_resource type="Script" uid="uid://b706cc1bskcf1" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="28_d3c03"]
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="29_0abdq"]
+[ext_resource type="Texture2D" uid="uid://iohu4xrtb4dr" path="res://assets/ui_assets/icons/Icon_Check03_s.png" id="29_kuy5h"]
+[ext_resource type="Resource" uid="uid://1py8va34ddgs" path="res://scenes/player/character/skins/david_skin.tres" id="30_fn2xa"]
+[ext_resource type="Resource" uid="uid://ct76h3jji1ue8" path="res://scenes/player/character/skins/bear_slayer_skin.tres" id="31_74vyo"]
+[ext_resource type="Resource" uid="uid://cphg04fu1iir" path="res://scenes/player/character/skins/desert_fugitive_skin.tres" id="32_rg0ue"]
+[ext_resource type="Resource" uid="uid://bkmfvu84esx7f" path="res://scenes/player/character/skins/lion_slayer_skin.tres" id="33_13cnj"]
+[ext_resource type="Resource" uid="uid://buyxremntfgu3" path="res://scenes/player/character/skins/cave_of_adullam_skin.tres" id="34_5gjuj"]
+[ext_resource type="Texture2D" uid="uid://behaviie2y5bd" path="res://assets/ui_assets/icons/Icon_Lock02.png" id="34_wkq8n"]
+[ext_resource type="Texture2D" uid="uid://ce0nyp1ti5oy5" path="res://assets/ui_assets/icons/Icon_Lock03.png" id="35_wkq8n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("13_lml1k")
@@ -416,7 +425,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -589,6 +598,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 200), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
@@ -788,6 +809,240 @@ texture_margin_bottom = 30.0
 shader = ExtResource("19_8ckoj")
 shader_parameter/corner_scale = 0.10000000475
 
+[sub_resource type="Animation" id="Animation_kuekq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkinsHeaderLabel:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonLeft:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonRight:offset_transform_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ActionButtons:offset_transform_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SkinInfoContainer:offset_transform_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fn2xa"]
+resource_name = "exit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkinsHeaderLabel:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonLeft:offset_transform_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonRight:offset_transform_position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ActionButtons:offset_transform_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 200)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SkinInfoContainer:offset_transform_scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kuy5h"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkinsHeaderLabel:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonLeft:offset_transform_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-200, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonRight:offset_transform_position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(200, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ActionButtons:offset_transform_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SkinInfoContainer:offset_transform_scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuekq"]
+_data = {
+&"RESET": SubResource("Animation_kuekq"),
+&"exit": SubResource("Animation_fn2xa"),
+&"open": SubResource("Animation_kuy5h")
+}
+
 [sub_resource type="Animation" id="Animation_4kbfs"]
 length = 0.001
 tracks/0/type = "value"
@@ -921,7 +1176,7 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lxcvk"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_fn2xa"]
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -1029,11 +1284,40 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_idkr2"]
 resource_name = "outro"
 
+[sub_resource type="Animation" id="Animation_2xul0"]
+resource_name = "store_camera"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Marker3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 3.1415927, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Marker3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.5, 1, -0.36242437), Vector3(0, 1, -2.7)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dss4m"]
 _data = {
 &"Intro": SubResource("Animation_xo05s"),
 &"RESET": SubResource("Animation_dss4m"),
-&"outro": SubResource("Animation_idkr2")
+&"outro": SubResource("Animation_idkr2"),
+&"store_camera": SubResource("Animation_2xul0")
 }
 
 [node name="LevelRoot" type="Node3D" unique_id=154977216]
@@ -1268,7 +1552,8 @@ text = "Exit"
 [node name="PauseAnims" type="AnimationPlayer" parent="UILayer/PauseMenu" unique_id=994902738]
 libraries/ = SubResource("AnimationLibrary_luhhm")
 
-[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims", "map_select_menu", "shop_menu_anims")]
+[node name="MainMenu" type="Control" parent="UILayer" unique_id=918244788 node_paths=PackedStringArray("settings_menu", "menu_anims", "map_select_menu", "shop_menu_anims", "world_anims")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1282,6 +1567,7 @@ settings_menu = NodePath("../SettingsMenu")
 menu_anims = NodePath("MenuAnims")
 map_select_menu = NodePath("../MapSelectMenu")
 shop_menu_anims = NodePath("../ShopMenu/ShopMenuAnims")
+world_anims = NodePath("../../WorldAnims")
 
 [node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
 layout_mode = 1
@@ -1699,7 +1985,7 @@ metadata/_edit_use_anchors_ = true
 [node name="MapSelectAnims" type="AnimationPlayer" parent="UILayer/MapSelectMenu" unique_id=1236897070]
 libraries/ = SubResource("AnimationLibrary_0nbtd")
 
-[node name="ShopMenu" type="Control" parent="UILayer" unique_id=253112936 node_paths=PackedStringArray("shop_menu_anims")]
+[node name="ShopMenu" type="Control" parent="UILayer" unique_id=253112936 node_paths=PackedStringArray("error_label", "skin_name_label", "price_label", "shop_menu_anims", "menu_anims", "purchase_btn", "world_anims", "player")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -1711,113 +1997,134 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_8ckoj")
 script = ExtResource("14_df5f1")
+available_skins = Array[ExtResource("29_0abdq")]([ExtResource("30_fn2xa"), ExtResource("31_74vyo"), ExtResource("32_rg0ue"), ExtResource("33_13cnj"), ExtResource("34_5gjuj")])
+error_label = NodePath("SkinInfoContainer/ErrorLabel")
+skin_name_label = NodePath("SkinInfoContainer/SkinNameLabel")
+price_label = NodePath("SkinInfoContainer/PriceContainer/PriceLabel")
 shop_menu_anims = NodePath("ShopMenuAnims")
+menu_anims = NodePath("../MainMenu/MenuAnims")
+purchase_btn = NodePath("ActionButtons/PurchaseBtn")
+unlocked_icon = ExtResource("34_wkq8n")
+equipped_icon = ExtResource("29_kuy5h")
+locked_icon = ExtResource("35_wkq8n")
+world_anims = NodePath("../../WorldAnims")
+player = NodePath("../../Player")
 
-[node name="BG" type="ColorRect" parent="UILayer/ShopMenu" unique_id=438997891]
+[node name="SkinsHeaderLabel" type="Label" parent="UILayer/ShopMenu" unique_id=551740675]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.47058824)
-
-[node name="SettingsPanel" type="PanelContainer" parent="UILayer/ShopMenu" unique_id=147932719]
-layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -263.0
-offset_top = -292.0
-offset_right = 263.0
-offset_bottom = 292.0
+offset_left = -155.0
+offset_top = 36.0
+offset_right = 155.0
+offset_bottom = 157.0
 grow_horizontal = 2
-grow_vertical = 2
 offset_transform_enabled = true
-theme_override_styles/panel = SubResource("StyleBoxTexture_lakw3")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/ShopMenu/SettingsPanel" unique_id=1689603760]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="SettingsHeaderLabel" type="Label" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer" unique_id=737781299]
-layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 64
 text = "Select Skin"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer" unique_id=1866175237]
-layout_mode = 2
-alignment = 1
-
-[node name="ButtonLeft" type="Button" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=80462002]
-layout_mode = 2
+[node name="ButtonLeft" type="Button" parent="UILayer/ShopMenu" unique_id=1704161098]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -85.5
+offset_right = 131.0
+offset_bottom = 85.5
+grow_vertical = 2
+offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
 text = "<"
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1541928661]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_006py")
-
-[node name="MapImage" type="TextureRect" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=41152910]
-material = SubResource("ShaderMaterial_8ckoj")
-custom_minimum_size = Vector2(256, 256)
-custom_maximum_size = Vector2(256, 256)
-layout_mode = 2
-texture = ExtResource("19_006py")
-
-[node name="ButtonRight" type="Button" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1791278107]
-layout_mode = 2
+[node name="ButtonRight" type="Button" parent="UILayer/ShopMenu" unique_id=1957496167]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -131.0
+offset_top = -85.5
+offset_right = -24.0
+offset_bottom = 85.5
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
 text = ">"
 
-[node name="SelectBtn" type="Button" parent="UILayer/ShopMenu/SettingsPanel/VBoxContainer" unique_id=1619697424]
+[node name="SkinInfoContainer" type="VBoxContainer" parent="UILayer/ShopMenu" unique_id=57019817]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -375.0
+offset_right = 87.0
+offset_bottom = -184.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+
+[node name="PriceContainer" type="HBoxContainer" parent="UILayer/ShopMenu/SkinInfoContainer" unique_id=733294249]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CoinIcon" type="TextureRect" parent="UILayer/ShopMenu/SkinInfoContainer/PriceContainer" unique_id=822780153]
+layout_mode = 2
+texture = ExtResource("5_bybcv")
+expand_mode = 3
+
+[node name="PriceLabel" type="Label" parent="UILayer/ShopMenu/SkinInfoContainer/PriceContainer" unique_id=520376162]
+layout_mode = 2
+text = "0"
+
+[node name="SkinNameLabel" type="Label" parent="UILayer/ShopMenu/SkinInfoContainer" unique_id=396426795]
+layout_mode = 2
+text = "SKIN_NAME"
+horizontal_alignment = 1
+
+[node name="ErrorLabel" type="Label" parent="UILayer/ShopMenu/SkinInfoContainer" unique_id=1583253286]
+layout_mode = 2
+text = "SKIN_NAME"
+horizontal_alignment = 1
+
+[node name="ActionButtons" type="HBoxContainer" parent="UILayer/ShopMenu" unique_id=998754270]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -174.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+
+[node name="BackBtn" type="Button" parent="UILayer/ShopMenu/ActionButtons" unique_id=1660305144]
 layout_mode = 2
 theme_type_variation = &"ButtonVariation"
-text = "Purchase"
+icon = ExtResource("10_18djc")
 
-[node name="CloseBtn" type="Button" parent="UILayer/ShopMenu" unique_id=1884680700]
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.04562738
-anchor_top = 0.08780161
-anchor_right = 0.1444867
-anchor_bottom = 0.203009
-offset_left = 66.56654
-offset_top = 149.85254
-offset_right = 43.37262
-offset_bottom = 117.13364
-pivot_offset_ratio = Vector2(0.5, 0.5)
-size_flags_horizontal = 0
-size_flags_vertical = 0
-offset_transform_enabled = true
-theme_type_variation = &"FlatButton"
-theme_override_constants/icon_max_width = 64
-theme_override_styles/normal = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_2lf6f")
-theme_override_styles/focus = SubResource("StyleBoxFlat_2lf6f")
-icon = ExtResource("14_btbn3")
+[node name="PurchaseBtn" type="Button" parent="UILayer/ShopMenu/ActionButtons" unique_id=130793908]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+icon = ExtResource("29_kuy5h")
 icon_alignment = 1
 expand_icon = true
-metadata/_edit_use_anchors_ = true
 
-[node name="ShopMenuAnims" type="AnimationPlayer" parent="UILayer/ShopMenu" unique_id=1732963523]
-libraries/ = SubResource("AnimationLibrary_0nbtd")
+[node name="ShopMenuAnims" type="AnimationPlayer" parent="UILayer/ShopMenu" unique_id=1986684382]
+libraries/ = SubResource("AnimationLibrary_kuekq")
 
 [node name="GameOverUI" type="Control" parent="UILayer" unique_id=1862970273 node_paths=PackedStringArray("game_over_anims", "world_anims", "high_score_label", "coins_collected_label")]
 process_mode = 3
@@ -2048,7 +2355,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-animation_playback = SubResource("AnimationNodeStateMachinePlayback_lxcvk")
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_fn2xa")
 heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
@@ -2077,10 +2384,10 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonRight" to="UILayer/MapSelectMenu" method="_on_button_right_pressed"]
 [connection signal="pressed" from="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/SelectBtn" to="UILayer/MapSelectMenu" method="_on_select_btn_pressed"]
 [connection signal="pressed" from="UILayer/MapSelectMenu/CloseBtn" to="UILayer/MapSelectMenu" method="_on_close_btn_pressed"]
-[connection signal="pressed" from="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonLeft" to="UILayer/ShopMenu" method="_on_button_left_pressed"]
-[connection signal="pressed" from="UILayer/ShopMenu/SettingsPanel/VBoxContainer/HBoxContainer/ButtonRight" to="UILayer/ShopMenu" method="_on_button_right_pressed"]
-[connection signal="pressed" from="UILayer/ShopMenu/SettingsPanel/VBoxContainer/SelectBtn" to="UILayer/ShopMenu" method="_on_select_btn_pressed"]
-[connection signal="pressed" from="UILayer/ShopMenu/CloseBtn" to="UILayer/ShopMenu" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/ButtonLeft" to="UILayer/ShopMenu" method="_on_button_left_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/ButtonRight" to="UILayer/ShopMenu" method="_on_button_right_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/ActionButtons/BackBtn" to="UILayer/ShopMenu" method="_on_back_btn_pressed"]
+[connection signal="pressed" from="UILayer/ShopMenu/ActionButtons/PurchaseBtn" to="UILayer/ShopMenu" method="_on_purchase_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/PlayAgain" to="UILayer/VictoryUI" method="_on_play_again_pressed"]

@@ -35,6 +35,9 @@ transform = Transform3D(-4.2821878e-08, 0, -0.9796504, 0, 0.9796504, 0, 0.979650
 [node name="SM_Env_Rock_Cliff_05" parent="Decorations" unique_id=1077479206 instance=ExtResource("2_wbgbu")]
 transform = Transform3D(-4.2821878e-08, 0, -0.9796504, 0, 0.9796504, 0, 0.9796504, 0, -4.2821878e-08, -10.885455, 0, 5.4639187)
 
+[node name="SM_Env_Rock_Cliff_07" parent="Decorations" unique_id=775361319 instance=ExtResource("2_wbgbu")]
+transform = Transform3D(1.17, 0, -4.2430193e-15, 0, 1.17, 0, 4.2430193e-15, 0, 1.17, -1.0604906, 0, 18.01751)
+
 [node name="SM_Env_Rock_Cliff_04" parent="Decorations" unique_id=488788523 instance=ExtResource("2_wbgbu")]
 transform = Transform3D(-4.0691344e-08, 0, -0.93090945, 0, 0.93090945, 0, 0.93090945, 0, -4.0691344e-08, 11.425896, 0, -9.786096)
 

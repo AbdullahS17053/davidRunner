@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8ghb8yxhuwu0"
-path="res://.godot/imported/David.fbx-eb08e20d95687d7c8dfa2145bc8fcc71.scn"
+uid="uid://botiw78vwuh0q"
+path="res://.godot/imported/Desert Fugitive.fbx-c162d1ef8f6b540eee5d65bfabf86bd3.scn"
 
 [deps]
 
-source_file="res://scenes/player/character/David.fbx"
-dest_files=["res://.godot/imported/David.fbx-eb08e20d95687d7c8dfa2145bc8fcc71.scn"]
+source_file="res://scenes/player/models/Desert Fugitive.fbx"
+dest_files=["res://.godot/imported/Desert Fugitive.fbx-c162d1ef8f6b540eee5d65bfabf86bd3.scn"]
 
 [params]
 
@@ -41,6 +41,9 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
+"PATH:AnimationPlayer": {
+"import/skip_import": true
+},
 "PATH:Armature/Skeleton3D": {
 "rest_pose/load_pose": 1,
 "rest_pose/selected_animation": "Armature|Armature|0_T-Pose",
@@ -50,5 +53,5 @@ _subresources={
 }
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+fbx/embedded_image_handling=2
 fbx/naming_version=2

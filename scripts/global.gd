@@ -15,6 +15,9 @@ signal on_boss_hit
 @warning_ignore("unused_signal")
 signal enemy_killed_for_coins(pos_3d: Vector3, amount: int)
 
+#var current_coins: int = 0
+var equipped_skin: SkinsData
+
 var coins: int = 0
 var selected_map_index: int = 0
 var can_spawn_chunks: bool = true

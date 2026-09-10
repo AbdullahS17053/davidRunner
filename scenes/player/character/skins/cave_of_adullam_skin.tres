@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkinsData" format=3 uid="uid://buyxremntfgu3"]
+
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="1_bdrc7"]
+[ext_resource type="PackedScene" uid="uid://c61pm2atsa7o6" path="res://scenes/player/character/skins/cave_of_adullam.tscn" id="2_vc8k7"]
+
+[resource]
+script = ExtResource("1_bdrc7")
+skin_name = "Cave Of Adullam"
+skin_scene = ExtResource("2_vc8k7")
+skin_price = 5000
+metadata/_custom_type_script = "uid://do4dmn7k7l76c"

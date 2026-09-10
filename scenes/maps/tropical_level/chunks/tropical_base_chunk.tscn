@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="10_nseee"]
 [ext_resource type="Material" uid="uid://dpgmqwb1bj6wl" path="res://resources/materials/grass_ground_material.tres" id="11_84wb8"]
 [ext_resource type="PackedScene" uid="uid://bnfj2kh0452f1" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Tree_Forest_01.prefab.scn" id="12_wbi0s"]
+[ext_resource type="PackedScene" uid="uid://cg1ryc0tvndmn" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Cliff_03.prefab.scn" id="13_ec2av"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wbi0s"]
 render_priority = 0
@@ -180,6 +181,9 @@ metadata/SimpleGrassTextured = "2.0.5"
 [node name="SM_Env_Tree_Forest_02" parent="Decorations" unique_id=151375702 instance=ExtResource("7_kbnj6")]
 transform = Transform3D(0.6440072, 0.083624914, 0, -0.083624914, 0.6440072, 0, 0, 0, 0.6494138, -9.480335, 0.4851451, -5.704366)
 
+[node name="SM_Env_Tree_Forest_06" parent="Decorations" unique_id=1188489783 instance=ExtResource("7_kbnj6")]
+transform = Transform3D(0.8121814, 0.10546251, 9.623206e-10, -0.1042822, 0.80309165, 0.122188896, 0.015734242, -0.12117159, 0.80983394, -4.2610598, -0.12558603, 0.9105928)
+
 [node name="SM_Env_Tree_Forest_03" parent="Decorations" unique_id=2040761179 instance=ExtResource("7_kbnj6")]
 transform = Transform3D(0.63486445, -0.13669515, 0, 0.13669515, 0.63486445, 0, 0, 0, 0.6494138, 8.550222, 0.8158612, -17.777584)
 
@@ -321,3 +325,6 @@ shape = SubResource("ConcavePolygonShape3D_rcj6b")
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.250845)
+
+[node name="SM_Env_Rock_Cliff_07" parent="." unique_id=2115676785 instance=ExtResource("13_ec2av")]
+transform = Transform3D(1.17, 0, -4.2430193e-15, 0, 1.17, 0, 4.2430193e-15, 0, 1.17, -1.0604906, -0.55175114, 7.1990614)

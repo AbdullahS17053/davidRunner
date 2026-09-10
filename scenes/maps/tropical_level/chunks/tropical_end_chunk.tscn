@@ -763,7 +763,7 @@ transform = Transform3D(0.47617796, 0, 0, 0, 0.47617796, 0, 0, 0, 0.47617796, 8.
 [node name="SandPath" type="Node3D" parent="Decorations" unique_id=795888883]
 transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, -5.036, 0, 0)
 script = ExtResource("10_nddcm")
-chunk_activity_data = PackedByteArray("AQE=")
+chunk_activity_data = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
 preview_world_chunks = Vector2i(1, 2)
 smooth_iterations = 2
 custom_material = ExtResource("11_vhpdu")
@@ -802,7 +802,7 @@ shape = SubResource("ConcavePolygonShape3D_3nj25")
 [node name="GrassSides" type="Node3D" parent="Decorations" unique_id=1156129479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0.168)
 script = ExtResource("10_nddcm")
-chunk_activity_data = PackedByteArray("AQABAQAB")
+chunk_activity_data = PackedByteArray("AQABAQABAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
 preview_world_chunks = Vector2i(3, 2)
 show_deactivated_chunks = false
 smooth_iterations = 2

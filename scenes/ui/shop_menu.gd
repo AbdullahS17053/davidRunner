@@ -98,6 +98,8 @@ func _on_back_btn_pressed() -> void:
 		player.apply_equipped_skin()
 
 func _on_purchase_btn_pressed() -> void:
+	AudioManager.ui_click.play()
+
 	if available_skins.is_empty():
 		return
 		

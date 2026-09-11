@@ -3,7 +3,7 @@ class_name FloatingText2D
 
 @export var float_distance: float = 80.0
 @export var duration: float = 0.6
-@export var screen_margin: float = 20.0
+@export var screen_margin: float = 30.0
 
 @export var floating_text: Label
 

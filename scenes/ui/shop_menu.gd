@@ -19,6 +19,11 @@ class_name SkinStoreUI
 var current_skin_index: int = 0
 
 func _ready() -> void:
+	var unlocked_paths: Array = SaveManager.data["skins"]["unlocked_skin_paths"]
+	for skin in available_skins:
+		if skin.resource_path in unlocked_paths:
+			skin.skin_unlocked = true
+
 	update_ui()
 
 func update_ui() -> void:
@@ -26,7 +31,6 @@ func update_ui() -> void:
 		return
 		
 	var current_skin: SkinsData = available_skins[current_skin_index]
-	
 	_update_player_preview(current_skin)
 		
 	skin_name_label.text = current_skin.skin_name
@@ -87,8 +91,6 @@ func _on_back_btn_pressed() -> void:
 		player.apply_equipped_skin()
 
 func _on_purchase_btn_pressed() -> void:
-	AudioManager.ui_click.play()
-	
 	if available_skins.is_empty():
 		return
 		
@@ -96,14 +98,24 @@ func _on_purchase_btn_pressed() -> void:
 	
 	if current_skin.skin_unlocked:
 		Global.equipped_skin = current_skin
+		SaveManager.data["skins"]["equipped_skin_path"] = current_skin.resource_path
+		SaveManager.save_game()
+		
 		update_ui()
 		error_label.text = "Skin Equipped!"
 		return
 		
-	if Global.total_coins >= current_skin.skin_price:
-		Global.total_coins -= current_skin.skin_price
+	var current_bank: int = SaveManager.data["stats"]["total_coins"]
+	if current_bank >= current_skin.skin_price:
+		SaveManager.data["stats"]["total_coins"] -= current_skin.skin_price
 		current_skin.skin_unlocked = true
 		Global.equipped_skin = current_skin
+		
+		if not current_skin.resource_path in SaveManager.data["skins"]["unlocked_skin_paths"]:
+			SaveManager.data["skins"]["unlocked_skin_paths"].append(current_skin.resource_path)
+			
+		SaveManager.data["skins"]["equipped_skin_path"] = current_skin.resource_path
+		SaveManager.save_game()
 		
 		update_ui()
 		error_label.text = "Purchase Successful!"

@@ -13,6 +13,10 @@ var data: Dictionary = {
 		"res_scale": 0.5,
 		"sfx_on": true,
 		"music_on": true
+	},
+	"skins": {
+		"equipped_skin_path": "",
+		"unlocked_skin_paths": []
 	}
 }
 

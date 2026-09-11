@@ -65,12 +65,21 @@ func _ready() -> void:
 	normal_height = col_shape.shape.height
 	normal_pos_y = col_shape.position.y
 	
-	if Global.equipped_skin == null:
+	var saved_skin_path: String = SaveManager.data["skins"]["equipped_skin_path"]
+	
+	if saved_skin_path != "" and ResourceLoader.exists(saved_skin_path):
+		Global.equipped_skin = load(saved_skin_path) as SkinsData
+	else:
 		Global.equipped_skin = default_skin
-		
 		if Global.equipped_skin:
 			Global.equipped_skin.skin_unlocked = true
-	
+			SaveManager.data["skins"]["equipped_skin_path"] = Global.equipped_skin.resource_path
+			
+			if not Global.equipped_skin.resource_path in SaveManager.data["skins"]["unlocked_skin_paths"]:
+				SaveManager.data["skins"]["unlocked_skin_paths"].append(Global.equipped_skin.resource_path)
+			
+			SaveManager.save_game()
+			
 	apply_equipped_skin()
 
 func _input(event: InputEvent) -> void:

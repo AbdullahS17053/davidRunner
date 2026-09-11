@@ -20,10 +20,17 @@ var current_skin_index: int = 0
 
 func _ready() -> void:
 	var unlocked_paths: Array = SaveManager.data["skins"]["unlocked_skin_paths"]
-	for skin in available_skins:
+	var saved_equipped_path: String = SaveManager.data["skins"]["equipped_skin_path"]
+	
+	for i in range(available_skins.size()):
+		var skin = available_skins[i]
+		
 		if skin.resource_path in unlocked_paths:
 			skin.skin_unlocked = true
-
+			
+		if saved_equipped_path != "" and skin.resource_path == saved_equipped_path:
+			current_skin_index = i
+			
 	update_ui()
 
 func update_ui() -> void:

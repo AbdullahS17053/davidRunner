@@ -207,7 +207,7 @@ _data = {
 &"death": SubResource("Animation_p47bc")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=22477516 node_paths=PackedStringArray("col_shape", "animation_tree", "dust_particles", "slide_particles", "player_anims", "visuals_node", "projectile_spawn_point")]
+[node name="Player" type="CharacterBody3D" unique_id=22477516 node_paths=PackedStringArray("col_shape", "dust_particles", "slide_particles", "player_anims", "visuals_node", "projectile_spawn_point")]
 physics_interpolation_mode = 1
 collision_mask = 12
 script = ExtResource("1_3vyb7")
@@ -218,7 +218,6 @@ lane_width = 4.0
 switch_speed = 5.0
 default_skin = ExtResource("2_gmlin")
 col_shape = NodePath("Collision/CollisionShape3D")
-animation_tree = NodePath("")
 animation_playback = SubResource("AnimationNodeStateMachinePlayback_lvxji")
 dust_particles = NodePath("DustParticles")
 slide_particles = NodePath("SlideParticles")

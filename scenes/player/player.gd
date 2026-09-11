@@ -262,10 +262,6 @@ func _trigger_ragdoll() -> void:
 	var simulators = current_skin_node.find_children("*", "PhysicalBoneSimulator3D", true, false)
 	if simulators.size() > 0:
 		simulators[0].physical_bones_start_simulation()
-	else:
-		var skeletons = current_skin_node.find_children("*", "Skeleton3D", true, false)
-		if skeletons.size() > 0:
-			skeletons[0].physical_bones_start_simulation()
 
 func shoot_at_target(target_node: Node3D) -> void:
 	if is_shooting:

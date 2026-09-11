@@ -48,6 +48,8 @@
 [ext_resource type="Resource" uid="uid://buyxremntfgu3" path="res://scenes/player/character/skins/cave_of_adullam_skin.tres" id="34_5gjuj"]
 [ext_resource type="Texture2D" uid="uid://behaviie2y5bd" path="res://assets/ui_assets/icons/Icon_Lock02.png" id="34_wkq8n"]
 [ext_resource type="Texture2D" uid="uid://ce0nyp1ti5oy5" path="res://assets/ui_assets/icons/Icon_Lock03.png" id="35_wkq8n"]
+[ext_resource type="Texture2D" uid="uid://i3oqen21g6o2" path="res://assets/ui_assets/icons/Icon_Arrow_Prev1.png" id="38_rg0ue"]
+[ext_resource type="Texture2D" uid="uid://bv4ahv5xii502" path="res://assets/ui_assets/icons/Icon_Arrow_Next1.png" id="39_13cnj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("13_lml1k")
@@ -1924,7 +1926,8 @@ alignment = 1
 [node name="ButtonLeft" type="Button" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1270963435]
 layout_mode = 2
 theme_type_variation = &"ButtonVariation"
-text = "<"
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("38_rg0ue")
 
 [node name="PanelContainer" type="PanelContainer" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=917165024]
 layout_mode = 2
@@ -1940,7 +1943,8 @@ texture = ExtResource("19_006py")
 [node name="ButtonRight" type="Button" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1257184585]
 layout_mode = 2
 theme_type_variation = &"ButtonVariation"
-text = ">"
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("39_13cnj")
 
 [node name="SelectBtn" type="Button" parent="UILayer/MapSelectMenu/SettingsPanel/VBoxContainer" unique_id=1802142305]
 layout_mode = 2
@@ -2038,7 +2042,7 @@ offset_bottom = 85.5
 grow_vertical = 2
 offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
-text = "<"
+icon = ExtResource("38_rg0ue")
 
 [node name="ButtonRight" type="Button" parent="UILayer/ShopMenu" unique_id=1957496167]
 layout_mode = 1
@@ -2055,7 +2059,7 @@ grow_horizontal = 0
 grow_vertical = 2
 offset_transform_enabled = true
 theme_type_variation = &"ButtonVariation"
-text = ">"
+icon = ExtResource("39_13cnj")
 
 [node name="SkinInfoContainer" type="VBoxContainer" parent="UILayer/ShopMenu" unique_id=57019817]
 layout_mode = 1

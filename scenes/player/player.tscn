@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ch6xq4rp00elp" path="res://scenes/player/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://cnt0q746wkmyg" path="res://scenes/slingshot_projectile/slingshot_projectile.tscn" id="2_75vfm"]
-[ext_resource type="Resource" uid="uid://1py8va34ddgs" path="res://scenes/player/character/skins/david_skin.tres" id="2_gmlin"]
+[ext_resource type="Resource" uid="uid://1py8va34ddgs" path="res://resources/player_skins/skins_data/david_skin.tres" id="2_gmlin"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lvxji"]
 

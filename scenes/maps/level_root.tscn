@@ -41,13 +41,16 @@
 [ext_resource type="Script" uid="uid://b706cc1bskcf1" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="28_d3c03"]
 [ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="29_0abdq"]
 [ext_resource type="Texture2D" uid="uid://iohu4xrtb4dr" path="res://assets/ui_assets/icons/Icon_Check03_s.png" id="29_kuy5h"]
-[ext_resource type="Resource" uid="uid://1py8va34ddgs" path="res://scenes/player/character/skins/david_skin.tres" id="30_fn2xa"]
-[ext_resource type="Resource" uid="uid://ct76h3jji1ue8" path="res://scenes/player/character/skins/bear_slayer_skin.tres" id="31_74vyo"]
-[ext_resource type="Resource" uid="uid://cphg04fu1iir" path="res://scenes/player/character/skins/desert_fugitive_skin.tres" id="32_rg0ue"]
-[ext_resource type="Resource" uid="uid://bkmfvu84esx7f" path="res://scenes/player/character/skins/lion_slayer_skin.tres" id="33_13cnj"]
-[ext_resource type="Resource" uid="uid://buyxremntfgu3" path="res://scenes/player/character/skins/cave_of_adullam_skin.tres" id="34_5gjuj"]
+[ext_resource type="Resource" uid="uid://1py8va34ddgs" path="res://resources/player_skins/skins_data/david_skin.tres" id="30_fn2xa"]
+[ext_resource type="Resource" uid="uid://ct76h3jji1ue8" path="res://resources/player_skins/skins_data/bear_slayer_skin.tres" id="31_74vyo"]
+[ext_resource type="Resource" uid="uid://cphg04fu1iir" path="res://resources/player_skins/skins_data/desert_fugitive_skin.tres" id="32_rg0ue"]
+[ext_resource type="Resource" uid="uid://bkmfvu84esx7f" path="res://resources/player_skins/skins_data/lion_slayer_skin.tres" id="33_13cnj"]
+[ext_resource type="Resource" uid="uid://buyxremntfgu3" path="res://resources/player_skins/skins_data/cave_of_adullam_skin.tres" id="34_5gjuj"]
+[ext_resource type="Resource" uid="uid://62qa41c0muga" path="res://resources/player_skins/skins_data/wolf_fur_white.tres" id="34_61ixb"]
 [ext_resource type="Texture2D" uid="uid://behaviie2y5bd" path="res://assets/ui_assets/icons/Icon_Lock02.png" id="34_wkq8n"]
+[ext_resource type="Resource" uid="uid://cnae410io8g10" path="res://resources/player_skins/skins_data/wolf_fur_black.tres" id="35_nwl1k"]
 [ext_resource type="Texture2D" uid="uid://ce0nyp1ti5oy5" path="res://assets/ui_assets/icons/Icon_Lock03.png" id="35_wkq8n"]
+[ext_resource type="Resource" uid="uid://bblhgyleohwdr" path="res://resources/player_skins/skins_data/wolf_fur_gray.tres" id="36_n3hxp"]
 [ext_resource type="Texture2D" uid="uid://i3oqen21g6o2" path="res://assets/ui_assets/icons/Icon_Arrow_Prev1.png" id="38_rg0ue"]
 [ext_resource type="Texture2D" uid="uid://bv4ahv5xii502" path="res://assets/ui_assets/icons/Icon_Arrow_Next1.png" id="39_13cnj"]
 
@@ -1178,7 +1181,7 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_fn2xa"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_rg0ue"]
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -2001,7 +2004,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_8ckoj")
 script = ExtResource("14_df5f1")
-available_skins = Array[ExtResource("29_0abdq")]([ExtResource("30_fn2xa"), ExtResource("31_74vyo"), ExtResource("32_rg0ue"), ExtResource("33_13cnj"), ExtResource("34_5gjuj")])
+available_skins = Array[ExtResource("29_0abdq")]([ExtResource("30_fn2xa"), ExtResource("31_74vyo"), ExtResource("34_61ixb"), ExtResource("36_n3hxp"), ExtResource("35_nwl1k"), ExtResource("32_rg0ue"), ExtResource("33_13cnj"), ExtResource("34_5gjuj")])
 error_label = NodePath("SkinInfoContainer/ErrorLabel")
 skin_name_label = NodePath("SkinInfoContainer/SkinNameLabel")
 price_label = NodePath("SkinInfoContainer/PriceContainer/PriceLabel")
@@ -2359,7 +2362,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-animation_playback = SubResource("AnimationNodeStateMachinePlayback_fn2xa")
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_rg0ue")
 heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 

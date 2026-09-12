@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkinsData" format=3 uid="uid://62qa41c0muga"]
+
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="1_apk6t"]
+[ext_resource type="PackedScene" uid="uid://cr5u8pnmerqeh" path="res://scenes/player/character/skins/character_white.tscn" id="2_my1yl"]
+
+[resource]
+script = ExtResource("1_apk6t")
+skin_name = "Wolf Fur (White)"
+skin_scene = ExtResource("2_my1yl")
+skin_price = 1200
+metadata/_custom_type_script = "uid://do4dmn7k7l76c"

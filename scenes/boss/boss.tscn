@@ -7,6 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://cisjhq6213pla" path="res://assets/audio/beast_long_roar.wav" id="5_iva7r"]
 [ext_resource type="AudioStream" uid="uid://bvlu55u3r5u11" path="res://scenes/boss/boss_entrance_rumble.mp3" id="6_i4fbv"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4fbv"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_pqufm"]
+material = SubResource("StandardMaterial3D_i4fbv")
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dq6vu"]
 radius = 1.3100586
 height = 4.227051
@@ -335,6 +343,24 @@ settings/0/end_bone_name = "RightHand"
 settings/0/end_bone = 49
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
+
+[node name="EyesAttachmentL" type="BoneAttachment3D" parent="Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="3" unique_id=1604787309]
+transform = Transform3D(-2.7894974e-05, 1, 1.4871361e-05, -0.00041368604, -1.4781952e-05, 1, 0.9999999, 2.798438e-05, 0.0004137159, 0.041005656, 1.6246616, 0.06799253)
+bone_name = "eye_l"
+bone_idx = 70
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Knight/Combined_Character/GeneralSkeleton/EyesAttachmentL" unique_id=1414302225]
+transform = Transform3D(0.13, -4.5474735e-13, -3.637979e-12, 4.5474735e-13, 0.13, -3.7969627e-14, 0, -7.993606e-15, 0.12999998, 2.82377e-06, -0.005980976, -0.0064430237)
+mesh = SubResource("SphereMesh_pqufm")
+
+[node name="EyesAttachmentR" type="BoneAttachment3D" parent="Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="4" unique_id=95778853]
+transform = Transform3D(-7.1525574e-06, 1, 3.7550926e-06, -0.00041374564, -3.8146973e-06, 0.99999994, 0.99999994, 7.0929527e-06, 0.00041371584, -0.041005567, 1.6246617, 0.06799252)
+bone_name = "eye_r"
+bone_idx = 71
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Knight/Combined_Character/GeneralSkeleton/EyesAttachmentR" unique_id=75583738]
+transform = Transform3D(0.13, -4.5474735e-13, -3.637979e-12, 4.5474735e-13, 0.13, -3.7969627e-14, 0, -7.993606e-15, 0.12999998, 0, 0, 0)
+mesh = SubResource("SphereMesh_pqufm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=137392534]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1135254, 0)

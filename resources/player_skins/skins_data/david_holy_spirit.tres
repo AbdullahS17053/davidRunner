@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkinsData" format=3 uid="uid://cey3n7yb2sckm"]
+
+[ext_resource type="Script" uid="uid://do4dmn7k7l76c" path="res://resources/player_skins/skins_data/skins_data.gd" id="1_j6pvj"]
+[ext_resource type="PackedScene" uid="uid://cf6uff5w6wero" path="res://scenes/player/character/skins/david_holy_spirit.tscn" id="2_odog0"]
+
+[resource]
+script = ExtResource("1_j6pvj")
+skin_name = "David (Holy Spirit Empowered)"
+skin_scene = ExtResource("2_odog0")
+skin_price = 10000
+metadata/_custom_type_script = "uid://do4dmn7k7l76c"

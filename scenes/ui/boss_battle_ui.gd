@@ -6,6 +6,8 @@ class_name BossBattleUI
 @export var world_anims: AnimationPlayer
 @export var progress_bar: TextureProgressBar
 
+@export_group("Boss Fight Settings")
+@export var enable_tap_fight: bool = true
 @export var drain_rate: float = 25.0
 @export var tap_power: float = 8.0
 @export var completion_value: float = 95.0
@@ -21,9 +23,25 @@ func _ready() -> void:
 	tap_zone.pivot_offset = tap_zone.size / 2.0
 
 func start_boss_fight() -> void:
-	self.visible = true
-	is_active = true
-	progress_bar.value = 50.0
+	if enable_tap_fight:
+		self.visible = true
+		is_active = true
+		progress_bar.value = 50.0
+	else:
+		self.visible = false
+		is_active = false
+		_play_auto_cutscene()
+
+func _play_auto_cutscene() -> void:
+	await get_tree().create_timer(1.5).timeout
+	
+	var boss: Boss = get_tree().get_first_node_in_group("boss") as Boss
+	if boss:
+		player.shoot_at_target(boss)
+		
+	await get_tree().create_timer(1.0).timeout
+	
+	end_fight(true)
 
 func _process(delta: float) -> void:
 	if not is_active:
@@ -65,9 +83,6 @@ func _animate_tap() -> void:
 	tap_tween.tween_property(tap_zone, "scale", Vector2(target_scale, target_scale), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func end_fight(won: bool) -> void:
-	if not is_active:
-		return
-		
 	is_active = false
 	self.visible = false
 	Global.can_spawn_chunks = true

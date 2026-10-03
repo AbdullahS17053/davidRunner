@@ -19,6 +19,14 @@ subdivide_depth = 15
 [sub_resource type="BoxShape3D" id="BoxShape3D_iry7p"]
 size = Vector3(25, 0.1, 13.41349)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqufm"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_avdmn"]
+material = SubResource("StandardMaterial3D_pqufm")
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dq6vu"]
 radius = 1.3100586
 height = 4.227051
@@ -677,6 +685,24 @@ bone = 25
 target_node = NodePath("../../../../RHandLookAtTarget")
 bone_name = "RightHand"
 bone = 49
+
+[node name="EyeAttachmentL" type="BoneAttachment3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="5" unique_id=145313068]
+transform = Transform3D(-2.7894974e-05, 1, 1.4871361e-05, -0.00041368604, -1.4781952e-05, 1, 0.9999999, 2.798438e-05, 0.0004137159, 0.041005656, 1.6246616, 0.06799253)
+bone_name = "eye_l"
+bone_idx = 70
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton/EyeAttachmentL" unique_id=1648079689]
+transform = Transform3D(0.13, -4.5474735e-13, -7.275958e-12, 4.5474735e-13, 0.13, -2.6589841e-13, 0, -7.993606e-15, 0.12999997, -0.0074107647, -2.1234155e-07, -3.0696392e-06)
+mesh = SubResource("SphereMesh_avdmn")
+
+[node name="EyeAttachmentR" type="BoneAttachment3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton" parent_id_path=PackedInt32Array(1612502435, 718094809) index="6" unique_id=1178586747]
+transform = Transform3D(-7.1525574e-06, 1, 3.7550926e-06, -0.00041374564, -3.8146973e-06, 0.99999994, 0.99999994, 7.0929527e-06, 0.00041371584, -0.041005567, 1.6246617, 0.06799252)
+bone_name = "eye_r"
+bone_idx = 71
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boss/Knight/Combined_Character/GeneralSkeleton/EyeAttachmentR" unique_id=68375065]
+transform = Transform3D(0.12999998, -3.9790393e-13, 0, 3.410605e-13, 0.13, 1.6653345e-16, 3.637979e-12, -2.5007774e-14, 0.12999997, -0.011521339, -8.568168e-08, -4.7385693e-06)
+mesh = SubResource("SphereMesh_avdmn")
 
 [node name="HeadPoint" type="Marker3D" parent="Boss/Knight" unique_id=7758290]
 transform = Transform3D(0.055555556, 0, 0, 0, 0.055555556, 0, 0, 0, 0.055555556, 0, 1.6261921, 0)

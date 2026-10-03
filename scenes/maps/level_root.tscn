@@ -53,6 +53,7 @@
 [ext_resource type="Resource" uid="uid://bblhgyleohwdr" path="res://resources/player_skins/skins_data/wolf_fur_gray.tres" id="36_n3hxp"]
 [ext_resource type="Texture2D" uid="uid://i3oqen21g6o2" path="res://assets/ui_assets/icons/Icon_Arrow_Prev1.png" id="38_rg0ue"]
 [ext_resource type="Texture2D" uid="uid://bv4ahv5xii502" path="res://assets/ui_assets/icons/Icon_Arrow_Next1.png" id="39_13cnj"]
+[ext_resource type="Resource" uid="uid://cey3n7yb2sckm" path="res://resources/player_skins/skins_data/david_holy_spirit.tres" id="40_nwl1k"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("13_lml1k")
@@ -1181,7 +1182,7 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_rg0ue"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_nwl1k"]
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -1437,6 +1438,7 @@ player = NodePath("../../Player")
 tap_zone = NodePath("TapZone")
 world_anims = NodePath("../../WorldAnims")
 progress_bar = NodePath("ProgressBar")
+enable_tap_fight = false
 drain_rate = 30.0
 tap_power = 5.0
 
@@ -2004,7 +2006,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_8ckoj")
 script = ExtResource("14_df5f1")
-available_skins = Array[ExtResource("29_0abdq")]([ExtResource("30_fn2xa"), ExtResource("31_74vyo"), ExtResource("34_61ixb"), ExtResource("36_n3hxp"), ExtResource("35_nwl1k"), ExtResource("32_rg0ue"), ExtResource("33_13cnj"), ExtResource("34_5gjuj")])
+available_skins = Array[ExtResource("29_0abdq")]([ExtResource("30_fn2xa"), ExtResource("31_74vyo"), ExtResource("34_61ixb"), ExtResource("36_n3hxp"), ExtResource("35_nwl1k"), ExtResource("32_rg0ue"), ExtResource("33_13cnj"), ExtResource("34_5gjuj"), ExtResource("40_nwl1k")])
 error_label = NodePath("SkinInfoContainer/ErrorLabel")
 skin_name_label = NodePath("SkinInfoContainer/SkinNameLabel")
 price_label = NodePath("SkinInfoContainer/PriceContainer/PriceLabel")
@@ -2214,6 +2216,29 @@ size_flags_horizontal = 3
 theme_type_variation = &"ButtonVariation"
 text = "Main Menu"
 
+[node name="WatchAdsLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1281068721]
+layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 48
+text = "Watch Ads"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="AdsContainer" type="HBoxContainer" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=916569009]
+layout_mode = 2
+
+[node name="2xCoins" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1093450353]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "2x Coins"
+
+[node name="Revive" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1593031350]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonVariation"
+text = "Revive"
+
 [node name="GameOverAnims" type="AnimationPlayer" parent="UILayer/GameOverUI" unique_id=1230722019]
 libraries/ = SubResource("AnimationLibrary_4kbfs")
 
@@ -2362,7 +2387,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-animation_playback = SubResource("AnimationNodeStateMachinePlayback_rg0ue")
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_nwl1k")
 heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 
@@ -2397,5 +2422,7 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/ShopMenu/ActionButtons/PurchaseBtn" to="UILayer/ShopMenu" method="_on_purchase_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer/2xCoins" to="UILayer/GameOverUI" method="_on_2x_coins_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer/Revive" to="UILayer/GameOverUI" method="_on_revive_pressed"]
 [connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/PlayAgain" to="UILayer/VictoryUI" method="_on_play_again_pressed"]
 [connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/VictoryUI" method="_on_main_menu_pressed"]

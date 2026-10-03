@@ -6,6 +6,12 @@ signal coin_collected(amount: int)
 signal game_over
 
 @warning_ignore("unused_signal")
+signal player_revived
+
+@warning_ignore("unused_signal")
+signal bonus_power_up_granted
+
+@warning_ignore("unused_signal")
 signal boss_defeated
 @warning_ignore("unused_signal")
 signal boss_failed
@@ -33,7 +39,11 @@ var highest_coins: int:
 var distance: float = 0
 
 var auto_restart: bool = false
-var is_game_started: bool = false	
+var is_game_started: bool = false
+
+func _ready() -> void:
+	if not AdManager.user_earned_reward.is_connected(_on_user_earned_reward):
+		AdManager.user_earned_reward.connect(_on_user_earned_reward)
 
 func reset_score() -> void:
 	coins = 0
@@ -42,3 +52,17 @@ func reset_score() -> void:
 
 func save_stats() -> void:
 	SaveManager.save_game()
+
+func _on_user_earned_reward(reward_type: String) -> void:
+	match reward_type:
+		"double_coins":
+			total_coins += coins
+			coins *= 2
+			coin_collected.emit(coins)
+			if coins > highest_coins:
+				highest_coins = coins
+			save_stats()
+		"revive":
+			pass # Handled by game_over_ui.gd after ad is dismissed
+		"bonus_power_up":
+			bonus_power_up_granted.emit()

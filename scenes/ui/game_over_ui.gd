@@ -48,6 +48,10 @@ func _on_restart_btn_pressed() -> void:
 	Global.auto_restart = true
 	game_over_anims.play_backwards("open")
 	await game_over_anims.animation_finished
+	
+	if AdManager.check_and_show_interstitial():
+		await AdManager.interstitial_ad_dismissed
+		
 	get_tree().reload_current_scene()
 
 func _on_main_menu_pressed() -> void:
@@ -55,6 +59,10 @@ func _on_main_menu_pressed() -> void:
 	AudioManager.ui_click.play()
 	game_over_anims.play_backwards("open")
 	await game_over_anims.animation_finished
+	
+	if AdManager.check_and_show_interstitial():
+		await AdManager.interstitial_ad_dismissed
+		
 	get_tree().reload_current_scene()
 
 func _on_2x_coins_pressed() -> void:

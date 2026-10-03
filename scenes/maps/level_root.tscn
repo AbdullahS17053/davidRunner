@@ -2315,7 +2315,10 @@ size_flags_horizontal = 3
 theme_type_variation = &"ButtonVariation"
 text = "Main Menu"
 
-[node name="WatchAdsLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1281068721]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=1359402885]
+layout_mode = 2
+
+[node name="WatchAdsLabel" type="Label" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/VBoxContainer" unique_id=1281068721]
 layout_mode = 2
 theme_override_constants/outline_size = 14
 theme_override_font_sizes/font_size = 48
@@ -2323,10 +2326,10 @@ text = "Watch Ads"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="AdsContainer" type="HBoxContainer" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=916569009]
+[node name="AdsContainer" type="HBoxContainer" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/VBoxContainer" unique_id=916569009]
 layout_mode = 2
 
-[node name="2xCoins" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1238069257]
+[node name="2xCoins" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/VBoxContainer/AdsContainer" unique_id=1238069257]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"AdButton"
@@ -2336,7 +2339,7 @@ text = "2x"
 icon = ExtResource("5_bybcv")
 icon_alignment = 1
 
-[node name="Revive" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1685565248]
+[node name="Revive" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/VBoxContainer/AdsContainer" unique_id=1685565248]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"AdButton"
@@ -2530,7 +2533,7 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/ShopMenu/ActionButtons/PurchaseBtn" to="UILayer/ShopMenu" method="_on_purchase_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/RestartBtn" to="UILayer/GameOverUI" method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/GameOverUI" method="_on_main_menu_pressed"]
-[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer/2xCoins" to="UILayer/GameOverUI" method="_on_2x_coins_pressed"]
-[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer/Revive" to="UILayer/GameOverUI" method="_on_revive_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/VBoxContainer/AdsContainer/2xCoins" to="UILayer/GameOverUI" method="_on_2x_coins_pressed"]
+[connection signal="pressed" from="UILayer/GameOverUI/GameOverPanel/VBoxContainer/VBoxContainer/AdsContainer/Revive" to="UILayer/GameOverUI" method="_on_revive_pressed"]
 [connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/PlayAgain" to="UILayer/VictoryUI" method="_on_play_again_pressed"]
 [connection signal="pressed" from="UILayer/VictoryUI/GameOverPanel/VBoxContainer/MainMenu" to="UILayer/VictoryUI" method="_on_main_menu_pressed"]

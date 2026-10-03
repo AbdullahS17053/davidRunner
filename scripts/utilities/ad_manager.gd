@@ -21,8 +21,13 @@ var _is_loading_interstitial_ad: bool = false
 var _interstitial_load_callback: InterstitialAdLoadCallback
 var _interstitial_full_screen_callback: FullScreenContentCallback
 
+var last_ad_time: int = 0
+var runs_completed: int = 0
+var interstitial_cooldown_ms: int = 60000 # 60 seconds
+
 func _ready() -> void:
 	MobileAds.initialize()
+	last_ad_time = Time.get_ticks_msec()
 	
 	load_rewarded_ad()
 	load_interstitial_ad()
@@ -55,6 +60,7 @@ func setup_rewarded_callbacks() -> void:
 	_rewarded_full_screen_callback = FullScreenContentCallback.new()
 	_rewarded_full_screen_callback.on_ad_dismissed_full_screen_content = func() -> void:
 		print("Rewarded ad dismissed.")
+		last_ad_time = Time.get_ticks_msec()
 		rewarded_ad.destroy()
 		rewarded_ad = null
 		rewarded_ad_dismissed.emit()
@@ -114,6 +120,7 @@ func setup_interstitial_callbacks() -> void:
 	_interstitial_full_screen_callback = FullScreenContentCallback.new()
 	_interstitial_full_screen_callback.on_ad_dismissed_full_screen_content = func() -> void:
 		print("Interstitial dismissed.")
+		last_ad_time = Time.get_ticks_msec()
 		interstitial_ad.destroy()
 		interstitial_ad = null
 		interstitial_ad_dismissed.emit()
@@ -134,6 +141,29 @@ func show_interstitial_ad() -> void:
 	else:
 		print("Interstitial not loaded yet. Attempting to load...")
 		load_interstitial_ad()
+
+func check_and_show_interstitial() -> bool:
+	runs_completed += 1
+	
+	if runs_completed == 1:
+		print("First run completed, skipping interstitial.")
+		return false
+		
+	if runs_completed % 2 != 0:
+		print("Run ", runs_completed, ", skipping interstitial (only every 2 runs).")
+		return false
+		
+	var current_time = Time.get_ticks_msec()
+	if current_time - last_ad_time < interstitial_cooldown_ms:
+		print("Interstitial cooldown active, skipping.")
+		return false
+		
+	if not is_interstitial_ad_loaded():
+		print("Interstitial not loaded, skipping.")
+		return false
+		
+	show_interstitial_ad()
+	return true
 
 func is_interstitial_ad_loaded() -> bool:
 	return interstitial_ad != null

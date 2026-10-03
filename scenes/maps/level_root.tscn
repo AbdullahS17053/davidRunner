@@ -30,6 +30,7 @@
 [ext_resource type="Shader" uid="uid://77jlyx08wjrj" path="res://resources/shaders/rounded_corner_shader.gdshader" id="19_8ckoj"]
 [ext_resource type="Script" uid="uid://cttjx60q28xvo" path="res://resources/map_data/map_data.gd" id="19_kto32"]
 [ext_resource type="Resource" uid="uid://dfl6i75cc1kls" path="res://scenes/maps/mountains_level/mountains_map_data.tres" id="20_jkcmn"]
+[ext_resource type="Texture2D" uid="uid://bijn42cms2l37" path="res://assets/ui_assets/icons/Label_Badge01_Yellow.png" id="20_n3hxp"]
 [ext_resource type="Resource" uid="uid://coym5yjegojpq" path="res://scenes/maps/tropical_level/tropical_map_data.tres" id="21_kto32"]
 [ext_resource type="Script" uid="uid://bm8rkudutcwm8" path="res://scenes/ui/victory_ui.gd" id="24_xokok"]
 [ext_resource type="Script" uid="uid://bagu61ausjpp8" path="res://addons/interpolated_camera_3d/interpolated_camera_3d.gd" id="25_jkcmn"]
@@ -625,6 +626,8 @@ _data = {
 &"loop": SubResource("Animation_jhx03"),
 &"show": SubResource("Animation_xgqkh")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3hxp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lakw3"]
 texture = ExtResource("13_lml1k")
@@ -1698,6 +1701,52 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[node name="BonusPowerupBtn" type="Button" parent="UILayer/MainMenu" unique_id=661499892]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = 196.0
+offset_right = -16.0
+offset_bottom = 363.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/line_spacing = -20
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n3hxp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_n3hxp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n3hxp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n3hxp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n3hxp")
+text = "Bonus
+Powerups"
+icon = ExtResource("20_n3hxp")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Label" type="Label" parent="UILayer/MainMenu/BonusPowerupBtn" unique_id=861276557]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -70.5
+offset_right = 18.0
+offset_bottom = -9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Ad"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SettingsMenu" type="Control" parent="UILayer" unique_id=568473751 node_paths=PackedStringArray("res_scale_value", "shadows_toggle", "fps_toggle", "res_scale_slider", "sfx_toggle", "music_toggle", "settings_anims", "directional_light")]
 process_mode = 3
 visible = false
@@ -2406,6 +2455,7 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 [connection signal="pressed" from="UILayer/MainMenu/MenuBtns/SettingsBtn" to="UILayer/MainMenu" method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/MenuBtns/ShopBtn" to="UILayer/MainMenu" method="_on_shop_btn_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/MenuBtns/MapsBtn" to="UILayer/MainMenu" method="_on_maps_btn_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/BonusPowerupBtn" to="UILayer/MainMenu" method="_on_bonus_powerup_btn_pressed"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ShadowsToggle" to="UILayer/SettingsMenu" method="_on_shadows_toggle_toggled"]
 [connection signal="toggled" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/FPSToggle" to="UILayer/SettingsMenu" method="_on_fps_toggle_toggled"]
 [connection signal="value_changed" from="UILayer/SettingsMenu/SettingsPanel/VBoxContainer/VideoSettings/ResolutionScale/HBoxContainer/ResScaleSlider" to="UILayer/SettingsMenu" method="_on_res_scale_slider_value_changed"]

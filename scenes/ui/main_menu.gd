@@ -24,3 +24,6 @@ func _on_shop_btn_pressed() -> void:
 	menu_anims.play("exit")
 	shop_menu_anims.play("open")
 	world_anims.play("store_camera")
+
+func _on_bonus_powerup_btn_pressed() -> void:
+	print("Bonus Powerup")

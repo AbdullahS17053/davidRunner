@@ -327,7 +327,6 @@ func _on_player_revived() -> void:
 					tween.tween_property(materials[i], "albedo_color:a", 1.0, blink_time)
 				else:
 					tween.parallel().tween_property(materials[i], "albedo_color:a", 1.0, blink_time)
-
 	
 	await get_tree().create_timer(invincibility_duration).timeout
 	is_invincible = false

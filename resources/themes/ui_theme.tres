@@ -1,12 +1,36 @@
 [gd_resource type="Theme" format=3 uid="uid://cp15gk0cghgys"]
 
 [ext_resource type="Texture2D" uid="uid://bn2v6lt17n8u0" path="res://assets/ui_assets/icons/CheckedIcon.png" id="1_3jxlk"]
+[ext_resource type="Texture2D" uid="uid://dh3o8l2uo4ie1" path="res://assets/ui_assets/buttons/Button01_l_Red.png" id="1_77iv5"]
 [ext_resource type="Texture2D" uid="uid://clxttr2bml2o8" path="res://assets/ui_assets/buttons/Button_Round01_Yellow.png" id="1_nlrje"]
 [ext_resource type="FontFile" uid="uid://bgg04ec335l0g" path="res://assets/fonts/cairo/Cairo-Black.ttf" id="1_uc1im"]
 [ext_resource type="Texture2D" uid="uid://bej4gr42c8vbu" path="res://assets/ui_assets/icons/UnCheckedIcon.png" id="2_nlrje"]
 [ext_resource type="Texture2D" uid="uid://ckclcs5xbg1t6" path="res://assets/ui_assets/sliders/Slider_StageHorizontal_Icon_l_Yellow.png" id="4_be67o"]
 [ext_resource type="Texture2D" uid="uid://juhfoi1f57sw" path="res://assets/ui_assets/sliders/Slider_Basic01_Bg_Single.png" id="5_i1sty"]
 [ext_resource type="Texture2D" uid="uid://c8ldpucsbop2u" path="res://assets/ui_assets/sliders/Slider_Basic01_Bg_White1.png" id="6_i1sty"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5nt54"]
+texture = ExtResource("1_77iv5")
+texture_margin_left = 40.0
+texture_margin_top = 30.0
+texture_margin_right = 40.0
+texture_margin_bottom = 30.0
+modulate_color = Color(0.38819927, 0.38819927, 0.38819927, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i1sty"]
+texture = ExtResource("1_77iv5")
+texture_margin_left = 40.0
+texture_margin_top = 30.0
+texture_margin_right = 40.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cnqg"]
+texture = ExtResource("1_77iv5")
+texture_margin_left = 40.0
+texture_margin_top = 30.0
+texture_margin_right = 40.0
+texture_margin_bottom = 30.0
+modulate_color = Color(0.5986477, 0.5986477, 0.5986477, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3jxlk"]
 texture = ExtResource("1_nlrje")
@@ -113,6 +137,15 @@ texture_margin_bottom = 10.0
 
 [resource]
 default_font = ExtResource("1_uc1im")
+AdButton/base_type = &"Button"
+AdButton/constants/icon_max_width = 0
+AdButton/constants/outline_size = 12
+AdButton/font_sizes/font_size = 30
+AdButton/styles/disabled = SubResource("StyleBoxTexture_5nt54")
+AdButton/styles/focus = SubResource("StyleBoxTexture_i1sty")
+AdButton/styles/hover = SubResource("StyleBoxTexture_i1sty")
+AdButton/styles/normal = SubResource("StyleBoxTexture_i1sty")
+AdButton/styles/pressed = SubResource("StyleBoxTexture_0cnqg")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)

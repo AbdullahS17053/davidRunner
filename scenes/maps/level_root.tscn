@@ -55,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://i3oqen21g6o2" path="res://assets/ui_assets/icons/Icon_Arrow_Prev1.png" id="38_rg0ue"]
 [ext_resource type="Texture2D" uid="uid://bv4ahv5xii502" path="res://assets/ui_assets/icons/Icon_Arrow_Next1.png" id="39_13cnj"]
 [ext_resource type="Resource" uid="uid://cey3n7yb2sckm" path="res://resources/player_skins/skins_data/david_holy_spirit.tres" id="40_nwl1k"]
+[ext_resource type="Texture2D" uid="uid://d4jlh05f7ey6f" path="res://assets/ui_assets/icons/ItemIcon_Heart_Red.Png" id="46_i1rv8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("13_lml1k")
@@ -446,6 +447,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BonusPowerupBtn:offset_transform_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_munwf"]
 resource_name = "exit"
@@ -511,6 +524,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 200)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BonusPowerupBtn:offset_transform_scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jhx03"]
 resource_name = "loop"
@@ -540,6 +565,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BonusPowerupBtn:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.06, 1.06), Vector2(1, 1), Vector2(1.06, 1.06), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xgqkh"]
@@ -617,6 +654,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BonusPowerupBtn:offset_transform_scale")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
@@ -1185,7 +1234,7 @@ script = ExtResource("28_d3c03")
 PositionShake = Array[ExtResource("26_006py")]([SubResource("Resource_as1cp")])
 metadata/_custom_type_script = "uid://b706cc1bskcf1"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_nwl1k"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_n3hxp"]
 
 [sub_resource type="Animation" id="Animation_xo05s"]
 resource_name = "Intro"
@@ -1714,6 +1763,7 @@ offset_right = -16.0
 offset_bottom = 363.5
 grow_horizontal = 0
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_constants/line_spacing = -20
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n3hxp")
@@ -2276,17 +2326,25 @@ metadata/_edit_lock_ = true
 [node name="AdsContainer" type="HBoxContainer" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer" unique_id=916569009]
 layout_mode = 2
 
-[node name="2xCoins" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1093450353]
+[node name="2xCoins" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1238069257]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"ButtonVariation"
-text = "2x Coins"
+theme_type_variation = &"AdButton"
+theme_override_constants/icon_max_width = 90
+theme_override_font_sizes/font_size = 40
+text = "2x"
+icon = ExtResource("5_bybcv")
+icon_alignment = 1
 
-[node name="Revive" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1593031350]
+[node name="Revive" type="Button" parent="UILayer/GameOverUI/GameOverPanel/VBoxContainer/AdsContainer" unique_id=1685565248]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"ButtonVariation"
+theme_type_variation = &"AdButton"
+theme_override_constants/icon_max_width = 90
 text = "Revive"
+icon = ExtResource("46_i1rv8")
+icon_alignment = 1
+expand_icon = true
 
 [node name="GameOverAnims" type="AnimationPlayer" parent="UILayer/GameOverUI" unique_id=1230722019]
 libraries/ = SubResource("AnimationLibrary_4kbfs")
@@ -2436,7 +2494,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018023133, -1.6495869)
 move_speed = 10.0
 jump_force = 8.0
 switch_speed = 6.0
-animation_playback = SubResource("AnimationNodeStateMachinePlayback_nwl1k")
+animation_playback = SubResource("AnimationNodeStateMachinePlayback_n3hxp")
 heavy_shake = NodePath("../InterpolatedCamera3D/HeavyShake")
 shaker_component_3d = NodePath("../InterpolatedCamera3D/ShakerComponent3D")
 

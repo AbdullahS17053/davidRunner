@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerupData" format=3 uid="uid://cqsx7385vbvg4"]
+
+[ext_resource type="PackedScene" uid="uid://c8g8et85mekgl" path="res://assets/PolygonIcons/Prefabs/SM_Icon_Chevron_01.prefab.scn" id="1_s6mwk"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_vctjh"]
+
+[resource]
+script = ExtResource("2_vctjh")
+type = 4
+model_scene = ExtResource("1_s6mwk")
+metadata/_custom_type_script = "uid://dlbiuici8xiwh"

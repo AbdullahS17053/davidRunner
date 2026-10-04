@@ -51,12 +51,12 @@ func _process(delta: float) -> void:
 			Global.can_spawn_chunks = false
 			
 	if is_waiting_for_clearance:
-		if _is_at_world_end(): 
+		if _is_at_world_end():
 			is_waiting_for_clearance = false
 			boss_fought = true
 			
 			if warning_label:
-				warning_label.visible = false 
+				warning_label.visible = false
 			if warning_tween and warning_tween.is_valid():
 				warning_tween.kill()
 				
@@ -108,7 +108,7 @@ func _play_warning_effect() -> void:
 	warning_label.visible = true
 	warning_label.modulate.a = 0.0
 	
-	warning_tween = create_tween().set_loops() 
+	warning_tween = create_tween().set_loops()
 	warning_tween.tween_property(warning_label, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
 	warning_tween.tween_property(warning_label, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE)
 	# AudioManager.play_warning_siren()
@@ -126,7 +126,6 @@ func _on_enemy_killed(pos_3d: Vector3, amount: int) -> void:
 	
 func on_coin_collected(amount: int) -> void:
 	coins_label.text = "%d" % amount
-	print(amount)
 	if Global.coins > Global.highest_coins:
 		Global.highest_coins = Global.coins
 		Global.save_stats()

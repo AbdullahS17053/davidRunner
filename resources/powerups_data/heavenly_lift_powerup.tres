@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerupData" format=3 uid="uid://j2tsx5sidwwl"]
+
+[ext_resource type="PackedScene" uid="uid://bfixe8oqoy3e" path="res://assets/3D_icons/heavenly_lift.fbx" id="1_jhjy4"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_0kn1b"]
+
+[resource]
+script = ExtResource("2_0kn1b")
+type = 5
+model_scene = ExtResource("1_jhjy4")
+metadata/_custom_type_script = "uid://dlbiuici8xiwh"

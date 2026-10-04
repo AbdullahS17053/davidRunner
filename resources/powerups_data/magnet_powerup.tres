@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerupData" format=3 uid="uid://c20kkwvp3i5ww"]
+
+[ext_resource type="PackedScene" uid="uid://lcuu7emfgvs5" path="res://assets/PolygonIcons/Prefabs/SM_Icon_Magnet_01.prefab.scn" id="1_mggsp"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_l1x1i"]
+
+[resource]
+script = ExtResource("2_l1x1i")
+type = 2
+model_scene = ExtResource("1_mggsp")
+metadata/_custom_type_script = "uid://dlbiuici8xiwh"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerupData" format=3 uid="uid://dp38jyrqcgjgv"]
+
+[ext_resource type="PackedScene" uid="uid://cno7k4hy61ucn" path="res://assets/PolygonIcons/Prefabs/SM_Icon_Crosshair_01.prefab.scn" id="1_hhoob"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_p4fy2"]
+
+[resource]
+script = ExtResource("2_p4fy2")
+type = 1
+model_scene = ExtResource("1_hhoob")
+metadata/_custom_type_script = "uid://dlbiuici8xiwh"

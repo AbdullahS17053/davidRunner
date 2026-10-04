@@ -54,6 +54,22 @@ var normal_pos_y: float
 
 var is_dead: bool = false
 var is_invincible: bool = false
+var has_shield: bool = false
+var has_slingshot: bool = false
+var slingshot_timer: float = 0.0
+var has_coin_magnet: bool = false
+var magnet_timer: float = 0.0
+var has_double_coins: bool = false
+var double_coins_timer: float = 0.0
+var speed_boost_level: int = 0
+var has_heavenly_lift: bool = false
+var heavenly_lift_timer: float = 0.0
+var sky_items: Array[Node3D] = []
+var sky_spawn_timer: float = 0.0
+
+var collectible_scene = preload("res://scenes/collectibles/collectible.tscn")
+var powerup_scene = preload("res://scenes/collectibles/powerup.tscn")
+
 var game_start: bool = false
 var is_shooting: bool = false
 
@@ -61,6 +77,7 @@ func _ready() -> void:
 	Global.player_revived.connect(_on_player_revived)
 	is_dead = false
 	is_invincible = false
+	has_shield = false
 	global_position.x = 0.0
 	
 	col_shape.shape = col_shape.shape.duplicate()
@@ -141,6 +158,9 @@ func _physics_process(delta: float) -> void:
 			is_jumping = false
 			start_slide()
 
+	if has_heavenly_lift:
+		velocity.y = (15.0 - global_position.y) * 1.5
+
 	if is_sliding:
 		slide_timer -= delta
 		if slide_timer <= 0:
@@ -161,7 +181,75 @@ func _physics_process(delta: float) -> void:
 	var new_x: float = lerpf(global_position.x, target_x, dynamic_switch * delta)
 	velocity.x = (new_x - global_position.x) / delta
 	
+	_handle_powerups(delta)
+	
 	move_and_slide()
+
+func _handle_powerups(delta: float) -> void:
+	if has_slingshot:
+		slingshot_timer -= delta
+		if slingshot_timer <= 0:
+			has_slingshot = false
+			print("Slingshot powerup ended.")
+		elif not is_shooting:
+			var wolves = get_tree().get_nodes_in_group("wolf")
+			for wolf in wolves:
+				if not wolf.is_dead and wolf.global_position.distance_to(global_position) < 20.0 and wolf.global_position.z < global_position.z:
+					shoot_at_target(wolf)
+					break
+
+	if has_coin_magnet:
+		magnet_timer -= delta
+		if magnet_timer <= 0:
+			has_coin_magnet = false
+			print("Coin Magnet powerup ended.")
+		else:
+			var coins = get_tree().get_nodes_in_group("coin")
+			for coin in coins:
+				if not coin.is_magnetized and coin.global_position.distance_to(global_position) < 8.0:
+					coin.is_magnetized = true
+					coin.target_player = self
+
+	if has_double_coins:
+		double_coins_timer -= delta
+		if double_coins_timer <= 0:
+			has_double_coins = false
+			print("Double Coins powerup ended.")
+
+	if has_heavenly_lift:
+		heavenly_lift_timer -= delta
+		if heavenly_lift_timer <= 0:
+			has_heavenly_lift = false
+			_grant_invincibility(3.0)
+			print("Heavenly Lift ended. Granted temporary invincibility.")
+		else:
+			sky_spawn_timer -= delta
+			if sky_spawn_timer <= 0:
+				sky_spawn_timer = 0.2
+				_spawn_sky_item()
+				
+	for i in range(sky_items.size() - 1, -1, -1):
+		var item = sky_items[i]
+		if is_instance_valid(item):
+			item.global_position.z += move_speed * delta
+			if item.global_position.z > global_position.z + 10.0:
+				item.queue_free()
+				sky_items.remove_at(i)
+		else:
+			sky_items.remove_at(i)
+
+func _spawn_sky_item() -> void:
+	var item: Node3D
+	if randf() < 0.05:
+		item = powerup_scene.instantiate()
+	else:
+		item = collectible_scene.instantiate()
+		
+	var random_lane = randi_range(-1, 1)
+	item.position = Vector3(random_lane * lane_width, 16.0, global_position.z - 40.0)
+	
+	get_parent().add_child(item)
+	sky_items.append(item)
 
 func start_slide() -> void:
 	is_sliding = true
@@ -284,11 +372,12 @@ func _on_player_revived() -> void:
 		
 	AudioManager.bgm.play()
 	
+	_grant_invincibility(3.0)
+
+func _grant_invincibility(duration: float) -> void:
 	is_invincible = true
-	
-	var invincibility_duration: float = 3.0
-	var blink_count: int = 6
-	var blink_time: float = invincibility_duration / (blink_count * 2.0)
+	var blink_count: int = int(duration * 2)
+	var blink_time: float = duration / (blink_count * 2.0)
 	
 	if current_skin_node:
 		var materials: Array[BaseMaterial3D] = []
@@ -305,9 +394,7 @@ func _on_player_revived() -> void:
 					mat = mesh_instance.mesh.surface_get_material(j)
 					
 				if mat and mat is BaseMaterial3D:
-					# Duplicate the material so we don't affect other instances
 					mat = mat.duplicate()
-					# Enable transparency
 					mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 					mesh_instance.set_surface_override_material(j, mat)
 					materials.append(mat)
@@ -328,7 +415,7 @@ func _on_player_revived() -> void:
 				else:
 					tween.parallel().tween_property(materials[i], "albedo_color:a", 1.0, blink_time)
 	
-	await get_tree().create_timer(invincibility_duration).timeout
+	await get_tree().create_timer(duration).timeout
 	is_invincible = false
 	
 	if current_skin_node:
@@ -338,6 +425,7 @@ func _on_player_revived() -> void:
 			if mesh_instance.mesh:
 				for j in range(mesh_instance.mesh.get_surface_count()):
 					mesh_instance.set_surface_override_material(j, null)
+
 
 func _stop_ragdoll() -> void:
 	if not current_skin_node:
@@ -390,4 +478,43 @@ func play_slingshot_animation() -> void:
 
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle") and not is_invincible:
+		if has_shield:
+			has_shield = false
+			_grant_invincibility(1.5)
+			print("Shield broken! Invincible for 1.5 seconds.")
+			return
+			
 		Global.game_over.emit()
+
+func activate_shield() -> void:
+	has_shield = true
+	print("Shield of Faith activated!")
+
+func apply_powerup(data: PowerupData) -> void:
+	if not data: return
+	
+	match data.type:
+		PowerupData.PowerupType.SHIELD:
+			activate_shield()
+		PowerupData.PowerupType.SLINGSHOT:
+			has_slingshot = true
+			slingshot_timer = data.duration
+			print("Slingshot powerup activated for %s seconds!" % data.duration)
+		PowerupData.PowerupType.MAGNET:
+			has_coin_magnet = true
+			magnet_timer = data.duration
+			print("Coin Magnet powerup activated for %s seconds!" % data.duration)
+		PowerupData.PowerupType.DOUBLE_COINS:
+			has_double_coins = true
+			double_coins_timer = data.duration
+			print("Double Coins powerup activated for %s seconds!" % data.duration)
+		PowerupData.PowerupType.SPEED_BOOST:
+			speed_boost_level += 1
+			move_speed += 0.5
+			if move_speed > max_speed:
+				move_speed = max_speed
+			print("Speed Boost level up! Current level: %s, New Speed: %s" % [speed_boost_level, move_speed])
+		PowerupData.PowerupType.HEAVENLY_LIFT:
+			has_heavenly_lift = true
+			heavenly_lift_timer = data.duration
+			print("Heavenly Lift activated for %s seconds!" % data.duration)

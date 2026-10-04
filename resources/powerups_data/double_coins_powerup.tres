@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerupData" format=3 uid="uid://d0a5m1hp6rm5g"]
+
+[ext_resource type="PackedScene" uid="uid://beby8mjqq50gh" path="res://assets/PolygonIcons/Prefabs/SM_Icon_Star_01.prefab.scn" id="1_og7yp"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_tdqh6"]
+
+[resource]
+script = ExtResource("2_tdqh6")
+type = 3
+model_scene = ExtResource("1_og7yp")
+metadata/_custom_type_script = "uid://dlbiuici8xiwh"

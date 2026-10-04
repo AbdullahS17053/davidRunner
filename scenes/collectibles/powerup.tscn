@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cret0jm3hcrcm"]
+
+[ext_resource type="Script" uid="uid://cbqtqm57tnoal" path="res://scenes/collectibles/powerup.gd" id="1_x5ili"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_toriq"]
+[ext_resource type="Resource" uid="uid://j2tsx5sidwwl" path="res://resources/powerups_data/heavenly_lift_powerup.tres" id="3_toriq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pqufm"]
+radius = 0.76245594
+
+[node name="Powerup" type="Area3D" unique_id=1055726115]
+script = ExtResource("1_x5ili")
+powerups = Array[ExtResource("2_toriq")]([ExtResource("3_toriq")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=613870420]
+shape = SubResource("SphereShape3D_pqufm")

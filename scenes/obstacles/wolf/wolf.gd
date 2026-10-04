@@ -55,7 +55,11 @@ func die() -> void:
 	AudioManager.punch.play()
 	click_particles.restart()
 	player.shaker_component_3d.play_shake()
+	
 	var coin_reward := randi_range(5, 10)
+	if player.has_double_coins:
+		coin_reward *= 2
+		
 	Global.coins += coin_reward
 	Global.coin_collected.emit(Global.coins)
 	Global.enemy_killed_for_coins.emit(global_position, coin_reward)

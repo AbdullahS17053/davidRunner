@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://ch6xq4rp00elp" path="res://scenes/player/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://cnt0q746wkmyg" path="res://scenes/slingshot_projectile/slingshot_projectile.tscn" id="2_75vfm"]
 [ext_resource type="Resource" uid="uid://1py8va34ddgs" path="res://resources/player_skins/skins_data/david_skin.tres" id="2_gmlin"]
+[ext_resource type="ArrayMesh" uid="uid://bbeobykq0uxt4" path="res://assets/PolygonIcons/Models/extracted/SM_Icon_Add_01.SM_Icon_Add_01.mesh" id="4_lvxji"]
+[ext_resource type="ArrayMesh" uid="uid://58fs8djgl7d6" path="res://assets/PolygonIcons/Models/extracted/SM_Icon_Shield_01.SM_Icon_Shield_01.mesh" id="5_p47bc"]
+[ext_resource type="Shader" uid="uid://bsahk3cb6cf31" path="res://resources/shaders/shield.gdshader" id="6_75vfm"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lvxji"]
 
@@ -25,7 +28,8 @@ point_count = 2
 curve = SubResource("Curve_qlg0r")
 
 [sub_resource type="Gradient" id="Gradient_dqkch"]
-colors = PackedColorArray(0, 0, 0, 0, 0.62495375, 0.49427417, 0.349467, 1)
+offsets = PackedFloat32Array(0, 0.3463035, 0.6848249, 1)
+colors = PackedColorArray(0.28627452, 0.2627451, 1, 1, 0.33333334, 1, 0.23529412, 1, 1, 0.26005268, 0.21720988, 1, 0.9472794, 1, 0.07910311, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dqkch"]
 gradient = SubResource("Gradient_dqkch")
@@ -73,7 +77,6 @@ damping_max = 5.0
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_qlg0r")
 color = Color(0.7372549, 0.5882353, 0.4392157, 1)
-color_ramp = SubResource("GradientTexture1D_dqkch")
 alpha_curve = SubResource("CurveTexture_dqkch")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p47bc"]
@@ -83,11 +86,59 @@ vertex_color_use_as_albedo = true
 [sub_resource type="SphereMesh" id="SphereMesh_qlg0r"]
 material = SubResource("StandardMaterial3D_p47bc")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gmlin"]
+emission_shape = 1
+emission_sphere_radius = 0.6
+direction = Vector3(1, 0, 1)
+spread = 180.0
+radial_velocity_min = 0.49997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 5, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 0.59999776
+radial_accel_min = 1.2999977
+radial_accel_max = 5.1999974
+damping_max = 5.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_qlg0r")
+color = Color(0.28533626, 1, 0.13171524, 1)
+alpha_curve = SubResource("CurveTexture_dqkch")
+
+[sub_resource type="Curve" id="Curve_0owmy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.75618374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_75vfm"]
+curve = SubResource("Curve_0owmy")
+
+[sub_resource type="Curve" id="Curve_p47bc"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.49056607), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_75vfm"]
+curve_y = SubResource("Curve_p47bc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_75vfm"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.5
+emission_ring_inner_radius = 1.5
+emission_ring_cone_angle = 90.0
+direction = Vector3(1, 0, 1)
+spread = 180.0
+orbit_velocity_min = 0.2000001
+orbit_velocity_max = 0.5000001
+orbit_velocity_curve = SubResource("CurveXYZTexture_75vfm")
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_75vfm")
+
 [sub_resource type="Curve" id="Curve_lvxji"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_75vfm"]
+[sub_resource type="CurveTexture" id="CurveTexture_qek5x"]
 curve = SubResource("Curve_lvxji")
 
 [sub_resource type="Gradient" id="Gradient_75vfm"]
@@ -100,7 +151,7 @@ gradient = SubResource("Gradient_75vfm")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_qek5x"]
+[sub_resource type="CurveTexture" id="CurveTexture_0owmy"]
 curve = SubResource("Curve_qek5x")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h17s1"]
@@ -113,9 +164,9 @@ spread = 0.0
 initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_qek5x")
+scale_curve = SubResource("CurveTexture_0owmy")
 color_initial_ramp = SubResource("GradientTexture1D_0owmy")
-alpha_curve = SubResource("CurveTexture_75vfm")
+alpha_curve = SubResource("CurveTexture_qek5x")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p47bc"]
 particle_flag_align_y = true
@@ -144,6 +195,28 @@ material = SubResource("StandardMaterial3D_lvxji")
 top_radius = 0.03
 bottom_radius = 0.0
 height = 1.0
+
+[sub_resource type="GDScript" id="GDScript_75vfm"]
+resource_name = "rotate_shield"
+script/source = "extends Node3D
+
+@export var rotate_speed: float = 60.0
+
+func _physics_process(delta: float) -> void:
+	rotate_y(deg_to_rad(rotate_speed * delta))
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p47bc"]
+render_priority = 0
+shader = ExtResource("6_75vfm")
+shader_parameter/fresnel_blend = -0.055
+shader_parameter/fresnel_size = 1.6600000000000001
+shader_parameter/fresnel_power = 1.925
+shader_parameter/fresnel_color_top = Color(0.33558714, 0.91401213, 1, 1)
+shader_parameter/brightness = 1.31
+shader_parameter/time_scale = 0.04
+shader_parameter/tile = 0.0
+shader_parameter/symbol_blend = 0.755
 
 [sub_resource type="Animation" id="Animation_lvxji"]
 length = 0.001
@@ -207,7 +280,7 @@ _data = {
 &"death": SubResource("Animation_p47bc")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=22477516 node_paths=PackedStringArray("col_shape", "dust_particles", "slide_particles", "player_anims", "visuals_node", "projectile_spawn_point")]
+[node name="Player" type="CharacterBody3D" unique_id=22477516 node_paths=PackedStringArray("col_shape", "dust_particles", "slide_particles", "revive_particles", "player_anims", "visuals_node", "projectile_spawn_point")]
 physics_interpolation_mode = 1
 collision_mask = 12
 script = ExtResource("1_3vyb7")
@@ -221,6 +294,7 @@ col_shape = NodePath("Collision/CollisionShape3D")
 animation_playback = SubResource("AnimationNodeStateMachinePlayback_lvxji")
 dust_particles = NodePath("DustParticles")
 slide_particles = NodePath("SlideParticles")
+revive_particles = NodePath("ReviveParticles")
 player_anims = NodePath("PlayerAnims")
 visuals_node = NodePath("Visual")
 projectile_scene = ExtResource("2_75vfm")
@@ -265,6 +339,29 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_qlg0r")
 draw_pass_1 = SubResource("SphereMesh_qlg0r")
 
+[node name="ReviveParticles" type="GPUParticles3D" parent="." unique_id=17932208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0303034, 0)
+cast_shadow = 0
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_gmlin")
+draw_pass_1 = ExtResource("4_lvxji")
+
+[node name="ShieldParticles" type="GPUParticles3D" parent="." unique_id=983957439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93, -0.12)
+visible = false
+cast_shadow = 0
+amount = 6
+fixed_fps = 60
+local_coords = true
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_75vfm")
+draw_pass_1 = ExtResource("5_p47bc")
+
 [node name="DeathParticles" type="Node3D" parent="." unique_id=26965030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80891263, 0)
 
@@ -287,6 +384,31 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_p47bc")
 draw_pass_1 = SubResource("CylinderMesh_lvxji")
+
+[node name="ShieldVFX" type="Node3D" parent="." unique_id=1010917258]
+visible = false
+
+[node name="RotatingShields" type="Node3D" parent="ShieldVFX" unique_id=1371784246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8769529, 0)
+script = SubResource("GDScript_75vfm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShieldVFX/RotatingShields" unique_id=553181654]
+transform = Transform3D(1.4051034, 0, -0.5250566, 0, 1.5, 0, 0.5250566, 0, 1.4051034, -0.65151954, 0, 1.1284314)
+mesh = ExtResource("5_p47bc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ShieldVFX/RotatingShields" unique_id=1901544740]
+transform = Transform3D(0.048555195, 0, -1.4992139, 0, 1.5, 0, 1.4992139, 0, 0.048555195, 1.4254088, 0, -0.26107097)
+mesh = ExtResource("5_p47bc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="ShieldVFX/RotatingShields" unique_id=1732724518]
+transform = Transform3D(1.242372, 0, 0.8405427, 0, 1.5, 0, -0.8405427, 0, 1.242372, -0.82050896, 0, -1.1829848)
+mesh = ExtResource("5_p47bc")
+
+[node name="Shield" type="CSGSphere3D" parent="ShieldVFX" unique_id=206072791]
+transform = Transform3D(0.63, 0, 0, 0, 0.75, 0, 0, 0, 0.58, 0, 0.93, -0.12)
+radius = 1.6205618
+rings = 5
+material = SubResource("ShaderMaterial_p47bc")
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="." unique_id=1903373339]
 libraries/ = SubResource("AnimationLibrary_75vfm")

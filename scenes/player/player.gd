@@ -26,6 +26,7 @@ extends CharacterBody3D
 @export var animation_playback: AnimationNodeStateMachinePlayback
 @export var dust_particles: GPUParticles3D
 @export var slide_particles: GPUParticles3D
+@export var revive_particles: GPUParticles3D
 @export var player_anims: AnimationPlayer
 @export var heavy_shake: ShakerComponent3D
 @export var shaker_component_3d: ShakerComponent3D
@@ -356,6 +357,7 @@ func player_death() -> void:
 	Global.save_stats()
 
 func _on_player_revived() -> void:
+	revive_particles.restart()
 	Global.total_coins -= Global.coins
 	Global.save_stats()
 	

@@ -30,6 +30,8 @@ extends CharacterBody3D
 @export var player_anims: AnimationPlayer
 @export var heavy_shake: ShakerComponent3D
 @export var shaker_component_3d: ShakerComponent3D
+@export var shield_vfx: Node3D
+@export var effects_anim_player: AnimationPlayer
 
 @export var visuals_node: Node3D
 
@@ -344,8 +346,7 @@ func player_death() -> void:
 	Global.is_game_started = false
 	dust_particles.emitting = false
 	
-	if player_anims and player_anims.has_animation("death"):
-		player_anims.play("death")
+	effects_anim_player.play("death")
 		
 	AudioManager.fail.play()
 	AudioManager.bgm.stop()
@@ -481,7 +482,9 @@ func play_slingshot_animation() -> void:
 func _on_collision_body_entered(body: Node3D) -> void:
 	if body.is_in_group("obstacle") and not is_invincible:
 		if has_shield:
+			shaker_component_3d.play_shake()
 			has_shield = false
+			effects_anim_player.play("shield_close")
 			_grant_invincibility(1.5)
 			print("Shield broken! Invincible for 1.5 seconds.")
 			return
@@ -489,6 +492,8 @@ func _on_collision_body_entered(body: Node3D) -> void:
 		Global.game_over.emit()
 
 func activate_shield() -> void:
+	#shield_vfx.show()
+	effects_anim_player.play("shield_open")
 	has_shield = true
 	print("Shield of Faith activated!")
 

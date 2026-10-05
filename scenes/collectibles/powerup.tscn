@@ -3,13 +3,18 @@
 [ext_resource type="Script" uid="uid://cbqtqm57tnoal" path="res://scenes/collectibles/powerup.gd" id="1_x5ili"]
 [ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="2_toriq"]
 [ext_resource type="Resource" uid="uid://by6w7e70aighv" path="res://resources/powerups_data/shield_powerup.tres" id="3_toriq"]
+[ext_resource type="Resource" uid="uid://c20kkwvp3i5ww" path="res://resources/powerups_data/magnet_powerup.tres" id="4_36a3q"]
+[ext_resource type="Resource" uid="uid://cqsx7385vbvg4" path="res://resources/powerups_data/speed_boost_powerup.tres" id="5_1c4o8"]
+[ext_resource type="Resource" uid="uid://dp38jyrqcgjgv" path="res://resources/powerups_data/slingshot_powerup.tres" id="6_oql6d"]
+[ext_resource type="Resource" uid="uid://j2tsx5sidwwl" path="res://resources/powerups_data/heavenly_lift_powerup.tres" id="7_l4ftn"]
+[ext_resource type="Resource" uid="uid://d0a5m1hp6rm5g" path="res://resources/powerups_data/double_coins_powerup.tres" id="8_bkqqo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pqufm"]
 radius = 0.76245594
 
 [node name="Powerup" type="Area3D" unique_id=1055726115]
 script = ExtResource("1_x5ili")
-powerups = Array[ExtResource("2_toriq")]([ExtResource("3_toriq")])
+powerups = Array[ExtResource("2_toriq")]([ExtResource("3_toriq"), ExtResource("4_36a3q"), ExtResource("5_1c4o8"), ExtResource("6_oql6d"), ExtResource("7_l4ftn"), ExtResource("8_bkqqo")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=613870420]
 shape = SubResource("SphereShape3D_pqufm")

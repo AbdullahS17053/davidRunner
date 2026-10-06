@@ -9,16 +9,19 @@ extends Area3D
 var start_y: float
 var time_passed: float = 0.0
 
-var random_powerup: PowerupData
+var data: PowerupData
 
 func _ready() -> void:
 	start_y = position.y
 	time_passed = randf() * PI * 2
 	
 	body_entered.connect(_on_body_entered)
-	random_powerup = powerups.pick_random()
-	if random_powerup and random_powerup.model_scene:
-		var model = random_powerup.model_scene.instantiate()
+	
+	if not data and powerups.size() > 0:
+		data = powerups.pick_random()
+		
+	if data and data.model_scene:
+		var model = data.model_scene.instantiate()
 		add_child(model)
 
 func _process(delta: float) -> void:
@@ -28,7 +31,7 @@ func _process(delta: float) -> void:
 	position.y = start_y + (sin(time_passed) * bob_height)
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is Player and random_powerup:
+	if body is Player and data:
 		AudioManager.powerup_pickup.play()
-		body.apply_powerup(random_powerup)
+		body.apply_powerup(data)
 		queue_free()

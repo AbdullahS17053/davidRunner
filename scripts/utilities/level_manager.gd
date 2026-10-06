@@ -8,6 +8,14 @@ class_name LevelManager
 
 @export var world_environment: WorldEnvironment
 
+@export_group("Spawners")
+@export var powerup_scene: PackedScene
+@export var available_powerups: Array[PowerupData]
+@export var powerup_spawn_chance: float = 0.25
+@export_flags_3d_physics var obstacle_collision_mask: int = 1
+
+var last_powerup_data: PowerupData
+
 var active_base_chunk: PackedScene
 var active_chunks_data: Array[ChunkData]
 var active_end_chunk: PackedScene
@@ -134,6 +142,9 @@ func _finalize_chunk(chunk_instance: Node3D) -> void:
 	else:
 		next_spawn_z -= 50.0
 
+	if randf() < powerup_spawn_chance:
+		_spawn_powerup_safely(chunk_instance)
+
 func recycle_chunk() -> void:
 	var old_chunk: Node3D = active_chunks.pop_front()
 	old_chunk.queue_free()
@@ -166,3 +177,59 @@ func _get_random_chunk_scene() -> PackedScene:
 		
 	last_chunk_index = chosen_index
 	return active_chunks_data[chosen_index].chunk_scene
+
+func _spawn_powerup_safely(chunk: Node3D) -> void:
+	if not powerup_scene or available_powerups.is_empty(): return
+	
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	
+	if not is_instance_valid(chunk): return
+	
+	var space_state = chunk.get_world_3d().direct_space_state
+	var test_shape = BoxShape3D.new()
+	test_shape.size = Vector3(2.0, 2.0, 8.0)
+	
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape = test_shape
+	query.collision_mask = obstacle_collision_mask
+	
+	query.collide_with_areas = true 
+	query.collide_with_bodies = true
+	
+	var chunk_length: float = -50.0
+	var end_point = chunk.get_node_or_null("EndPoint")
+	if end_point:
+		chunk_length = end_point.position.z 
+		
+	var max_attempts: int = 10
+	var current_lane_width: float = player.lane_width if player else 2.5
+	var elevation: float = 1.5 
+	
+	for i in range(max_attempts):
+		var random_lane = randi_range(-1, 1) * current_lane_width
+		var random_z = randf_range(0.0, chunk_length)
+		
+		var target_pos = chunk.global_position + Vector3(random_lane, elevation, random_z)
+		query.transform = Transform3D(Basis(), target_pos)
+		
+		var intersections = space_state.intersect_shape(query)
+		
+		if intersections.is_empty():
+			var powerup = powerup_scene.instantiate()
+			
+			var valid_powerups = available_powerups.duplicate()
+			if last_powerup_data and valid_powerups.has(last_powerup_data) and valid_powerups.size() > 1:
+				valid_powerups.erase(last_powerup_data)
+				
+			var chosen_data = valid_powerups.pick_random()
+			last_powerup_data = chosen_data
+			
+			if "data" in powerup:
+				powerup.data = chosen_data
+			elif "powerup_data" in powerup:
+				powerup.powerup_data = chosen_data
+			
+			powerup.position = Vector3(random_lane, elevation, random_z)
+			chunk.add_child(powerup)
+			break

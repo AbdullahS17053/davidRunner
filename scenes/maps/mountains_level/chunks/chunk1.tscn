@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b0cjlm74nlpav" path="res://assets/NatureBiomesPack/PolygonGeneric/Prefabs/Environment/SM_Gen_Env_Tree_Dead_01.prefab.scn" id="4_c3jqq"]
 [ext_resource type="PackedScene" uid="uid://bp2vilbp11eri" path="res://assets/NatureBiomesPack/PolygonNatureBiomes/PNB_Tropical_Jungle/Prefabs/SM_Env_Rock_Flat_01.prefab.scn" id="6_i365o"]
 [ext_resource type="Material" uid="uid://qkctnk3ihkxs" path="res://resources/materials/ground_material.tres" id="7_ms4d7"]
-[ext_resource type="PackedScene" uid="uid://cret0jm3hcrcm" path="res://scenes/collectibles/powerup.tscn" id="8_fukc4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ms4d7"]
 material = ExtResource("7_ms4d7")
@@ -123,6 +122,3 @@ shape = SubResource("BoxShape3D_ms4d7")
 
 [node name="EndPoint" type="Marker3D" parent="." unique_id=1320972013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.230185)
-
-[node name="Powerup" parent="." unique_id=1055726115 instance=ExtResource("8_fukc4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0399303, 0.7748847, -10.4133)

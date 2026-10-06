@@ -56,6 +56,14 @@
 [ext_resource type="Texture2D" uid="uid://bv4ahv5xii502" path="res://assets/ui_assets/icons/Icon_Arrow_Next1.png" id="39_13cnj"]
 [ext_resource type="Resource" uid="uid://cey3n7yb2sckm" path="res://resources/player_skins/skins_data/david_holy_spirit.tres" id="40_nwl1k"]
 [ext_resource type="Texture2D" uid="uid://d4jlh05f7ey6f" path="res://assets/ui_assets/icons/ItemIcon_Heart_Red.Png" id="46_i1rv8"]
+[ext_resource type="PackedScene" uid="uid://cret0jm3hcrcm" path="res://scenes/collectibles/powerup.tscn" id="50_wtb8n"]
+[ext_resource type="Script" uid="uid://dlbiuici8xiwh" path="res://scripts/powerup_data.gd" id="51_l4bc8"]
+[ext_resource type="Resource" uid="uid://d0a5m1hp6rm5g" path="res://resources/powerups_data/double_coins_powerup.tres" id="52_0v10s"]
+[ext_resource type="Resource" uid="uid://j2tsx5sidwwl" path="res://resources/powerups_data/heavenly_lift_powerup.tres" id="53_ea3ba"]
+[ext_resource type="Resource" uid="uid://c20kkwvp3i5ww" path="res://resources/powerups_data/magnet_powerup.tres" id="54_ux4ed"]
+[ext_resource type="Resource" uid="uid://by6w7e70aighv" path="res://resources/powerups_data/shield_powerup.tres" id="55_y0v27"]
+[ext_resource type="Resource" uid="uid://dp38jyrqcgjgv" path="res://resources/powerups_data/slingshot_powerup.tres" id="56_6brsj"]
+[ext_resource type="Resource" uid="uid://cqsx7385vbvg4" path="res://resources/powerups_data/speed_boost_powerup.tres" id="57_o8r4j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
 texture = ExtResource("13_lml1k")
@@ -2506,6 +2514,10 @@ player = NodePath("../Player")
 available_maps = Array[ExtResource("19_kto32")]([ExtResource("20_jkcmn"), ExtResource("21_kto32")])
 despawn_distance = 10.0
 world_environment = NodePath("../WorldEnvironment")
+powerup_scene = ExtResource("50_wtb8n")
+available_powerups = Array[ExtResource("51_l4bc8")]([ExtResource("52_0v10s"), ExtResource("53_ea3ba"), ExtResource("54_ux4ed"), ExtResource("55_y0v27"), ExtResource("56_6brsj"), ExtResource("57_o8r4j")])
+powerup_spawn_chance = 0.5
+obstacle_collision_mask = 10
 
 [node name="WorldBendingManager" type="Node3D" parent="LevelManager" unique_id=1035616828]
 script = ExtResource("26_n3hxp")
@@ -2550,8 +2562,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5,
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_dss4m")
 
-[node name="Node" type="Node" parent="." unique_id=1156902662]
+[node name="DebugPowerups" type="Node" parent="." unique_id=1156902662 node_paths=PackedStringArray("player")]
 script = SubResource("GDScript_pqufm")
+player = NodePath("../Player")
 
 [connection signal="pressed" from="UILayer/GameUI/PauseBtn" to="UILayer/GameUI" method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ResumeBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"resume"]]

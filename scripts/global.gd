@@ -23,6 +23,7 @@ signal enemy_killed_for_coins(pos_3d: Vector3, amount: int)
 
 #var current_coins: int = 0
 var equipped_skin: SkinsData
+var pending_starting_powerup: PowerupData = null
 
 var coins: int = 0
 var selected_map_index: int = 0

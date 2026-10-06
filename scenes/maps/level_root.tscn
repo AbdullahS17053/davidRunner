@@ -1677,6 +1677,7 @@ menu_anims = NodePath("MenuAnims")
 map_select_menu = NodePath("../MapSelectMenu")
 shop_menu_anims = NodePath("../ShopMenu/ShopMenuAnims")
 world_anims = NodePath("../../WorldAnims")
+available_bonus_powerups = Array[ExtResource("51_l4bc8")]([ExtResource("52_0v10s"), ExtResource("54_ux4ed"), ExtResource("55_y0v27"), ExtResource("56_6brsj"), ExtResource("57_o8r4j")])
 
 [node name="BG" type="ColorRect" parent="UILayer/MainMenu" unique_id=1336407760]
 layout_mode = 1

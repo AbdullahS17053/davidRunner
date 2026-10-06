@@ -76,6 +76,7 @@ var powerup_scene = preload("res://scenes/collectibles/powerup.tscn")
 
 var game_start: bool = false
 var is_shooting: bool = false
+var bonus_powerup_applied: bool = false
 
 var sky_current_lane: int = 0
 var sky_coin_streak: int = 0
@@ -143,6 +144,13 @@ func _physics_process(delta: float) -> void:
 	
 	game_start = Global.is_game_started
 	
+	# Apply pending ad bonus powerup on the very first frame of gameplay
+	if not bonus_powerup_applied and Global.pending_starting_powerup:
+		bonus_powerup_applied = true
+		print("Activating bonus powerup on game start: ", Global.pending_starting_powerup)
+		apply_powerup(Global.pending_starting_powerup)
+		Global.pending_starting_powerup = null
+	
 	if move_speed < max_speed:
 		move_speed += acceleration * delta
 		move_speed = min(move_speed, max_speed)
@@ -193,11 +201,9 @@ func _physics_process(delta: float) -> void:
 	_handle_powerups(delta)
 	
 	if is_flying:
-		# Tilt forward 75 degrees (head first) and hold steady
 		visuals_node.rotation.x = lerp_angle(visuals_node.rotation.x, deg_to_rad(-75), 6.0 * delta)
 		visuals_node.rotation.z = lerp_angle(visuals_node.rotation.z, 0.0, 6.0 * delta)
 	else:
-		# Smoothly snap the character back to a normal upright standing position
 		visuals_node.rotation.x = lerp_angle(visuals_node.rotation.x, 0.0, 12.0 * delta)
 		visuals_node.rotation.z = lerp_angle(visuals_node.rotation.z, 0.0, 12.0 * delta)
 	
@@ -271,8 +277,11 @@ func _handle_powerups(delta: float) -> void:
 func _spawn_sky_item() -> void:
 	sky_coin_streak -= 1
 	if sky_coin_streak <= 0:
-		sky_current_lane = randi_range(-1, 1)
-		sky_coin_streak = randi_range(6, 12) # Length of the coin trail in this lane
+		var available_lanes = [-1, 0, 1]
+		available_lanes.erase(sky_current_lane)
+		
+		sky_current_lane = available_lanes.pick_random()
+		sky_coin_streak = randi_range(6, 8)
 		
 	var item: Node3D = collectible_scene.instantiate() as Node3D
 	
@@ -281,7 +290,7 @@ func _spawn_sky_item() -> void:
 	get_parent().add_child(item)
 	sky_items.append(item)
 	
-	next_sky_z -= 2.0
+	next_sky_z -= -0.2
 
 func start_slide() -> void:
 	is_sliding = true
@@ -388,6 +397,7 @@ func player_death() -> void:
 	Global.save_stats()
 
 func _on_player_revived() -> void:
+	AudioManager.revive_sfx.play()
 	revive_particles.restart()
 	Global.total_coins -= Global.coins
 	Global.save_stats()
@@ -514,6 +524,7 @@ func _on_collision_body_entered(body: Node3D) -> void:
 			shaker_component_3d.play_shake()
 			has_shield = false
 			if effects_anim_player and effects_anim_player.has_animation("shield_close"):
+				AudioManager.death_impact.play()
 				effects_anim_player.play("shield_close")
 			_grant_invincibility(1.5)
 			print("Shield broken! Invincible for 1.5 seconds.")

@@ -58,7 +58,7 @@ stream_0/stream = ExtResource("12_thxvw")
 stream_1/stream = ExtResource("13_hscw7")
 stream_2/stream = ExtResource("14_8w84n")
 
-[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide", "bgm", "ui_click", "ui_tap", "death_impact", "heavy_fall_impact", "fail", "victory", "wolf_snarl", "wolf_howl", "punch", "powerup_pickup")]
+[node name="AudioManager" type="Node" unique_id=38410814 node_paths=PackedStringArray("collect_coin", "footsteps", "jump", "slide", "bgm", "ui_click", "ui_tap", "death_impact", "heavy_fall_impact", "fail", "victory", "wolf_snarl", "wolf_howl", "punch", "powerup_pickup", "revive_sfx")]
 script = ExtResource("1_tr7pb")
 collect_coin = NodePath("CollectCoin")
 footsteps = NodePath("Footsteps")
@@ -75,6 +75,7 @@ wolf_snarl = NodePath("WolfSnarl")
 wolf_howl = NodePath("WolfHowl")
 punch = NodePath("Punch")
 powerup_pickup = NodePath("PowerupPickup")
+revive_sfx = NodePath("ReviveSfx")
 base_pitch = 0.8
 pitch_step = 0.03
 max_pitch = 1.5

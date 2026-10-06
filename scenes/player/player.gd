@@ -51,6 +51,7 @@ var slide_timer: float = 0.0
 var is_jumping: bool = false
 var is_switching_left: bool = false
 var is_switching_right: bool = false
+var is_flying: bool = false
 
 var normal_height: float
 var normal_pos_y: float
@@ -81,6 +82,7 @@ func _ready() -> void:
 	is_dead = false
 	is_invincible = false
 	has_shield = false
+	is_flying = false
 	global_position.x = 0.0
 	
 	col_shape.shape = col_shape.shape.duplicate()
@@ -186,6 +188,15 @@ func _physics_process(delta: float) -> void:
 	
 	_handle_powerups(delta)
 	
+	if is_flying:
+		# Tilt forward 75 degrees (head first) and hold steady
+		visuals_node.rotation.x = lerp_angle(visuals_node.rotation.x, deg_to_rad(-75), 6.0 * delta)
+		visuals_node.rotation.z = lerp_angle(visuals_node.rotation.z, 0.0, 6.0 * delta)
+	else:
+		# Smoothly snap the character back to a normal upright standing position
+		visuals_node.rotation.x = lerp_angle(visuals_node.rotation.x, 0.0, 12.0 * delta)
+		visuals_node.rotation.z = lerp_angle(visuals_node.rotation.z, 0.0, 12.0 * delta)
+	
 	move_and_slide()
 
 func _handle_powerups(delta: float) -> void:
@@ -209,7 +220,7 @@ func _handle_powerups(delta: float) -> void:
 		else:
 			var coins = get_tree().get_nodes_in_group("coin")
 			for coin in coins:
-				if not coin.is_magnetized and coin.global_position.distance_to(global_position) < 8.0:
+				if not coin.is_magnetized and coin.global_position.distance_to(global_position) < 12.0:
 					coin.is_magnetized = true
 					coin.target_player = self
 
@@ -223,14 +234,19 @@ func _handle_powerups(delta: float) -> void:
 		heavenly_lift_timer -= delta
 		if heavenly_lift_timer <= 0:
 			has_heavenly_lift = false
+			is_flying = false
 			_grant_invincibility(3.0)
 			print("Heavenly Lift ended. Granted temporary invincibility.")
+			
+			if animation_playback:
+				animation_playback.travel("Sprint")
+				
 		else:
 			sky_spawn_timer -= delta
 			if sky_spawn_timer <= 0:
 				sky_spawn_timer = 0.2
 				_spawn_sky_item()
-				
+
 	for i in range(sky_items.size() - 1, -1, -1):
 		var item = sky_items[i]
 		if is_instance_valid(item):
@@ -243,13 +259,13 @@ func _handle_powerups(delta: float) -> void:
 
 func _spawn_sky_item() -> void:
 	var item: Node3D
-	if randf() < 0.05:
-		item = powerup_scene.instantiate()
-	else:
-		item = collectible_scene.instantiate()
+	#if randf() < 0.05:
+		#item = powerup_scene.instantiate()
+	#else:
+	item = collectible_scene.instantiate()
 		
 	var random_lane = randi_range(-1, 1)
-	item.position = Vector3(random_lane * lane_width, 16.0, global_position.z - 40.0)
+	item.position = Vector3(random_lane * lane_width, 15.0, global_position.z - 40.0)
 	
 	get_parent().add_child(item)
 	sky_items.append(item)
@@ -346,7 +362,8 @@ func player_death() -> void:
 	Global.is_game_started = false
 	dust_particles.emitting = false
 	
-	effects_anim_player.play("death")
+	if effects_anim_player and effects_anim_player.has_animation("death"):
+		effects_anim_player.play("death")
 		
 	AudioManager.fail.play()
 	AudioManager.bgm.stop()
@@ -369,7 +386,7 @@ func _on_player_revived() -> void:
 	_stop_ragdoll()
 	
 	if animation_playback:
-		animation_playback.travel("run")
+		animation_playback.travel("Sprint")
 	elif player_anims and player_anims.has_animation("run"):
 		player_anims.play("run")
 		
@@ -429,7 +446,6 @@ func _grant_invincibility(duration: float) -> void:
 				for j in range(mesh_instance.mesh.get_surface_count()):
 					mesh_instance.set_surface_override_material(j, null)
 
-
 func _stop_ragdoll() -> void:
 	if not current_skin_node:
 		return
@@ -484,7 +500,8 @@ func _on_collision_body_entered(body: Node3D) -> void:
 		if has_shield:
 			shaker_component_3d.play_shake()
 			has_shield = false
-			effects_anim_player.play("shield_close")
+			if effects_anim_player and effects_anim_player.has_animation("shield_close"):
+				effects_anim_player.play("shield_close")
 			_grant_invincibility(1.5)
 			print("Shield broken! Invincible for 1.5 seconds.")
 			return
@@ -492,8 +509,8 @@ func _on_collision_body_entered(body: Node3D) -> void:
 		Global.game_over.emit()
 
 func activate_shield() -> void:
-	#shield_vfx.show()
-	effects_anim_player.play("shield_open")
+	if effects_anim_player and effects_anim_player.has_animation("shield_open"):
+		effects_anim_player.play("shield_open")
 	has_shield = true
 	print("Shield of Faith activated!")
 
@@ -524,4 +541,12 @@ func apply_powerup(data: PowerupData) -> void:
 		PowerupData.PowerupType.HEAVENLY_LIFT:
 			has_heavenly_lift = true
 			heavenly_lift_timer = data.duration
+			
+			is_jumping = false
+			is_sliding = false
+			is_flying = true
+			
+			if animation_playback:
+				animation_playback.travel("Idle")
+				
 			print("Heavenly Lift activated for %s seconds!" % data.duration)

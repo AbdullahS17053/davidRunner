@@ -14,6 +14,7 @@ extends Node
 @export var wolf_snarl: AudioStreamPlayer
 @export var wolf_howl: AudioStreamPlayer
 @export var punch: AudioStreamPlayer
+@export var powerup_pickup: AudioStreamPlayer
 
 @export_group("Coin Pitch Settings")
 @export var base_pitch: float = 1.0

@@ -1378,6 +1378,48 @@ _data = {
 &"store_camera": SubResource("Animation_2xul0")
 }
 
+[sub_resource type="GDScript" id="GDScript_pqufm"]
+resource_name = "PowerupsDebug"
+script/source = "extends Node
+
+@export var player: Player
+
+func _ready() -> void:
+	if not player:
+		player = get_tree().get_first_node_in_group(\"player\") as Player
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not OS.is_debug_build():
+		return
+		
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_1:
+				_trigger_powerup(PowerupData.PowerupType.SHIELD, 0.0)
+			KEY_2:
+				_trigger_powerup(PowerupData.PowerupType.SLINGSHOT, 10.0)
+			KEY_3:
+				_trigger_powerup(PowerupData.PowerupType.MAGNET, 15.0)
+			KEY_4:
+				_trigger_powerup(PowerupData.PowerupType.DOUBLE_COINS, 15.0)
+			KEY_5:
+				_trigger_powerup(PowerupData.PowerupType.SPEED_BOOST, 0.0)
+			KEY_6:
+				_trigger_powerup(PowerupData.PowerupType.HEAVENLY_LIFT, 8.0)
+
+func _trigger_powerup(powerup_type: PowerupData.PowerupType, duration: float) -> void:
+	if not player:
+		printerr(\"DebugPowerupTester: Player reference missing.\")
+		return
+		
+	var debug_data := PowerupData.new()
+	debug_data.type = powerup_type
+	debug_data.duration = duration
+	
+	player.apply_powerup(debug_data)
+	print(\"Debug: Injected Powerup Type: \", powerup_type)
+"
+
 [node name="LevelRoot" type="Node3D" unique_id=154977216]
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1842010287]
@@ -2507,6 +2549,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5,
 [node name="WorldAnims" type="AnimationPlayer" parent="." unique_id=189864053]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_dss4m")
+
+[node name="Node" type="Node" parent="." unique_id=1156902662]
+script = SubResource("GDScript_pqufm")
 
 [connection signal="pressed" from="UILayer/GameUI/PauseBtn" to="UILayer/GameUI" method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UILayer/PauseMenu/VBoxContainer/ResumeBtn" to="UILayer/PauseMenu" method="_on_menu_btn_pressed" binds= [&"resume"]]

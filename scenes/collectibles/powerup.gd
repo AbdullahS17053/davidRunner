@@ -29,5 +29,6 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player and random_powerup:
+		AudioManager.powerup_pickup.play()
 		body.apply_powerup(random_powerup)
 		queue_free()

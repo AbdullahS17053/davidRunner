@@ -77,6 +77,10 @@ var powerup_scene = preload("res://scenes/collectibles/powerup.tscn")
 var game_start: bool = false
 var is_shooting: bool = false
 
+var sky_current_lane: int = 0
+var sky_coin_streak: int = 0
+var next_sky_z: float = 0.0
+
 func _ready() -> void:
 	Global.player_revived.connect(_on_player_revived)
 	is_dead = false
@@ -238,6 +242,13 @@ func _handle_powerups(delta: float) -> void:
 			_grant_invincibility(3.0)
 			print("Heavenly Lift ended. Granted temporary invincibility.")
 			
+			await get_tree().create_timer(1.0).timeout
+			
+			for item in sky_items:
+				if is_instance_valid(item):
+					item.queue_free()
+			sky_items.clear()
+			
 			if animation_playback:
 				animation_playback.travel("Sprint")
 				
@@ -258,17 +269,19 @@ func _handle_powerups(delta: float) -> void:
 			sky_items.remove_at(i)
 
 func _spawn_sky_item() -> void:
-	var item: Node3D
-	#if randf() < 0.05:
-		#item = powerup_scene.instantiate()
-	#else:
-	item = collectible_scene.instantiate()
+	sky_coin_streak -= 1
+	if sky_coin_streak <= 0:
+		sky_current_lane = randi_range(-1, 1)
+		sky_coin_streak = randi_range(6, 12) # Length of the coin trail in this lane
 		
-	var random_lane = randi_range(-1, 1)
-	item.position = Vector3(random_lane * lane_width, 15.0, global_position.z - 40.0)
+	var item: Node3D = collectible_scene.instantiate() as Node3D
+	
+	item.position = Vector3(sky_current_lane * lane_width, 15.0, next_sky_z)
 	
 	get_parent().add_child(item)
 	sky_items.append(item)
+	
+	next_sky_z -= 2.0
 
 func start_slide() -> void:
 	is_sliding = true
@@ -545,6 +558,9 @@ func apply_powerup(data: PowerupData) -> void:
 			is_jumping = false
 			is_sliding = false
 			is_flying = true
+			
+			next_sky_z = global_position.z - 30.0
+			sky_coin_streak = 0
 			
 			if animation_playback:
 				animation_playback.travel("Idle")

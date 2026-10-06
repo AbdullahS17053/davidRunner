@@ -2516,7 +2516,7 @@ despawn_distance = 10.0
 world_environment = NodePath("../WorldEnvironment")
 powerup_scene = ExtResource("50_wtb8n")
 available_powerups = Array[ExtResource("51_l4bc8")]([ExtResource("52_0v10s"), ExtResource("53_ea3ba"), ExtResource("54_ux4ed"), ExtResource("55_y0v27"), ExtResource("56_6brsj"), ExtResource("57_o8r4j")])
-powerup_spawn_chance = 0.5
+powerup_spawn_chance = 0.3
 obstacle_collision_mask = 10
 
 [node name="WorldBendingManager" type="Node3D" parent="LevelManager" unique_id=1035616828]

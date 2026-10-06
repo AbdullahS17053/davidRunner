@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cmoqycn0x6qbi"]
+
+[ext_resource type="Shader" uid="uid://c7qxgwm3yonb7" path="res://resources/shaders/emission_world_bending_shader.gdshader" id="1_hs6t8"]
+[ext_resource type="Texture2D" uid="uid://c7fodwa3mx4e2" path="res://assets/PolygonIcons/Textures/PolygonIcons_Texture_01_A.png" id="2_s3wif"]
+
+[resource]
+resource_name = "PolygonIcons_Mat_01_A"
+render_priority = 0
+shader = ExtResource("1_hs6t8")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_s3wif")
+shader_parameter/albedo_texture_size = Vector2i(4096, 4096)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.8
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0.36846972, 0.702878, 1, 1)
+shader_parameter/emission_energy = 1.55
+shader_parameter/uv1_scale = Vector3(1, 1, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
